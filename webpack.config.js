@@ -10,7 +10,7 @@
 
 module.exports = {
     // the main entry of our app
-    entry: ['./src/boot.js', './src/service/auth-srv.js'],
+    entry: ['./src/boot.js'], // './src/service/authSrv.js'],
     // output configuration
     output: {
         path: __dirname + '/dist/',
@@ -27,5 +27,10 @@ module.exports = {
             // apply babel transform to all the dependencies!
             { test: /\.js$/, loader: 'babel-loader', exclude: /node_modules/ }
         ]
+    },
+    resolve: {
+        alias: {
+            vue: 'vue/dist/vue.js'
+        }
     }
 }
