@@ -3,8 +3,7 @@ import Router from "vue-router";
 import Resource from "vue-resource";
 import RouterMapping from "./components/router";
 import AuthMiddleware from "./middleware/authMiddleware";
-
-console.log(RouterMapping, 'mapping');
+import HttpConfig from "./httpConfig";
 
 Vue.use(Router);
 Vue.use(Resource);
@@ -18,6 +17,8 @@ const router = new Router({
 
 
 export default new Vue({
+    el: "#app",
     router: router,
-}).$mount("#app");
+    http:HttpConfig,
+});
 

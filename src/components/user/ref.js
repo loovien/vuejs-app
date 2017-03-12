@@ -15,18 +15,22 @@ export default {
     children: [
         {
             path: "login",
+            name: "userLogin",
             component: Login
         },
         {
             path: "setpwd",
+            name: "userSetpwd",
             component: Setpwd
         },
         {
             path: "resetpwd",
+            name: "userResetpwd",
             component: Resetpwd
         },
         {
             path: "help",
+            name: "userHelp",
             component: Help
         },
     ]

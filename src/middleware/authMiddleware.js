@@ -16,9 +16,10 @@ export default class AuthMiddleware {
             if (to.matched.some(record => record.meta.auth)) {
                 // this route requires auth, check if logged in
                 // if not, redirect to login page.
-                if (authSrv.login()) {
+                if (!authSrv.isLogin()) {
                     next({
-                        path: '/',
+                        //path: '/',
+                        name: "userLogin",
                         query: { redirect: to.fullPath }
                     })
                 } else {

@@ -14,7 +14,7 @@ export default class Auth {
     }
 
     login(context, credentials, redirectUrl = '/') {
-        return context.$http.post("/login", credentials, (data) => {
+        return this.$http.post("/login", credentials, (data) => {
             localStorage.setItem('_token', data.token);
             return this.authenticated = true;
         }).error((error) => {

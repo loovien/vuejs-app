@@ -8,12 +8,13 @@
         <div class="login">
             Username: <input type="text">
             password: <input type="text">
-            <button>submit</button>
+            <button @click="submit()">submit</button>
         </div>
     </div>
 </template>
 
 <script>
+    import AuthSrv from "../../service/authSrv";
     export default {
         data: () => {
             return {
@@ -27,12 +28,11 @@
             }
         },
         methods: {
-            submit: () => {
-                this.$http.post("/login", this.credentials, (resp) => {
-                    console.log(resp);
-                }).error((error) => {
-                    this.error.msg = error.msg;
-                });
+            submit: function () {
+                const authSrv = new AuthSrv();
+                isLoginSrv = authSrv.login(null, this.credentials).then((response) => {
+                    console.log("login")
+                })
             }
         }
     }
