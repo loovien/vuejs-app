@@ -1,4 +1,4 @@
-# vue2 + webpack build single page application skeleton
+# vue2 构建单页应用骨架
 
 ## 结构说明
 
