@@ -3,11 +3,13 @@ import Router from "vue-router";
 import Resource from "vue-resource";
 import RouterMapping from "./components/router";
 import AuthMiddleware from "./middleware/authMiddleware";
-import HttpConfig from "./httpConfig";
+import Config from "./config";
 
 Vue.use(Router);
 Vue.use(Resource);
 
+/* set http global configuration */
+Vue.http.options = Config.http;
 const router = new Router({
     routes: RouterMapping
 });
@@ -19,6 +21,5 @@ const router = new Router({
 export default new Vue({
     el: "#app",
     router: router,
-    http:HttpConfig,
 });
 

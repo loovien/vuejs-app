@@ -4,10 +4,10 @@
 
 export default {
     http: {
-        root: "/",
+        root: "http://shangjialian.51lianying.com/api",
         headers: {
             ContentType: "application/json",
-            Authorization: 'Bear jlaskdjfiiii#Y@#111'
+            //Authorization: 'Bear jlaskdjfiiii#Y@#111'
         }
     }
 }
