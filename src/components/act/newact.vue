@@ -1,9 +1,8 @@
 <template>
     <div>
-        <h1>活动列表展示</h1>
-        <router-view></router-view>
+        <h1>创建新活动</h1>
+        <hr/>
     </div>
-
 </template>
 
 <script>

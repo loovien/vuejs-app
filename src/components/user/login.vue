@@ -7,8 +7,10 @@
     <div>
         <div class="login">
             Username: <input type="text">
+            <br/>
             password: <input type="text">
             <button @click="submit()">submit</button>
+            <router-link :to="{name: 'userRegister'}">没有帐号?注册</router-link>
         </div>
     </div>
 </template>

@@ -7,12 +7,18 @@ import Login from "./login.vue";
 import Setpwd from "./setpwd.vue";
 import Resetpwd from "./resetpwd.vue";
 import Help from "./help.vue";
+import Register from "./register.vue";
 
 export default {
     path: "/user",
     name: 'user',
     component: Index,
     children: [
+        {
+            path: "register",
+            name: "userRegister",
+            component: Register
+        },
         {
             path: "login",
             name: "userLogin",
