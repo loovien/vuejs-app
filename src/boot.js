@@ -11,6 +11,7 @@ Vue.use(Resource);
 /* set http global configuration */
 Vue.http.options = Config.http;
 const router = new Router({
+    mode: "history",
     routes: RouterMapping
 });
 

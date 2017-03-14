@@ -8,6 +8,9 @@ export default class UserSrv extends BaseSrv {
         return this.http.post("user/login", credentials);
     }
 
+    captcha(mobile) {
+        return this.http.post("user/captcha", {mobile: mobile});
+    }
 
     register(credentials) {
         return this.http.post("user/register", credentials);
