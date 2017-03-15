@@ -2,7 +2,7 @@
     <div>
         <ul v-show="acts.length > 0">
             <li v-for="act in acts">
-                {{act.title}}
+                <router-link :to="{name: 'act_detail', params: {id: act.id}}">{{act.title}}</router-link>
             </li>
         </ul>
         <p v-show="acts.length == 0">行业下没有活动</p>
