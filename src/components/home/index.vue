@@ -3,7 +3,7 @@
         <header class="header">
             <!-- <a href="" class="iconfont icon-back header-goback"></a> -->
             <h1 class="header-title">首页</h1>
-            <div class="iconfont icon-service header-service"></div>
+            <router-link :to="{name: 'help'}" class="iconfont icon-service header-service"></router-link>
         </header>
     
         <swiper id="swiper_horizontal"

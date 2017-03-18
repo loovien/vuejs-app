@@ -5,7 +5,7 @@
 import App from "./index.vue";
 
 export default {
-    path: "/",
-    name: "home",
+    path: "/help",
+    name: "help",
     component: App
 }

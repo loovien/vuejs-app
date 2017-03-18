@@ -128,6 +128,9 @@ a{
 .bg_fff{
     background: #fff;
 }
+.color_000{
+    color: #000;
+}
 .color_666{
     color: #666;
 }
