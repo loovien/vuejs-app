@@ -3,7 +3,10 @@
         <router-view></router-view>
         <div class="fixed">
             <span class="iconfont icon-gotop gotop" @click="gotop"></span>
-            <router-link :to="{name: 'mine'}" class="iconfont icon-account account mt10"></router-link>
+            <router-link :to="{name: 'mine'}" class="account mt10">
+                <span class="iconfont icon-account"></span>
+                <span class="block f12">我的</span>
+            </router-link>
         </div>
     </div>
 </template>
@@ -98,6 +101,9 @@ a{
     color: #333;
     text-decoration: none;
 }
+.wrap{
+    padding-top: 40px;
+}
 .clearfix:before,
 .clearfix:after{
     content: " ";
@@ -109,18 +115,29 @@ a{
 .f12{
     font-size: 12px;
 }
+.f16{
+    font-size: 16px;
+}
 .fl {
     float: left
 }
-
 .fr {
     float: right
+}
+.block{
+    display: block;
+}
+.inline-block{
+    display: inline-block;
 }
 .text-center{
     text-align: center;
 }
 .text-right{
     text-align: right;
+}
+.valign-m{
+    vertical-align: middle;
 }
 .mt10{
     margin-top: 10px;
@@ -148,6 +165,9 @@ a{
 }
 .w100{
     width: 100%;
+}
+.h100{
+    height: 100%;
 }
 .overflow-hidden{
     overflow: hidden;
@@ -187,6 +207,9 @@ a{
     line-height: 40px;
     background: #ffb400;
     position: relative;
+    position: fixed;
+    width: 100%; top: 0; left: 0;
+    z-index: 111;
 }
 .header-title{
     text-align: center;
@@ -229,6 +252,11 @@ a{
 .fixed .account{
     background: rgba(255,180,0,.8);
     color: #fff;
+    line-height: 16px;
+    padding: 5px 0 0 0;
+}
+.data-none{
+    padding: 100px 0;
 }
 </style>
 

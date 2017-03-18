@@ -1,6 +1,5 @@
 <template>
-    <div>
-        <h1>活动列表展示</h1>
+    <div class="h100">
         <router-view></router-view>
     </div>
 
@@ -8,8 +7,10 @@
 
 <script>
     export default {
-        data: () => {
-            return {}
+        data(){
+            return {
+
+            }
         }
     }
 </script>

@@ -18,7 +18,7 @@ export default {
             component: Detail
         },
         {
-            path: "industry/:id",
+            path: "industry/:id:title",
             name: "act_industry",
             component: Industry
         },

@@ -1,5 +1,5 @@
 <template>
-    <div>
+    <div class="wrap">
         <header class="header">
             <!-- <a href="" class="iconfont icon-back header-goback"></a> -->
             <h1 class="header-title">首页</h1>
@@ -35,7 +35,7 @@
             <div class="overflow-hidden w100">
                 <div class="clearfix industry-list">
                     <div class="clearfix">
-                        <router-link :to="{name: 'act_industry', params: {id: industry.id}}" v-for="industry in industries" class="fl industry text-center">
+                        <router-link :to="{name: 'act_industry', params: {id: industry.id, title: industry.name}}" v-for="industry in industries" class="fl industry text-center">
                             <span class="iconfont"></span>
                             <h5 class="industry-title">{{industry.name}}</h5>
                         </router-link>
