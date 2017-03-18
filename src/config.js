@@ -4,7 +4,7 @@
 
 export default {
     http: {
-        root: "http://shangjialian.51lianying.com/api",
+        root: "http://121.41.21.64:8000/index.php/api",
         headers: {
             ContentType: "application/json",
             //Authorization: 'Bear jlaskdjfiiii#Y@#111'

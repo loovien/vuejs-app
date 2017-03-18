@@ -11,7 +11,7 @@ export default class IndexSrv extends BaseSrv {
     }
 
     getIndustryList() {
-        return this.http.get("industry/");
+        return this.http.get("industry");
     }
 
     getRecommendList() {
