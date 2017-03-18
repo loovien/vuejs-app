@@ -4,6 +4,7 @@ import Resource from "vue-resource";
 import RouterMapping from "./components/router";
 import AuthMiddleware from "./middleware/authMiddleware";
 import Config from "./config";
+import layouts from './layouts.vue'
 
 Vue.use(Router);
 Vue.use(Resource);
@@ -20,8 +21,9 @@ const router = new Router({
 (new AuthMiddleware(router)).handle();
 
 
-export default new Vue({
+new Vue({
     el: "#app",
     router: router,
+    components: { layouts }
 });
 
