@@ -61,7 +61,9 @@ span{
     -moz-box-sizing: border-box;
     box-sizing: border-box;
 }
-
+input, select, textarea{
+    -webkit-appearance: none;
+}
 h1,
 h2,
 h3,
@@ -438,6 +440,52 @@ height: 4px;
 }
 .chart-table-box{
     padding: 0 15px 15px;
+}
+/* 按钮 */
+.btn{
+    height: 42px;
+    line-height: 42px;
+    background: #ffb400;
+    color: #fff;
+    text-align: center;
+    width: 100%;
+    font-size: 16px;
+    border: none;
+    border-radius: 2px;
+    font-weight: bold;
+}
+.btn[disabled]{
+    background: #f7db95;
+}
+/* 表单 */
+.form{
+    border: 1px solid #e9e9e9;
+    background: #fff;
+    border-radius: 3px;
+}
+.input-box:last-child{
+    border-bottom: none;
+}
+.input-box{
+    border-bottom: 1px solid #e9e9e9;
+    height: 54px;
+    padding: 7px 10px;
+    position: relative;
+}
+.ui-input{
+    border: none;
+    width: 100%;
+    height: 40px;
+    line-height: 32px;
+    padding: 4px 5px 4px 30px;
+    outline: none;
+}
+.input-icon{
+    position: absolute;
+    left: 15px; top: 50%;
+    color: #777;
+    -webkit-transform: translateY(-50%);
+            transform: translateY(-50%);
 }
 </style>
 

@@ -1,16 +1,32 @@
-<style scope>
-    .login {
-        box-shadow: wheat 3px 0 0;
-    }
-</style>
 <template>
-    <div>
+    <div class="wrap">
+        <header class="header">
+            <a href="" class="iconfont icon-back header-goback" @click="window.history.go(-1)"></a>
+            <h1 class="header-title">登录</h1>
+            <router-link :to="{name: 'userHelp'}" class="iconfont icon-service header-service"></router-link>
+        </header>
         <div class="login">
-            Username: <input type="text">
-            <br/>
-            password: <input type="text">
-            <button @click="submit()">submit</button>
-            <router-link :to="{name: 'userRegister'}">没有帐号?注册</router-link>
+            <form action="" class="form">
+                <div class="input-box">
+                    <span class="iconfont icon-iphone input-icon"></span>
+                    <input type="text" placeholder="手机号" class="ui-input">
+                </div>
+                <div class="input-box">
+                    <span class="iconfont icon-Password input-icon"></span>
+                    <input type="text" placeholder="密码" class="ui-input">
+                </div>
+            </form>
+            <div class="btn-box">
+                <button @click="submit()" class="btn">登录</button>
+            </div>
+            <p class="text-center">
+                <router-link :to="{name: 'userRegister'}" class="registerBtn f12">注册商家恋</router-link>
+                <router-link :to="{name: 'userResetpwd'}" class="color_gray resetpwdBtn f12">忘记密码</router-link>
+            </p>
+        </div>
+        <div class="bottom">
+            <img src="/static/images/logo.jpg" alt="我要联赢" class="logo">
+            <p class="text-center color_666 f12"><span class="iconfont icon-phone"></span>400-6728-266</p>
         </div>
     </div>
 </template>
@@ -39,3 +55,37 @@
         }
     }
 </script>
+
+<style scope>
+.login {
+    padding: 10px;
+}
+.bottom{
+    width: 100%;
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    padding-bottom: 20px;
+}
+.icon-phone{
+    color: #12abcc;
+}
+.logo{
+    margin: 0 auto;
+    display: inline-block;
+    width: 98px; height: auto;
+    display: block;
+}
+.registerBtn{
+    color: #e8a70a;
+    border-right: 1px solid #c5c5c5;
+    padding-right: 15px;
+}
+.resetpwdBtn{
+    padding-left: 15px;
+}
+.btn-box{
+    padding: 20px 0;
+}
+
+</style>

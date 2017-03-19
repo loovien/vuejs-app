@@ -2,7 +2,7 @@
     <div class="wrap">
         <header class="header">
             <h1 class="header-title">首页</h1>
-            <router-link :to="{name: 'help'}" class="iconfont icon-service header-service"></router-link>
+            <router-link :to="{name: 'userHelp'}" class="iconfont icon-service header-service"></router-link>
         </header>
     
         <swiper id="swiper_horizontal"
