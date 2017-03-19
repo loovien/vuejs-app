@@ -15,11 +15,11 @@
         </swiper>
         
         <div class="recommend-box bg_fff mt10">
-            <h2 class="title">
+            <h2 class="title clearfix">
                 <router-link :to="{name: 'act'}" class="fr f12 color_gray">全部<span class="iconfont icon-arrow-r f12"></span></router-link>
                 最新推荐
             </h2>
-            <div class="clearfix">
+            <div class="clearfix recommend-list">
                 <router-link :to="{name: 'act_detail', params: {id: act.id}}"  v-for="act in acts" class="fl recommend text-center">
                     <img src="http://s.51lianying.com/images/www/index_v2/thum-1.jpg" class="recommend-thumbnail" />
                     <h5 class="act-title">{{act.title}}</h5>
@@ -28,7 +28,7 @@
         </div>
 
         <div class="industry-box bg_fff mt10">
-            <h2 class="title industry-title clearfix">
+            <h2 class="title clearfix">
                 <a class="fr f12 color_gray">全部<span class="iconfont icon-arrow-r f12"></span></a>
                 行业营销工具
             </h2>
@@ -92,29 +92,10 @@
 .banner{
     width: 100%; height: auto;
 }
-.recommend-box{
-    padding: 0 15px;
-}
 .container{
     padding-bottom: 20px;
 }
-.title{
-    height: 40px; line-height: 40px;
-}
-.recommend{
-    width: 32%;
-    margin-right: 2%;
-    padding: 5px 0 10px;
-}
-.recommend:nth-child(3n){
-    margin-right: 0;
-}
-.recommend-thumbnail{
-    width: 100%; height: auto;
-}
-.act-title{
-    padding: 5px 0;
-}
+
 .industry-box{
     padding: 0 0 10px 0;
 }
