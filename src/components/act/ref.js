@@ -4,8 +4,8 @@
 
 import Index from "./index.vue";
 import Industry from "./industry.vue"
-import Detail from "./detail.vue";
-import Newact from "./newact.vue";
+import Detail from "./template_1/detail.vue";
+import Newact from "./template_1/newact.vue";
 
 export default {
     path: "/act",
@@ -13,7 +13,7 @@ export default {
     component: Index,
     children: [
         {
-            path: "entity/:id",
+            path: "template_1/:id",
             name: "act_detail",
             component: Detail
         },
@@ -23,7 +23,7 @@ export default {
             component: Industry
         },
         {
-            path: "new/:id",
+            path: "template_1/new/:id",
             name: "act_new",
             component: Newact,
             meta: {auth: true}

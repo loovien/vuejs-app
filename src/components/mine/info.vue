@@ -14,14 +14,14 @@
             <div class="tab-item fl active">
                 <span class="tab-item-a block text-center">活动挑选</span>
             </div>
-            <div class="tab-item fl">
-                <router-link :to="{name: 'mineNostart'}" class="tab-item-a block text-center">未开始的活动</router-link>
+            <div class="tab-item fl text-center">
+                <router-link :to="{name: 'mineNostart'}" class="tab-item-a inline-block">未开始活动</router-link>
             </div>
-            <div class="tab-item fl">
-                <router-link :to="{name: 'mineStart'}" class="tab-item-a block text-center">进行中的活动</router-link>
+            <div class="tab-item fl text-center">
+                <router-link :to="{name: 'mineStart'}" class="tab-item-a inline-block">进行中活动</router-link>
             </div>
-            <div class="tab-item fl">
-                <router-link :to="{name: 'mineEnd'}" class="tab-item-a block text-center">历史活动</router-link>
+            <div class="tab-item fl text-center">
+                <router-link :to="{name: 'mineEnd'}" class="tab-item-a inline-block">历史活动</router-link>
             </div>
         </div>
 
@@ -132,7 +132,7 @@
     height: 24px;
     line-height: 24px;
     border-right: 1px solid #ddd;
-    padding: 0 10px;
+    padding: 0 5px;
 }
 .tab-item:last-child{
     border-right: none;

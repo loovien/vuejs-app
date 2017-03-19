@@ -1,7 +1,6 @@
 <template>
     <div class="wrap">
         <header class="header">
-            <!-- <a href="" class="iconfont icon-back header-goback"></a> -->
             <h1 class="header-title">首页</h1>
             <router-link :to="{name: 'help'}" class="iconfont icon-service header-service"></router-link>
         </header>
