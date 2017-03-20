@@ -7,7 +7,6 @@
  * @Version: 0.0.1
  * @History:
  */
-
 export default class Auth {
     constructor(isAuthenticated = false) {
         this.authenticated = isAuthenticated;
@@ -25,5 +24,9 @@ export default class Auth {
 
     isLogin () {
         return !!localStorage.getItem('_token');
+    }
+
+    hasOpenId() {
+        return !!sessionStorage.getItem("_openid");
     }
 }

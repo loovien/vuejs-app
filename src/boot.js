@@ -17,8 +17,9 @@ const router = new Router({
     routes: RouterMapping
 });
 
+
 /* middleware inject */
-(new AuthMiddleware(router)).handle();
+(new AuthMiddleware(router, Vue.http)).handle();
 
 
 new Vue({

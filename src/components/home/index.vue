@@ -47,7 +47,7 @@
 
 <script>
     import IndexSrv from "../../service/indexSrv";
-    import Swiper from '../../modules/swiper.vue'
+    import Swiper from '../shared/swiper.vue'
 
     export default {
         data() {

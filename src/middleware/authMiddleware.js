@@ -2,32 +2,57 @@
  * Created by luowen on 2017/3/11.
  */
 
-import AuthSrv from "../service/authSrv";
+import AuthUtil from "../utils/authUtil";
 
 export default class AuthMiddleware {
-    constructor(router) {
+    constructor(router, http) {
         this.router = router;
+        this.http = http;
     }
 
     handle () {
         const router = this.router;
-        const authSrv = new AuthSrv();
+        const authUtil = new AuthUtil(this.http);
         router.beforeEach((to, from, next) => {
+            if(!authUtil.hasWxOpenId()) {
+                let code = to.query.code;
+                if(code) { /* if code exists then get user information */
+                    authUtil.setUserInfo(code, (ok) => {
+                        if(!ok) this.goWxAuthenticateUrl();
+                    });
+                } else { /* redirect to wechat server run OAuth2 flow */
+                    this.goWxAuthenticateUrl();
+                }
+            }
             if (to.matched.some(record => record.meta.auth)) {
                 // this route requires auth, check if logged in
                 // if not, redirect to login page.
-                if (!authSrv.isLogin()) {
+                if (!authUtil.isLogin()) {
                     next({
-                        //path: '/',
                         name: "userLogin",
                         query: { redirect: to.fullPath }
                     })
+                } else if(authUtil.isExpired()) {
+                    next({
+                        name: "userHelp" ,
+                        query: {redirect: to.fullPath}
+                    });
                 } else {
-                    next()
+                    next();
                 }
             } else {
-                next(); // 确保一定要调用 next()
+                next();
             }
         });
+    }
+
+    goWxAuthenticateUrl () {
+        const authUtil = new AuthUtil(this.http);
+        authUtil.getWxAuthUrl().then((resp) => {
+            let redirectUrl = resp.data.data.redirectUrl +
+                "&redirect_uri=" + encodeURIComponent(window.location.href);
+            window.location.href = redirectUrl;
+        });
+        return false;
     }
 }

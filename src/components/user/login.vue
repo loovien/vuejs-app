@@ -1,3 +1,4 @@
+<!--suppress ALL -->
 <template>
     <div class="wrap">
         <header class="header">
@@ -9,12 +10,13 @@
             <form action="" class="form">
                 <div class="input-box">
                     <span class="iconfont icon-iphone input-icon"></span>
-                    <input type="text" placeholder="手机号" class="ui-input">
+                    <input type="text" placeholder="手机号" v-model="credentials.mobile" class="ui-input">
                 </div>
                 <div class="input-box">
                     <span class="iconfont icon-Password input-icon"></span>
-                    <input type="text" placeholder="密码" class="ui-input">
+                    <input type="text" placeholder="密码" v-model="credentials.password" class="ui-input">
                 </div>
+                <span v-show="error.msg">{{error.msg}}</span>
             </form>
             <div class="btn-box">
                 <button @click="submit()" class="btn">登录</button>
@@ -32,12 +34,13 @@
 </template>
 
 <script>
-    import AuthSrv from "../../service/authSrv";
+    import UserSrv from "../../service/userSrv";
+    import AuthUtil from "../../utils/authUtil";
     export default {
         data: () => {
             return {
                 credentials: {
-                    username: "",
+                    mobile: "",
                     password: ""
                 },
                 error: {
@@ -47,10 +50,25 @@
         },
         methods: {
             submit: function () {
-                const authSrv = new AuthSrv();
-                isLoginSrv = authSrv.login(null, this.credentials).then((response) => {
-                    console.log("login")
-                })
+                let redirectUrl = this.$route.query.redirect;
+                const userSrv = new UserSrv(this);
+                userSrv.login(this.credentials).then((resp) => {
+                    if(resp.data.code == 0) {
+                        const authUtil = new AuthUtil(this);
+                        const mobile = resp.data.data.mobile;
+                        const name = resp.data.data.name;
+                        const expiredDays = resp.data.data.expiredDays;
+
+                        authUtil.setName(name);
+                        authUtil.setMobile(mobile);
+                        authUtil.setExpiredDays(expiredDays);
+                        this.$router.push({path: redirectUrl});
+
+                    } else  {
+                        this.error.msg = resp.data.msg;
+                    }
+
+                });
             }
         }
     }

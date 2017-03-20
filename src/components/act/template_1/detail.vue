@@ -128,7 +128,7 @@
 
 <script>
     import ActSrv from "../../../service/actSrv";
-    import countDown from '../../../modules/countDown.vue'
+    import countDown from '../../shared/countDown.vue'
 
     export default {
         data: () => {
