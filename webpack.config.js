@@ -28,6 +28,9 @@ module.exports = {
             { test: /\.js$/, loader: 'babel-loader', exclude: /node_modules/ }
         ]
     },
+    node: {
+      fs: "empty"
+    },
     resolve: {
         alias: {
             vue: 'vue/dist/vue.js'
