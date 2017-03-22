@@ -31,8 +31,9 @@ export default class AuthMiddleware {
                     next({
                         name: "userLogin",
                         query: { redirect: to.fullPath }
-                    })
-                } else if(authUtil.isExpired()) {
+                    });
+                /* user has not expired can visit routes */
+                } else if(authUtil.isExpired() && to.matched.some(record => record.meta.rich)) {
                     next({
                         name: "userHelp" ,
                         query: {redirect: to.fullPath}

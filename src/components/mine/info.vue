@@ -6,9 +6,9 @@
         </header>
         <div class="info clearfix">
             <img src="http://s.51lianying.com/images/www/index_v2/thum-1.jpg" alt="" class="thumbnail fl">
-            <p class="userName color_yellow f16">白开水<span class="signOut">[退出]</span></p>
-            <p class="phoneNumber color_fff"><span class="iconfont icon-iphone"></span><span class="f12">13211112222</span></p>
-            <p class="time color_fff"><span class="color_yellow">111</span>天可用<span class="expire">到期时间：2018-01-01</span></p>
+            <p class="userName color_yellow f16">{{info.name}}<span class="signOut" @click="logout()">[退出]</span></p>
+            <p class="phoneNumber color_fff"><span class="iconfont icon-iphone"></span><span class="f12">{{info.mobile}}</span></p>
+            <p class="time color_fff"><span class="color_yellow">{{info.expiredDays}}</span>天可用<span class="expire">到期时间：{{info.expiredAt}}</span></p>
         </div>
         <div class="tab bg_fff f12">
             <div class="tab-item fl active">
@@ -84,21 +84,49 @@
 
 <script>
     import IndexSrv from "../../service/indexSrv";
+    import AuthUtil from "../../utils/authUtil";
+    import UserSrv from "../../service/userSrv";
+    import addDays from "date-fns/add_days";
+    import format from "date-fns/format";
     export default {
         data: () => {
             return {
-                acts: []
+                acts: [],
+                info: {
+                    name: "",
+                    mobile: "",
+                    expiredDays: 0,
+                    expiredAt: "",
+                }
 
             }
         },
         created: function () {
             const indexSrv = new IndexSrv(this);
+            const authUtil = new AuthUtil(this.$http);
             indexSrv.getRecommendList().then((resp) => {
                 this.acts = resp.data.data;
-            })
+            });
 
+            this.info.name = authUtil.getName();
+            this.info.mobile = authUtil.getMobile();
+            let expiredDays = authUtil.getExpiredDays();
+            this.info.expiredDays = expiredDays;
+            this.info.expiredAt = (expiredDays == 0) ? '已过期' : format(addDays(new Date(), expiredDays), "YYYY-MM-DD");
         },
         methods: {
+            logout: function (){
+                const userSrv = new UserSrv(this);
+                const authUtls = new AuthUtil(this.$http);
+
+                userSrv.logout().then((resp) => {
+                    if(resp.data.code === 0) {
+                        authUtls.logout();
+                        return this.$router.go(resp.data.data.redirectUrl);
+                    }
+                    alert(resp.data.data.msg);
+                });
+            }
         }
     }
 </script>

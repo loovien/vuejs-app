@@ -39,6 +39,7 @@
   },
   "dependencies": {
     "bootstrap": "^3.3.7",
+    "date-fns": "^1.28.1",
     "vue": "^2.2.2",
     "vue-mugen-scroll": "^0.2.1",
     "vue-resource": "^1.2.1",

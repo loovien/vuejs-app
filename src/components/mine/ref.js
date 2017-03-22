@@ -15,10 +15,10 @@ export default {
     component: Index,
 
     children: [
-        {name: "mineIndex", path: "", component: Info},
-        {name: 'mineStart', path: "start", component: Started},
-        {name: 'mineNostart', path: "nostart", component: Nostart},
-        {name: 'mineEnd', path: "end", component: End}
+        {name: "mineIndex", path: "", component: Info, meta: {auth: true}},
+        {name: 'mineStart', path: "start", component: Started, meta: {auth: true}},
+        {name: 'mineNostart', path: "nostart", component: Nostart, meta: {auth: true}},
+        {name: 'mineEnd', path: "end", component: End, meta: {auth: true}}
     ],
 
 }

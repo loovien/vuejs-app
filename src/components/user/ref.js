@@ -7,7 +7,7 @@ import Login from "./login.vue";
 import Setpwd from "./setpwd.vue";
 import Resetpwd from "./resetpwd.vue";
 import Help from "./help.vue";
-import Register from "./register.vue";
+import Bindmobile from "./bindmobile.vue";
 
 export default {
     path: "/user",
@@ -15,9 +15,9 @@ export default {
     component: Index,
     children: [
         {
-            path: "register",
-            name: "userRegister",
-            component: Register
+            path: "bindmobile",
+            name: "userBindmobile",
+            component: Bindmobile
         },
         {
             path: "login",

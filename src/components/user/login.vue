@@ -14,7 +14,7 @@
                 </div>
                 <div class="input-box">
                     <span class="iconfont icon-Password input-icon"></span>
-                    <input type="text" placeholder="密码" v-model="credentials.password" class="ui-input">
+                    <input type="password" placeholder="密码" v-model="credentials.password" class="ui-input">
                 </div>
                 <span v-show="error.msg">{{error.msg}}</span>
             </form>
@@ -22,7 +22,7 @@
                 <button @click="submit()" class="btn">登录</button>
             </div>
             <p class="text-center">
-                <router-link :to="{name: 'userRegister'}" class="registerBtn f12">注册商家恋</router-link>
+                <router-link :to="{name: 'userBindmobile'}" class="registerBtn f12">绑定商家恋</router-link>
                 <router-link :to="{name: 'userResetpwd'}" class="color_gray resetpwdBtn f12">忘记密码</router-link>
             </p>
         </div>

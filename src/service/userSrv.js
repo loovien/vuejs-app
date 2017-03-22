@@ -12,8 +12,12 @@ export default class UserSrv extends BaseSrv {
         return this.http.post("user/captcha", {mobile: mobile});
     }
 
-    register(credentials) {
-        return this.http.post("user/register", credentials);
+    bindmobile(credentials) {
+        return this.http.post("user/bindmobile", credentials);
+    }
+
+    logout() {
+        return this.http.post("user/logout");
     }
 }
 
