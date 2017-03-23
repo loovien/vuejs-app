@@ -85,9 +85,11 @@
 <script>
     import IndexSrv from "../../service/indexSrv";
     import AuthUtil from "../../utils/authUtil";
+    import MineSrv from "../../service/mineSrv";
     import UserSrv from "../../service/userSrv";
     import addDays from "date-fns/add_days";
     import format from "date-fns/format";
+
     export default {
         data: () => {
             return {
@@ -97,6 +99,9 @@
                     mobile: "",
                     expiredDays: 0,
                     expiredAt: "",
+                },
+                top1: {
+
                 }
 
             }
@@ -113,6 +118,13 @@
             let expiredDays = authUtil.getExpiredDays();
             this.info.expiredDays = expiredDays;
             this.info.expiredAt = (expiredDays == 0) ? '已过期' : format(addDays(new Date(), expiredDays), "YYYY-MM-DD");
+
+            /* 获取top1 活动信息*/
+            const mineSrv = new MineSrv(this);
+            mineSrv.getTop1().then((resp) => {
+                this.top1 = resp.data.data;
+            });
+
         },
         methods: {
             logout: function (){

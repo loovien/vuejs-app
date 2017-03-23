@@ -13,6 +13,7 @@
 
 <script>
     import UserSrv from "../../service/userSrv";
+    import AuthUtil from "../../utils/authUtil";
     export default {
         data: () => {
             return {
@@ -30,15 +31,21 @@
                 const userSrv = new UserSrv(this);
                 userSrv.captcha(mobile).then((resp) => {
                     alert(resp.data.msg);
+                    this.bindinfo.code = resp.data.data.code;
                 });
             },
             bindmobile: function () {
                 let credentials = this.bindinfo;
-                console.log(credentials)
                 const userSrv = new UserSrv(this);
+                const authUtil = new AuthUtil(this.$http);
                 userSrv.bindmobile(credentials).then((resp) => {
-                    alert(resp.data.msg);
-                    if(resp.data.code == 0) {
+                    const respData = resp.data;
+                    alert(respData.msg)
+                    if(respData.code == 0) {
+                        authUtil.setMobile(respData.data.mobile);
+                        authUtil.setName(respData.data.name);
+                        authUtil.setExpiredDays(respData.data.expiredDays);
+                        this.$router.push({name: "mineIndex"});
                     }
                 });
             }

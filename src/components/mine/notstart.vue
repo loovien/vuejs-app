@@ -51,7 +51,7 @@
 </template>
 
 <script>
-    import mineSrv from "../../service/mineSrv";
+    import MineSrv from "../../service/mineSrv";
     import MugenScroll from 'vue-mugen-scroll'
 
     export default {
@@ -70,7 +70,7 @@
                 this.loading = true;
 
                 const mineSrv = new MineSrv(this);
-                mineSrv.getIndustryActs().then((resp) => {
+                mineSrv.getNoStartActs().then((resp) => {
                     this.loading = false
 
                     //如果加载完毕 isLoadAll = true

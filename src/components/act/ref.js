@@ -26,7 +26,7 @@ export default {
             path: "template_1/new/:id",
             name: "act_new",
             component: Newact,
-            meta: {auth: true}
+            meta: {auth: true /*,rich: true*/}
         }
     ]
 }

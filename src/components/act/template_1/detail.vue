@@ -94,7 +94,7 @@
                 <span class="word w3">名</span>
             </h2>
             <div class="inner">
-                <p class="text-center"><span class="iconfont icon-team"></span>共有<span class="red key">181</span>人参与</p>
+                <p class="text-center"><span class="iconfont icon-team"></span>共有<span class="red key">{{rank.total}}</span>人参与</p>
                 <table class="w100 ranking-table" cellpadding="0" cellspacing="1">
                     <thead>
                         <tr>
@@ -105,17 +105,11 @@
                         </tr>
                     </thead>
                     <tbody>
-                        <tr>
-                            <td>1</td>
-                            <td>大云</td>
-                            <td>12小时</td>
-                            <td>已完成</td>
-                        </tr>
-                        <tr>
-                            <td>2</td>
-                            <td>大云</td>
-                            <td>12小时</td>
-                            <td>已完成</td>
+                        <tr v-for="(item, index) in rank.data">
+                            <td>{{index+1}}</td>
+                            <td>{{item.name}}</td>
+                            <td>{{item.spend_time+'小时'}}</td>
+                            <td>{{item.is_completed ? '已完成' : ''}}</td>
                         </tr>
                     </tbody>
                 </table>
@@ -135,6 +129,7 @@
             return {
                 id: 0,
                 act: "",
+                rank: {}, // 遍历排行榜
                 countDownTime: new Date('2017-03-20 0:0:0').getTime()
             }
         },
@@ -144,9 +139,13 @@
             this.id = id;
             const actSrv = new ActSrv(this);
             actSrv.getActDetail(id).then((resp) => {
-                console.log(resp.data, 'oo')
                 this.act = resp.data.data;
-            })
+            });
+
+            actSrv.getDefaultRank().then((resp) => {
+                    this.rank = resp.data.data;
+                    console.log(this.rank, '00')
+            });
         }
     }
 </script>
