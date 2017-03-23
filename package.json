@@ -5,7 +5,8 @@
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "webpack-dev-server --host=frontend.51lianying.com  --inline --hot"
+    "start": "webpack-dev-server  --inline --hot",
+    "luowen": "webpack-dev-server --host=frontend.51lianying.com  --inline --hot"
   },
   "repository": {
     "type": "git",
