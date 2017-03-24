@@ -3,7 +3,7 @@
         <router-view></router-view>
         <div class="fixed">
             <span class="iconfont icon-gotop gotop" @click="gotop"></span>
-            <router-link :to="{name: 'mine'}" class="account mt10">
+            <router-link :to="{name: 'mineIndex'}" class="account mt10">
                 <span class="iconfont icon-account"></span>
                 <span class="block f12">我的</span>
             </router-link>

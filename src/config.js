@@ -10,6 +10,8 @@ export default {
             "ContentType": "application/json",
             //Authorization: 'Bear jlaskdjfiiii#Y@#111'
             "X-Requested-With": "XMLHttpRequest"
-        }
+        },
+        credentials: true,
+
     }
 }
