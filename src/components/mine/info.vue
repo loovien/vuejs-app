@@ -33,27 +33,27 @@
                 <table cellpadding="0" cellspacing="1" class="chart-table w100">
                     <tr>
                         <td class="td-left text-center color_666">活动模板</td>
-                        <td class="td-right">疯狂夺宝</td>
+                        <td class="td-right">{{top1.title}}</td>
                     </tr>
                     <tr>
                         <td class="td-left text-center color_666">报名人数</td>
-                        <td class="td-right">123人</td>
+                        <td class="td-right">{{top1.join_cnt}}人</td>
                     </tr>
                     <tr>
                         <td class="td-left text-center color_666">完成目标</td>
-                        <td class="td-right">2人</td>
+                        <td class="td-right">{{top1.completed_cnt}}人</td>
                     </tr>
                     <tr>
                         <td class="td-left text-center color_666">影响微信用户</td>
-                        <td class="td-right">2000人</td>
+                        <td class="td-right">{{top1.visit_cnt}}人</td>
                     </tr>
                     <tr>
                         <td class="td-right" colspan="2">
                             <table cellpadding="0" cellspacing="0" class="w100 color_yellow2">
                                 <tr>
-                                    <td>报名率：9.6%</td>
-                                    <td>转化率：1.1%</td>
-                                    <td>传播速度：慢</td>
+                                    <td>报名率：{{top1.join_proportion}}%</td>
+                                    <td>转化率：{{top1.completed_proportion}}%</td>
+                                    <td>传播速度：{{top1.join_proportion < 30 ? '慢' : '快'}}</td>
                                 </tr>
                             </table>
                         </td>

@@ -6,14 +6,14 @@
         </header>
         
         <div class="list">
-            <router-link :to="{}" class="item mt10 clearfix table w100" v-for="i in [1,2,3]">
+            <router-link :to="{}" class="item mt10 clearfix table w100" v-for="i in acts">
                 <div class="table">
                     <div class="thumbnail-box table-cell">
                         <img src="http://s.51lianying.com/images/www/index_v2/thum-1.jpg" alt="" class="thumbnail fl">
                     </div>
                     <div class="relative item-info table-cell">
-                        <h3 class="title color_333 f16">活动标题</h3>
-                        <p class="desc f12 color_999">新的一年来临了，快来抢个新年币增加好运吧，抢到足够新年币，即可兑换好礼。</p>
+                        <h3 class="title color_333 f16">{{i.title}}</h3>
+                        <p class="desc f12 color_999">{{i.description}}</p>
                         <div class="operate text-right">
                             <div class="inline-block">
                                 <span class="iconfont icon-edit color_gray"></span>
@@ -21,7 +21,7 @@
                             </div>
                             <div class="inline-block delete">
                                 <span class="iconfont icon-delete color_gray"></span>
-                                <span class="color_666 f12">删除</span>
+                                <span class="color_666 f12" @click="deleteAct(i.id)">删除</span>
                             </div>
                         </div>
                     </div>
@@ -58,7 +58,8 @@
         data(){
             return {
                 loading: false,
-                isLoadAll: false//是否加载完毕
+                isLoadAll: false, //是否加载完毕
+                acts: []
             }
         },
         created: function () {
@@ -71,8 +72,8 @@
 
                 const mineSrv = new MineSrv(this);
                 mineSrv.getNoStartActs().then((resp) => {
+                    this.acts.push(resp.data.data.data);
                     this.loading = false
-
                     //如果加载完毕 isLoadAll = true
                 })
             },
