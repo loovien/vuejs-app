@@ -3986,7 +3986,11 @@ exports.default = {
 
     components: {},
     created: function created() {},
-    methods: {}
+    methods: {
+        goback: function goback() {
+            this.$router.go(-1);
+        }
+    }
 };
 
 /***/ }),
@@ -4510,8 +4514,8 @@ Object.defineProperty(exports, "__esModule", {
 
 exports.default = {
     http: {
-        //root: "http://121.41.21.64:8000/index.php/api",
-        root: "http://shangjialian.51lianying.com/api",
+        root: "http://121.41.21.64:8000/index.php/api",
+        //root: "http://shangjialian.51lianying.com/api",
         headers: {
             "ContentType": "application/json",
             //Authorization: 'Bear jlaskdjfiiii#Y@#111'
@@ -4576,9 +4580,7 @@ var AuthMiddleware = function () {
                     }
                 }
                 /* just for test */
-                if ( /*false && */to.matched.some(function (record) {
-                    return record.meta.auth;
-                })) {
+                if (false) {
                     // this route requires auth, check if logged in
                     // if not, redirect to login page.
                     if (!authUtil.isLogin()) {
@@ -10207,7 +10209,7 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
     },
     on: {
       "click": function($event) {
-        _vm.window.history.go(-1)
+        _vm.goback()
       }
     }
   }), _vm._v(" "), _c('h1', {
