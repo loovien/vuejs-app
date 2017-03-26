@@ -487,6 +487,19 @@ height: 4px;
     -webkit-transform: translateY(-50%);
             transform: translateY(-50%);
 }
+.errorTips{
+    position: fixed;
+    bottom: 50px;
+    left: 50%;
+    -webkit-transform: translateX(-50%);
+            transform: translateX(-50%);
+    background: rgba(0,0,0,.6);
+    color: #fff;
+    max-width: 90%;
+    padding: 7px 15px;
+    border-radius: 3px;
+    font-size: 12px;
+}
 </style>
 
 
