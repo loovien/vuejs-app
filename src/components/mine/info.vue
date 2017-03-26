@@ -68,7 +68,7 @@
                 <span class="iconfont icon-recommend"></span>最新推荐
             </h2>
             <div class="clearfix recommend-list">
-                <router-link :to="{name: 'act_detail', params: {id: act.id}}"  v-for="act in acts" class="fl recommend text-center">
+                <router-link :to="{name: 'act_detail', params: {id: act.id}}"  v-for="act in acts" :key="act.id" class="fl recommend text-center">
                     <img src="http://s.51lianying.com/images/www/index_v2/thum-1.jpg" class="recommend-thumbnail" />
                     <h5 class="act-title">{{act.title}}</h5>
                 </router-link>

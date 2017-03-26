@@ -6,7 +6,7 @@
         </header>
         
         <div class="list">
-            <router-link :to="{}" class="item mt10 clearfix table w100" v-for="i in acts">
+            <router-link :to="{}" class="item mt10 clearfix table w100" v-for="i in acts" :key="i.id">
                 <div class="table">
                     <div class="thumbnail-box table-cell">
                         <img src="http://s.51lianying.com/images/www/index_v2/thum-1.jpg" alt="" class="thumbnail fl">
