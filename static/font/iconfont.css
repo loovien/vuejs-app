@@ -1,10 +1,10 @@
 
 @font-face {font-family: "iconfont";
-  src: url('iconfont.eot?t=1489920458463'); /* IE9*/
-  src: url('iconfont.eot?t=1489920458463#iefix') format('embedded-opentype'), /* IE6-IE8 */
-  url('iconfont.woff?t=1489920458463') format('woff'), /* chrome, firefox */
-  url('iconfont.ttf?t=1489920458463') format('truetype'), /* chrome, firefox, opera, Safari, Android, iOS 4.2+*/
-  url('iconfont.svg?t=1489920458463#iconfont') format('svg'); /* iOS 4.1- */
+  src: url('iconfont.eot?t=1490498044764'); /* IE9*/
+  src: url('iconfont.eot?t=1490498044764#iefix') format('embedded-opentype'), /* IE6-IE8 */
+  url('iconfont.woff?t=1490498044764') format('woff'), /* chrome, firefox */
+  url('iconfont.ttf?t=1490498044764') format('truetype'), /* chrome, firefox, opera, Safari, Android, iOS 4.2+*/
+  url('iconfont.svg?t=1490498044764#iconfont') format('svg'); /* iOS 4.1- */
 }
 
 .iconfont {
@@ -52,6 +52,8 @@
 .icon-phone:before { content: "\e634"; }
 
 .icon-food:before { content: "\e64f"; }
+
+.icon-ad80-copy:before { content: "\e600"; }
 
 .icon-account:before { content: "\e601"; }
 

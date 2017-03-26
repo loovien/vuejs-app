@@ -7,20 +7,22 @@
             <router-link :to="{name: 'userHelp'}" class="iconfont icon-service header-service"></router-link>
         </header>
         <div class="login">
-            <form action="" class="form">
-                <div class="input-box">
-                    <span class="iconfont icon-iphone input-icon"></span>
-                    <input type="text" placeholder="手机号" v-model="credentials.mobile" class="ui-input">
+            <form action="">
+                <div class="form-inputBox">
+                    <div class="input-box">
+                        <span class="iconfont icon-iphone input-icon"></span>
+                        <input type="text" placeholder="手机号" v-model="credentials.mobile" class="ui-input">
+                    </div>
+                    <div class="input-box">
+                        <span class="iconfont icon-Password input-icon"></span>
+                        <input type="password" placeholder="密码" v-model="credentials.password" class="ui-input">
+                    </div>
                 </div>
-                <div class="input-box">
-                    <span class="iconfont icon-Password input-icon"></span>
-                    <input type="password" placeholder="密码" v-model="credentials.password" class="ui-input">
+                <div class="btn-box">
+                    <button @click="submit()" class="btn">登录</button>
                 </div>
-                <span v-show="error.msg">{{error.msg}}</span>
             </form>
-            <div class="btn-box">
-                <button @click="submit()" class="btn">登录</button>
-            </div>
+            <div class="errorTips" v-show="error.msg">{{error.msg}}</div>
             <p class="text-center">
                 <router-link :to="{name: 'userBindmobile'}" class="registerBtn f12">绑定商家恋</router-link>
                 <router-link :to="{name: 'userResetpwd'}" class="color_gray resetpwdBtn f12">忘记密码</router-link>
@@ -44,7 +46,7 @@
                     password: ""
                 },
                 error: {
-                    msg: ""
+                    msg: "请输入密码"
                 }
             }
         },
