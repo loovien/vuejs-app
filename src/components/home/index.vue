@@ -42,13 +42,15 @@
                 </div>
             </div>
         </div>
+        <fixed></fixed>
     </div>
 </template>
 
 <script>
     import IndexSrv from "../../service/indexSrv";
     import Swiper from '../shared/swiper.vue'
-
+    import Fixed from '../shared/fixed.vue'
+    
     export default {
         data() {
             return {
@@ -65,7 +67,7 @@
                 acts: []
             }
         },
-        components: { Swiper },
+        components: { Swiper, Fixed },
         created: function () {
             const indexSrv = new IndexSrv(this);
             indexSrv.getBannerImg().then((response) => {

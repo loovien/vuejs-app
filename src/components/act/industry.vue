@@ -37,12 +37,14 @@
                 <span class="color_gray f12">已经到底了</span>
             </div>
         </mugen-scroll>
+        <fixed></fixed>
     </div>
 </template>
 
 <script>
     import ActSrv from "../../service/actSrv";
     import MugenScroll from 'vue-mugen-scroll'
+    import Fixed from '../shared/fixed.vue'
 
     export default {
         data(){
@@ -59,7 +61,7 @@
 
             this.loadMore()
         },
-        components: { MugenScroll },
+        components: { MugenScroll, Fixed },
         methods: {
             loadMore: function(){
                 this.loading = true;

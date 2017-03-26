@@ -8,7 +8,7 @@
             <form action="">
                 <div class="form-inputBox">
                     <div class="input-box">
-                        <span class="iconfont icon-Password input-icon"></span>
+                        <span class="iconfont icon-account input-icon"></span>
                         <input type="text" placeholder="姓名" v-model="bindinfo.name" class="ui-input">
                     </div>
                     <div class="input-box">
