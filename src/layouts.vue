@@ -187,6 +187,53 @@ a{
 .h100{
     height: 100%;
 }
+.b-t-1,.b-r-1,.b-b-1,.b-l-1{
+    position: relative;
+}
+.b-t-1:after{
+    content: '';
+    border-top: 1px solid #e9e9e9;
+    width: 200%; height: 1px;
+    position: absolute;
+    left: 0; top: 0;
+    -webkit-transform:scale(0.5);
+    transform:scale(0.5);
+    -webkit-transform-origin:0 0;
+    transform-origin:0 0;
+}
+.b-r-1:after{
+    content: '';
+    border-bottom: 1px solid #e9e9e9;
+    width: 1px; height: 200%;
+    position: absolute;
+    right: 0; top: 0;
+    -webkit-transform:scale(0.5);
+    transform:scale(0.5);
+    -webkit-transform-origin:0 0;
+    transform-origin:0 0;
+}
+.b-b-1:after{
+    content: '';
+    border-bottom: 1px solid #e9e9e9;
+    width: 200%; height: 1px;
+    position: absolute;
+    left: 0; bottom: 0;
+    -webkit-transform:scale(0.5);
+    transform:scale(0.5);
+    -webkit-transform-origin:0 0;
+    transform-origin:0 0;
+}
+.b-l-1:after{
+    content: '';
+    border-left: 1px solid #e9e9e9;
+    width: 1px; height: 200%;
+    position: absolute;
+    left: 0; top: 0;
+    -webkit-transform:scale(0.5);
+    transform:scale(0.5);
+    -webkit-transform-origin:0 0;
+    transform-origin:0 0;
+}
 .overflow-hidden{
     overflow: hidden;
 }
@@ -458,19 +505,40 @@ height: 4px;
     background: #f7db95;
 }
 /* 表单 */
-.form{
-    border: 1px solid #e9e9e9;
+.form-inputBox{
     background: #fff;
-    border-radius: 3px;
+    position: relative;
 }
-.input-box:last-child{
-    border-bottom: none;
+.form-inputBox:after{
+    content: '';
+    border: 1px solid #e9e9e9;
+    width: 200%; height: 200%;
+    position: absolute;
+    top: 0; left: 0;
+    border-radius: 3px;
+    -webkit-transform:scale(0.5);
+    transform:scale(0.5);
+    -webkit-transform-origin:0 0;
+    transform-origin:0 0;
 }
 .input-box{
-    border-bottom: 1px solid #e9e9e9;
     height: 54px;
     padding: 7px 10px;
     position: relative;
+}
+.input-box:after{
+    content: '';
+    border-bottom: 1px solid #e9e9e9;
+    width: 200%; height: 1px;
+    position: absolute;
+    left: 0; bottom: 0;
+    -webkit-transform:scale(0.5);
+    transform:scale(0.5);
+    -webkit-transform-origin:0 0;
+    transform-origin:0 0;
+}
+.input-box:last-child:after{
+    border-bottom: none;
 }
 .ui-input{
     border: none;
@@ -499,6 +567,7 @@ height: 4px;
     padding: 7px 15px;
     border-radius: 3px;
     font-size: 12px;
+    z-index: 3;
 }
 </style>
 

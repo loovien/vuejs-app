@@ -5,16 +5,16 @@
             <h1 class="header-title">忘记密码</h1>
         </header>
         <div class="login">
-            <form action="" class="form">
-                <div class="input-box">
+            <form action="">
+                <div class="input-box form-inputBox">
                     <span class="iconfont icon-Password input-icon"></span>
                     <input type="password" placeholder="输入新密码" v-model="credentials.password" class="ui-input">
                 </div>
+                <div class="btn-box">
+                    <button @click="nextStep()" class="btn" disabled>确定修改</button>
+                </div>
             </form>
             <div class="errorTips" v-show="error.msg">{{error.msg}}</div>
-            <div class="btn-box">
-                <button @click="nextStep()" class="btn" disabled>确定修改</button>
-            </div>
         </div>
     </div>
 </template>

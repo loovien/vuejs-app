@@ -5,21 +5,23 @@
             <h1 class="header-title">忘记密码</h1>
         </header>
         <div class="login">
-            <form action="" class="form">
-                <div class="input-box">
-                    <span class="iconfont icon-iphone input-icon"></span>
-                    <input type="text" placeholder="手机号" v-model="credentials.mobile" class="ui-input">
+            <form action="">
+                <div class="form-inputBox">
+                    <div class="input-box">
+                        <span class="iconfont icon-iphone input-icon"></span>
+                        <input type="text" placeholder="手机号" v-model="credentials.mobile" class="ui-input">
+                    </div>
+                    <div class="input-box input-box-verifyCode">
+                        <span class="iconfont icon-ad80-copy input-icon"></span>
+                        <button class="color_yellow2 fr b-l-1 verifyCode-btn">获取验证码</button>
+                        <input type="text" placeholder="验证码" v-model="credentials.verifyCode" class="ui-input">
+                    </div>
                 </div>
-                <div class="input-box input-box-verifyCode">
-                    <span class="iconfont icon-ad80-copy input-icon"></span>
-                    <button class="color_yellow2 fr verifyCode-btn">获取验证码</button>
-                    <input type="text" placeholder="验证码" v-model="credentials.verifyCode" class="ui-input">
+                <div class="btn-box">
+                    <button @click="nextStep()" class="btn" disabled>下一步</button>
                 </div>
             </form>
             <div class="errorTips" v-show="error.msg">{{error.msg}}</div>
-            <div class="btn-box">
-                <button @click="nextStep()" class="btn" disabled>下一步</button>
-            </div>
         </div>
     </div>
 </template>
@@ -61,6 +63,5 @@
     height: 20px;
     border: none;
     background: none;
-    border-left: 1px solid #b6b6b6;
 }
 </style>
