@@ -6,42 +6,42 @@
         </header>
         
         <div class="list">
-            <div class="item mt10 clearfix w100" v-for="i in [1,2]">
+            <div class="item mt10 clearfix w100" v-for="act in acts" :key="act.id">
             	<div class="table">
             		<div class="thumbnail-box table-cell">
 	                    <img src="http://s.51lianying.com/images/www/index_v2/thum-1.jpg" alt="" class="thumbnail fl">
 	                </div>
 	                <div class="relative item-info table-cell">
-	                    <h3 class="title color_333 f16">活动标题</h3>
-	                    <p class="desc f12 color_999">新的一年来临了，快来抢个新年币增加好运吧，抢到足够新年币，即可兑换好礼。</p>
-	                    <p class="color_yellow2 mt10 f12">结束时间：2017-06-27</p>
+	                    <h3 class="title color_333 f16">{{act.title}}</h3>
+	                    <p class="desc f12 color_999">{{act.description}}</p>
+	                    <p class="color_yellow2 mt10 f12">结束时间：{{act.act_end_time}}</p>
 	                </div>
             	</div>
             	<div class="chart-table-box">
 	                <table cellpadding="0" cellspacing="1" class="chart-table w100">
 		                <thead>
 		                	<tr>
-		                        <th class="td-right" colspan="2">[海澜之家]集面粉送代金券</th>
+		                        <th class="td-right" colspan="2">{{act.act_prize_name}}</th>
 		                    </tr>
 		                </thead>
 	                    <tr>
 	                        <td class="td-left text-center color_666">报名人数</td>
-	                        <td class="td-right">123人</td>
+	                        <td class="td-right">{{act.join_count}}</td>
 	                    </tr>
 	                    <tr>
 	                        <td class="td-left text-center color_666">完成目标</td>
-	                        <td class="td-right">2人</td>
+	                        <td class="td-right">{{act.completed_count}}人</td>
 	                    </tr>
 	                    <tr>
 	                        <td class="td-left text-center color_666">影响微信用户</td>
-	                        <td class="td-right">2000人</td>
+	                        <td class="td-right">{{act.visit_count}}</td>
 	                    </tr>
 	                    <tr>
 	                        <td class="td-right" colspan="2">
 	                            <table cellpadding="0" cellspacing="0" class="w100 color_yellow2">
 	                                <tr>
-	                                    <td>报名率：9.6%</td>
-	                                    <td>转化率：1.1%</td>
+	                                    <td>报名率：{{act.join_proportion}}%</td>
+	                                    <td>转化率：{{act.completed_proportion}}%</td>
 	                                    <td>传播速度：慢</td>
 	                                </tr>
 	                            </table>
@@ -81,7 +81,8 @@
         data(){
             return {
                 loading: false,
-                isLoadAll: false//是否加载完毕
+                isLoadAll: false,//是否加载完毕
+				acts: []
             }
         },
         created: function () {
@@ -95,6 +96,7 @@
                 const mineSrv = new MineSrv(this);
                 mineSrv.getStartedActs().then((resp) => {
                     this.loading = false
+					this.acts = this.acts.concat(resp.data.data.data);
 
                     //如果加载完毕 isLoadAll = true
                 })

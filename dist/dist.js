@@ -3082,7 +3082,8 @@ exports.default = {
     data: function data() {
         return {
             loading: false,
-            isLoadAll: false //是否加载完毕
+            isLoadAll: false, //是否加载完毕
+            acts: []
         };
     },
 
@@ -3099,6 +3100,7 @@ exports.default = {
             var mineSrv = new _mineSrv2.default(this);
             mineSrv.getEndActs().then(function (resp) {
                 _this.loading = false;
+                _this.acts = _this.acts.concat(resp.data.data.data);
 
                 //如果加载完毕 isLoadAll = true
             });
@@ -3379,10 +3381,11 @@ exports.default = {
 
             this.loading = true;
 
-            var mineSrv = new _mineSrv2.default(this);
+            var mineSrv = this._getMineSrv();
             mineSrv.getNoStartActs().then(function (resp) {
-                _this.acts.push(resp.data.data.data);
+                _this.acts = resp.data.data.data;
                 _this.loading = false;
+
                 //如果加载完毕 isLoadAll = true
             });
         },
@@ -3390,6 +3393,15 @@ exports.default = {
             if (!this.isLoadAll) {
                 this.loadMore();
             }
+        },
+        deleteAct: function deleteAct(id) {
+            var mineSrv = this._getMineSrv();
+            mineSrv.deleteActById(id).then(function (resp) {
+                alert("do other logic!");
+            });
+        },
+        _getMineSrv: function _getMineSrv() {
+            return new _mineSrv2.default(this);
         }
     }
 };
@@ -3495,7 +3507,8 @@ exports.default = {
     data: function data() {
         return {
             loading: false,
-            isLoadAll: false //是否加载完毕
+            isLoadAll: false, //是否加载完毕
+            acts: []
         };
     },
 
@@ -3512,6 +3525,7 @@ exports.default = {
             var mineSrv = new _mineSrv2.default(this);
             mineSrv.getStartedActs().then(function (resp) {
                 _this.loading = false;
+                _this.acts = _this.acts.concat(resp.data.data.data);
 
                 //如果加载完毕 isLoadAll = true
             });
@@ -4561,7 +4575,8 @@ var AuthMiddleware = function () {
                         _this.goWxAuthenticateUrl();
                     }
                 }
-                if (to.matched.some(function (record) {
+                /* just for test */
+                if ( /*false && */to.matched.some(function (record) {
                     return record.meta.auth;
                 })) {
                     // this route requires auth, check if logged in
@@ -10540,8 +10555,9 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
     staticClass: "header-title"
   }, [_vm._v("未开始活动")])]), _vm._v(" "), _c('div', {
     staticClass: "list"
-  }, _vm._l((_vm.acts), function(i) {
+  }, _vm._l((_vm.acts), function(act) {
     return _c('router-link', {
+      key: act.id,
       staticClass: "item mt10 clearfix table w100",
       attrs: {
         "to": {}
@@ -10553,16 +10569,16 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
     }, [_c('img', {
       staticClass: "thumbnail fl",
       attrs: {
-        "src": "http://s.51lianying.com/images/www/index_v2/thum-1.jpg",
+        "src": act.banner_img,
         "alt": ""
       }
     })]), _vm._v(" "), _c('div', {
       staticClass: "relative item-info table-cell"
     }, [_c('h3', {
       staticClass: "title color_333 f16"
-    }, [_vm._v(_vm._s(i.title))]), _vm._v(" "), _c('p', {
+    }, [_vm._v(_vm._s(act.title))]), _vm._v(" "), _c('p', {
       staticClass: "desc f12 color_999"
-    }, [_vm._v(_vm._s(i.description))]), _vm._v(" "), _c('div', {
+    }, [_vm._v(_vm._s(act.description))]), _vm._v(" "), _c('div', {
       staticClass: "operate text-right"
     }, [_c('div', {
       staticClass: "inline-block"
@@ -10578,7 +10594,7 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
       staticClass: "color_666 f12",
       on: {
         "click": function($event) {
-          _vm.deleteAct(i.id)
+          _vm.deleteAct(act.id)
         }
       }
     }, [_vm._v("删除")])])])])])])
@@ -10828,6 +10844,7 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
     staticClass: "clearfix recommend-list"
   }, _vm._l((_vm.acts), function(act) {
     return _c('router-link', {
+      key: act.id,
       staticClass: "fl recommend text-center",
       attrs: {
         "to": {
@@ -11108,10 +11125,57 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
     staticClass: "header-title"
   }, [_vm._v("进行中的活动")])]), _vm._v(" "), _c('div', {
     staticClass: "list"
-  }, _vm._l(([1, 2]), function(i) {
+  }, _vm._l((_vm.acts), function(act) {
     return _c('div', {
+      key: act.id,
       staticClass: "item mt10 clearfix w100"
-    }, [_vm._m(0, true), _vm._v(" "), _vm._m(1, true)])
+    }, [_c('div', {
+      staticClass: "table"
+    }, [_vm._m(0, true), _vm._v(" "), _c('div', {
+      staticClass: "relative item-info table-cell"
+    }, [_c('h3', {
+      staticClass: "title color_333 f16"
+    }, [_vm._v(_vm._s(act.title))]), _vm._v(" "), _c('p', {
+      staticClass: "desc f12 color_999"
+    }, [_vm._v(_vm._s(act.description))]), _vm._v(" "), _c('p', {
+      staticClass: "color_yellow2 mt10 f12"
+    }, [_vm._v("结束时间：" + _vm._s(act.act_end_time))])])]), _vm._v(" "), _c('div', {
+      staticClass: "chart-table-box"
+    }, [_c('table', {
+      staticClass: "chart-table w100",
+      attrs: {
+        "cellpadding": "0",
+        "cellspacing": "1"
+      }
+    }, [_c('thead', [_c('tr', [_c('th', {
+      staticClass: "td-right",
+      attrs: {
+        "colspan": "2"
+      }
+    }, [_vm._v(_vm._s(act.act_prize_name))])])]), _vm._v(" "), _c('tr', [_c('td', {
+      staticClass: "td-left text-center color_666"
+    }, [_vm._v("报名人数")]), _vm._v(" "), _c('td', {
+      staticClass: "td-right"
+    }, [_vm._v(_vm._s(act.join_count))])]), _vm._v(" "), _c('tr', [_c('td', {
+      staticClass: "td-left text-center color_666"
+    }, [_vm._v("完成目标")]), _vm._v(" "), _c('td', {
+      staticClass: "td-right"
+    }, [_vm._v(_vm._s(act.completed_count) + "人")])]), _vm._v(" "), _c('tr', [_c('td', {
+      staticClass: "td-left text-center color_666"
+    }, [_vm._v("影响微信用户")]), _vm._v(" "), _c('td', {
+      staticClass: "td-right"
+    }, [_vm._v(_vm._s(act.visit_count))])]), _vm._v(" "), _c('tr', [_c('td', {
+      staticClass: "td-right",
+      attrs: {
+        "colspan": "2"
+      }
+    }, [_c('table', {
+      staticClass: "w100 color_yellow2",
+      attrs: {
+        "cellpadding": "0",
+        "cellspacing": "0"
+      }
+    }, [_c('tr', [_c('td', [_vm._v("报名率：" + _vm._s(act.join_proportion) + "%")]), _vm._v(" "), _c('td', [_vm._v("转化率：" + _vm._s(act.completed_proportion) + "%")]), _vm._v(" "), _c('td', [_vm._v("传播速度：慢")])])])])])])])])
   })), _vm._v(" "), _c('mugen-scroll', {
     attrs: {
       "scroll-container": "wrap",
@@ -11143,8 +11207,6 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
   }, [_vm._v("已经到底了")])])])], 1)
 },staticRenderFns: [function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
   return _c('div', {
-    staticClass: "table"
-  }, [_c('div', {
     staticClass: "thumbnail-box table-cell"
   }, [_c('img', {
     staticClass: "thumbnail fl",
@@ -11152,53 +11214,7 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
       "src": "http://s.51lianying.com/images/www/index_v2/thum-1.jpg",
       "alt": ""
     }
-  })]), _vm._v(" "), _c('div', {
-    staticClass: "relative item-info table-cell"
-  }, [_c('h3', {
-    staticClass: "title color_333 f16"
-  }, [_vm._v("活动标题")]), _vm._v(" "), _c('p', {
-    staticClass: "desc f12 color_999"
-  }, [_vm._v("新的一年来临了，快来抢个新年币增加好运吧，抢到足够新年币，即可兑换好礼。")]), _vm._v(" "), _c('p', {
-    staticClass: "color_yellow2 mt10 f12"
-  }, [_vm._v("结束时间：2017-06-27")])])])
-},function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
-  return _c('div', {
-    staticClass: "chart-table-box"
-  }, [_c('table', {
-    staticClass: "chart-table w100",
-    attrs: {
-      "cellpadding": "0",
-      "cellspacing": "1"
-    }
-  }, [_c('thead', [_c('tr', [_c('th', {
-    staticClass: "td-right",
-    attrs: {
-      "colspan": "2"
-    }
-  }, [_vm._v("[海澜之家]集面粉送代金券")])])]), _vm._v(" "), _c('tr', [_c('td', {
-    staticClass: "td-left text-center color_666"
-  }, [_vm._v("报名人数")]), _vm._v(" "), _c('td', {
-    staticClass: "td-right"
-  }, [_vm._v("123人")])]), _vm._v(" "), _c('tr', [_c('td', {
-    staticClass: "td-left text-center color_666"
-  }, [_vm._v("完成目标")]), _vm._v(" "), _c('td', {
-    staticClass: "td-right"
-  }, [_vm._v("2人")])]), _vm._v(" "), _c('tr', [_c('td', {
-    staticClass: "td-left text-center color_666"
-  }, [_vm._v("影响微信用户")]), _vm._v(" "), _c('td', {
-    staticClass: "td-right"
-  }, [_vm._v("2000人")])]), _vm._v(" "), _c('tr', [_c('td', {
-    staticClass: "td-right",
-    attrs: {
-      "colspan": "2"
-    }
-  }, [_c('table', {
-    staticClass: "w100 color_yellow2",
-    attrs: {
-      "cellpadding": "0",
-      "cellspacing": "0"
-    }
-  }, [_c('tr', [_c('td', [_vm._v("报名率：9.6%")]), _vm._v(" "), _c('td', [_vm._v("转化率：1.1%")]), _vm._v(" "), _c('td', [_vm._v("传播速度：慢")])])])])])])])
+  })])
 }]}
 module.exports.render._withStripped = true
 if (false) {
@@ -11265,6 +11281,7 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
     staticClass: "list"
   }, _vm._l((_vm.acts), function(act) {
     return _c('router-link', {
+      key: act.id,
       staticClass: "item mt10 clearfix table w100",
       attrs: {
         "to": {
@@ -11361,10 +11378,65 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
     staticClass: "header-title"
   }, [_vm._v("历史活动")])]), _vm._v(" "), _c('div', {
     staticClass: "list"
-  }, _vm._l(([1, 2]), function(i) {
+  }, _vm._l((_vm.acts), function(act) {
     return _c('div', {
+      key: act.id,
       staticClass: "item mt10 clearfix w100"
-    }, [_vm._m(0, true), _vm._v(" "), _vm._m(1, true)])
+    }, [_c('div', {
+      staticClass: "table"
+    }, [_c('div', {
+      staticClass: "thumbnail-box table-cell"
+    }, [_c('img', {
+      staticClass: "thumbnail fl",
+      attrs: {
+        "src": act.banner_img,
+        "alt": ""
+      }
+    })]), _vm._v(" "), _c('div', {
+      staticClass: "relative item-info table-cell"
+    }, [_c('h3', {
+      staticClass: "title color_333 f16"
+    }, [_vm._v(_vm._s(act.title))]), _vm._v(" "), _c('p', {
+      staticClass: "desc f12 color_999"
+    }, [_vm._v(_vm._s(act.description))]), _vm._v(" "), _c('p', {
+      staticClass: "color_yellow2 mt10 f12"
+    }, [_vm._v("结束时间：" + _vm._s(act.act_end_time))])])]), _vm._v(" "), _c('div', {
+      staticClass: "chart-table-box"
+    }, [_c('table', {
+      staticClass: "chart-table w100",
+      attrs: {
+        "cellpadding": "0",
+        "cellspacing": "1"
+      }
+    }, [_c('thead', [_c('tr', [_c('th', {
+      staticClass: "td-right",
+      attrs: {
+        "colspan": "2"
+      }
+    }, [_vm._v(_vm._s(act.act_prize_name))])])]), _vm._v(" "), _c('tr', [_c('td', {
+      staticClass: "td-left text-center color_666"
+    }, [_vm._v("报名人数")]), _vm._v(" "), _c('td', {
+      staticClass: "td-right"
+    }, [_vm._v(_vm._s(act.join_count) + "人")])]), _vm._v(" "), _c('tr', [_c('td', {
+      staticClass: "td-left text-center color_666"
+    }, [_vm._v("完成目标")]), _vm._v(" "), _c('td', {
+      staticClass: "td-right"
+    }, [_vm._v(_vm._s(act.completed_count) + "人")])]), _vm._v(" "), _c('tr', [_c('td', {
+      staticClass: "td-left text-center color_666"
+    }, [_vm._v("影响微信用户")]), _vm._v(" "), _c('td', {
+      staticClass: "td-right"
+    }, [_vm._v(_vm._s(act.visit_count) + "人")])]), _vm._v(" "), _c('tr', [_c('td', {
+      staticClass: "td-right",
+      attrs: {
+        "colspan": "2"
+      }
+    }, [_c('table', {
+      staticClass: "w100 color_yellow2",
+      attrs: {
+        "cellpadding": "0",
+        "cellspacing": "0"
+      }
+    }, [_c('tr', [_c('td', [_vm._v("报名率：" + _vm._s(act.join_proportion) + "%")]), _vm._v(" "), _c('td', [_vm._v("转化率: " + _vm._s(act.completed_proportion) + "%")]), _vm._v(" "), _c('td', [_vm._v("传播速度：" + _vm._s(act.completed_proportion > 30 ? '快' : '慢'))])])])])])])])])
   })), _vm._v(" "), _c('mugen-scroll', {
     attrs: {
       "scroll-container": "wrap",
@@ -11394,65 +11466,7 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
   }, [_c('span', {
     staticClass: "color_gray f12"
   }, [_vm._v("已经到底了")])])])], 1)
-},staticRenderFns: [function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
-  return _c('div', {
-    staticClass: "table"
-  }, [_c('div', {
-    staticClass: "thumbnail-box table-cell"
-  }, [_c('img', {
-    staticClass: "thumbnail fl",
-    attrs: {
-      "src": "http://s.51lianying.com/images/www/index_v2/thum-1.jpg",
-      "alt": ""
-    }
-  })]), _vm._v(" "), _c('div', {
-    staticClass: "relative item-info table-cell"
-  }, [_c('h3', {
-    staticClass: "title color_333 f16"
-  }, [_vm._v("活动标题")]), _vm._v(" "), _c('p', {
-    staticClass: "desc f12 color_999"
-  }, [_vm._v("新的一年来临了，快来抢个新年币增加好运吧，抢到足够新年币，即可兑换好礼。")]), _vm._v(" "), _c('p', {
-    staticClass: "color_yellow2 mt10 f12"
-  }, [_vm._v("结束时间：2017-06-27")])])])
-},function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
-  return _c('div', {
-    staticClass: "chart-table-box"
-  }, [_c('table', {
-    staticClass: "chart-table w100",
-    attrs: {
-      "cellpadding": "0",
-      "cellspacing": "1"
-    }
-  }, [_c('thead', [_c('tr', [_c('th', {
-    staticClass: "td-right",
-    attrs: {
-      "colspan": "2"
-    }
-  }, [_vm._v("[海澜之家]集面粉送代金券")])])]), _vm._v(" "), _c('tr', [_c('td', {
-    staticClass: "td-left text-center color_666"
-  }, [_vm._v("报名人数")]), _vm._v(" "), _c('td', {
-    staticClass: "td-right"
-  }, [_vm._v("123人")])]), _vm._v(" "), _c('tr', [_c('td', {
-    staticClass: "td-left text-center color_666"
-  }, [_vm._v("完成目标")]), _vm._v(" "), _c('td', {
-    staticClass: "td-right"
-  }, [_vm._v("2人")])]), _vm._v(" "), _c('tr', [_c('td', {
-    staticClass: "td-left text-center color_666"
-  }, [_vm._v("影响微信用户")]), _vm._v(" "), _c('td', {
-    staticClass: "td-right"
-  }, [_vm._v("2000人")])]), _vm._v(" "), _c('tr', [_c('td', {
-    staticClass: "td-right",
-    attrs: {
-      "colspan": "2"
-    }
-  }, [_c('table', {
-    staticClass: "w100 color_yellow2",
-    attrs: {
-      "cellpadding": "0",
-      "cellspacing": "0"
-    }
-  }, [_c('tr', [_c('td', [_vm._v("报名率：9.6%")]), _vm._v(" "), _c('td', [_vm._v("转化率：1.1%")]), _vm._v(" "), _c('td', [_vm._v("传播速度：慢")])])])])])])])
-}]}
+},staticRenderFns: []}
 module.exports.render._withStripped = true
 if (false) {
   module.hot.accept()
@@ -11530,6 +11544,7 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
     staticClass: "clearfix recommend-list"
   }, _vm._l((_vm.acts), function(act) {
     return _c('router-link', {
+      key: act.id,
       staticClass: "fl recommend text-center",
       attrs: {
         "to": {
@@ -11557,6 +11572,7 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
     staticClass: "clearfix"
   }, _vm._l((_vm.industries), function(industry) {
     return _c('router-link', {
+      key: industry.id,
       staticClass: "fl industry text-center",
       attrs: {
         "to": {
