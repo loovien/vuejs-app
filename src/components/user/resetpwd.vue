@@ -13,7 +13,7 @@
                 <div class="input-box input-box-verifyCode">
                     <span class="iconfont icon-ad80-copy input-icon"></span>
                     <button class="color_yellow2 fr verifyCode-btn">获取验证码</button>
-                    <input type="password" placeholder="验证码" v-model="credentials.verifyCode" class="ui-input">
+                    <input type="text" placeholder="验证码" v-model="credentials.verifyCode" class="ui-input">
                 </div>
             </form>
             <div class="errorTips" v-show="error.msg">{{error.msg}}</div>
