@@ -115,7 +115,7 @@
                 </table>
             </div>
         </div>
-        <router-link :to="{name: 'act_new', params:{id: id}}" class="madeBtn">我要制作</router-link>
+        <router-link :to="{name: 'actNew', params:{id: id}}" class="madeBtn">我要制作</router-link>
         <!-- {{act.description}} -->
     </div>
 </template>

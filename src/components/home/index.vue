@@ -19,7 +19,7 @@
                 最新推荐
             </h2>
             <div class="clearfix recommend-list">
-                <router-link :to="{name: 'act_detail', params: {id: act.id}}"  v-for="act in acts" :key="act.id" class="fl recommend text-center">
+                <router-link :to="{name: 'actDetail', params: {id: act.id}}"  v-for="act in acts" :key="act.id" class="fl recommend text-center">
                     <img src="http://s.51lianying.com/images/www/index_v2/thum-1.jpg" class="recommend-thumbnail" />
                     <h5 class="act-title">{{act.title}}</h5>
                 </router-link>
@@ -34,7 +34,7 @@
             <div class="overflow-hidden w100">
                 <div class="clearfix industry-list">
                     <div class="clearfix">
-                        <router-link :to="{name: 'act_industry', params: {id: industry.id, title: industry.name}}" v-for="industry in industries" :key="industry.id" class="fl industry text-center">
+                        <router-link :to="{name: 'actIndustry', params: {id: industry.id, title: industry.name}}" v-for="industry in industries" :key="industry.id" class="fl industry text-center">
                             <span class="iconfont"></span>
                             <h5 class="industry-title">{{industry.name}}</h5>
                         </router-link>

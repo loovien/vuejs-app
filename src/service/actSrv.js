@@ -40,4 +40,20 @@ export default class ActSrv extends BaseSrv {
     getDefaultRank() {
         return this.http.get("act/rank");
     }
+
+    getActInfo(query) {
+        return this.http.get("act/" + query.id);
+    }
+
+    getRank(query) {
+        return this.http.get("act/rank/" + query.id)
+    }
+
+    getUserInfo(query) {
+        return this.http.get("act/u/" + query.id)
+    }
+
+    helpIt(query) {
+        return this.http.post("act/u/helper", query);
+    }
 }
