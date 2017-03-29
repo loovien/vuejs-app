@@ -28,7 +28,7 @@ export default class ActSrv extends BaseSrv {
      * @param query
      */
     getUserInfo(query) {
-        return this.http.get("act/shared/u/" + query.id)
+        return this.http.get("act/shared/" + query.actId)
     }
 
 
@@ -54,7 +54,8 @@ export default class ActSrv extends BaseSrv {
      * @param query
      */
     getActInfo(query) {
-        return this.http.get("act/shared/u/" + query.id);
+        alert("act/shared/" + query.actId)
+        return this.http.get("act/shared/" + query.actId);
     }
 
     /**
@@ -62,7 +63,7 @@ export default class ActSrv extends BaseSrv {
      * @param query
      */
     getRank(query) {
-        return this.http.get("act/shared/rank/" + query.id)
+        return this.http.get("act/shared/rank/" + query.actId)
     }
 
     /**
@@ -71,6 +72,6 @@ export default class ActSrv extends BaseSrv {
      * @returns {*}
      */
     helpIt(query) {
-        return this.http.post("act/shared/helloit", query);
+        return this.http.post("act/shared/helpit", query);
     }
 }
