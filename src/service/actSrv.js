@@ -54,7 +54,6 @@ export default class ActSrv extends BaseSrv {
      * @param query
      */
     getActInfo(query) {
-        alert("act/shared/" + query.actId)
         return this.http.get("act/shared/" + query.actId);
     }
 
@@ -73,5 +72,34 @@ export default class ActSrv extends BaseSrv {
      */
     helpIt(query) {
         return this.http.post("act/shared/helpit", query);
+    }
+
+    /**
+     * 用户参与也要玩
+     *
+     * @param query
+     */
+    letsPlay(query) {
+        return this.http.get("act/shared/isplay", {params: query});
+    }
+
+    /**
+     * 我也要玩, 参与填写名称
+     *
+     * @param postData
+     * @returns {*}
+     */
+    fillName(postData) {
+        return this.http.post("act/shared/play", postData);
+    }
+
+    /**
+     * 我也要玩, 参与填写电话
+     *
+     * @param postData
+     * @returns {*}
+     */
+    fillPhone(postData) {
+        return this.http.post("act/shared/play", postData);
     }
 }
