@@ -20,8 +20,8 @@ export default class ActSrv extends BaseSrv {
      *
      * @param id
      */
-    getIndustryActs(id) {
-        return this.http.get("act/industry/"+id);
+    getIndustryActs(id,page) {
+        return this.http.get("act/industry/"+id+"?page="+page);
     }
     /**
      * 获取用户信息
@@ -54,7 +54,6 @@ export default class ActSrv extends BaseSrv {
      * @param query
      */
     getActInfo(query) {
-        alert("act/shared/" + query.actId)
         return this.http.get("act/shared/" + query.actId);
     }
 
@@ -74,4 +73,50 @@ export default class ActSrv extends BaseSrv {
     helpIt(query) {
         return this.http.post("act/shared/helpit", query);
     }
+
+    /**
+     * 用户参与也要玩
+     *
+     * @param query
+     */
+    letsPlay(query) {
+        return this.http.get("act/shared/isplay", {params: query});
+    }
+
+    /**
+     * 我也要玩, 参与填写名称
+     *
+     * @param postData
+     * @returns {*}
+     */
+    fillName(postData) {
+        return this.http.post("act/shared/play", postData);
+    }
+
+    /**
+     * 我也要玩, 参与填写电话
+     *
+     * @param postData
+     * @returns {*}
+     */
+    fillPhone(postData) {
+        return this.http.post("act/shared/play", postData);
+    }
+
+    /**
+     * 图片上传
+     */
+    upload(base64) {
+        return this.http.post("http://s.51lianying.com/upload/?c=image&m=process_for_form&type=biz&item=magazine&base64=1&field=base64&is_ajax=1", {image_data: base64});
+
+        // return this.http.post("http://s.51lianying.com/upload/?c=image&m=process_for_form&type=biz&item=magazine&field=micro_image&domain=51lianying.com", {params: {image_data: base64}});
+        
+    }
 }
+
+
+
+
+
+
+

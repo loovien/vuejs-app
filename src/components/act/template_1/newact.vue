@@ -6,15 +6,15 @@
                 <textarea class="ui-textarea" name="" id="" cols="30" rows="6" :placeholder="act.title"></textarea>
             </div>
             <div class="countDown-box color_fff text-center">
-                <div class="table">
-                    <div class="table-cell">
-                        <input type="text" class="ui-input">
+                <div class="table w100">
+                    <div class="table-cell f12">
+                        <datepicker v-model="startDate"></datepicker>
                     </div>
                     <div class="table-cell table-cell-2">
                         至
                     </div>
-                    <div class="table-cell">
-                        <input type="text" class="ui-input">
+                    <div class="table-cell f12">
+                        <datepicker v-model="endDate"></datepicker>
                     </div>
                 </div>
             </div>
@@ -32,11 +32,11 @@
             </h2>
             <div class="inner text-center">
                 共
-                <span class="reduce-btn">-</span>
-                <input type="text" class="ui-input input-1">
-                <span class="add-btn">+</span>
+                <span class="reduce-btn" @click="num--">-</span>
+                <input type="text" class="ui-input input-1 text-center" v-model="num">
+                <span class="add-btn" @click="num++">+</span>
                 份
-                <input type="text" class="ui-input mt15">
+                <input type="text" class="ui-input mt15" placeholder="请输入活动奖励">
             </div>
         </div>
 
@@ -48,7 +48,7 @@
                 <span class="word w3">绍</span>
             </h2>
             <div class="inner">
-                <textarea class="ui-textarea introduce-textarea" name="" id="" cols="30" rows="20"></textarea>
+                <textarea class="ui-textarea introduce-textarea" name="" id="" cols="30" rows="20" placeholder="请输入活动介绍"></textarea>
             </div>
         </div>
         
@@ -60,7 +60,7 @@
                 <span class="word w3">则</span>
             </h2>
             <div class="inner">
-                <textarea class="ui-textarea introduce-textarea" name="" id="" cols="30" rows="20"></textarea>
+                <textarea class="ui-textarea introduce-textarea" name="" id="" cols="30" rows="20" placeholder="请输入参与规则"></textarea>
             </div>
         </div>
 
@@ -74,7 +74,7 @@
             <div class="inner">
                 <input type="text" class="ui-input" placeholder="请输入奖品描述">
                 <div class="mt15 upload-box text-center">
-                    <input type="file" accept="image/jpeg,image/jpg,image/png" capture="camera" @change="onFileChange">
+                    <input type="file" accept="image/jpeg,image/jpg,image/png" capture="camera" @change="onFileChange" placeholder="请输入奖品描述">
                     <span class="icon-upload iconfont"></span>
                     <p class="text-center">最多只能上传6张图片</p>
                 </div>
@@ -117,7 +117,6 @@
 
         <fixed :options="{save: true, back: true, account: false}" @saveEvent="newAct"></fixed>
         <!-- {{act.description}} -->
-
     </div>
 </template>
 
@@ -125,6 +124,7 @@
     import ActSrv from "../../../service/actSrv";
     import Fixed from '../../shared/fixed.vue'
     import '../../../../static/js/lrz.all.bundle'
+    import Datepicker from '../../shared/Datepicker.vue'
 
     export default {
         data: () => {
@@ -132,10 +132,13 @@
                 act: [],
                 newActPostData: {
 
-                }
+                },
+                startDate: '请选择开始日期',
+                endDate: '请选择结束日期',
+                num: 1
             }
         },
-        components: { Fixed },
+        components: { Fixed, Datepicker },
         created: function () {
             let id = this.$route.params.id;
             this.id = id;
@@ -167,9 +170,10 @@
             },
             createImage: function(file, e) {
                 // let vm = this;
+                const actSrv = new ActSrv(this);
                 lrz(file[0], { width: 480 }).then(function(rst) {
-                    window.location.href = rst.base64
                     // console.log(rst.base64)
+                    actSrv.upload(rst.base64)
                 });
             },
             upload: function(e){

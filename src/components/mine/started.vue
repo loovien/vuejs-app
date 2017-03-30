@@ -82,7 +82,8 @@
             return {
                 loading: false,
                 isLoadAll: false,//是否加载完毕
-				acts: []
+				acts: [],
+                page: 1
             }
         },
         created: function () {
@@ -94,11 +95,15 @@
                 this.loading = true;
 
                 const mineSrv = new MineSrv(this);
-                mineSrv.getStartedActs().then((resp) => {
+                mineSrv.getStartedActs(that.page).then((resp) => {
                     this.loading = false
 					this.acts = this.acts.concat(resp.data.data.data);
 
-                    //如果加载完毕 isLoadAll = true
+                    that.page += 1;
+                    
+                    if(that.page > resp.data.data.total){
+                        that.isLoadAll = true//加载完毕
+                    }
                 })
             },
             fetchData() {
