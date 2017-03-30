@@ -20,8 +20,8 @@ export default class ActSrv extends BaseSrv {
      *
      * @param id
      */
-    getIndustryActs(id,page) {
-        return this.http.get("act/industry/"+id+"?page="+page);
+    getIndustryActs(id) {
+        return this.http.get("act/industry/"+id);
     }
     /**
      * 获取用户信息
@@ -102,21 +102,4 @@ export default class ActSrv extends BaseSrv {
     fillPhone(postData) {
         return this.http.post("act/shared/play", postData);
     }
-
-    /**
-     * 图片上传
-     */
-    upload(base64) {
-        return this.http.post("http://s.51lianying.com/upload/?c=image&m=process_for_form&type=biz&item=magazine&base64=1&field=base64&is_ajax=1", {image_data: base64});
-
-        // return this.http.post("http://s.51lianying.com/upload/?c=image&m=process_for_form&type=biz&item=magazine&field=micro_image&domain=51lianying.com", {params: {image_data: base64}});
-        
-    }
 }
-
-
-
-
-
-
-
