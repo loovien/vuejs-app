@@ -74,9 +74,14 @@
             <div class="inner">
                 <input type="text" class="ui-input" placeholder="请输入奖品描述">
                 <div class="mt15 upload-box text-center">
-                    <input type="file" accept="image/jpeg,image/jpg,image/png" capture="camera" @change="onFileChange" placeholder="请输入奖品描述">
-                    <span class="icon-upload iconfont"></span>
-                    <p class="text-center">最多只能上传6张图片</p>
+                    <template v-for="item in images">
+                        <img :src="item" alt="" class="img-w100">
+                    </template>
+                    <template v-show="images.length < 6">
+                        <input type="file" accept="image/jpeg,image/jpg,image/png" capture="camera" @change="onFileChange" placeholder="请输入奖品描述" class="upload-file">
+                        <span class="icon-upload iconfont"></span>
+                        <p class="text-center">最多只能上传6张图片</p>
+                    </template>
                 </div>
             </div>
         </div>
@@ -125,6 +130,7 @@
     import Fixed from '../../shared/fixed.vue'
     import '../../../../static/js/lrz.all.bundle'
     import Datepicker from '../../shared/Datepicker.vue'
+    import $ from 'jquery'
 
     export default {
         data: () => {
@@ -135,7 +141,8 @@
                 },
                 startDate: '请选择开始日期',
                 endDate: '请选择结束日期',
-                num: 1
+                num: 1,
+                images: []
             }
         },
         components: { Fixed, Datepicker },
@@ -169,11 +176,23 @@
                 this.createImage(files, e);
             },
             createImage: function(file, e) {
-                // let vm = this;
+                var that = this;
                 const actSrv = new ActSrv(this);
-                lrz(file[0], { width: 480 }).then(function(rst) {
-                    // console.log(rst.base64)
-                    actSrv.upload(rst.base64)
+                lrz(file[0], { width: 640 }).then(function(rst) {
+                    var clearBase64 = rst.base64.substr( rst.base64.indexOf(',') + 1 );
+
+                    $.ajax({
+                        url: 'http://s.51lianying.com/upload/?c=image&m=process_for_form&type=biz&item=magazine&base64=1&field=base64&is_ajax=1',
+                        type: 'POST',
+                        data: {
+                            image_data: clearBase64
+                        },
+                        success: function(resp){
+                            var data = JSON.parse(resp).data;
+
+                            that.images.push(data.url)
+                        }
+                    })
                 });
             },
             upload: function(e){
@@ -184,7 +203,17 @@
 </script>
 
 <style scoped>
-
+.upload-file{
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: 0;
+    opacity: 0;
+}
+.img-w100{
+    max-width: 100%; height: auto;
+}
 .ui-textarea, .ui-input{
     width: 100%;
     font-size: 14px;

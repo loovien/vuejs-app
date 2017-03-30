@@ -42,6 +42,7 @@
   "dependencies": {
     "bootstrap": "^3.3.7",
     "date-fns": "^1.28.1",
+    "jquery": "^3.2.1",
     "less": "^2.7.2",
     "less-loader": "^4.0.2",
     "vue": "^2.2.2",
