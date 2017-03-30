@@ -23,6 +23,14 @@ export default class ActSrv extends BaseSrv {
     getIndustryActs(id) {
         return this.http.get("act/industry/"+id);
     }
+    /**
+     * 获取用户信息
+     * @param query
+     */
+    getUserInfo(query) {
+        return this.http.get("act/shared/" + query.actId)
+    }
+
 
     /**
      * 创建新的用户活动
@@ -31,7 +39,7 @@ export default class ActSrv extends BaseSrv {
      * @returns {*}
      */
     newAct(postData) {
-        return this.http.post("act/u");
+        return this.http.post("act/u", postData);
     }
 
     /**
@@ -39,5 +47,31 @@ export default class ActSrv extends BaseSrv {
      */
     getDefaultRank() {
         return this.http.get("act/rank");
+    }
+
+    /**
+     * 获取活动信息
+     * @param query
+     */
+    getActInfo(query) {
+        alert("act/shared/" + query.actId)
+        return this.http.get("act/shared/" + query.actId);
+    }
+
+    /**
+     * 获取活动排行帮
+     * @param query
+     */
+    getRank(query) {
+        return this.http.get("act/shared/rank/" + query.actId)
+    }
+
+    /**
+     * 帮用户积攒, 或其他方式
+     * @param query
+     * @returns {*}
+     */
+    helpIt(query) {
+        return this.http.post("act/shared/helpit", query);
     }
 }

@@ -6,14 +6,14 @@
         </header>
         
         <div class="list">
-            <router-link :to="{}" class="item mt10 clearfix table w100" v-for="i in acts" :key="i.id">
+            <router-link :to="{}" class="item mt10 clearfix table w100" v-for="act in acts" :key="act.id">
                 <div class="table">
                     <div class="thumbnail-box table-cell">
-                        <img src="http://s.51lianying.com/images/www/index_v2/thum-1.jpg" alt="" class="thumbnail fl">
+                        <img :src="act.banner_img" alt="" class="thumbnail fl">
                     </div>
                     <div class="relative item-info table-cell">
-                        <h3 class="title color_333 f16">{{i.title}}</h3>
-                        <p class="desc f12 color_999">{{i.description}}</p>
+                        <h3 class="title color_333 f16">{{act.title}}</h3>
+                        <p class="desc f12 color_999">{{act.description}}</p>
                         <div class="operate text-right">
                             <div class="inline-block">
                                 <span class="iconfont icon-edit color_gray"></span>
@@ -21,7 +21,7 @@
                             </div>
                             <div class="inline-block delete">
                                 <span class="iconfont icon-delete color_gray"></span>
-                                <span class="color_666 f12" @click="deleteAct(i.id)">删除</span>
+                                <span class="color_666 f12" @click="deleteAct(act.id)">删除</span>
                             </div>
                         </div>
                     </div>
@@ -70,17 +70,27 @@
             loadMore: function(){
                 this.loading = true;
 
-                const mineSrv = new MineSrv(this);
+                const mineSrv = this._getMineSrv();
                 mineSrv.getNoStartActs().then((resp) => {
-                    this.acts.push(resp.data.data.data);
+                    this.acts = resp.data.data.data;
                     this.loading = false
+
                     //如果加载完毕 isLoadAll = true
-                })
+                });
             },
             fetchData() {
                 if(!this.isLoadAll){
                     this.loadMore()
                 }
+            },
+            deleteAct(id){
+                const mineSrv = this._getMineSrv();
+                mineSrv.deleteActById(id).then((resp) => {
+                   alert("do other logic!");
+                });
+            },
+            _getMineSrv() {
+                return new MineSrv(this);
             }
         }
     }

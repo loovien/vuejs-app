@@ -149,9 +149,14 @@
                 const actSrv = new ActSrv(this);
                 let postData = this.newActPostData;
                 actSrv.newAct(postData).then((resp) => {
-                    alert(resp.data.msg)
-                    console.log(resp)
-                    this.$router.push({name: "mineIndex"}); // 保存好会到个人中心
+                    const respData = resp.data;
+                    alert(respData.msg)
+                    this.$router.push({
+                        name: "template1Shared", params: {
+                            id: respData.data.id,
+                            openid: respData.data.openid
+                        }
+                    }); // 保存后到分享也, 游湖有需要就分享
                 });
             },
             onFileChange: function(e) {

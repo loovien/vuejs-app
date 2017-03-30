@@ -6,6 +6,8 @@ import Index from "./index.vue";
 import Industry from "./industry.vue"
 import Detail from "./template_1/detail.vue";
 import Newact from "./template_1/newact.vue";
+import Editact from "./template_1/editact.vue";
+import Template1 from "./template_1/shared.vue";
 
 export default {
     path: "/act",
@@ -14,19 +16,30 @@ export default {
     children: [
         {
             path: "template_1/:id",
-            name: "act_detail",
+            name: "actDetail",
             component: Detail
         },
         {
             path: "industry/:id:title",
-            name: "act_industry",
+            name: "actIndustry",
             component: Industry
         },
         {
             path: "template_1/new/:id",
-            name: "act_new",
+            name: "actNew",
             component: Newact,
             meta: {auth: true /*,rich: true*/}
+        },
+        {
+            path: "template_1/edit/:id",
+            name: "actEdit",
+            component: Editact,
+            meta: {auth: true}
+        },
+        {
+            path: "shared/:actId/:openid",
+            name: "template1Shared",
+            component: Template1
         }
     ]
 }
