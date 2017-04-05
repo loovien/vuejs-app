@@ -54,7 +54,6 @@ export default class ActSrv extends BaseSrv {
      * @param query
      */
     getActInfo(query) {
-        alert("act/shared/" + query.actId)
         return this.http.get("act/shared/" + query.actId);
     }
 
