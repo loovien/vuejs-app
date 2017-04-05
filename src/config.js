@@ -4,11 +4,11 @@
 
 export default {
     http: {
-        //root: "http://121.41.21.64:8000/index.php/api",
-        root: "http://shangjialian.51lianying.com/api",
+        root: "http://121.41.21.64:8000/index.php/api",
+        //root: "http://shangjialian.51lianying.com/api",
         headers: {
             "ContentType": "application/json",
-            //Authorization: 'Bear jlaskdjfiiii#Y@#111'
+            //Authorization: 'Bear access_token',
             "X-Requested-With": "XMLHttpRequest"
         },
         credentials: true,

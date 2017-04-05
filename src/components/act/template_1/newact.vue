@@ -3,18 +3,18 @@
         <div class="relative">
             <img src="/static/images/template_1/banner-bg.jpg" alt="" class="banner-bg">
             <div class="banner">
-                <textarea class="ui-textarea" name="" id="" cols="30" rows="6" :placeholder="act.title"></textarea>
+                <textarea class="ui-textarea" v-model="act.title" id="" cols="30" rows="6" :placeholder="act.title"></textarea>
             </div>
             <div class="countDown-box color_fff text-center">
                 <div class="table w100">
                     <div class="table-cell f12">
-                        <datepicker v-model="startDate"></datepicker>
+                        <datepicker v-model="act.act_start_time"></datepicker>
                     </div>
                     <div class="table-cell table-cell-2">
                         至
                     </div>
                     <div class="table-cell f12">
-                        <datepicker v-model="endDate"></datepicker>
+                        <datepicker v-model="act.act_end_time"></datepicker>
                     </div>
                 </div>
             </div>
@@ -33,10 +33,10 @@
             <div class="inner text-center">
                 共
                 <span class="reduce-btn" @click="num--">-</span>
-                <input type="text" class="ui-input input-1 text-center" v-model="num">
-                <span class="add-btn" @click="num++">+</span>
+                <input type="text" class="ui-input input-1 text-center" v-model="act.act_prize_cnt">
+                <span class="add-btn" @click="act.act_prize_cnt++">+</span>
                 份
-                <input type="text" class="ui-input mt15" placeholder="请输入活动奖励">
+                <input type="text" class="ui-input mt15" placeholder="请输入活动奖励" v-model="act.act_prize_name">
             </div>
         </div>
 
@@ -48,7 +48,7 @@
                 <span class="word w3">绍</span>
             </h2>
             <div class="inner">
-                <textarea class="ui-textarea introduce-textarea" name="" id="" cols="30" rows="20" placeholder="请输入活动介绍"></textarea>
+                <textarea class="ui-textarea introduce-textarea" v-model="act.description" cols="30" rows="20" placeholder="请输入活动介绍"></textarea>
             </div>
         </div>
         
@@ -60,7 +60,9 @@
                 <span class="word w3">则</span>
             </h2>
             <div class="inner">
-                <textarea class="ui-textarea introduce-textarea" name="" id="" cols="30" rows="20" placeholder="请输入参与规则"></textarea>
+                <textarea class="ui-textarea introduce-textarea" cols="30" rows="20" placeholder="请输入参与规则">
+                    格式为: (筹集, 转发: act_rule_decorate) : (数量: act_rule_cnt) :(商品词: act_rule_keywords) (换取什么奖品: act_prize_name)
+                </textarea>
             </div>
         </div>
 
@@ -72,12 +74,12 @@
                 <span class="word w3">述</span>
             </h2>
             <div class="inner">
-                <input type="text" class="ui-input" placeholder="请输入奖品描述">
+                <input type="text" class="ui-input" placeholder="请输入奖品描述" v-model="act.act_prize_desc">
                 <div class="mt15 upload-box text-center">
-                    <template v-for="item in images">
+                    <template v-for="item in act.images">
                         <img :src="item" alt="" class="img-w100">
                     </template>
-                    <template v-show="images.length < 6">
+                    <template v-show="act.images.length < 6">
                         <input type="file" accept="image/jpeg,image/jpg,image/png" capture="camera" @change="onFileChange" placeholder="请输入奖品描述" class="upload-file">
                         <span class="icon-upload iconfont"></span>
                         <p class="text-center">最多只能上传6张图片</p>
@@ -95,11 +97,11 @@
             </h2>
             <div class="inner">
                 <p class="tit">主办方：</p>
-                <input type="text" class="ui-input mt5" placeholder="请输入主办方">
+                <input type="text" class="ui-input mt5" v-model="act.organizer_name" placeholder="请输入主办方">
                 <p class="tit">主办方地址：</p>
-                <textarea class="ui-textarea introduce-textarea mt5" name="" id="" cols="30" rows="3" placeholder="请输入主办方地址"></textarea>
+                <textarea class="ui-textarea introduce-textarea mt5" v-model="act.organizer_address" cols="30" rows="3" placeholder="请输入主办方地址"></textarea>
                 <p class="tit">主办方电话：</p>
-                <input type="text" class="ui-input mt5" placeholder="请输入主办方电话">
+                <input type="text" class="ui-input mt5" v-model="act.organizer_phone" placeholder="请输入主办方电话">
             </div>
         </div>
 
@@ -111,12 +113,12 @@
                 <span class="word w3">们</span>
             </h2>
             <div class="inner">
-                <textarea class="ui-textarea introduce-textarea mt5" name="" id="" cols="30" rows="5" placeholder="请输入“关于我们的介绍”增加公信力。"></textarea>
+                <textarea class="ui-textarea introduce-textarea mt5" v-model="act.about_us" cols="30" rows="5" placeholder="请输入“关于我们的介绍”增加公信力。"></textarea>
                 <p>视频地址：</p>
-                <input type="text" class="ui-input mt5" placeholder="请输入视频地址">
+                <input type="text" class="ui-input mt5" v-model="act.video_url" placeholder="请输入视频地址">
                 <p>添加其他网址：</p>
-                <input type="text" class="ui-input mt5" placeholder="请输入其他网址（名称）">
-                <input type="text" class="ui-input mt10" placeholder="请输入其他网址">
+                <input type="text" class="ui-input mt5" v-model="act.link_name" placeholder="请输入其他网址（名称）">
+                <input type="text" class="ui-input mt10" v-model="act.link_url" placeholder="请输入其他网址">
             </div>
         </div>
 
@@ -135,14 +137,10 @@
     export default {
         data: () => {
             return {
-                act: [],
-                newActPostData: {
-
+                act: {
+                    act_prize_cnt: 1,
+                    images: []
                 },
-                startDate: '请选择开始日期',
-                endDate: '请选择结束日期',
-                num: 1,
-                images: []
             }
         },
         components: { Fixed, Datepicker },
@@ -157,13 +155,12 @@
         methods: {
             newAct: function () {
                 const actSrv = new ActSrv(this);
-                let postData = this.newActPostData;
+                let postData = this.act;
                 actSrv.newAct(postData).then((resp) => {
                     const respData = resp.data;
-                    alert(respData.msg)
                     this.$router.push({
                         name: "template1Shared", params: {
-                            id: respData.data.id,
+                            actId: respData.data.id,
                             openid: respData.data.openid
                         }
                     }); // 保存后到分享也, 游湖有需要就分享
