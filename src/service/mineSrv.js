@@ -8,16 +8,16 @@ export default  class MineSrv extends BaseSrv {
     getTop1() {
         return this.http.get("mine/top1");
     }
-    getNoStartActs() {
-        return this.http.get("mine/nostart");
+    getNoStartActs(page) {
+        return this.http.get("mine/nostart?"+page);
     }
 
-    getStartedActs() {
-        return this.http.get("mine/start");
+    getStartedActs(page) {
+        return this.http.get("mine/start?"+page);
     }
 
-    getEndActs() {
-        return this.http.get("mine/end");
+    getEndActs(page) {
+        return this.http.get("mine/end?"+page);
     }
 
     deleteActById(id) {

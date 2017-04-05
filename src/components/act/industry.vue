@@ -4,16 +4,15 @@
             <a href="" class="iconfont icon-back header-goback" @click="window.history.go(-1)"></a>
             <h1 class="header-title">{{title}}</h1>
         </header>
-        
         <div class="list" v-show="acts.length > 0">
             <router-link :to="{name: 'actDetail', params: {id: act.id}}" class="item mt10 clearfix table w100" v-for="act in acts" :key="act.id">
                 <div class="table">
                     <div class="thumbnail-box table-cell">
-                        <img src="http://s.51lianying.com/images/www/index_v2/thum-1.jpg" alt="" class="thumbnail fl">
+                        <img :src="act.cover_img" alt="" class="thumbnail fl">
                     </div>
                     <div class="relative item-info table-cell">
                         <h3 class="title color_333 f16">{{act.title}}</h3>
-                        <p class="desc f12 color_999">新的一年来临了，快来抢个新年币增加好运吧，抢到足够新年币，即可兑换好礼。</p>
+                        <p class="desc f12 color_999">{{act.description}}</p>
                     </div>
                 </div>
             </router-link>
@@ -37,12 +36,14 @@
                 <span class="color_gray f12">已经到底了</span>
             </div>
         </mugen-scroll>
+        <fixed></fixed>
     </div>
 </template>
 
 <script>
     import ActSrv from "../../service/actSrv";
     import MugenScroll from 'vue-mugen-scroll'
+    import Fixed from '../shared/fixed.vue'
 
     export default {
         data(){
@@ -50,6 +51,7 @@
                 acts: [],
                 title: '',
                 loading: false,
+                page: 1,
                 isLoadAll: false//是否加载完毕
             }
         },
@@ -59,17 +61,21 @@
 
             this.loadMore()
         },
-        components: { MugenScroll },
+        components: { MugenScroll, Fixed },
         methods: {
             loadMore: function(){
+                var that = this;
                 this.loading = true;
 
                 const actSrv = new ActSrv(this);
-                actSrv.getIndustryActs(this.id).then((resp) => {
-                    this.acts = resp.data.data.data;
-                    this.loading = false
-
-                    //如果加载完毕 isLoadAll = true
+                actSrv.getIndustryActs(that.id, that.page).then((resp) => {
+                    that.acts = resp.data.data.data;
+                    that.loading = false
+                    that.page += 1;
+                    
+                    if(that.page > resp.data.data.total){
+                        that.isLoadAll = true//加载完毕
+                    }
                 })
             },
             fetchData() {

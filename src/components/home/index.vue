@@ -5,13 +5,7 @@
             <router-link :to="{name: 'userHelp'}" class="iconfont icon-service header-service"></router-link>
         </header>
     
-        <swiper id="swiper_horizontal"
-                :pagination-visible="true"
-                direction="horizontal">
-            <div v-for="item in slides" track-by="$index">
-                <img :src="item.src" class="banner">
-            </div>
-        </swiper>
+        <img :src="bannerImg" class="banner">
         
         <div class="recommend-box bg_fff mt10">
             <h2 class="title clearfix">
@@ -20,7 +14,7 @@
             </h2>
             <div class="clearfix recommend-list">
                 <router-link :to="{name: 'actDetail', params: {id: act.id}}"  v-for="act in acts" :key="act.id" class="fl recommend text-center">
-                    <img src="http://s.51lianying.com/images/www/index_v2/thum-1.jpg" class="recommend-thumbnail" />
+                    <img :src="act.cover_img" class="recommend-thumbnail" />
                     <h5 class="act-title">{{act.title}}</h5>
                 </router-link>
             </div>
@@ -42,30 +36,23 @@
                 </div>
             </div>
         </div>
+        <fixed></fixed>
     </div>
 </template>
 
 <script>
     import IndexSrv from "../../service/indexSrv";
-    import Swiper from '../shared/swiper.vue'
+    import Fixed from '../shared/fixed.vue'
 
     export default {
         data() {
             return {
-                slides: [{
-                    src: 'http://s.51lianying.com/images/www/index_v2/banner-bg1.gif',
-                    title: ''
-                },
-                {
-                    src: 'http://s.51lianying.com/images/www/index_v2/banner-bg2.gif',
-                    title: ''
-                }],
                 bannerImgs: '',
                 industries: [],
                 acts: []
             }
         },
-        components: { Swiper },
+        components: { Fixed },
         created: function () {
             const indexSrv = new IndexSrv(this);
             indexSrv.getBannerImg().then((response) => {

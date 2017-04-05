@@ -59,7 +59,8 @@
             return {
                 loading: false,
                 isLoadAll: false, //是否加载完毕
-                acts: []
+                acts: [],
+                page: 1,
             }
         },
         created: function () {
@@ -68,14 +69,19 @@
         components: { MugenScroll },
         methods: {
             loadMore: function(){
+                var that = this;
                 this.loading = true;
 
                 const mineSrv = this._getMineSrv();
-                mineSrv.getNoStartActs().then((resp) => {
+                mineSrv.getNoStartActs(that.page).then((resp) => {
                     this.acts = resp.data.data.data;
                     this.loading = false
 
-                    //如果加载完毕 isLoadAll = true
+                    that.page += 1;
+                    
+                    if(that.page > resp.data.data.total){
+                        that.isLoadAll = true//加载完毕
+                    }
                 });
             },
             fetchData() {

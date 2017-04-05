@@ -1,13 +1,7 @@
 <template>
     <div class="container">
         <router-view></router-view>
-        <div class="fixed">
-            <span class="iconfont icon-gotop gotop" @click="gotop"></span>
-            <router-link :to="{name: 'mineIndex'}" class="account mt10">
-                <span class="iconfont icon-account"></span>
-                <span class="block f12">我的</span>
-            </router-link>
-        </div>
+        
     </div>
 </template>
 
@@ -23,12 +17,7 @@ export default {
         
     },
     methods: {
-        gotop: function(){
-            var timer=setInterval(function(){ 
-                    document.body.scrollTop-=Math.ceil(document.body.scrollTop*0.1); 
-                    if(document.body.scrollTop==0) clearInterval(timer); 
-            },10); 
-        }
+        
     }
 }
 </script>
@@ -60,6 +49,7 @@ span{
     -webkit-box-sizing: border-box;
     -moz-box-sizing: border-box;
     box-sizing: border-box;
+    vertical-align: middle;
 }
 input, select, textarea{
     -webkit-appearance: none;
@@ -143,6 +133,9 @@ a{
 }
 .valign-m{
     vertical-align: middle;
+}
+.mt15{
+    margin-top: 15px;
 }
 .mt10{
     margin-top: 10px;
@@ -302,31 +295,6 @@ h2.title{
     color: #666
 }
 
-.fixed{
-    position: fixed;
-    right: 10px;
-    bottom: 100px;
-    width: 45px;
-}
-.fixed .gotop,
-.fixed .account{
-    display: block;
-    width: 45px; height: 45px;
-    border-radius: 50%;
-    text-align: center;
-    line-height: 43px;
-}
-.fixed .gotop{
-    background: rgba(255,255,255,.8);
-    border: 1px solid #eee;
-    color: #757575;
-}
-.fixed .account{
-    background: rgba(255,180,0,.8);
-    color: #fff;
-    line-height: 16px;
-    padding: 5px 0 0 0;
-}
 .data-none{
     padding: 100px 0;
 }

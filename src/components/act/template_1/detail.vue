@@ -144,7 +144,6 @@
 
             actSrv.getDefaultRank().then((resp) => {
                     this.rank = resp.data.data;
-                    console.log(this.rank, '00')
             });
         }
     }
