@@ -115,14 +115,13 @@
                 </table>
             </div>
         </div>
-        <router-link :to="{name: 'actNew', params:{id: id}}" class="madeBtn">我要制作</router-link>
-        <!-- {{act.description}} -->
     </div>
 </template>
 
 <script>
     import ActSrv from "../../../service/actSrv";
     import AuthUtil from "../../../utils/authUtil";
+    import countDown from "../../shared/countDown.vue";
 
     export default {
         data() {
@@ -130,15 +129,17 @@
                 actSrv: {},
                 query: {}, // address params
                 openid: '', // current user openid
-                actInfo: { // activity information
+                act: { // activity information
 
                 },
                 userInfo: { // 用户相关数据, 完成多少了等等,
 
                 },
-                rank: [] // 排行榜数据
+                rank: [], // 排行榜数据
+                countDownTime: new Date('2017-03-20 0:0:0').getTime()
             }
         },
+        components: { countDown },
         created() {
             const query = this.$route.params;
             const actSrv = new ActSrv(this);
@@ -146,7 +147,7 @@
             this.actSrv = actSrv;
 
             actSrv.getActInfo(query).then((resp) => {
-                console.log(resp);
+                this.act = resp.data.data;
             });
 
             actSrv.getUserInfo(query).then((resp) => {
@@ -188,7 +189,7 @@
 
             /* 弹框填入电话 */
             fillPhone() {
-                const actId = this.actInfo.act_id;
+                const actId = this.act.act_id;
                 const openid = this.openid;
                 const phone = "用户输入电话";
                 const actOpenId = this.query.openid;

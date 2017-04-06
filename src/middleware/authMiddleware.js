@@ -24,8 +24,8 @@ export default class AuthMiddleware {
                     this.goWxAuthenticateUrl();
                 }
             }
-            /* just for test */
-            if (to.matched.some(record => record.meta.auth)) {
+            //TODO just for test
+            if (false && to.matched.some(record => record.meta.auth)) {
                 // this route requires auth, check if logged in
                 // if not, redirect to login page.
                 if (!authUtil.isLogin()) {
