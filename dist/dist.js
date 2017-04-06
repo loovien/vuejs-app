@@ -5423,6 +5423,7 @@ var AuthMiddleware = function () {
             var authUtil = new _authUtil2.default(this.http);
             authUtil.getWxAuthUrl().then(function (resp) {
                 var redirectUrl = resp.data.data.redirectUrl;
+                redirectUrl += "&" + window.location.href;
                 window.location.href = redirectUrl;
             });
             return false;

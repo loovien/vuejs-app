@@ -52,6 +52,7 @@ export default class AuthMiddleware {
         const authUtil = new AuthUtil(this.http);
         authUtil.getWxAuthUrl().then((resp) => {
             let redirectUrl = resp.data.data.redirectUrl;
+            redirectUrl += `&${window.location.href}`;
             window.location.href = redirectUrl;
         });
         return false;
