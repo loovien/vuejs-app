@@ -24207,7 +24207,7 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
     },
     on: {
       "click": function($event) {
-        _vm.window.history.go(-1)
+        _vm.window.history.back()
       }
     }
   }), _vm._v(" "), _c('h1', {

@@ -1,7 +1,7 @@
 <template>
     <div class="wrap activityList-wrap" ref="wrap">
         <header class="header">
-            <a href="" class="iconfont icon-back header-goback" @click="window.history.go(-1)"></a>
+            <a href="" class="iconfont icon-back header-goback" @click="window.history.back()"></a>
             <h1 class="header-title">{{title}}</h1>
         </header>
         <div class="list" v-show="acts.length > 0">
