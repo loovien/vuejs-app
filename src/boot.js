@@ -18,8 +18,8 @@ Vue.http.options = Config.http;
 Vue.http.interceptors.push(ConsoleHttpResponse);
 
 const router = new Router({
-    //mode: "history",
-    mode: "hash",
+    mode: "history",
+    //mode: "hash",
     routes: RouterMapping
 });
 
