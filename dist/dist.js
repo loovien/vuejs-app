@@ -24669,7 +24669,7 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
   })], 1), _vm._v(" "), _c('img', {
     staticClass: "banner",
     attrs: {
-      "src": _vm.bannerImg
+      "src": _vm.bannerImgs
     }
   }), _vm._v(" "), _c('div', {
     staticClass: "recommend-box bg_fff mt10"

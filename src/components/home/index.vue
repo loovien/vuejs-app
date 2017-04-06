@@ -5,7 +5,7 @@
             <router-link :to="{name: 'userHelp'}" class="iconfont icon-service header-service"></router-link>
         </header>
     
-        <img :src="bannerImg" class="banner">
+        <img :src="bannerImgs" class="banner">
         
         <div class="recommend-box bg_fff mt10">
             <h2 class="title clearfix">
