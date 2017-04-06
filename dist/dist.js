@@ -5391,7 +5391,9 @@ var AuthMiddleware = function () {
                     }
                 }
                 /* just for test */
-                if (false) {
+                if (to.matched.some(function (record) {
+                    return record.meta.auth;
+                })) {
                     // this route requires auth, check if logged in
                     // if not, redirect to login page.
                     if (!authUtil.isLogin()) {
