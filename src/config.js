@@ -8,7 +8,7 @@ export default {
         //root: "http://shangjialian.51lianying.com/api",
         headers: {
             "ContentType": "application/json",
-            //Authorization: 'Bear jlaskdjfiiii#Y@#111'
+            //Authorization: 'Bear access_token',
             "X-Requested-With": "XMLHttpRequest"
         },
         credentials: true,

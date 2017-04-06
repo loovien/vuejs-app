@@ -95,7 +95,7 @@
                 this.loading = true;
 
                 const mineSrv = new MineSrv(this);
-                mineSrv.getStartedActs(that.page).then((resp) => {
+                mineSrv.getStartedActs(this.page).then((resp) => {
                     this.loading = false
 					this.acts = this.acts.concat(resp.data.data.data);
 
