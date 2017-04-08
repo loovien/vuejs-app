@@ -28,7 +28,7 @@ export default class ActSrv extends BaseSrv {
      * @param query
      */
     getUserInfo(query) {
-        return this.http.get("act/shared/" + query.actId)
+        return this.http.get("act/shared/feats", {params: query});
     }
 
 

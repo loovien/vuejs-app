@@ -99,10 +99,10 @@
                     this.loading = false
 					this.acts = this.acts.concat(resp.data.data.data);
 
-                    that.page += 1;
+                    this.page += 1;
                     
-                    if(that.page > resp.data.data.total){
-                        that.isLoadAll = true//加载完毕
+                    if(this.page > resp.data.data.total){
+                        this.isLoadAll = true//加载完毕
                     }
                 })
             },

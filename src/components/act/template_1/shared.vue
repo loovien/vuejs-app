@@ -1,6 +1,6 @@
 <template>
     <div class="layout">
-        <div class="topBar color_fff f16"><span class="color_yellow">78</span>人查看<span class="color_yellow pl10">394</span>人分享<span class="color_yellow pl10">16</span>人报名</div>
+        <!--<div class="topBar color_fff f16"><span class="color_yellow">78</span>人查看<span class="color_yellow pl10">394</span>人分享<span class="color_yellow pl10">16</span>人报名</div>-->
         <div class="relative">
             <img src="/static/images/template_1/banner-bg.jpg" alt="" class="banner-bg">
             <div class="banner">
@@ -8,11 +8,12 @@
             </div>
             <div class="countDown-box color_fff text-center">
                 <countDown :date="countDownTime"></countDown>
-                <p class="mt5"><span class="color_yellow">张馨予</span><span class="color_fff key">2016-11-01 12:15</span><span class="color_yellow">抽中奖品</span></p>
+                <!--<p class="mt5"><span class="color_yellow">{{userInfo.name}}</span><span class="color_fff key">2016-11-01 12:15</span><span class="color_yellow">抽中奖品</span></p>-->
+                <p class="mt5"><span class="color_yellow">{{userInfo.username}} 您有</span><span class="color_fff key">{{userInfo.join_cnt}}</span><span class="color_yellow">个朋友参与活动。</span></p>
             </div>
         </div>
         <div class="text-center playBtn-box">
-            <img src="/static/images/template_1/play-btn.jpg" alt="点我去玩" class="playBtn">
+            <img src="/static/images/template_1/play-btn.jpg" @click="letsPlay()" alt="点我去玩" class="playBtn">
         </div>
 
         <div class="box">
@@ -23,8 +24,8 @@
                 <span class="word w3">励</span>
             </h2>
             <div class="inner text-center">
-                <p>总共<span class="red key">200</span>份 最后<span class="red key">99</span>份</p>
-                <p>海澜之家<span class="red key">1000元</span>代金券</p>
+                <p>总共<span class="red key">{{act.act_prize_cnt}}</span>{{act.act_prize_unit}} 最后<span class="red key">0</span>{{act.act_prize_unit}}</p>
+                <!--<p>海澜之家<span class="red key">1000元</span>代金券</p>-->
             </div>
         </div>
 
@@ -36,8 +37,7 @@
                 <span class="word w3">绍</span>
             </h2>
             <div class="inner">
-                <p>四海八荒的设计师盆友们：还记得去年的【Wacom疯狂艺术馆】么？三位站酷脑洞画手致敬艺术、“调戏”大师，创造设计新主义……艺术向左，极客向右，设计没有界限！</p>
-                <p>今天，两位作为实验者来到【Wacom实验室】，手把手评测两款颠覆设计生产力的手绘神器，以技术宅的视角分享2017年“搞机”新体验。如何选择最适合自己的数位板？谁才是内外兼备的性价比之王？带上好奇心，跟随小Z和实验者们开启设计颠覆之旅吧！</p>
+                <p>{{act.description}}</p>
             </div>
         </div>
 
@@ -63,7 +63,9 @@
                 <span class="word w2">描</span>
                 <span class="word w3">述</span>
             </h2>
-            <div class="inner">奖品描述</div>
+            <div class="inner">
+                {{act.act_prize_desc}}
+            </div>
         </div>
 
         <div class="box">
@@ -73,7 +75,11 @@
                 <span class="word w2">信</span>
                 <span class="word w3">息</span>
             </h2>
-            <div class="inner">领奖信息</div>
+            <div class="inner">
+                <p>主办方: {{act.organizer_name}}</p>
+                <p>主办地址: {{act.organizer_address}}</p>
+                <p>主办电话: {{act.organizer_phone}} </p>
+            </div>
         </div>
 
         <div class="box">
@@ -83,7 +89,7 @@
                 <span class="word w2">我</span>
                 <span class="word w3">们</span>
             </h2>
-            <div class="inner">关于我们</div>
+            <div class="inner">{{act.about_us}}</div>
         </div>
 
         <div class="box">
@@ -93,7 +99,10 @@
                 <span class="word w2">排</span>
                 <span class="word w3">名</span>
             </h2>
-            <div class="inner">
+            <div class="inner" v-show="rank.data.length ==0">
+                <p class="text-center"><span class="iconfont icon-team"></span>活动暂时没人参与哦</p>
+            </div>
+            <div class="inner" v-show="rank.data.length > 0">
                 <p class="text-center"><span class="iconfont icon-team"></span>共有<span class="red key">{{rank.total}}</span>人参与</p>
                 <table class="w100 ranking-table" cellpadding="0" cellspacing="1">
                     <thead>
@@ -109,7 +118,7 @@
                             <td>{{index+1}}</td>
                             <td>{{item.name}}</td>
                             <td>{{item.spend_time+'小时'}}</td>
-                            <td>{{item.is_completed ? '已完成' : ''}}</td>
+                            <td>{{item.is_completed ? '已完成' : '未完成'}}</td>
                         </tr>
                     </tbody>
                 </table>
@@ -133,10 +142,19 @@
 
                 },
                 userInfo: { // 用户相关数据, 完成多少了等等,
-
+                    name: "",
+                    mobile:""
                 },
-                rank: [], // 排行榜数据
-                countDownTime: new Date('2017-03-20 0:0:0').getTime()
+                rank: {
+                    total: 0,
+                    per_page: 0,
+                    current_page: 0,
+                    last_page: 0,
+                    from: 0,
+                    to: 0,
+                    data: []
+                }, // 排行榜数据
+                countDownTime: new Date('2017-05-20 0:0:0').getTime()
             }
         },
         components: { countDown },
@@ -146,16 +164,23 @@
             this.query = query;
             this.actSrv = actSrv;
 
+
+            const authUtil = new AuthUtil(this.$http);
+            this.userInfo.name = authUtil.getName();
+            this.userInfo.mobile = authUtil.getMobile();
+
             actSrv.getActInfo(query).then((resp) => {
                 this.act = resp.data.data;
+                this.countDownTime = (new Date(this.act.act_end_time)).getTime();
             });
 
+
             actSrv.getUserInfo(query).then((resp) => {
-                console.log(resp);
+                this.userInfo = resp.data.data;
             });
 
             actSrv.getRank(query).then((resp) => {
-                console.log(resp);
+                this.rank = resp.data.data;
             });
 
             actSrv.helpIt(query).then((resp) => { // 用户已经来的时候, 表示已将帮忙了
@@ -173,6 +198,20 @@
 
                 /* 用户如果参与了, 直接显示用户的昵称, 和电话 */
                 this.actSrv.letsPlay({actId, openid}).then((resp) => {
+                    if(resp.code == 1) {
+                        alert("弹框填写姓名名称");
+                    } else {
+                        let confirm = window.confirm("您已经参与过此活动, 直接跳转到你的活动页?");
+                        if(confirm) {
+                            this.$router.push({
+                                name: "template1Shared", params: {
+                                    actId: actId,
+                                    openid: openid
+                                },
+                            }); // 保存后到分享也, 游湖有需要就分享
+                            window.location.reload(true);
+                        }
+                    }
                 });
             },
             /* 弹框填入姓名 */
@@ -197,7 +236,7 @@
                    // 成功跳转到自己的活动也面了
                     this.$router.push({name: 'template1Shared', params: {actId, openid}});
                 });
-            }
+            },
         }
     }
 </script>

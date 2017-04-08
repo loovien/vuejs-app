@@ -24,7 +24,7 @@
             </form>
             <div class="errorTips" v-show="error.msg">{{error.msg}}</div>
             <p class="text-center">
-                <router-link :to="{name: 'userBindmobile'}" class="registerBtn f12">绑定商家恋</router-link>
+                <router-link :to="{name: 'userBindmobile'}" class="registerBtn f12">注册商家恋</router-link>
                 <router-link :to="{name: 'userResetpwd'}" class="color_gray resetpwdBtn f12">忘记密码</router-link>
             </p>
         </div>

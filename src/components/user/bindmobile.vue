@@ -2,7 +2,7 @@
     <div class="wrap">
         <header class="header">
             <a href="" class="iconfont icon-back header-goback" @click="window.history.go(-1)"></a>
-            <h1 class="header-title">用户绑定</h1>
+            <h1 class="header-title">用户注册</h1>
         </header>
         <div class="login">
             <form action="">
@@ -18,7 +18,7 @@
                     <div class="input-box input-box-verifyCode">
                         <span class="iconfont icon-ad80-copy input-icon"></span>
                         <button class="color_yellow2 fr b-l-1 verifyCode-btn" @click="captcha()">获取验证码</button>
-                        <input type="text" placeholder="验证码" v-model="bindinfo.verifyCode" class="ui-input">
+                        <input type="text" placeholder="验证码" v-model="bindinfo.code" class="ui-input">
                     </div>
                     <div class="input-box">
                         <span class="iconfont icon-Password input-icon"></span>
@@ -26,7 +26,7 @@
                     </div>
                 </div>
                 <div class="btn-box">
-                    <button @click="bindmobile()" class="btn" disabled>提交</button>
+                    <button @click="bindmobile()" class="btn" >提交</button>
                 </div>
             </form>
             <div class="errorTips" v-show="error.msg">{{error.msg}}</div>
@@ -47,7 +47,7 @@
                     code: "",
                 },
                 error: {
-                    msg: "验证码错误"
+                    msg: ""
                 }
             };
         },
@@ -56,7 +56,6 @@
                 let mobile = this.bindinfo.mobile;
                 const userSrv = new UserSrv(this);
                 userSrv.captcha(mobile).then((resp) => {
-                    alert(resp.data.msg);
                     this.bindinfo.code = resp.data.data.code;
                 });
             },
@@ -66,12 +65,13 @@
                 const authUtil = new AuthUtil(this.$http);
                 userSrv.bindmobile(credentials).then((resp) => {
                     const respData = resp.data;
-                    alert(respData.msg)
                     if(respData.code == 0) {
                         authUtil.setMobile(respData.data.mobile);
                         authUtil.setName(respData.data.name);
                         authUtil.setExpiredDays(respData.data.expiredDays);
                         this.$router.push({name: "mineIndex"});
+                    } else {
+                        this.error.msg = respData.msg;
                     }
                 });
             }

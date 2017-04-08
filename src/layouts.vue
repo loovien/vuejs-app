@@ -478,7 +478,7 @@ height: 4px;
     position: relative;
 }
 .form-inputBox:after{
-    content: '';
+    /*content: ''; */
     border: 1px solid #e9e9e9;
     width: 200%; height: 200%;
     position: absolute;

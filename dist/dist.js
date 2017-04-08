@@ -1262,7 +1262,7 @@ var ActSrv = function (_BaseSrv) {
     }, {
         key: "getUserInfo",
         value: function getUserInfo(query) {
-            return this.http.get("act/shared/" + query.actId);
+            return this.http.get("act/shared/feats", { params: query });
         }
 
         /**
@@ -3276,11 +3276,20 @@ exports.default = {
             act: {// activity information
 
             },
-            userInfo: {// 用户相关数据, 完成多少了等等,
-
+            userInfo: { // 用户相关数据, 完成多少了等等,
+                name: "",
+                mobile: ""
             },
-            rank: [], // 排行榜数据
-            countDownTime: new Date('2017-03-20 0:0:0').getTime()
+            rank: {
+                total: 0,
+                per_page: 0,
+                current_page: 0,
+                last_page: 0,
+                from: 0,
+                to: 0,
+                data: []
+            }, // 排行榜数据
+            countDownTime: new Date('2017-05-20 0:0:0').getTime()
         };
     },
 
@@ -3293,16 +3302,21 @@ exports.default = {
         this.query = query;
         this.actSrv = actSrv;
 
+        var authUtil = new _authUtil2.default(this.$http);
+        this.userInfo.name = authUtil.getName();
+        this.userInfo.mobile = authUtil.getMobile();
+
         actSrv.getActInfo(query).then(function (resp) {
             _this.act = resp.data.data;
+            _this.countDownTime = new Date(_this.act.act_end_time).getTime();
         });
 
         actSrv.getUserInfo(query).then(function (resp) {
-            console.log(resp);
+            _this.userInfo = resp.data.data;
         });
 
         actSrv.getRank(query).then(function (resp) {
-            console.log(resp);
+            _this.rank = resp.data.data;
         });
 
         actSrv.helpIt(query).then(function (resp) {// 用户已经来的时候, 表示已将帮忙了
@@ -3313,13 +3327,30 @@ exports.default = {
     methods: {
         /* 我也要玩 */
         letsPlay: function letsPlay() {
+            var _this2 = this;
+
             // 检测是否已经参与, 参与直接跳转, 没有参与需要填写名字手机等信息
             var actId = this.query.actId;
             var authUtil = new _authUtil2.default(this.$http);
             var openid = authUtil.getOpenId(); // 获取当前用户openid
 
             /* 用户如果参与了, 直接显示用户的昵称, 和电话 */
-            this.actSrv.letsPlay({ actId: actId, openid: openid }).then(function (resp) {});
+            this.actSrv.letsPlay({ actId: actId, openid: openid }).then(function (resp) {
+                if (resp.code == 1) {
+                    alert("弹框填写姓名名称");
+                } else {
+                    var confirm = window.confirm("您已经参与过此活动, 直接跳转到你的活动页?");
+                    if (confirm) {
+                        _this2.$router.push({
+                            name: "template1Shared", params: {
+                                actId: actId,
+                                openid: openid
+                            }
+                        }); // 保存后到分享也, 游湖有需要就分享
+                        window.location.reload(true);
+                    }
+                }
+            });
         },
 
         /* 弹框填入姓名 */
@@ -3335,7 +3366,7 @@ exports.default = {
 
         /* 弹框填入电话 */
         fillPhone: function fillPhone() {
-            var _this2 = this;
+            var _this3 = this;
 
             var actId = this.act.act_id;
             var openid = this.openid;
@@ -3343,11 +3374,20 @@ exports.default = {
             var actOpenId = this.query.openid;
             this.actSrv.fillPhone({ actId: actId, openid: openid, phone: phone, actOpenId: actOpenId }).then(function (resp) {
                 // 成功跳转到自己的活动也面了
-                _this2.$router.push({ name: 'template1Shared', params: { actId: actId, openid: openid } });
+                _this3.$router.push({ name: 'template1Shared', params: { actId: actId, openid: openid } });
             });
         }
     }
 }; //
+//
+//
+//
+//
+//
+//
+//
+//
+//
 //
 //
 //
@@ -3684,10 +3724,10 @@ exports.default = {
                 _this.loading = false;
                 _this.acts = _this.acts.concat(resp.data.data.data);
 
-                that.page += 1;
+                _this.page += 1;
 
-                if (that.page > resp.data.data.total) {
-                    that.isLoadAll = true; //加载完毕
+                if (_this.page > resp.data.data.total) {
+                    _this.isLoadAll = true; //加载完毕
                 }
             });
         },
@@ -4146,10 +4186,10 @@ exports.default = {
                 _this.loading = false;
                 _this.acts = _this.acts.concat(resp.data.data.data);
 
-                that.page += 1;
+                _this.page += 1;
 
-                if (that.page > resp.data.data.total) {
-                    that.isLoadAll = true; //加载完毕
+                if (_this.page > resp.data.data.total) {
+                    _this.isLoadAll = true; //加载完毕
                 }
             });
         },
@@ -4746,7 +4786,7 @@ exports.default = {
                 code: ""
             },
             error: {
-                msg: "验证码错误"
+                msg: ""
             }
         };
     },
@@ -4757,7 +4797,6 @@ exports.default = {
             var mobile = this.bindinfo.mobile;
             var userSrv = new _userSrv2.default(this);
             userSrv.captcha(mobile).then(function (resp) {
-                alert(resp.data.msg);
                 _this.bindinfo.code = resp.data.data.code;
             });
         },
@@ -4769,12 +4808,13 @@ exports.default = {
             var authUtil = new _authUtil2.default(this.$http);
             userSrv.bindmobile(credentials).then(function (resp) {
                 var respData = resp.data;
-                alert(respData.msg);
                 if (respData.code == 0) {
                     authUtil.setMobile(respData.data.mobile);
                     authUtil.setName(respData.data.name);
                     authUtil.setExpiredDays(respData.data.expiredDays);
                     _this2.$router.push({ name: "mineIndex" });
+                } else {
+                    _this2.error.msg = respData.msg;
                 }
             });
         }
@@ -5434,7 +5474,9 @@ var AuthMiddleware = function () {
                     }
                 }
                 //TODO just for test
-                if (false) {
+                if (to.matched.some(function (record) {
+                    return record.meta.auth;
+                })) {
                     // this route requires auth, check if logged in
                     // if not, redirect to login page.
                     if (!authUtil.isLogin()) {
@@ -9182,7 +9224,7 @@ exports = module.exports = __webpack_require__(1)();
 exports.push([module.i, "@import url(/static/font/iconfont.css);", ""]);
 
 // module
-exports.push([module.i, "\nbody,\r\ndiv,\r\np,\r\nul,\r\nli,\r\na,\r\nimg,\r\nh1,\r\nh2,\r\nh3,\r\nh4,\r\nh5,\r\nh6,\r\nul,\r\nli,\r\ninput,\r\ntextarea,\r\nbutton,\r\nspan{\r\n    margin: 0;\r\n    padding: 0;\r\n    box-sizing: border-box;\r\n    -webkit-box-sizing: border-box;\r\n    -moz-box-sizing: border-box;\r\n    box-sizing: border-box;\r\n    vertical-align: middle;\n}\ninput, select, textarea{\r\n    -webkit-appearance: none;\n}\nh1,\r\nh2,\r\nh3,\r\nh4,\r\nh5,\r\nh6 {\r\n    font-size: 14px;\r\n    font-weight: normal;\n}\nbutton {\r\n    outline: none;\n}\ninput[type=\"radio\"]{\r\n    margin: 0 5px 0 0;\n}\nbody,\r\nhtml {\r\n    display: block;\r\n    height: 100%;\r\n    background: #f2f5f8;\n}\nbody {\r\n    color: #333;\r\n    -webkit-font-smoothing: antialiased;\r\n    font: 14px/1.5 Microsoft YaHei,tahoma,arial,Hiragino Sans GB,\\\\5b8b\\4f53,sans-serif;\n}\nul, li{\r\n    list-style: none;\n}\nimg{\r\n    vertical-align: middle;\n}\na{\r\n    color: #333;\r\n    text-decoration: none;\n}\n.wrap{\r\n    padding-top: 40px;\n}\n.clearfix:before,\r\n.clearfix:after{\r\n    content: \" \";\r\n    display:block;\r\n    height: 0;\r\n    line-height: 0;\r\n    clear: both;\n}\n.f12{\r\n    font-size: 12px;\n}\n.f16{\r\n    font-size: 16px;\n}\n.fl {\r\n    float: left\n}\n.fr {\r\n    float: right\n}\n.relative{\r\n    position: relative;\n}\n.block{\r\n    display: block;\n}\n.inline-block{\r\n    display: inline-block;\n}\n.text-center{\r\n    text-align: center;\n}\n.text-right{\r\n    text-align: right;\n}\n.valign-m{\r\n    vertical-align: middle;\n}\n.mt15{\r\n    margin-top: 15px;\n}\n.mt10{\r\n    margin-top: 10px;\n}\n.mt5{\r\n    margin-top: 5px;\n}\n.bg_fff{\r\n    background: #fff;\n}\n.color_fff{\r\n    color: #fff;\n}\n.color_000{\r\n    color: #000;\n}\n.color_666{\r\n    color: #666;\n}\n.color_gray{\r\n    color: #a5a5a5;\n}\n.color_yellow{\r\n    color: #f6ff00;\n}\n.color_yellow2{\r\n    color: #ffb400;\n}\n.table{\r\n    display: table;\n}\n.table-row{\r\n    display: table-row;\n}\n.table-cell{\r\n    display: table-cell;\r\n    vertical-align: top;\n}\n.w100{\r\n    width: 100%;\n}\n.h100{\r\n    height: 100%;\n}\n.b-t-1,.b-r-1,.b-b-1,.b-l-1{\r\n    position: relative;\n}\n.b-t-1:after{\r\n    content: '';\r\n    border-top: 1px solid #e9e9e9;\r\n    width: 200%; height: 1px;\r\n    position: absolute;\r\n    left: 0; top: 0;\r\n    -webkit-transform:scale(0.5);\r\n    transform:scale(0.5);\r\n    -webkit-transform-origin:0 0;\r\n    transform-origin:0 0;\n}\n.b-r-1:after{\r\n    content: '';\r\n    border-bottom: 1px solid #e9e9e9;\r\n    width: 1px; height: 200%;\r\n    position: absolute;\r\n    right: 0; top: 0;\r\n    -webkit-transform:scale(0.5);\r\n    transform:scale(0.5);\r\n    -webkit-transform-origin:0 0;\r\n    transform-origin:0 0;\n}\n.b-b-1:after{\r\n    content: '';\r\n    border-bottom: 1px solid #e9e9e9;\r\n    width: 200%; height: 1px;\r\n    position: absolute;\r\n    left: 0; bottom: 0;\r\n    -webkit-transform:scale(0.5);\r\n    transform:scale(0.5);\r\n    -webkit-transform-origin:0 0;\r\n    transform-origin:0 0;\n}\n.b-l-1:after{\r\n    content: '';\r\n    border-left: 1px solid #e9e9e9;\r\n    width: 1px; height: 200%;\r\n    position: absolute;\r\n    left: 0; top: 0;\r\n    -webkit-transform:scale(0.5);\r\n    transform:scale(0.5);\r\n    -webkit-transform-origin:0 0;\r\n    transform-origin:0 0;\n}\n.overflow-hidden{\r\n    overflow: hidden;\n}\n.clamp1{\r\n    display: block;\r\n    overflow:hidden;\r\n    text-overflow:ellipsis;\r\n    white-space:nowrap;\n}\n.clamp2{\r\n    overflow: hidden;\r\n    text-overflow: ellipsis;\r\n    white-space: normal;\r\n    display: -webkit-box;\r\n    -webkit-box-orient: vertical;\r\n    -webkit-line-clamp: 2;\r\n    word-break: break-all;\r\n    height: 42px;\n}\n.clamp3{\r\n    overflow: hidden;\r\n    text-overflow: ellipsis;\r\n    white-space: normal;\r\n    display: -webkit-box;\r\n    -webkit-box-orient: vertical;\r\n    -webkit-line-clamp: 3;\r\n    word-break: break-all;\n}\n.container{\r\n    width: 100%; max-width: 640px;\r\n    margin: 0 auto;\n}\r\n/* header */\n.header{\r\n    height: 40px;\r\n    line-height: 40px;\r\n    background: #ffb400;\r\n    position: relative;\r\n    position: fixed;\r\n    width: 100%; top: 0; left: 0;\r\n    z-index: 111;\n}\n.header-title{\r\n    text-align: center;\r\n    color: #fff;\r\n    font-size: 16px;\n}\n.header-goback,\r\n.header-service{\r\n    position: absolute;\r\n    top: 50%;\r\n    -webkit-transform: translateY(-50%);\r\n            transform: translateY(-50%);\r\n    color: #fff;\n}\n.header-goback{\r\n    left: 10px;\n}\n.header-service{\r\n    right: 10px;\n}\r\n/* title */\nh2.title{\r\n    height: 44px; line-height: 44px;\r\n    padding: 0 15px;\r\n    color: #666\n}\n.data-none{\r\n    padding: 100px 0;\n}\r\n/* 推荐 */\n.recommend-list{\r\n    padding: 0 15px;\n}\n.recommend{\r\n    width: 32%;\r\n    margin-right: 2%;\r\n    padding: 0 0 10px;\n}\n.recommend:nth-child(3n){\r\n    margin-right: 0;\n}\n.recommend-thumbnail{\r\n    width: 100%; height: auto;\n}\n.act-title{\r\n    padding: 5px 0;\n}\r\n/* activityList */\n.activityList-wrap{\r\n    position: absolute;\r\n    width: 100%; height: 100%;\r\n    top: 0; left: 0;\r\n    padding-top: 40px;\r\n    overflow-y: scroll;\n}\n.activityList-wrap .item{\r\n    border-top: 1px solid #e9e9e9;\r\n    border-bottom: 1px solid #e9e9e9;\r\n    background: #fff;\r\n    padding: 0 15px;\n}\n.activityList-wrap .thumbnail-box{\r\n    padding: 10px 10px 10px 0;\n}\n.activityList-wrap .thumbnail{\r\n    width: 110px; height: auto;\n}\n.activityList-wrap .item-info{\r\n    padding: 10px 0 10px 10px;\n}\n.activityList-wrap .desc{\r\n    color: #ababab;\r\n    margin-top: 5px;\n}\n.activityList-wrap .loading-bottom{\r\n    padding: 10px 0;\r\n    width: 90px;\r\n    margin: 0 auto;\n}\n@-webkit-keyframes line-spin-fade-loader {\n50% { opacity: 0.3;\n}\n100% { opacity: 1;\n}\n}\n@keyframes line-spin-fade-loader {\n50% { opacity: 0.3;\n}\n100% { opacity: 1;\n}\n}\n.line-spin-fade-loader {\r\n    position: relative;\n}\n.line-spin-fade-loader > div:nth-child(1) {\r\ntop: 6px;\r\nleft: 0;\r\n-webkit-animation: line-spin-fade-loader 1.2s 0.12s infinite ease-in-out;\r\n        animation: line-spin-fade-loader 1.2s 0.12s infinite ease-in-out;\n}\n.line-spin-fade-loader > div:nth-child(2) {\r\ntop: 4px;\r\nleft: 4px;\r\n-webkit-transform: rotate(-45deg);\r\n    -ms-transform: rotate(-45deg);\r\n        transform: rotate(-45deg);\r\n-webkit-animation: line-spin-fade-loader 1.2s 0.24s infinite ease-in-out;\r\n        animation: line-spin-fade-loader 1.2s 0.24s infinite ease-in-out;\n}\n.line-spin-fade-loader > div:nth-child(3) {\r\ntop: 0;\r\nleft: 6px;\r\n-webkit-transform: rotate(90deg);\r\n    -ms-transform: rotate(90deg);\r\n        transform: rotate(90deg);\r\n-webkit-animation: line-spin-fade-loader 1.2s 0.36s infinite ease-in-out;\r\n        animation: line-spin-fade-loader 1.2s 0.36s infinite ease-in-out;\n}\n.line-spin-fade-loader > div:nth-child(4) {\r\ntop: -4px;\r\nleft: 4px;\r\n-webkit-transform: rotate(45deg);\r\n    -ms-transform: rotate(45deg);\r\n        transform: rotate(45deg);\r\n-webkit-animation: line-spin-fade-loader 1.2s 0.48s infinite ease-in-out;\r\n        animation: line-spin-fade-loader 1.2s 0.48s infinite ease-in-out;\n}\n.line-spin-fade-loader > div:nth-child(5) {\r\ntop: -6px;\r\nleft: 0;\r\n-webkit-animation: line-spin-fade-loader 1.2s 0.6s infinite ease-in-out;\r\n        animation: line-spin-fade-loader 1.2s 0.6s infinite ease-in-out;\n}\n.line-spin-fade-loader > div:nth-child(6) {\r\ntop: -4px;\r\nleft: -4px;\r\n-webkit-transform: rotate(-45deg);\r\n    -ms-transform: rotate(-45deg);\r\n        transform: rotate(-45deg);\r\n-webkit-animation: line-spin-fade-loader 1.2s 0.72s infinite ease-in-out;\r\n        animation: line-spin-fade-loader 1.2s 0.72s infinite ease-in-out;\n}\n.line-spin-fade-loader > div:nth-child(7) {\r\ntop: 0;\r\nleft: -6px;\r\n-webkit-transform: rotate(90deg);\r\n    -ms-transform: rotate(90deg);\r\n        transform: rotate(90deg);\r\n-webkit-animation: line-spin-fade-loader 1.2s 0.84s infinite ease-in-out;\r\n        animation: line-spin-fade-loader 1.2s 0.84s infinite ease-in-out;\n}\n.line-spin-fade-loader > div:nth-child(8) {\r\ntop: 4px;\r\nleft: -4px;\r\n-webkit-transform: rotate(45deg);\r\n    -ms-transform: rotate(45deg);\r\n        transform: rotate(45deg);\r\n-webkit-animation: line-spin-fade-loader 1.2s 0.96s infinite ease-in-out;\r\n        animation: line-spin-fade-loader 1.2s 0.96s infinite ease-in-out;\n}\n.line-spin-fade-loader > div {\r\nbackground-color: #000;\r\nborder-radius: 2px;\r\nmargin: 2px;\r\n-webkit-animation-fill-mode: both;\r\n        animation-fill-mode: both;\r\nposition: absolute;\r\nwidth: 1px;\r\nheight: 4px;\n}\n.line-spin-fade-loader{\r\n    margin: 5px 0 0 10px;\n}\r\n/* chart-table */\n.chart-table{\r\n    background: #eee;\n}\n.chart-table th{\r\n    background: #f6f6f6;\r\n    text-align: left;\r\n    font-weight: normal;\n}\n.chart-table td{\r\n    background: #fff;\n}\n.chart-table .td-left{\r\n    width: 35%;\r\n    padding: 10px 0;\n}\n.chart-table .td-right{\r\n    padding: 10px;\n}\n.chart-table-box{\r\n    padding: 0 15px 15px;\n}\r\n/* 按钮 */\n.btn{\r\n    height: 42px;\r\n    line-height: 42px;\r\n    background: #ffb400;\r\n    color: #fff;\r\n    text-align: center;\r\n    width: 100%;\r\n    font-size: 16px;\r\n    border: none;\r\n    border-radius: 2px;\r\n    font-weight: bold;\n}\n.btn[disabled]{\r\n    background: #f7db95;\n}\r\n/* 表单 */\n.form-inputBox{\r\n    background: #fff;\r\n    position: relative;\n}\n.form-inputBox:after{\r\n    content: '';\r\n    border: 1px solid #e9e9e9;\r\n    width: 200%; height: 200%;\r\n    position: absolute;\r\n    top: 0; left: 0;\r\n    border-radius: 3px;\r\n    -webkit-transform:scale(0.5);\r\n    transform:scale(0.5);\r\n    -webkit-transform-origin:0 0;\r\n    transform-origin:0 0;\n}\n.input-box{\r\n    height: 54px;\r\n    padding: 7px 10px;\r\n    position: relative;\n}\n.input-box:after{\r\n    content: '';\r\n    border-bottom: 1px solid #e9e9e9;\r\n    width: 200%; height: 1px;\r\n    position: absolute;\r\n    left: 0; bottom: 0;\r\n    -webkit-transform:scale(0.5);\r\n    transform:scale(0.5);\r\n    -webkit-transform-origin:0 0;\r\n    transform-origin:0 0;\n}\n.input-box:last-child:after{\r\n    border-bottom: none;\n}\n.ui-input{\r\n    border: none;\r\n    width: 100%;\r\n    height: 40px;\r\n    line-height: 32px;\r\n    padding: 4px 5px 4px 30px;\r\n    outline: none;\n}\n.input-icon{\r\n    position: absolute;\r\n    left: 15px; top: 50%;\r\n    color: #777;\r\n    -webkit-transform: translateY(-50%);\r\n            transform: translateY(-50%);\n}\n.errorTips{\r\n    position: fixed;\r\n    bottom: 50px;\r\n    left: 50%;\r\n    -webkit-transform: translateX(-50%);\r\n            transform: translateX(-50%);\r\n    background: rgba(0,0,0,.6);\r\n    color: #fff;\r\n    max-width: 90%;\r\n    padding: 7px 15px;\r\n    border-radius: 3px;\r\n    font-size: 12px;\r\n    z-index: 3;\n}\r\n", ""]);
+exports.push([module.i, "\nbody,\r\ndiv,\r\np,\r\nul,\r\nli,\r\na,\r\nimg,\r\nh1,\r\nh2,\r\nh3,\r\nh4,\r\nh5,\r\nh6,\r\nul,\r\nli,\r\ninput,\r\ntextarea,\r\nbutton,\r\nspan{\r\n    margin: 0;\r\n    padding: 0;\r\n    box-sizing: border-box;\r\n    -webkit-box-sizing: border-box;\r\n    -moz-box-sizing: border-box;\r\n    box-sizing: border-box;\r\n    vertical-align: middle;\n}\ninput, select, textarea{\r\n    -webkit-appearance: none;\n}\nh1,\r\nh2,\r\nh3,\r\nh4,\r\nh5,\r\nh6 {\r\n    font-size: 14px;\r\n    font-weight: normal;\n}\nbutton {\r\n    outline: none;\n}\ninput[type=\"radio\"]{\r\n    margin: 0 5px 0 0;\n}\nbody,\r\nhtml {\r\n    display: block;\r\n    height: 100%;\r\n    background: #f2f5f8;\n}\nbody {\r\n    color: #333;\r\n    -webkit-font-smoothing: antialiased;\r\n    font: 14px/1.5 Microsoft YaHei,tahoma,arial,Hiragino Sans GB,\\\\5b8b\\4f53,sans-serif;\n}\nul, li{\r\n    list-style: none;\n}\nimg{\r\n    vertical-align: middle;\n}\na{\r\n    color: #333;\r\n    text-decoration: none;\n}\n.wrap{\r\n    padding-top: 40px;\n}\n.clearfix:before,\r\n.clearfix:after{\r\n    content: \" \";\r\n    display:block;\r\n    height: 0;\r\n    line-height: 0;\r\n    clear: both;\n}\n.f12{\r\n    font-size: 12px;\n}\n.f16{\r\n    font-size: 16px;\n}\n.fl {\r\n    float: left\n}\n.fr {\r\n    float: right\n}\n.relative{\r\n    position: relative;\n}\n.block{\r\n    display: block;\n}\n.inline-block{\r\n    display: inline-block;\n}\n.text-center{\r\n    text-align: center;\n}\n.text-right{\r\n    text-align: right;\n}\n.valign-m{\r\n    vertical-align: middle;\n}\n.mt15{\r\n    margin-top: 15px;\n}\n.mt10{\r\n    margin-top: 10px;\n}\n.mt5{\r\n    margin-top: 5px;\n}\n.bg_fff{\r\n    background: #fff;\n}\n.color_fff{\r\n    color: #fff;\n}\n.color_000{\r\n    color: #000;\n}\n.color_666{\r\n    color: #666;\n}\n.color_gray{\r\n    color: #a5a5a5;\n}\n.color_yellow{\r\n    color: #f6ff00;\n}\n.color_yellow2{\r\n    color: #ffb400;\n}\n.table{\r\n    display: table;\n}\n.table-row{\r\n    display: table-row;\n}\n.table-cell{\r\n    display: table-cell;\r\n    vertical-align: top;\n}\n.w100{\r\n    width: 100%;\n}\n.h100{\r\n    height: 100%;\n}\n.b-t-1,.b-r-1,.b-b-1,.b-l-1{\r\n    position: relative;\n}\n.b-t-1:after{\r\n    content: '';\r\n    border-top: 1px solid #e9e9e9;\r\n    width: 200%; height: 1px;\r\n    position: absolute;\r\n    left: 0; top: 0;\r\n    -webkit-transform:scale(0.5);\r\n    transform:scale(0.5);\r\n    -webkit-transform-origin:0 0;\r\n    transform-origin:0 0;\n}\n.b-r-1:after{\r\n    content: '';\r\n    border-bottom: 1px solid #e9e9e9;\r\n    width: 1px; height: 200%;\r\n    position: absolute;\r\n    right: 0; top: 0;\r\n    -webkit-transform:scale(0.5);\r\n    transform:scale(0.5);\r\n    -webkit-transform-origin:0 0;\r\n    transform-origin:0 0;\n}\n.b-b-1:after{\r\n    content: '';\r\n    border-bottom: 1px solid #e9e9e9;\r\n    width: 200%; height: 1px;\r\n    position: absolute;\r\n    left: 0; bottom: 0;\r\n    -webkit-transform:scale(0.5);\r\n    transform:scale(0.5);\r\n    -webkit-transform-origin:0 0;\r\n    transform-origin:0 0;\n}\n.b-l-1:after{\r\n    content: '';\r\n    border-left: 1px solid #e9e9e9;\r\n    width: 1px; height: 200%;\r\n    position: absolute;\r\n    left: 0; top: 0;\r\n    -webkit-transform:scale(0.5);\r\n    transform:scale(0.5);\r\n    -webkit-transform-origin:0 0;\r\n    transform-origin:0 0;\n}\n.overflow-hidden{\r\n    overflow: hidden;\n}\n.clamp1{\r\n    display: block;\r\n    overflow:hidden;\r\n    text-overflow:ellipsis;\r\n    white-space:nowrap;\n}\n.clamp2{\r\n    overflow: hidden;\r\n    text-overflow: ellipsis;\r\n    white-space: normal;\r\n    display: -webkit-box;\r\n    -webkit-box-orient: vertical;\r\n    -webkit-line-clamp: 2;\r\n    word-break: break-all;\r\n    height: 42px;\n}\n.clamp3{\r\n    overflow: hidden;\r\n    text-overflow: ellipsis;\r\n    white-space: normal;\r\n    display: -webkit-box;\r\n    -webkit-box-orient: vertical;\r\n    -webkit-line-clamp: 3;\r\n    word-break: break-all;\n}\n.container{\r\n    width: 100%; max-width: 640px;\r\n    margin: 0 auto;\n}\r\n/* header */\n.header{\r\n    height: 40px;\r\n    line-height: 40px;\r\n    background: #ffb400;\r\n    position: relative;\r\n    position: fixed;\r\n    width: 100%; top: 0; left: 0;\r\n    z-index: 111;\n}\n.header-title{\r\n    text-align: center;\r\n    color: #fff;\r\n    font-size: 16px;\n}\n.header-goback,\r\n.header-service{\r\n    position: absolute;\r\n    top: 50%;\r\n    -webkit-transform: translateY(-50%);\r\n            transform: translateY(-50%);\r\n    color: #fff;\n}\n.header-goback{\r\n    left: 10px;\n}\n.header-service{\r\n    right: 10px;\n}\r\n/* title */\nh2.title{\r\n    height: 44px; line-height: 44px;\r\n    padding: 0 15px;\r\n    color: #666\n}\n.data-none{\r\n    padding: 100px 0;\n}\r\n/* 推荐 */\n.recommend-list{\r\n    padding: 0 15px;\n}\n.recommend{\r\n    width: 32%;\r\n    margin-right: 2%;\r\n    padding: 0 0 10px;\n}\n.recommend:nth-child(3n){\r\n    margin-right: 0;\n}\n.recommend-thumbnail{\r\n    width: 100%; height: auto;\n}\n.act-title{\r\n    padding: 5px 0;\n}\r\n/* activityList */\n.activityList-wrap{\r\n    position: absolute;\r\n    width: 100%; height: 100%;\r\n    top: 0; left: 0;\r\n    padding-top: 40px;\r\n    overflow-y: scroll;\n}\n.activityList-wrap .item{\r\n    border-top: 1px solid #e9e9e9;\r\n    border-bottom: 1px solid #e9e9e9;\r\n    background: #fff;\r\n    padding: 0 15px;\n}\n.activityList-wrap .thumbnail-box{\r\n    padding: 10px 10px 10px 0;\n}\n.activityList-wrap .thumbnail{\r\n    width: 110px; height: auto;\n}\n.activityList-wrap .item-info{\r\n    padding: 10px 0 10px 10px;\n}\n.activityList-wrap .desc{\r\n    color: #ababab;\r\n    margin-top: 5px;\n}\n.activityList-wrap .loading-bottom{\r\n    padding: 10px 0;\r\n    width: 90px;\r\n    margin: 0 auto;\n}\n@-webkit-keyframes line-spin-fade-loader {\n50% { opacity: 0.3;\n}\n100% { opacity: 1;\n}\n}\n@keyframes line-spin-fade-loader {\n50% { opacity: 0.3;\n}\n100% { opacity: 1;\n}\n}\n.line-spin-fade-loader {\r\n    position: relative;\n}\n.line-spin-fade-loader > div:nth-child(1) {\r\ntop: 6px;\r\nleft: 0;\r\n-webkit-animation: line-spin-fade-loader 1.2s 0.12s infinite ease-in-out;\r\n        animation: line-spin-fade-loader 1.2s 0.12s infinite ease-in-out;\n}\n.line-spin-fade-loader > div:nth-child(2) {\r\ntop: 4px;\r\nleft: 4px;\r\n-webkit-transform: rotate(-45deg);\r\n    -ms-transform: rotate(-45deg);\r\n        transform: rotate(-45deg);\r\n-webkit-animation: line-spin-fade-loader 1.2s 0.24s infinite ease-in-out;\r\n        animation: line-spin-fade-loader 1.2s 0.24s infinite ease-in-out;\n}\n.line-spin-fade-loader > div:nth-child(3) {\r\ntop: 0;\r\nleft: 6px;\r\n-webkit-transform: rotate(90deg);\r\n    -ms-transform: rotate(90deg);\r\n        transform: rotate(90deg);\r\n-webkit-animation: line-spin-fade-loader 1.2s 0.36s infinite ease-in-out;\r\n        animation: line-spin-fade-loader 1.2s 0.36s infinite ease-in-out;\n}\n.line-spin-fade-loader > div:nth-child(4) {\r\ntop: -4px;\r\nleft: 4px;\r\n-webkit-transform: rotate(45deg);\r\n    -ms-transform: rotate(45deg);\r\n        transform: rotate(45deg);\r\n-webkit-animation: line-spin-fade-loader 1.2s 0.48s infinite ease-in-out;\r\n        animation: line-spin-fade-loader 1.2s 0.48s infinite ease-in-out;\n}\n.line-spin-fade-loader > div:nth-child(5) {\r\ntop: -6px;\r\nleft: 0;\r\n-webkit-animation: line-spin-fade-loader 1.2s 0.6s infinite ease-in-out;\r\n        animation: line-spin-fade-loader 1.2s 0.6s infinite ease-in-out;\n}\n.line-spin-fade-loader > div:nth-child(6) {\r\ntop: -4px;\r\nleft: -4px;\r\n-webkit-transform: rotate(-45deg);\r\n    -ms-transform: rotate(-45deg);\r\n        transform: rotate(-45deg);\r\n-webkit-animation: line-spin-fade-loader 1.2s 0.72s infinite ease-in-out;\r\n        animation: line-spin-fade-loader 1.2s 0.72s infinite ease-in-out;\n}\n.line-spin-fade-loader > div:nth-child(7) {\r\ntop: 0;\r\nleft: -6px;\r\n-webkit-transform: rotate(90deg);\r\n    -ms-transform: rotate(90deg);\r\n        transform: rotate(90deg);\r\n-webkit-animation: line-spin-fade-loader 1.2s 0.84s infinite ease-in-out;\r\n        animation: line-spin-fade-loader 1.2s 0.84s infinite ease-in-out;\n}\n.line-spin-fade-loader > div:nth-child(8) {\r\ntop: 4px;\r\nleft: -4px;\r\n-webkit-transform: rotate(45deg);\r\n    -ms-transform: rotate(45deg);\r\n        transform: rotate(45deg);\r\n-webkit-animation: line-spin-fade-loader 1.2s 0.96s infinite ease-in-out;\r\n        animation: line-spin-fade-loader 1.2s 0.96s infinite ease-in-out;\n}\n.line-spin-fade-loader > div {\r\nbackground-color: #000;\r\nborder-radius: 2px;\r\nmargin: 2px;\r\n-webkit-animation-fill-mode: both;\r\n        animation-fill-mode: both;\r\nposition: absolute;\r\nwidth: 1px;\r\nheight: 4px;\n}\n.line-spin-fade-loader{\r\n    margin: 5px 0 0 10px;\n}\r\n/* chart-table */\n.chart-table{\r\n    background: #eee;\n}\n.chart-table th{\r\n    background: #f6f6f6;\r\n    text-align: left;\r\n    font-weight: normal;\n}\n.chart-table td{\r\n    background: #fff;\n}\n.chart-table .td-left{\r\n    width: 35%;\r\n    padding: 10px 0;\n}\n.chart-table .td-right{\r\n    padding: 10px;\n}\n.chart-table-box{\r\n    padding: 0 15px 15px;\n}\r\n/* 按钮 */\n.btn{\r\n    height: 42px;\r\n    line-height: 42px;\r\n    background: #ffb400;\r\n    color: #fff;\r\n    text-align: center;\r\n    width: 100%;\r\n    font-size: 16px;\r\n    border: none;\r\n    border-radius: 2px;\r\n    font-weight: bold;\n}\n.btn[disabled]{\r\n    background: #f7db95;\n}\r\n/* 表单 */\n.form-inputBox{\r\n    background: #fff;\r\n    position: relative;\n}\n.form-inputBox:after{\r\n    /*content: ''; */\r\n    border: 1px solid #e9e9e9;\r\n    width: 200%; height: 200%;\r\n    position: absolute;\r\n    top: 0; left: 0;\r\n    border-radius: 3px;\r\n    -webkit-transform:scale(0.5);\r\n    transform:scale(0.5);\r\n    -webkit-transform-origin:0 0;\r\n    transform-origin:0 0;\n}\n.input-box{\r\n    height: 54px;\r\n    padding: 7px 10px;\r\n    position: relative;\n}\n.input-box:after{\r\n    content: '';\r\n    border-bottom: 1px solid #e9e9e9;\r\n    width: 200%; height: 1px;\r\n    position: absolute;\r\n    left: 0; bottom: 0;\r\n    -webkit-transform:scale(0.5);\r\n    transform:scale(0.5);\r\n    -webkit-transform-origin:0 0;\r\n    transform-origin:0 0;\n}\n.input-box:last-child:after{\r\n    border-bottom: none;\n}\n.ui-input{\r\n    border: none;\r\n    width: 100%;\r\n    height: 40px;\r\n    line-height: 32px;\r\n    padding: 4px 5px 4px 30px;\r\n    outline: none;\n}\n.input-icon{\r\n    position: absolute;\r\n    left: 15px; top: 50%;\r\n    color: #777;\r\n    -webkit-transform: translateY(-50%);\r\n            transform: translateY(-50%);\n}\n.errorTips{\r\n    position: fixed;\r\n    bottom: 50px;\r\n    left: 50%;\r\n    -webkit-transform: translateX(-50%);\r\n            transform: translateX(-50%);\r\n    background: rgba(0,0,0,.6);\r\n    color: #fff;\r\n    max-width: 90%;\r\n    padding: 7px 15px;\r\n    border-radius: 3px;\r\n    font-size: 12px;\r\n    z-index: 3;\n}\r\n", ""]);
 
 // exports
 
@@ -22567,7 +22609,7 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
     }
   }), _vm._v(" "), _c('h1', {
     staticClass: "header-title"
-  }, [_vm._v("用户绑定")])]), _vm._v(" "), _c('div', {
+  }, [_vm._v("用户注册")])]), _vm._v(" "), _c('div', {
     staticClass: "login"
   }, [_c('form', {
     attrs: {
@@ -22640,8 +22682,8 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
     directives: [{
       name: "model",
       rawName: "v-model",
-      value: (_vm.bindinfo.verifyCode),
-      expression: "bindinfo.verifyCode"
+      value: (_vm.bindinfo.code),
+      expression: "bindinfo.code"
     }],
     staticClass: "ui-input",
     attrs: {
@@ -22649,12 +22691,12 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
       "placeholder": "验证码"
     },
     domProps: {
-      "value": (_vm.bindinfo.verifyCode)
+      "value": (_vm.bindinfo.code)
     },
     on: {
       "input": function($event) {
         if ($event.target.composing) { return; }
-        _vm.bindinfo.verifyCode = $event.target.value
+        _vm.bindinfo.code = $event.target.value
       }
     }
   })]), _vm._v(" "), _c('div', {
@@ -22686,9 +22728,6 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
     staticClass: "btn-box"
   }, [_c('button', {
     staticClass: "btn",
-    attrs: {
-      "disabled": ""
-    },
     on: {
       "click": function($event) {
         _vm.bindmobile()
@@ -22824,7 +22863,7 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
         name: 'userBindmobile'
       }
     }
-  }, [_vm._v("绑定商家恋")]), _vm._v(" "), _c('router-link', {
+  }, [_vm._v("注册商家恋")]), _vm._v(" "), _c('router-link', {
     staticClass: "color_gray resetpwdBtn f12",
     attrs: {
       "to": {
@@ -24444,7 +24483,7 @@ if (false) {
 module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
   return _c('div', {
     staticClass: "layout"
-  }, [_vm._m(0), _vm._v(" "), _c('div', {
+  }, [_c('div', {
     staticClass: "relative"
   }, [_c('img', {
     staticClass: "banner-bg",
@@ -24462,9 +24501,68 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
     attrs: {
       "date": _vm.countDownTime
     }
-  }), _vm._v(" "), _vm._m(1)], 1)]), _vm._v(" "), _vm._m(2), _vm._v(" "), _vm._m(3), _vm._v(" "), _vm._m(4), _vm._v(" "), _vm._m(5), _vm._v(" "), _vm._m(6), _vm._v(" "), _vm._m(7), _vm._v(" "), _vm._m(8), _vm._v(" "), _c('div', {
+  }), _vm._v(" "), _c('p', {
+    staticClass: "mt5"
+  }, [_c('span', {
+    staticClass: "color_yellow"
+  }, [_vm._v(_vm._s(_vm.userInfo.username) + " 您有")]), _c('span', {
+    staticClass: "color_fff key"
+  }, [_vm._v(_vm._s(_vm.userInfo.join_cnt))]), _c('span', {
+    staticClass: "color_yellow"
+  }, [_vm._v("个朋友参与活动。")])])], 1)]), _vm._v(" "), _c('div', {
+    staticClass: "text-center playBtn-box"
+  }, [_c('img', {
+    staticClass: "playBtn",
+    attrs: {
+      "src": "/static/images/template_1/play-btn.jpg",
+      "alt": "点我去玩"
+    },
+    on: {
+      "click": function($event) {
+        _vm.letsPlay()
+      }
+    }
+  })]), _vm._v(" "), _c('div', {
     staticClass: "box"
-  }, [_vm._m(9), _vm._v(" "), _c('div', {
+  }, [_vm._m(0), _vm._v(" "), _c('div', {
+    staticClass: "inner text-center"
+  }, [_c('p', [_vm._v("总共"), _c('span', {
+    staticClass: "red key"
+  }, [_vm._v(_vm._s(_vm.act.act_prize_cnt))]), _vm._v(_vm._s(_vm.act.act_prize_unit) + " 最后"), _c('span', {
+    staticClass: "red key"
+  }, [_vm._v("0")]), _vm._v(_vm._s(_vm.act.act_prize_unit))])])]), _vm._v(" "), _c('div', {
+    staticClass: "box"
+  }, [_vm._m(1), _vm._v(" "), _c('div', {
+    staticClass: "inner"
+  }, [_c('p', [_vm._v(_vm._s(_vm.act.description))])])]), _vm._v(" "), _vm._m(2), _vm._v(" "), _c('div', {
+    staticClass: "box"
+  }, [_vm._m(3), _vm._v(" "), _c('div', {
+    staticClass: "inner"
+  }, [_vm._v("\n            " + _vm._s(_vm.act.act_prize_desc) + "\n        ")])]), _vm._v(" "), _c('div', {
+    staticClass: "box"
+  }, [_vm._m(4), _vm._v(" "), _c('div', {
+    staticClass: "inner"
+  }, [_c('p', [_vm._v("主办方: " + _vm._s(_vm.act.organizer_name))]), _vm._v(" "), _c('p', [_vm._v("主办地址: " + _vm._s(_vm.act.organizer_address))]), _vm._v(" "), _c('p', [_vm._v("主办电话: " + _vm._s(_vm.act.organizer_phone) + " ")])])]), _vm._v(" "), _c('div', {
+    staticClass: "box"
+  }, [_vm._m(5), _vm._v(" "), _c('div', {
+    staticClass: "inner"
+  }, [_vm._v(_vm._s(_vm.act.about_us))])]), _vm._v(" "), _c('div', {
+    staticClass: "box"
+  }, [_vm._m(6), _vm._v(" "), _c('div', {
+    directives: [{
+      name: "show",
+      rawName: "v-show",
+      value: (_vm.rank.data.length == 0),
+      expression: "rank.data.length ==0"
+    }],
+    staticClass: "inner"
+  }, [_vm._m(7)]), _vm._v(" "), _c('div', {
+    directives: [{
+      name: "show",
+      rawName: "v-show",
+      value: (_vm.rank.data.length > 0),
+      expression: "rank.data.length > 0"
+    }],
     staticClass: "inner"
   }, [_c('p', {
     staticClass: "text-center"
@@ -24478,43 +24576,11 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
       "cellpadding": "0",
       "cellspacing": "1"
     }
-  }, [_vm._m(10), _vm._v(" "), _c('tbody', _vm._l((_vm.rank.data), function(item, index) {
-    return _c('tr', [_c('td', [_vm._v(_vm._s(index + 1))]), _vm._v(" "), _c('td', [_vm._v(_vm._s(item.name))]), _vm._v(" "), _c('td', [_vm._v(_vm._s(item.spend_time + '小时'))]), _vm._v(" "), _c('td', [_vm._v(_vm._s(item.is_completed ? '已完成' : ''))])])
+  }, [_vm._m(8), _vm._v(" "), _c('tbody', _vm._l((_vm.rank.data), function(item, index) {
+    return _c('tr', [_c('td', [_vm._v(_vm._s(index + 1))]), _vm._v(" "), _c('td', [_vm._v(_vm._s(item.name))]), _vm._v(" "), _c('td', [_vm._v(_vm._s(item.spend_time + '小时'))]), _vm._v(" "), _c('td', [_vm._v(_vm._s(item.is_completed ? '已完成' : '未完成'))])])
   }))])])])])
 },staticRenderFns: [function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
-  return _c('div', {
-    staticClass: "topBar color_fff f16"
-  }, [_c('span', {
-    staticClass: "color_yellow"
-  }, [_vm._v("78")]), _vm._v("人查看"), _c('span', {
-    staticClass: "color_yellow pl10"
-  }, [_vm._v("394")]), _vm._v("人分享"), _c('span', {
-    staticClass: "color_yellow pl10"
-  }, [_vm._v("16")]), _vm._v("人报名")])
-},function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
-  return _c('p', {
-    staticClass: "mt5"
-  }, [_c('span', {
-    staticClass: "color_yellow"
-  }, [_vm._v("张馨予")]), _c('span', {
-    staticClass: "color_fff key"
-  }, [_vm._v("2016-11-01 12:15")]), _c('span', {
-    staticClass: "color_yellow"
-  }, [_vm._v("抽中奖品")])])
-},function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
-  return _c('div', {
-    staticClass: "text-center playBtn-box"
-  }, [_c('img', {
-    staticClass: "playBtn",
-    attrs: {
-      "src": "/static/images/template_1/play-btn.jpg",
-      "alt": "点我去玩"
-    }
-  })])
-},function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
-  return _c('div', {
-    staticClass: "box"
-  }, [_c('h2', {
+  return _c('h2', {
     staticClass: "box-title"
   }, [_c('span', {
     staticClass: "word w0"
@@ -24524,19 +24590,9 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
     staticClass: "word w2"
   }, [_vm._v("奖")]), _vm._v(" "), _c('span', {
     staticClass: "word w3"
-  }, [_vm._v("励")])]), _vm._v(" "), _c('div', {
-    staticClass: "inner text-center"
-  }, [_c('p', [_vm._v("总共"), _c('span', {
-    staticClass: "red key"
-  }, [_vm._v("200")]), _vm._v("份 最后"), _c('span', {
-    staticClass: "red key"
-  }, [_vm._v("99")]), _vm._v("份")]), _vm._v(" "), _c('p', [_vm._v("海澜之家"), _c('span', {
-    staticClass: "red key"
-  }, [_vm._v("1000元")]), _vm._v("代金券")])])])
+  }, [_vm._v("励")])])
 },function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
-  return _c('div', {
-    staticClass: "box"
-  }, [_c('h2', {
+  return _c('h2', {
     staticClass: "box-title"
   }, [_c('span', {
     staticClass: "word w0"
@@ -24546,9 +24602,7 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
     staticClass: "word w2"
   }, [_vm._v("介")]), _vm._v(" "), _c('span', {
     staticClass: "word w3"
-  }, [_vm._v("绍")])]), _vm._v(" "), _c('div', {
-    staticClass: "inner"
-  }, [_c('p', [_vm._v("四海八荒的设计师盆友们：还记得去年的【Wacom疯狂艺术馆】么？三位站酷脑洞画手致敬艺术、“调戏”大师，创造设计新主义……艺术向左，极客向右，设计没有界限！")]), _vm._v(" "), _c('p', [_vm._v("今天，两位作为实验者来到【Wacom实验室】，手把手评测两款颠覆设计生产力的手绘神器，以技术宅的视角分享2017年“搞机”新体验。如何选择最适合自己的数位板？谁才是内外兼备的性价比之王？带上好奇心，跟随小Z和实验者们开启设计颠覆之旅吧！")])])])
+  }, [_vm._v("绍")])])
 },function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
   return _c('div', {
     staticClass: "box"
@@ -24574,9 +24628,7 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
     staticClass: "num"
   }, [_vm._v("4")]), _vm._v("除质量问题外，本活动产品概不退货。")])])])
 },function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
-  return _c('div', {
-    staticClass: "box"
-  }, [_c('h2', {
+  return _c('h2', {
     staticClass: "box-title"
   }, [_c('span', {
     staticClass: "word w0"
@@ -24586,13 +24638,9 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
     staticClass: "word w2"
   }, [_vm._v("描")]), _vm._v(" "), _c('span', {
     staticClass: "word w3"
-  }, [_vm._v("述")])]), _vm._v(" "), _c('div', {
-    staticClass: "inner"
-  }, [_vm._v("奖品描述")])])
+  }, [_vm._v("述")])])
 },function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
-  return _c('div', {
-    staticClass: "box"
-  }, [_c('h2', {
+  return _c('h2', {
     staticClass: "box-title"
   }, [_c('span', {
     staticClass: "word w0"
@@ -24602,13 +24650,9 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
     staticClass: "word w2"
   }, [_vm._v("信")]), _vm._v(" "), _c('span', {
     staticClass: "word w3"
-  }, [_vm._v("息")])]), _vm._v(" "), _c('div', {
-    staticClass: "inner"
-  }, [_vm._v("领奖信息")])])
+  }, [_vm._v("息")])])
 },function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
-  return _c('div', {
-    staticClass: "box"
-  }, [_c('h2', {
+  return _c('h2', {
     staticClass: "box-title"
   }, [_c('span', {
     staticClass: "word w0"
@@ -24618,9 +24662,7 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
     staticClass: "word w2"
   }, [_vm._v("我")]), _vm._v(" "), _c('span', {
     staticClass: "word w3"
-  }, [_vm._v("们")])]), _vm._v(" "), _c('div', {
-    staticClass: "inner"
-  }, [_vm._v("关于我们")])])
+  }, [_vm._v("们")])])
 },function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
   return _c('h2', {
     staticClass: "box-title"
@@ -24633,6 +24675,12 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
   }, [_vm._v("排")]), _vm._v(" "), _c('span', {
     staticClass: "word w3"
   }, [_vm._v("名")])])
+},function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
+  return _c('p', {
+    staticClass: "text-center"
+  }, [_c('span', {
+    staticClass: "iconfont icon-team"
+  }), _vm._v("活动暂时没人参与哦")])
 },function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
   return _c('thead', [_c('tr', [_c('th', [_vm._v("名次")]), _vm._v(" "), _c('th', [_vm._v("姓名")]), _vm._v(" "), _c('th', [_vm._v("总用时")]), _vm._v(" "), _c('th', [_vm._v("状态")])])])
 }]}
