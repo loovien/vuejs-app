@@ -7,7 +7,7 @@
         
         <div class="list">
             <div class="item mt10 clearfix w100" v-for="act in acts" :key="act.id">
-            	<div class="table">
+            	<div class="table" @click="preview(act.id)">
             		<div class="thumbnail-box table-cell">
 	                    <img :src="act.banner_img" alt="" class="thumbnail fl">
 	                </div>
@@ -76,6 +76,7 @@
 <script>
     import MineSrv from "../../service/mineSrv";
     import MugenScroll from 'vue-mugen-scroll'
+	import AuthUtils from "../../utils/authUtil";
 
     export default {
         data(){
@@ -110,7 +111,17 @@
                 if(!this.isLoadAll){
                     this.loadMore()
                 }
-            }
+            },
+			preview(id) {
+                const authUtils = new AuthUtils(this.$http);
+                this.$router.push({
+                    name: "template1Shared",
+                    params: {
+                        actId: id,
+                        openid: authUtils.getOpenId()
+                    }
+                });
+			}
         }
     }
 </script>
