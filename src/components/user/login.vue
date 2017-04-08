@@ -7,7 +7,7 @@
             <router-link :to="{name: 'userHelp'}" class="iconfont icon-service header-service"></router-link>
         </header>
         <div class="login">
-            <form action="">
+            <form onsubmit="return false;">
                 <div class="form-inputBox">
                     <div class="input-box">
                         <span class="iconfont icon-iphone input-icon"></span>

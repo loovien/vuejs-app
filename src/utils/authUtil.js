@@ -29,7 +29,7 @@ export default class jAuthUtil {
     }
 
     isExpired() {
-        return !!sessionStorage.getItem("_expired_days");
+        return sessionStorage.getItem("_expired_days") <= 0;
     }
 
     isLogin () {

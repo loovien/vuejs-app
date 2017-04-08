@@ -1033,7 +1033,7 @@ var jAuthUtil = function () {
     }, {
         key: 'isExpired',
         value: function isExpired() {
-            return !!sessionStorage.getItem("_expired_days");
+            return sessionStorage.getItem("_expired_days") <= 0;
         }
     }, {
         key: 'isLogin',
@@ -4797,7 +4797,12 @@ exports.default = {
             var mobile = this.bindinfo.mobile;
             var userSrv = new _userSrv2.default(this);
             userSrv.captcha(mobile).then(function (resp) {
-                _this.bindinfo.code = resp.data.data.code;
+                if (resp.data.code == 0) {
+                    _this.bindinfo.code = resp.data.data.code;
+                    _this.error.msg = '';
+                } else {
+                    _this.error.msg = resp.data.msg;
+                }
             });
         },
         bindmobile: function bindmobile() {
@@ -5179,12 +5184,12 @@ exports.default = {
         path: "template_1/new/:id",
         name: "actNew",
         component: _newact2.default,
-        meta: { auth: true /*,rich: true*/ }
+        meta: { auth: true, rich: true }
     }, {
         path: "template_1/edit/:id",
         name: "actEdit",
         component: _editact2.default,
-        meta: { auth: true }
+        meta: { auth: true, rich: true }
     }, {
         path: "shared/:actId/:openid",
         name: "template1Shared",
@@ -22613,7 +22618,7 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
     staticClass: "login"
   }, [_c('form', {
     attrs: {
-      "action": ""
+      "onsubmit": "return false;"
     }
   }, [_c('div', {
     staticClass: "form-inputBox"
@@ -22783,7 +22788,7 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
     staticClass: "login"
   }, [_c('form', {
     attrs: {
-      "action": ""
+      "onsubmit": "return false;"
     }
   }, [_c('div', {
     staticClass: "form-inputBox"

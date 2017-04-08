@@ -28,13 +28,13 @@ export default {
             path: "template_1/new/:id",
             name: "actNew",
             component: Newact,
-            meta: {auth: true /*,rich: true*/}
+            meta: {auth: true ,rich: true}
         },
         {
             path: "template_1/edit/:id",
             name: "actEdit",
             component: Editact,
-            meta: {auth: true}
+            meta: {auth: true, rich: true}
         },
         {
             path: "shared/:actId/:openid",

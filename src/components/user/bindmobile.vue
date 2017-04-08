@@ -5,7 +5,7 @@
             <h1 class="header-title">用户注册</h1>
         </header>
         <div class="login">
-            <form action="">
+            <form onsubmit="return false;">
                 <div class="form-inputBox">
                     <div class="input-box">
                         <span class="iconfont icon-account input-icon"></span>
@@ -56,7 +56,12 @@
                 let mobile = this.bindinfo.mobile;
                 const userSrv = new UserSrv(this);
                 userSrv.captcha(mobile).then((resp) => {
-                    this.bindinfo.code = resp.data.data.code;
+                    if(resp.data.code == 0) {
+                        this.bindinfo.code = resp.data.data.code;
+                        this.error.msg = '';
+                    } else {
+                        this.error.msg = resp.data.msg;
+                    }
                 });
             },
             bindmobile: function () {
