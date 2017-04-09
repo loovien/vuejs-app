@@ -125,8 +125,6 @@
             mineSrv.getTop1().then((resp) => {
                 if(resp.data.code === 0) {
                     this.top1 = resp.data.data;
-                } else {
-                    this.top1 = false;
                 }
             });
 

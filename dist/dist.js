@@ -3087,12 +3087,14 @@ exports.default = {
             var postData = this.act;
             actSrv.newAct(postData).then(function (resp) {
                 var respData = resp.data;
-                _this2.$router.push({
-                    name: "template1Shared", params: {
-                        actId: respData.data.id,
-                        openid: respData.data.openid
-                    }
-                }); // 保存后到分享也, 游湖有需要就分享
+                if (respData.code === 0) {
+                    _this2.$router.push({
+                        name: "template1Shared", params: {
+                            actId: respData.data.id,
+                            openid: respData.data.openid
+                        }
+                    }); // 保存后到分享也, 游湖有需要就分享
+                }
             });
         },
         onFileChange: function onFileChange(e) {
@@ -3955,8 +3957,6 @@ exports.default = {
         mineSrv.getTop1().then(function (resp) {
             if (resp.data.code === 0) {
                 _this.top1 = resp.data.data;
-            } else {
-                _this.top1 = false;
             }
         });
     },
@@ -23326,7 +23326,7 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
     staticClass: "reduce-btn",
     on: {
       "click": function($event) {
-        _vm.num--
+        _vm.act.act_prize_cnt--
       }
     }
   }, [_vm._v("-")]), _vm._v(" "), _c('input', {

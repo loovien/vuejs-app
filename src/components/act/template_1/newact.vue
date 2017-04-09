@@ -32,7 +32,7 @@
             </h2>
             <div class="inner text-center">
                 共
-                <span class="reduce-btn" @click="num--">-</span>
+                <span class="reduce-btn" @click="act.act_prize_cnt--">-</span>
                 <input type="text" class="ui-input input-1 text-center" v-model="act.act_prize_cnt">
                 <span class="add-btn" @click="act.act_prize_cnt++">+</span>
                 份
@@ -158,12 +158,14 @@
                 let postData = this.act;
                 actSrv.newAct(postData).then((resp) => {
                     const respData = resp.data;
-                    this.$router.push({
-                        name: "template1Shared", params: {
-                            actId: respData.data.id,
-                            openid: respData.data.openid
-                        }
-                    }); // 保存后到分享也, 游湖有需要就分享
+                    if(respData.code === 0) {
+                        this.$router.push({
+                            name: "template1Shared", params: {
+                                actId: respData.data.id,
+                                openid: respData.data.openid
+                            }
+                        }); // 保存后到分享也, 游湖有需要就分享
+                    }
                 });
             },
             onFileChange: function(e) {
