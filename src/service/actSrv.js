@@ -89,17 +89,7 @@ export default class ActSrv extends BaseSrv {
      * @param postData
      * @returns {*}
      */
-    fillName(postData) {
-        return this.http.post("act/shared/play", postData);
-    }
-
-    /**
-     * 我也要玩, 参与填写电话
-     *
-     * @param postData
-     * @returns {*}
-     */
-    fillPhone(postData) {
+    fillInfo(postData) {
         return this.http.post("act/shared/play", postData);
     }
 
@@ -111,6 +101,14 @@ export default class ActSrv extends BaseSrv {
      */
     visitLog(query) {
         return this.http.post("act/shared/visitlog", query);
+    }
+
+    /**
+     * 获取完成的数量
+     * @param id
+     */
+    completedCnt(id) {
+        return this.http.get("act/shared/completed/" + id);
     }
 
 }

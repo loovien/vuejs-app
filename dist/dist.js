@@ -1342,21 +1342,8 @@ var ActSrv = function (_BaseSrv) {
          */
 
     }, {
-        key: "fillName",
-        value: function fillName(postData) {
-            return this.http.post("act/shared/play", postData);
-        }
-
-        /**
-         * 我也要玩, 参与填写电话
-         *
-         * @param postData
-         * @returns {*}
-         */
-
-    }, {
-        key: "fillPhone",
-        value: function fillPhone(postData) {
+        key: "fillInfo",
+        value: function fillInfo(postData) {
             return this.http.post("act/shared/play", postData);
         }
 
@@ -1371,6 +1358,17 @@ var ActSrv = function (_BaseSrv) {
         key: "visitLog",
         value: function visitLog(query) {
             return this.http.post("act/shared/visitlog", query);
+        }
+
+        /**
+         * 获取完成的数量
+         * @param id
+         */
+
+    }, {
+        key: "completedCnt",
+        value: function completedCnt(id) {
+            return this.http.get("act/shared/completed/" + id);
         }
     }]);
     return ActSrv;
@@ -3304,6 +3302,7 @@ exports.default = {
                 to: 0,
                 data: []
             }, // 排行榜数据
+            completedCnt: 0, // 已经完成的数量
             countDownTime: new Date('2017-05-20 0:0:0').getTime()
         };
     },
@@ -3318,7 +3317,7 @@ exports.default = {
         this.actSrv = actSrv;
 
         var authUtil = new _authUtil2.default(this.$http);
-        var visitOpenId = authUtil.getOpenId();
+        var visitOpenId = this.openid = authUtil.getOpenId();
         this.userInfo.name = authUtil.getName();
         this.userInfo.mobile = authUtil.getMobile();
 
@@ -3328,6 +3327,12 @@ exports.default = {
             var visitData = { actId: act.id, openid: visitOpenId, merchantId: act.merchant_id };
             /* 记录来访记录 */
             actSrv.visitLog(visitData).then(function (resp) {});
+
+            actSrv.completedCnt(act.id).then(function (resp) {
+                if (resp.data.code === 0) {
+                    _this.completedCnt = resp.data.data.completed_cnt;
+                }
+            });
         });
 
         actSrv.getUserInfo(query).then(function (resp) {
@@ -3352,9 +3357,7 @@ exports.default = {
 
             // 检测是否已经参与, 参与直接跳转, 没有参与需要填写名字手机等信息
             var actId = this.query.actId;
-            var authUtil = new _authUtil2.default(this.$http);
-            var openid = authUtil.getOpenId(); // 获取当前用户openid
-
+            var openid = this.openid;
             /* 用户如果参与了, 直接显示用户的昵称, 和电话 */
             this.actSrv.letsPlay({ actId: actId, openid: openid }).then(function (resp) {
                 if (resp.code == 1) {
@@ -3374,27 +3377,17 @@ exports.default = {
             });
         },
 
-        /* 弹框填入姓名 */
-        fillName: function fillName() {
+        /* 弹框填入姓名,电话 */
+        fillInfo: function fillInfo() {
+            var _this3 = this;
+
             var actId = this.query.actId;
             var openid = this.openid;
             var actOpenId = this.query.openid;
-            var name = "用户输入名称";
-            /* 成功条到输入电话弹框 */
-            this.actSrv.fillName({ actId: actId, openid: openid, name: name, actOpenId: actOpenId }).then(function (resp) {});
-        },
-
-
-        /* 弹框填入电话 */
-        fillPhone: function fillPhone() {
-            var _this3 = this;
-
-            var actId = this.act.act_id;
-            var openid = this.openid;
+            var name = "用户输入姓名";
             var phone = "用户输入电话";
-            var actOpenId = this.query.openid;
-            this.actSrv.fillPhone({ actId: actId, openid: openid, phone: phone, actOpenId: actOpenId }).then(function (resp) {
-                // 成功跳转到自己的活动也面了
+            /* 成功条到输入电话弹框 */
+            this.actSrv.fillInfo({ actId: actId, openid: openid, name: name, phone: phone, actOpenId: actOpenId }).then(function (resp) {
                 _this3.$router.push({ name: 'template1Shared', params: { actId: actId, openid: openid } });
             });
         }
@@ -23326,7 +23319,7 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
     staticClass: "reduce-btn",
     on: {
       "click": function($event) {
-        _vm.act.act_prize_cnt--
+        _vm.act.act_prize_cnt > 0 ? _vm.act.act_prize_cnt-- : 0
       }
     }
   }, [_vm._v("-")]), _vm._v(" "), _c('input', {
@@ -24221,15 +24214,15 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
       staticClass: "td-left text-center color_666"
     }, [_vm._v("报名人数")]), _vm._v(" "), _c('td', {
       staticClass: "td-right"
-    }, [_vm._v(_vm._s(act.join_count))])]), _vm._v(" "), _c('tr', [_c('td', {
+    }, [_vm._v(_vm._s(act.join_count) + "人")])]), _vm._v(" "), _c('tr', [_c('td', {
       staticClass: "td-left text-center color_666"
     }, [_vm._v("完成目标")]), _vm._v(" "), _c('td', {
       staticClass: "td-right"
-    }, [_vm._v(_vm._s(act.completed_count) + "人")])]), _vm._v(" "), _c('tr', [_c('td', {
+    }, [_vm._v(_vm._s(act.completed_count))])]), _vm._v(" "), _c('tr', [_c('td', {
       staticClass: "td-left text-center color_666"
     }, [_vm._v("影响微信用户")]), _vm._v(" "), _c('td', {
       staticClass: "td-right"
-    }, [_vm._v(_vm._s(act.visit_count))])]), _vm._v(" "), _c('tr', [_c('td', {
+    }, [_vm._v(_vm._s(act.visit_count) + "人")])]), _vm._v(" "), _c('tr', [_c('td', {
       staticClass: "td-right",
       attrs: {
         "colspan": "2"
@@ -24606,7 +24599,7 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
     staticClass: "red key"
   }, [_vm._v(_vm._s(_vm.act.act_prize_cnt))]), _vm._v(_vm._s(_vm.act.act_prize_unit) + " 最后"), _c('span', {
     staticClass: "red key"
-  }, [_vm._v("0")]), _vm._v(_vm._s(_vm.act.act_prize_unit))])])]), _vm._v(" "), _c('div', {
+  }, [_vm._v(_vm._s(_vm.act.act_prize_cnt - _vm.completedCnt))]), _vm._v(_vm._s(_vm.act.act_prize_unit))])])]), _vm._v(" "), _c('div', {
     staticClass: "box"
   }, [_vm._m(1), _vm._v(" "), _c('div', {
     staticClass: "inner"

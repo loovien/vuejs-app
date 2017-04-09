@@ -24,7 +24,7 @@
                 <span class="word w3">励</span>
             </h2>
             <div class="inner text-center">
-                <p>总共<span class="red key">{{act.act_prize_cnt}}</span>{{act.act_prize_unit}} 最后<span class="red key">0</span>{{act.act_prize_unit}}</p>
+                <p>总共<span class="red key">{{act.act_prize_cnt}}</span>{{act.act_prize_unit}} 最后<span class="red key">{{act.act_prize_cnt - completedCnt}}</span>{{act.act_prize_unit}}</p>
                 <!--<p>海澜之家<span class="red key">1000元</span>代金券</p>-->
             </div>
         </div>
@@ -154,6 +154,7 @@
                     to: 0,
                     data: []
                 }, // 排行榜数据
+                completedCnt: 0, // 已经完成的数量
                 countDownTime: new Date('2017-05-20 0:0:0').getTime()
             }
         },
@@ -165,7 +166,7 @@
             this.actSrv = actSrv;
 
             const authUtil = new AuthUtil(this.$http);
-            const visitOpenId = authUtil.getOpenId();
+            const visitOpenId = this.openid = authUtil.getOpenId();
             this.userInfo.name = authUtil.getName();
             this.userInfo.mobile = authUtil.getMobile();
 
@@ -175,6 +176,12 @@
                 const visitData = {actId: act.id, openid: visitOpenId, merchantId: act.merchant_id};
                 /* 记录来访记录 */
                 actSrv.visitLog(visitData).then((resp) => {});
+
+                actSrv.completedCnt(act.id).then((resp) => {
+                    if(resp.data.code === 0) {
+                        this.completedCnt = resp.data.data.completed_cnt;
+                    }
+                });
             });
 
             actSrv.getUserInfo(query).then((resp) => {
@@ -192,15 +199,14 @@
             });
 
 
+
         },
         methods: {
             /* 我也要玩 */
             letsPlay() {
                 // 检测是否已经参与, 参与直接跳转, 没有参与需要填写名字手机等信息
                 const actId = this.query.actId;
-                const authUtil = new AuthUtil(this.$http);
-                const openid = authUtil.getOpenId(); // 获取当前用户openid
-
+                const openid = this.openid;
                 /* 用户如果参与了, 直接显示用户的昵称, 和电话 */
                 this.actSrv.letsPlay({actId, openid}).then((resp) => {
                     if(resp.code == 1) {
@@ -219,26 +225,15 @@
                     }
                 });
             },
-            /* 弹框填入姓名 */
-            fillName() {
+            /* 弹框填入姓名,电话 */
+            fillInfo() {
                 const actId = this.query.actId;
                 const openid = this.openid;
                 const actOpenId = this.query.openid;
-                const name = "用户输入名称";
-                /* 成功条到输入电话弹框 */
-                this.actSrv.fillName({actId, openid, name, actOpenId}).then((resp) => {
-
-                });
-            },
-
-            /* 弹框填入电话 */
-            fillPhone() {
-                const actId = this.act.act_id;
-                const openid = this.openid;
+                const name = "用户输入姓名";
                 const phone = "用户输入电话";
-                const actOpenId = this.query.openid;
-                this.actSrv.fillPhone({actId, openid, phone, actOpenId}).then((resp) => {
-                   // 成功跳转到自己的活动也面了
+                /* 成功条到输入电话弹框 */
+                this.actSrv.fillInfo({actId, openid, name, phone, actOpenId}).then((resp) => {
                     this.$router.push({name: 'template1Shared', params: {actId, openid}});
                 });
             },

@@ -26,15 +26,15 @@
 		                </thead>
 	                    <tr>
 	                        <td class="td-left text-center color_666">报名人数</td>
-	                        <td class="td-right">{{act.join_count}}</td>
+	                        <td class="td-right">{{act.join_count}}人</td>
 	                    </tr>
 	                    <tr>
 	                        <td class="td-left text-center color_666">完成目标</td>
-	                        <td class="td-right">{{act.completed_count}}人</td>
+	                        <td class="td-right">{{act.completed_count}}</td>
 	                    </tr>
 	                    <tr>
 	                        <td class="td-left text-center color_666">影响微信用户</td>
-	                        <td class="td-right">{{act.visit_count}}</td>
+	                        <td class="td-right">{{act.visit_count}}人</td>
 	                    </tr>
 	                    <tr>
 	                        <td class="td-right" colspan="2">

@@ -32,7 +32,7 @@
             </h2>
             <div class="inner text-center">
                 共
-                <span class="reduce-btn" @click="act.act_prize_cnt--">-</span>
+                <span class="reduce-btn" @click="act.act_prize_cnt > 0  ? act.act_prize_cnt-- : 0">-</span>
                 <input type="text" class="ui-input input-1 text-center" v-model="act.act_prize_cnt">
                 <span class="add-btn" @click="act.act_prize_cnt++">+</span>
                 份
