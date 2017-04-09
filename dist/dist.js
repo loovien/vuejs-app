@@ -2733,8 +2733,8 @@ _vue2.default.http.options = _config2.default.http;
 _vue2.default.http.interceptors.push(_httpInject2.default);
 
 var router = new _vueRouter2.default({
-    mode: "history",
-    //mode: "hash",
+    //mode: "history",
+    mode: "hash",
     routes: _router2.default
 });
 
@@ -3602,7 +3602,7 @@ exports.default = {
         var indexSrv = new _indexSrv2.default(this);
         indexSrv.getBannerImg().then(function (response) {
             var data = response.data.data;
-            _this.bannerImg = data.banner_url;
+            _this.bannerImgs = data.banner_url;
         });
         indexSrv.getIndustryList().then(function (response) {
             _this.industries = response.data.data;

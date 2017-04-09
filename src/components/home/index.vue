@@ -57,7 +57,7 @@
             const indexSrv = new IndexSrv(this);
             indexSrv.getBannerImg().then((response) => {
                 const data = response.data.data;
-                this.bannerImg = data.banner_url;
+                this.bannerImgs = data.banner_url;
             });
             indexSrv.getIndustryList().then((response) => {
                this.industries = response.data.data;
