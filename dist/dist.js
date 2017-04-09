@@ -3917,6 +3917,10 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { de
 //
 //
 //
+//
+//
+//
+//
 
 exports.default = {
     data: function data() {
@@ -3928,8 +3932,7 @@ exports.default = {
                 expiredDays: 0,
                 expiredAt: ""
             },
-            top1: {}
-
+            top1: false
         };
     },
     created: function created() {
@@ -3950,7 +3953,11 @@ exports.default = {
         /* 获取top1 活动信息*/
         var mineSrv = new _mineSrv2.default(this);
         mineSrv.getTop1().then(function (resp) {
-            _this.top1 = resp.data.data;
+            if (resp.data.code === 0) {
+                _this.top1 = resp.data.data;
+            } else {
+                _this.top1 = false;
+            }
         });
     },
     methods: {
@@ -23820,6 +23827,22 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
   }, [_vm._v("历史活动")])], 1)]), _vm._v(" "), _c('div', {
     staticClass: "cart-box bg_fff mt10"
   }, [_vm._m(1), _vm._v(" "), _c('div', {
+    directives: [{
+      name: "show",
+      rawName: "v-show",
+      value: (!_vm.top1),
+      expression: "!top1"
+    }],
+    staticClass: "chart-table-box"
+  }, [_c('p', {
+    staticClass: "text-center"
+  }, [_vm._v("暂无数据")])]), _vm._v(" "), _c('div', {
+    directives: [{
+      name: "show",
+      rawName: "v-show",
+      value: (_vm.top1),
+      expression: "top1"
+    }],
     staticClass: "chart-table-box"
   }, [_c('table', {
     staticClass: "chart-table w100",

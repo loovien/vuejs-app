@@ -29,7 +29,11 @@
             <h2 class="title">
                 <span class="iconfont icon-chart"></span>最新活动数据
             </h2>
-            <div class="chart-table-box">
+
+            <div class="chart-table-box" v-show="!top1">
+                <p class="text-center">暂无数据</p>
+            </div>
+            <div class="chart-table-box" v-show="top1">
                 <table cellpadding="0" cellspacing="1" class="chart-table w100">
                     <tr>
                         <td class="td-left text-center color_666">活动模板</td>
@@ -100,10 +104,7 @@
                     expiredDays: 0,
                     expiredAt: "",
                 },
-                top1: {
-
-                }
-
+                top1: false
             }
         },
         created: function () {
@@ -122,7 +123,11 @@
             /* 获取top1 活动信息*/
             const mineSrv = new MineSrv(this);
             mineSrv.getTop1().then((resp) => {
-                this.top1 = resp.data.data;
+                if(resp.data.code === 0) {
+                    this.top1 = resp.data.data;
+                } else {
+                    this.top1 = false;
+                }
             });
 
         },
