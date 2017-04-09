@@ -1,7 +1,7 @@
 <template>
     <div class="activityList-wrap" ref="wrap">
         <header class="header">
-            <a href="" class="iconfont icon-back header-goback" @click="window.history.go(-1)"></a>
+            <span class="iconfont icon-back header-goback" @click="goback"></span>
             <h1 class="header-title">未开始活动</h1>
         </header>
         
@@ -68,6 +68,9 @@
         },
         components: { MugenScroll },
         methods: {
+            goback: function(){
+                history.go(-1)
+            },
             loadMore: function(){
                 var that = this;
                 this.loading = true;

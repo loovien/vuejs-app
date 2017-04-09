@@ -2,7 +2,7 @@
 <template>
     <div class="wrap">
         <header class="header">
-            <a href="" class="iconfont icon-back header-goback" @click="window.history.go(-1)"></a>
+            <span class="iconfont icon-back header-goback" @click="goback"></span>
             <h1 class="header-title">登录</h1>
             <router-link :to="{name: 'userHelp'}" class="iconfont icon-service header-service"></router-link>
         </header>
@@ -51,6 +51,9 @@
             }
         },
         methods: {
+            goback: function(){
+                history.go(-1)
+            },
             submit: function () {
                 let redirectUrl = this.$route.query.redirect;
                 const userSrv = new UserSrv(this);

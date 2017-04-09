@@ -1,7 +1,7 @@
 <template>
     <div class="wrap">
         <header class="header">
-            <a href="" class="iconfont icon-back header-goback" @click="window.history.go(-1)"></a>
+            <span class="iconfont icon-back header-goback" @click="goback"></span>
             <h1 class="header-title">联系客服</h1>
         </header>
         <img src="/static/images/logo.jpg" alt="我要联赢" class="logo">
@@ -26,7 +26,9 @@
             
         },
         methods: {
-
+            goback: function(){
+                history.go(-1)
+            }
         }
     }
 </script>

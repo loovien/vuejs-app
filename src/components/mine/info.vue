@@ -1,7 +1,7 @@
 <template>
     <div>
         <header class="header">
-            <a href="" class="iconfont icon-back header-goback" @click="window.history.go(-1)"></a>
+            <span class="iconfont icon-back header-goback" @click="goback"></span>
             <h1 class="header-title">我的</h1>
         </header>
         <div class="info clearfix">
@@ -130,6 +130,9 @@
 
         },
         methods: {
+            goback: function(){
+                history.go(-1)
+            },
             logout: function (){
                 const userSrv = new UserSrv(this);
                 const authUtls = new AuthUtil(this.$http);

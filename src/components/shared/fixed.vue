@@ -37,7 +37,7 @@ export default {
             this.$emit('saveEvent')
         },
         backEvent: function(){
-            window.history.go(-1)
+            history.go(-1)
         }
     },
     computed: {}

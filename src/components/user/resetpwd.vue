@@ -1,7 +1,7 @@
 <template>
     <div class="wrap">
         <header class="header">
-            <a href="" class="iconfont icon-back header-goback" @click="window.history.go(-1)"></a>
+            <span class="iconfont icon-back header-goback" @click="goback"></span>
             <h1 class="header-title">忘记密码</h1>
         </header>
         <div class="login">
@@ -40,6 +40,9 @@
             }
         },
         methods: {
+            goback: function(){
+                history.go(-1)
+            },
             nextStep: () => {
                 this.$http.post("/resetpwd", this.credentials, (resp) => {
                     console.log(resp);
