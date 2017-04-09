@@ -103,4 +103,14 @@ export default class ActSrv extends BaseSrv {
         return this.http.post("act/shared/play", postData);
     }
 
+    /**
+     * 用户来访记录
+     *
+     * @param query
+     * @returns {*}
+     */
+    visitLog(query) {
+        return this.http.post("act/shared/visitlog", query);
+    }
+
 }

@@ -164,16 +164,18 @@
             this.query = query;
             this.actSrv = actSrv;
 
-
             const authUtil = new AuthUtil(this.$http);
+            const visitOpenId = authUtil.getOpenId();
             this.userInfo.name = authUtil.getName();
             this.userInfo.mobile = authUtil.getMobile();
 
             actSrv.getActInfo(query).then((resp) => {
-                this.act = resp.data.data;
-                this.countDownTime = (new Date(this.act.act_end_time)).getTime();
+                const act = this.act = resp.data.data;
+                this.countDownTime = (new Date(act.act_end_time)).getTime();
+                const visitData = {actId: act.id, openid: visitOpenId, merchantId: act.merchant_id};
+                /* 记录来访记录 */
+                actSrv.visitLog(visitData).then((resp) => {});
             });
-
 
             actSrv.getUserInfo(query).then((resp) => {
                 this.userInfo = resp.data.data;
@@ -182,10 +184,13 @@
             actSrv.getRank(query).then((resp) => {
                 this.rank = resp.data.data;
             });
-
-            actSrv.helpIt(query).then((resp) => { // 用户已经来的时候, 表示已将帮忙了
-
+            // 用户一进来的时候, 表示已将帮忙了
+            actSrv.helpIt(query).then((resp) => {
+                if(resp.data.code == 0) {
+                    alert("帮忙成功");
+                }
             });
+
 
         },
         methods: {

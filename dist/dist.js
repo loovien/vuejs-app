@@ -1359,6 +1359,19 @@ var ActSrv = function (_BaseSrv) {
         value: function fillPhone(postData) {
             return this.http.post("act/shared/play", postData);
         }
+
+        /**
+         * 用户来访记录
+         *
+         * @param query
+         * @returns {*}
+         */
+
+    }, {
+        key: "visitLog",
+        value: function visitLog(query) {
+            return this.http.post("act/shared/visitlog", query);
+        }
     }]);
     return ActSrv;
 }(_baseSrv2.default); /**
@@ -3303,12 +3316,16 @@ exports.default = {
         this.actSrv = actSrv;
 
         var authUtil = new _authUtil2.default(this.$http);
+        var visitOpenId = authUtil.getOpenId();
         this.userInfo.name = authUtil.getName();
         this.userInfo.mobile = authUtil.getMobile();
 
         actSrv.getActInfo(query).then(function (resp) {
-            _this.act = resp.data.data;
-            _this.countDownTime = new Date(_this.act.act_end_time).getTime();
+            var act = _this.act = resp.data.data;
+            _this.countDownTime = new Date(act.act_end_time).getTime();
+            var visitData = { actId: act.id, openid: visitOpenId, merchantId: act.merchant_id };
+            /* 记录来访记录 */
+            actSrv.visitLog(visitData).then(function (resp) {});
         });
 
         actSrv.getUserInfo(query).then(function (resp) {
@@ -3318,9 +3335,11 @@ exports.default = {
         actSrv.getRank(query).then(function (resp) {
             _this.rank = resp.data.data;
         });
-
-        actSrv.helpIt(query).then(function (resp) {// 用户已经来的时候, 表示已将帮忙了
-
+        // 用户一进来的时候, 表示已将帮忙了
+        actSrv.helpIt(query).then(function (resp) {
+            if (resp.data.code == 0) {
+                alert("帮忙成功");
+            }
         });
     },
 
