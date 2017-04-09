@@ -2733,8 +2733,8 @@ _vue2.default.http.options = _config2.default.http;
 _vue2.default.http.interceptors.push(_httpInject2.default);
 
 var router = new _vueRouter2.default({
-    //mode: "history",
-    mode: "hash",
+    mode: "history",
+    //mode: "hash",
     routes: _router2.default
 });
 
