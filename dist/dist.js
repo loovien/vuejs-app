@@ -3385,7 +3385,13 @@ exports.default = {
 
             // 检测是否已经参与, 参与直接跳转, 没有参与需要填写名字手机等信息
             var actId = this.query.actId;
+            var actOwnerOpenId = this.query.openid;
             var openid = this.openid;
+
+            if (actOwnerOpenId == openid) {
+                alert("这就是您本人的活动也, 自己就不要在玩了!");
+                return;
+            }
             /* 用户如果参与了, 直接显示用户的昵称, 和电话 */
             this.actSrv.letsPlay({ actId: actId, openid: openid }).then(function (resp) {
                 if (resp.data.code === 0) {
