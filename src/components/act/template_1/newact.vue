@@ -51,13 +51,26 @@
                 <textarea class="ui-textarea introduce-textarea" v-model="act.description" cols="30" rows="20" placeholder="请输入活动介绍"></textarea>
             </div>
         </div>
-        
+
+
         <div class="box">
             <h2 class="box-title">
                 <span class="word w0">参</span>
                 <span class="word w1">与</span>
                 <span class="word w2">规</span>
                 <span class="word w3">则</span>
+            </h2>
+            <div class="inner">
+                {{act.act_rule_decorate}}<input type="text" class="ui-input" v-model="act.act_rule_cnt" placeholder="请输入目标数据"/>{{act.act_rule_keywords}}
+            </div>
+        </div>
+
+        <div class="box">
+            <h2 class="box-title">
+                <span class="word w0">规</span>
+                <span class="word w1">则</span>
+                <span class="word w2">详</span>
+                <span class="word w3">请</span>
             </h2>
             <div class="inner">
                 <textarea class="ui-textarea introduce-textarea" cols="30" rows="20" placeholder="请输入参与规则">
