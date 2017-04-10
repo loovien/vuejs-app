@@ -53,6 +53,7 @@
                 const phone = this.credentials.phone;
                 this.userSrv.getPwdCaptcha({phone}).then((resp) => {
                     if(resp.data.code === 0) {
+                        alert(resp.data.msg);
                         this.credentials.code = resp.data.data.code;
                     } else {
                         this.error.msg = resp.data.msg;

@@ -4881,6 +4881,7 @@ exports.default = {
             var userSrv = new _userSrv2.default(this);
             userSrv.captcha(mobile).then(function (resp) {
                 if (resp.data.code == 0) {
+                    alert(resp.data.msg);
                     _this.bindinfo.code = resp.data.data.code;
                     _this.error.msg = '';
                 } else {
@@ -5116,6 +5117,7 @@ exports.default = {
             var phone = this.credentials.phone;
             this.userSrv.getPwdCaptcha({ phone: phone }).then(function (resp) {
                 if (resp.data.code === 0) {
+                    alert(resp.data.msg);
                     _this.credentials.code = resp.data.data.code;
                 } else {
                     _this.error.msg = resp.data.msg;

@@ -60,6 +60,7 @@
                 const userSrv = new UserSrv(this);
                 userSrv.captcha(mobile).then((resp) => {
                     if(resp.data.code == 0) {
+                        alert(resp.data.msg);
                         this.bindinfo.code = resp.data.data.code;
                         this.error.msg = '';
                     } else {
