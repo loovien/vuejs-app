@@ -3388,7 +3388,7 @@ exports.default = {
             var openid = this.openid;
             /* 用户如果参与了, 直接显示用户的昵称, 和电话 */
             this.actSrv.letsPlay({ actId: actId, openid: openid }).then(function (resp) {
-                if (resp.code == 1) {
+                if (resp.data.code === 0) {
                     alert("弹框填写姓名名称");
                 } else {
                     var confirm = window.confirm("您已经参与过此活动, 直接跳转到你的活动页?");
