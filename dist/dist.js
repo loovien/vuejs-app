@@ -3254,6 +3254,19 @@ exports.default = {
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 /***/ }),
 /* 70 */
@@ -5519,9 +5532,7 @@ var AuthMiddleware = function () {
                     }
                 }
                 //TODO just for test
-                if (to.matched.some(function (record) {
-                    return record.meta.auth;
-                })) {
+                if (false) {
                     // this route requires auth, check if logged in
                     // if not, redirect to login page.
                     if (!authUtil.isLogin()) {
@@ -23396,9 +23407,34 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
         _vm.act.description = $event.target.value
       }
     }
-  })])]), _vm._v(" "), _vm._m(3), _vm._v(" "), _c('div', {
+  })])]), _vm._v(" "), _c('div', {
     staticClass: "box"
-  }, [_vm._m(4), _vm._v(" "), _c('div', {
+  }, [_vm._m(3), _vm._v(" "), _c('div', {
+    staticClass: "inner"
+  }, [_vm._v("\n            " + _vm._s(_vm.act.act_rule_decorate)), _c('input', {
+    directives: [{
+      name: "model",
+      rawName: "v-model",
+      value: (_vm.act.act_rule_cnt),
+      expression: "act.act_rule_cnt"
+    }],
+    staticClass: "ui-input",
+    attrs: {
+      "type": "text",
+      "placeholder": "请输入目标数据"
+    },
+    domProps: {
+      "value": (_vm.act.act_rule_cnt)
+    },
+    on: {
+      "input": function($event) {
+        if ($event.target.composing) { return; }
+        _vm.act.act_rule_cnt = $event.target.value
+      }
+    }
+  }), _vm._v(_vm._s(_vm.act.act_rule_keywords) + "\n        ")])]), _vm._v(" "), _vm._m(4), _vm._v(" "), _c('div', {
+    staticClass: "box"
+  }, [_vm._m(5), _vm._v(" "), _c('div', {
     staticClass: "inner"
   }, [_c('input', {
     directives: [{
@@ -23448,7 +23484,7 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
     staticClass: "text-center"
   }, [_vm._v("最多只能上传6张图片")])]], 2)])]), _vm._v(" "), _c('div', {
     staticClass: "box info-box"
-  }, [_vm._m(5), _vm._v(" "), _c('div', {
+  }, [_vm._m(6), _vm._v(" "), _c('div', {
     staticClass: "inner"
   }, [_c('p', {
     staticClass: "tit"
@@ -23522,7 +23558,7 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
     }
   })])]), _vm._v(" "), _c('div', {
     staticClass: "box"
-  }, [_vm._m(6), _vm._v(" "), _c('div', {
+  }, [_vm._m(7), _vm._v(" "), _c('div', {
     staticClass: "inner"
   }, [_c('textarea', {
     directives: [{
@@ -23656,9 +23692,7 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
     staticClass: "word w3"
   }, [_vm._v("绍")])])
 },function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
-  return _c('div', {
-    staticClass: "box"
-  }, [_c('h2', {
+  return _c('h2', {
     staticClass: "box-title"
   }, [_c('span', {
     staticClass: "word w0"
@@ -23668,7 +23702,21 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
     staticClass: "word w2"
   }, [_vm._v("规")]), _vm._v(" "), _c('span', {
     staticClass: "word w3"
-  }, [_vm._v("则")])]), _vm._v(" "), _c('div', {
+  }, [_vm._v("则")])])
+},function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
+  return _c('div', {
+    staticClass: "box"
+  }, [_c('h2', {
+    staticClass: "box-title"
+  }, [_c('span', {
+    staticClass: "word w0"
+  }, [_vm._v("规")]), _vm._v(" "), _c('span', {
+    staticClass: "word w1"
+  }, [_vm._v("则")]), _vm._v(" "), _c('span', {
+    staticClass: "word w2"
+  }, [_vm._v("详")]), _vm._v(" "), _c('span', {
+    staticClass: "word w3"
+  }, [_vm._v("请")])]), _vm._v(" "), _c('div', {
     staticClass: "inner"
   }, [_c('textarea', {
     staticClass: "ui-textarea introduce-textarea",
