@@ -193,8 +193,9 @@
             });
             // 用户一进来的时候, 表示已将帮忙了
             actSrv.helpIt(query).then((resp) => {
+                alert(resp.data.msg);
                 if(resp.data.code == 0) {
-                    alert("帮忙成功");
+                    this.userInfo.join_cnt += 1;
                 }
             });
         },
