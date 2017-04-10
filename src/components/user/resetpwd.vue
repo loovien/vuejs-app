@@ -5,20 +5,20 @@
             <h1 class="header-title">忘记密码</h1>
         </header>
         <div class="login">
-            <form action="">
+            <form onsubmit="return false;">
                 <div class="form-inputBox">
                     <div class="input-box">
                         <span class="iconfont icon-iphone input-icon"></span>
-                        <input type="text" placeholder="手机号" v-model="credentials.mobile" class="ui-input">
+                        <input type="text" placeholder="手机号" v-model="credentials.phone" class="ui-input">
                     </div>
                     <div class="input-box input-box-verifyCode">
                         <span class="iconfont icon-ad80-copy input-icon"></span>
-                        <button class="color_yellow2 fr b-l-1 verifyCode-btn">获取验证码</button>
-                        <input type="text" placeholder="验证码" v-model="credentials.verifyCode" class="ui-input">
+                        <button class="color_yellow2 fr b-l-1 verifyCode-btn" @click="getCaptcha()">获取验证码</button>
+                        <input type="text" placeholder="验证码" v-model="credentials.code" class="ui-input">
                     </div>
                 </div>
                 <div class="btn-box">
-                    <button @click="nextStep()" class="btn" disabled>下一步</button>
+                    <button @click="nextStep()" class="btn">下一步</button>
                 </div>
             </form>
             <div class="errorTips" v-show="error.msg">{{error.msg}}</div>
@@ -27,28 +27,49 @@
 </template>
 
 <script>
+    import UserSrv from "../../service/userSrv";
+
     export default {
         data: () => {
             return {
+                userSrv: {},
                 credentials: {
-                    mobile: "",
-                    verifyCode: ""
+                    phone: "",
+                    code: ""
                 },
                 error: {
-                    msg: "验证码错误"
+                    msg: ""
                 }
             }
         },
+        created: function () {
+            this.userSrv = new UserSrv(this);
+        },
         methods: {
-            goback: function(){
+            goback() {
                 history.go(-1)
             },
-            nextStep: () => {
-                this.$http.post("/resetpwd", this.credentials, (resp) => {
-                    console.log(resp);
-                }).error((error) => {
-                    this.error.msg = error.msg;
+            getCaptcha() {
+                const phone = this.credentials.phone;
+                this.userSrv.getPwdCaptcha({phone}).then((resp) => {
+                    if(resp.data.code === 0) {
+                        this.credentials.code = resp.data.data.code;
+                    } else {
+                        this.error.msg = resp.data.msg;
+                    }
                 });
+            },
+            nextStep () {
+                const verifyData = this.credentials;
+                this.userSrv.verifycode(verifyData).then((resp) => {
+                    if(resp.data.code === 0) {
+                        this.$router.push({
+                            name: "userSetpwd"
+                        })
+                    } else {
+                        this.error.msg = resp.data.msg;
+                    }
+                })
             }
         }
     }

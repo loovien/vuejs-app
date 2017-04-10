@@ -5,13 +5,13 @@
             <h1 class="header-title">忘记密码</h1>
         </header>
         <div class="login">
-            <form action="">
+            <form onsubmit="return false;">
                 <div class="input-box form-inputBox">
                     <span class="iconfont icon-Password input-icon"></span>
-                    <input type="password" placeholder="输入新密码" v-model="credentials.password" class="ui-input">
+                    <input type="password" placeholder="输入新密码" v-model="password" class="ui-input">
                 </div>
                 <div class="btn-box">
-                    <button @click="nextStep()" class="btn" disabled>确定修改</button>
+                    <button @click="nextStep()" class="btn" >确定修改</button>
                 </div>
             </form>
             <div class="errorTips" v-show="error.msg">{{error.msg}}</div>
@@ -20,26 +20,35 @@
 </template>
 
 <script>
+    import UserSrv from "../../service/userSrv";
+
     export default {
         data: () => {
             return {
-                credentials: {
-                    password: "",
-                },
+                userSrv: {},
+                password: "",
                 error: {
-                    msg: "请输入密码"
+                    msg: ""
                 }
             }
         },
+        created: function () {
+            this.userSrv = new UserSrv(this);
+        },
         methods: {
-            goback: function(){
+            goback() {
                 history.go(-1)
             },
-            nextStep: () => {
-                this.$http.post("/resetpwd", this.credentials, (resp) => {
-                    console.log(resp);
-                }).error((error) => {
-                    this.error.msg = error.msg;
+            nextStep() {
+                const password = this.password;
+                this.userSrv.resetpwd({password}).then((resp) => {
+                    if(resp.data.code === 0) {
+                        this.$router.push({
+                            name: "userLogin"
+                        });
+                    }  else {
+                        this.error.msg = resp.data.msg;
+                    }
                 });
             }
         }
