@@ -197,9 +197,6 @@
                     alert("帮忙成功");
                 }
             });
-
-
-
         },
         methods: {
             /* 我也要玩 */
@@ -209,7 +206,7 @@
                 const openid = this.openid;
                 /* 用户如果参与了, 直接显示用户的昵称, 和电话 */
                 this.actSrv.letsPlay({actId, openid}).then((resp) => {
-                    if(resp.code == 1) {
+                    if(resp.data.code === 0) {
                         alert("弹框填写姓名名称");
                     } else {
                         let confirm = window.confirm("您已经参与过此活动, 直接跳转到你的活动页?");
