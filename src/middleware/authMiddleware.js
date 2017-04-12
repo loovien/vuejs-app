@@ -25,7 +25,7 @@ export default class AuthMiddleware {
                 }
             }
             //TODO just for test
-            if (to.matched.some(record => record.meta.auth)) {
+            if (false && to.matched.some(record => record.meta.auth)) {
                 // this route requires auth, check if logged in
                 // if not, redirect to login page.
                 if (!authUtil.isLogin()) {
