@@ -6,13 +6,13 @@
         </header>
         
         <div class="list">
-            <router-link :to="{}" class="item mt10 clearfix table w100" v-for="act in acts" :key="act.id">
-                <div class="table">
-                    <div class="thumbnail-box table-cell">
+            <div class="item mt10 clearfix table w100" v-for="act in acts" :key="act.id">
+                <div class="table w100">
+                    <router-link :to="{name: 'actDetail', params: {id: act.id}}" class="thumbnail-box table-cell">
                         <img :src="act.banner_img" alt="" class="thumbnail fl">
-                    </div>
+                    </router-link>
                     <div class="relative item-info table-cell">
-                        <h3 class="title color_333 f16">{{act.title}}</h3>
+                        <router-link :to="{name: 'actDetail', params: {id: act.id}}" class="title color_333 f16">{{act.title}}</router-link>
                         <p class="desc f12 color_999">{{act.description}}</p>
                         <div class="operate text-right">
                             <div class="inline-block">
@@ -26,7 +26,7 @@
                         </div>
                     </div>
                 </div>
-            </router-link>
+            </div>
         </div>
         <!-- <p class="text-center color_gray data-none">暂无未开始活动</p> -->
         <mugen-scroll scroll-container="wrap" :handler="fetchData" :should-handle="!loading">
@@ -47,10 +47,12 @@
                 <span class="color_gray f12">已经到底了</span>
             </div>
         </mugen-scroll>
+        <modal v-if="showModal" :modalOptions="modalOptions" @close="closeModal" @ok="okModal"></modal>
     </div>
 </template>
 
 <script>
+    import Modal from '../shared/modal.vue'
     import MineSrv from "../../service/mineSrv";
     import MugenScroll from 'vue-mugen-scroll'
 
@@ -61,13 +63,33 @@
                 isLoadAll: false, //是否加载完毕
                 acts: [],
                 page: 1,
+                showModal: false,
+                delId: null,//删除id
+                modalOptions: {
+                    size: 'mini',
+                    content: '删除后将无法返回，确定删除吗？'
+                }
             }
         },
         created: function () {
             this.loadMore()
         },
-        components: { MugenScroll },
+        components: { MugenScroll, Modal },
         methods: {
+            closeModal: function(){
+                this.showModal = false;
+            },
+            okModal: function(){
+                const mineSrv = this._getMineSrv();
+                mineSrv.deleteActById(id).then((resp) => {
+                   for(var i in this.acts){
+                        if(this.acts[i].id == this.delId){
+                            this.acts.splice(i, 1)
+                        }
+                    }
+                });
+                this.showModal = false;
+            },
             goback: function(){
                 history.go(-1)
             },
@@ -93,10 +115,8 @@
                 }
             },
             deleteAct(id){
-                const mineSrv = this._getMineSrv();
-                mineSrv.deleteActById(id).then((resp) => {
-                   alert("do other logic!");
-                });
+                this.delId = id;
+                this.showModal = true;
             },
             _getMineSrv() {
                 return new MineSrv(this);
@@ -106,6 +126,9 @@
 </script>
 
 <style scoped>
+.thumbnail-box{
+    width: 120px;
+}
 .activityList-wrap .item-info{
     padding-bottom: 50px;
 }
