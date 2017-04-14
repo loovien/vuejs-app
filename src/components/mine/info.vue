@@ -5,7 +5,6 @@
             <h1 class="header-title">我的</h1>
         </header>
         <div class="info clearfix">
-            <img src="http://s.51lianying.com/images/www/index_v2/thum-1.jpg" alt="" class="thumbnail fl">
             <p class="userName color_yellow f16">{{info.name}}<span class="signOut" @click="logout()">[退出]</span></p>
             <p class="phoneNumber color_fff"><span class="iconfont icon-iphone"></span><span class="f12">{{info.mobile}}</span></p>
             <p class="time color_fff"><span class="color_yellow">{{info.expiredDays}}</span>天可用<span class="expire">到期时间：{{info.expiredAt}}</span></p>
@@ -150,14 +149,8 @@
 </script>
 <style scoped>
 .info{
-    padding: 30px 15px 30px 110px;
+    padding: 30px 15px 30px 15px;
     background: #ffb400;
-}
-.thumbnail{
-    width: 77px; height: 77px;
-    border: 2px solid #fff;
-    border-radius: 3px;
-    margin-left: -95px;
 }
 .signOut{
     text-decoration: underline;
