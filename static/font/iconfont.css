@@ -1,10 +1,10 @@
 
 @font-face {font-family: "iconfont";
-  src: url('iconfont.eot?t=1490524089305'); /* IE9*/
-  src: url('iconfont.eot?t=1490524089305#iefix') format('embedded-opentype'), /* IE6-IE8 */
-  url('iconfont.woff?t=1490524089305') format('woff'), /* chrome, firefox */
-  url('iconfont.ttf?t=1490524089305') format('truetype'), /* chrome, firefox, opera, Safari, Android, iOS 4.2+*/
-  url('iconfont.svg?t=1490524089305#iconfont') format('svg'); /* iOS 4.1- */
+  src: url('iconfont.eot?t=1492179161267'); /* IE9*/
+  src: url('iconfont.eot?t=1492179161267#iefix') format('embedded-opentype'), /* IE6-IE8 */
+  url('iconfont.woff?t=1492179161267') format('woff'), /* chrome, firefox */
+  url('iconfont.ttf?t=1492179161267') format('truetype'), /* chrome, firefox, opera, Safari, Android, iOS 4.2+*/
+  url('iconfont.svg?t=1492179161267#iconfont') format('svg'); /* iOS 4.1- */
 }
 
 .iconfont {
@@ -58,6 +58,8 @@
 .icon-ad80-copy:before { content: "\e600"; }
 
 .icon-account:before { content: "\e601"; }
+
+.icon-404:before { content: "\e612"; }
 
 .icon-recommend:before { content: "\e6f1"; }
 
