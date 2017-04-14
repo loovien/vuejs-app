@@ -7,7 +7,7 @@
 
 export default function (request, next) {
     next((response) => {
-        console.info("😄", response.data, request.method, '=>',request.root+'/'+request.url);
+        // console.info("😄", response.data, request.method, '=>',request.root+'/'+request.url);
     });
 }
 

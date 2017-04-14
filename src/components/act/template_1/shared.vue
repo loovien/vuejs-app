@@ -7,9 +7,13 @@
                 <h1 class="title">{{act.title}}</h1>
             </div>
             <div class="countDown-box color_fff text-center">
-                <countDown :date="countDownTime"></countDown>
-                <!--<p class="mt5"><span class="color_yellow">{{userInfo.name}}</span><span class="color_fff key">2016-11-01 12:15</span><span class="color_yellow">抽中奖品</span></p>-->
-                <p class="mt5"><span class="color_yellow">{{userInfo.username}} 您有</span><span class="color_fff key">{{userInfo.join_cnt}}</span><span class="color_yellow">个朋友参与活动。</span></p>
+                <template v-if="isStart && !isEnded">
+                    <countDown :date="countDownTime" @timeDown="timeDown" v-if="countDownTime"></countDown>
+                    <!--<p class="mt5"><span class="color_yellow">{{userInfo.name}}</span><span class="color_fff key">2016-11-01 12:15</span><span class="color_yellow">抽中奖品</span></p>-->
+                    <p class="mt5"><span class="color_yellow">{{userInfo.username}} 您有</span><span class="color_fff key">{{userInfo.join_cnt}}</span><span class="color_yellow">个朋友参与活动。</span></p>
+                </template>
+                <div class="tips-notstart" v-if="!isStart">活动未开始</div>
+                <div class="tips-notstart" v-if="isEnded">活动已结束</div>
             </div>
         </div>
         <div class="text-center playBtn-box">
@@ -155,7 +159,9 @@
                     data: []
                 }, // 排行榜数据
                 completedCnt: 0, // 已经完成的数量
-                countDownTime: new Date('2017-05-20 0:0:0').getTime()
+                countDownTime: null,
+                isStart: true,//活动是否开始
+                isEnded: false,//活动是否结束
             }
         },
         components: { countDown },
@@ -172,7 +178,19 @@
 
             actSrv.getActInfo(query).then((resp) => {
                 const act = this.act = resp.data.data;
-                this.countDownTime = (new Date(act.act_end_time)).getTime();
+                const starttime = (new Date(act.act_start_time)).getTime();
+                const endtime = (new Date(act.act_end_time)).getTime();
+                const today = new Date().getTime();
+
+                //活动未开始
+                if(starttime - today > 0){
+                    this.isStart = false
+                }
+                //活动已结束
+                if(endtime - today < 0){
+                    this.isEnded = true
+                }
+                this.countDownTime = endtime;
                 const visitData = {actId: act.id, openid: visitOpenId, merchantId: act.merchant_id};
                 /* 记录来访记录 */
                 actSrv.visitLog(visitData).then((resp) => {});
@@ -200,6 +218,10 @@
             });
         },
         methods: {
+            //倒计时结束
+            timeDown() {
+                this.isEnded = true;
+            },
             /* 我也要玩 */
             letsPlay() {
                 // 检测是否已经参与, 参与直接跳转, 没有参与需要填写名字手机等信息
@@ -246,6 +268,11 @@
 </script>
 
 <style scoped>
+    .tips-notstart{
+        line-height: 50px;
+        font-size: 20px;
+        color: #ffea00;
+    }
     .layout{
         background: #fedc40;
         padding-bottom: 80px;
