@@ -8,7 +8,7 @@
 	</div>
 </template>
 
-<style scope>
+<style scoped>
 	.inner{
 		position: absolute;
 		width: 100%;

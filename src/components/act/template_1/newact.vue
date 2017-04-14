@@ -60,8 +60,8 @@
                 <span class="word w2">规</span>
                 <span class="word w3">则</span>
             </h2>
-            <div class="inner">
-                {{act.act_rule_decorate}}<input type="text" class="ui-input" v-model="act.act_rule_cnt" placeholder="请输入目标数据"/>{{act.act_rule_keywords}}
+            <div class="inner text-center">
+                {{act.act_rule_decorate}}<input type="text" class="ui-input input-inline" v-model="act.act_rule_cnt" placeholder="请输入目标数据"/>{{act.act_rule_keywords}}
             </div>
         </div>
 
@@ -215,6 +215,12 @@
 </script>
 
 <style scoped>
+.input-inline{
+    display: inline-block;
+    width: 80px!important;
+    text-align: center;
+    margin: 0 5px;
+}
 .upload-file{
     position: absolute;
     width: 100%;
