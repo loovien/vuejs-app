@@ -14108,6 +14108,13 @@ exports.default = {
         var actSrv = new _actSrv2.default(this);
         actSrv.getActDetail(id).then(function (resp) {
             _this.act = resp.data.data;
+            try {
+                _this.act.act_images = JSON.parse(_this.act.act_images);
+            } catch (e) {
+                console.error(e);
+            } finally {
+                _this.act.act_images = [];
+            }
         });
 
         actSrv.getDefaultRank().then(function (resp) {
@@ -14716,15 +14723,14 @@ exports.default = {
         actSrv.getActInfo(query).then(function (resp) {
             // console.log(resp.data.data)
             var act = _this.act = resp.data.data;
-            if (!!act.act_images) {
-                try {
-                    act.act_images = JSON.parse(act.act_images);
-                } catch (e) {
-                    console.error(e);
-                } finally {
-                    act.act_images = '';
-                }
+            try {
+                _this.act.act_images = JSON.parse(_this.act.act_images);
+            } catch (e) {
+                console.error(e);
+            } finally {
+                _this.act.act_images = [];
             }
+
             var starttime = new Date(act.act_start_time).getTime();
             var endtime = new Date(act.act_end_time).getTime();
             var today = new Date().getTime();
@@ -17188,7 +17194,6 @@ exports.default = {
     http: {
         root: "http://sjlmgr.51lianying.com/api",
         //root: "http://shangjialian.51lianying.com/api",
-        //root: "http://88888.51lianying.com/api",
         headers: {
             "ContentType": "application/json",
             //Authorization: 'Bear access_token',
@@ -24813,7 +24818,7 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
     staticClass: "red key"
   }, [_vm._v(_vm._s(_vm.act.act_prize_cnt))]), _vm._v(_vm._s(_vm.act.act_prize_unit) + " 最后"), _c('span', {
     staticClass: "red key"
-  }, [_vm._v(_vm._s(_vm.act.act_prize_cnt - _vm.completedCnt))]), _vm._v(_vm._s(_vm.act.act_prize_unit))])])]), _vm._v(" "), _c('div', {
+  }, [_vm._v(_vm._s(_vm.act.act_prize_cnt))]), _vm._v(_vm._s(_vm.act.act_prize_unit))])])]), _vm._v(" "), _c('div', {
     staticClass: "box"
   }, [_vm._m(3), _vm._v(" "), _c('div', {
     staticClass: "inner"
@@ -25420,6 +25425,12 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
   }, [_vm._v("活动未开始")]) : _vm._e(), _vm._v(" "), (_vm.isEnded) ? _c('div', {
     staticClass: "tips-notstart"
   }, [_vm._v("活动已结束")]) : _vm._e()], 2)]), _vm._v(" "), _c('div', {
+    directives: [{
+      name: "show",
+      rawName: "v-show",
+      value: (_vm.isStart),
+      expression: "isStart"
+    }],
     staticClass: "text-center playBtn-box"
   }, [_c('img', {
     staticClass: "playBtn",

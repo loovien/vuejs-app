@@ -16,7 +16,7 @@
                 <div class="tips-notstart" v-if="isEnded">活动已结束</div>
             </div>
         </div>
-        <div class="text-center playBtn-box">
+        <div class="text-center playBtn-box" v-show="isStart">
             <img src="/static/images/template_1/play-btn.jpg" @click="letsPlay()" alt="点我去玩" class="playBtn">
         </div>
 
@@ -245,15 +245,14 @@
             actSrv.getActInfo(query).then((resp) => {
                 // console.log(resp.data.data)
                 let act = this.act = resp.data.data;
-                if(!!act.act_images) {
-                    try {
-                        act.act_images = JSON.parse(act.act_images);
-                    } catch (e) {
-                        console.error(e);
-                    } finally {
-                        act.act_images = '';
-                    }
+                try {
+                    this.act.act_images = JSON.parse(this.act.act_images);
+                } catch (e) {
+                    console.error(e)
+                } finally {
+                    this.act.act_images = [];
                 }
+
                 const starttime = (new Date(act.act_start_time)).getTime();
                 const endtime = (new Date(act.act_end_time)).getTime();
                 const today = new Date().getTime();
