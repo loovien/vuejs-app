@@ -53,10 +53,7 @@
                 <span class="word w3">则</span>
             </h2>
             <div class="inner">
-                <p><span class="num">1</span>参与活动前，请详细阅读活动规则及相关条款。凡参与本次活动，则视为同意活动内容及免责声明条款。</p>
-                <p><span class="num">2</span>如遇不可抗力因素，本次活动因故无法进行时，活动主办方在法律允许的范围内有权决定取消、终止、修改或暂停本活动。</p>
-                <p><span class="num">3</span>请中奖用户按照活动提示提供正确的联系方式，若不正确导致无法收到奖品，活动主办方不予负责。</p>
-                <p><span class="num">4</span>除质量问题外，本活动产品概不退货。</p>
+                {{act.act_rule_desc}}
             </div>
         </div>
 

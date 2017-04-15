@@ -81,8 +81,9 @@
             },
             okModal: function(){
                 const mineSrv = this._getMineSrv();
+                const id = this.delId;
                 mineSrv.deleteActById(id).then((resp) => {
-                   for(var i in this.acts){
+                   for(let i in this.acts){
                         if(this.acts[i].id == this.delId){
                             this.acts.splice(i, 1)
                         }
@@ -116,7 +117,9 @@
             },
 
             editAct(id) {
-
+                this.$router.push({
+                    name: "actEdit", params: {id}
+                }); // 保存后到分享也, 游湖有需要就分享
             },
 
             deleteAct(id){

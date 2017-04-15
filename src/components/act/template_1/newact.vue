@@ -74,7 +74,7 @@
             </h2>
             <div class="inner">
                 <textarea class="ui-textarea introduce-textarea" cols="30" rows="20" placeholder="请输入参与规则">
-                    格式为: (筹集, 转发: act_rule_decorate) : (数量: act_rule_cnt) :(商品词: act_rule_keywords) (换取什么奖品: act_prize_name)
+                    {{act.act_rule_desc}}
                 </textarea>
             </div>
         </div>
