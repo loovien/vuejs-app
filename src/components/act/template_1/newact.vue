@@ -89,7 +89,7 @@
             <div class="inner">
                 <input type="text" class="ui-input" placeholder="请输入奖品描述" v-model="act.act_prize_desc">
                 <div class="mt15 upload-box text-center">
-                    <template v-for="item in act.images">
+                    <template v-for="item in images">
                         <img :src="item" alt="" class="img-w100">
                     </template>
                     <template v-show="act.images.length < 6">
@@ -151,9 +151,9 @@
         data: () => {
             return {
                 act: {
-                    act_prize_cnt: 1,
-                    images: []
-                }
+                    act_prize_cnt: 1
+                },
+                images: []
             }
         },
         components: { Fixed, Datepicker },
@@ -169,6 +169,7 @@
             newAct: function () {
                 const actSrv = new ActSrv(this);
                 let postData = this.act;
+                postData.images = this.images;
                 actSrv.newAct(postData).then((resp) => {
                     const respData = resp.data;
                     if(respData.code === 0) {
@@ -201,7 +202,6 @@
                         },
                         success: function(resp){
                             var data = JSON.parse(resp).data;
-
                             that.images.push(data.url)
                         }
                     })
