@@ -249,10 +249,8 @@
                     this.act.act_images = JSON.parse(this.act.act_images);
                 } catch (e) {
                     console.error(e)
-                } finally {
                     this.act.act_images = [];
                 }
-
                 const starttime = (new Date(act.act_start_time)).getTime();
                 const endtime = (new Date(act.act_end_time)).getTime();
                 const today = new Date().getTime();

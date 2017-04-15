@@ -14089,6 +14089,11 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { de
 //
 //
 //
+//
+//
+//
+//
+//
 
 exports.default = {
     data: function data() {
@@ -14112,11 +14117,9 @@ exports.default = {
                 _this.act.act_images = JSON.parse(_this.act.act_images);
             } catch (e) {
                 console.error(e);
-            } finally {
                 _this.act.act_images = [];
             }
         });
-
         actSrv.getDefaultRank().then(function (resp) {
             _this.rank = resp.data.data;
         });
@@ -14727,10 +14730,8 @@ exports.default = {
                 _this.act.act_images = JSON.parse(_this.act.act_images);
             } catch (e) {
                 console.error(e);
-            } finally {
                 _this.act.act_images = [];
             }
-
             var starttime = new Date(act.act_start_time).getTime();
             var endtime = new Date(act.act_end_time).getTime();
             var today = new Date().getTime();
@@ -24830,7 +24831,17 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
     staticClass: "box"
   }, [_vm._m(5), _vm._v(" "), _c('div', {
     staticClass: "inner"
-  }, [_vm._v("\n            " + _vm._s(_vm.act.act_prize_desc) + "\n        ")])]), _vm._v(" "), _c('div', {
+  }, [_vm._v("\n            " + _vm._s(_vm.act.act_prize_desc) + "\n            "), _c('div', {
+    staticClass: "mt15 upload-box text-center"
+  }, [_vm._l((_vm.act.act_images), function(item) {
+    return [_c('img', {
+      staticClass: "img-w100",
+      attrs: {
+        "src": item,
+        "alt": ""
+      }
+    })]
+  })], 2)])]), _vm._v(" "), _c('div', {
     staticClass: "box"
   }, [_vm._m(6), _vm._v(" "), _c('p', [_vm._v("主办方: " + _vm._s(_vm.act.organizer_name))]), _vm._v(" "), _c('p', [_vm._v("主办地址: " + _vm._s(_vm.act.organizer_address))]), _vm._v(" "), _c('p', [_vm._v("主办电话: " + _vm._s(_vm.act.organizer_phone) + " ")])]), _vm._v(" "), _c('div', {
     staticClass: "box"
