@@ -3,7 +3,7 @@
 		<span class="iconfont icon-404"></span>
 		<p class="text">抱歉！您访问的页面不存在……</p>
 		<div>
-			<div class="btn">去首页</div>
+			<router-link :to="{name: 'home'}" class="btn">去首页</router-link>
 		</div>
 	</div>
 </template>
@@ -25,6 +25,7 @@
         color: #ffb400;
     }
     .inner .btn{
+    	display: inline-block;
     	width: 100px;
     	margin: 20px auto;
     	font-weight: normal;

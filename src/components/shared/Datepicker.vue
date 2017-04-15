@@ -60,10 +60,13 @@
                 </div>
             </div>
         </transition>
+        <modal v-if="showModal" :modalOptions="modalOptions" @close="closeModal" @ok="okModal"></modal>
     </div>
 </template>
 
 <script>
+    import Modal from './modal.vue'
+
     export default {
         data () {
             let now = new Date()
@@ -92,9 +95,17 @@
                 yearList: Array.from({length: 12}, (value, index) => new Date().getFullYear() + index),
                 monthList: [1, 2, 3 ,4 ,5, 6, 7 ,8, 9, 10, 11, 12],
                 weekList: [0, 1, 2, 3, 4, 5, 6],
-                rangeStart: false
+                rangeStart: false,
+                showModal: false,
+                modalOptions: {
+                    size: 'mini',
+                    title: '请确定活动开始时间',
+                    content: '活动开始后不能修改、删除'
+                },
+                selectedDate: null
             }
         },
+        components: { Modal },
         props: {
             language: {default: 'en'},
             min: {default: '1970-01-01'},
@@ -106,59 +117,19 @@
             range: {
                 type: Boolean,
                 default: false
+            },
+            isShowModal: {
+                type: Boolean,
+                default: false
             }
         },
         methods: {
-            togglePanel () {
-                this.panelState = !this.panelState
-                this.rangeStart = false
+            closeModal: function(){
+                this.showModal = false;
             },
-            isSelected (type, item) {
-                switch (type){
-                    case 'year':
-                        if(!this.range) return item === this.tmpYear
-                        return (new Date(item, 0).getTime() >= new Date(this.tmpStartYear, 0).getTime() 
-                            && new Date(item, 0).getTime() <= new Date(this.tmpEndYear, 0).getTime())
-                    case 'month':
-                        if(!this.range) return item === this.tmpMonth && this.year === this.tmpYear
-                        return (new Date(this.tmpYear, item).getTime() >= new Date(this.tmpStartYear, this.tmpStartMonth).getTime() 
-                            && new Date(this.tmpYear, item).getTime() <= new Date(this.tmpEndYear, this.tmpEndMonth).getTime())
-                    case 'date':
-                        if(!this.range) return this.date === item.value && this.month === this.tmpMonth && item.currentMonth
-                        let month = this.tmpMonth
-                        item.previousMonth && month--
-                        item.nextMonth && month++
-                        return (new Date(this.tmpYear, month, item.value).getTime() >= new Date(this.tmpStartYear, this.tmpStartMonth, this.tmpStartDate).getTime() 
-                            && new Date(this.tmpYear, month, item.value).getTime() <= new Date(this.tmpEndYear, this.tmpEndMonth, this.tmpEndDate).getTime())
-                }
-            },
-            chType (type) {
-                this.panelType = type
-            },
-            chYearRange (next) {
-                if(next){
-                    this.yearList = this.yearList.map((i) => i + 12)
-                }else{
-                    this.yearList = this.yearList.map((i) => i - 12)
-                }
-            },
-            prevMonthPreview () {
-                this.tmpMonth = this.tmpMonth === 0 ? 0 : this.tmpMonth - 1
-            },
-            nextMonthPreview () {
-                this.tmpMonth = this.tmpMonth === 11 ? 11 : this.tmpMonth + 1
-            },
-            selectYear (year) {
-                if(this.validateYear(year)) return
-                this.tmpYear = year
-                this.panelType = 'month'
-            },
-            selectMonth (month) {
-                if(this.validateMonth(month)) return
-                this.tmpMonth = month
-                this.panelType = 'date'
-            },
-            selectDate (date) {
+            okModal: function(){
+                var date = this.selectedDate;
+
                 setTimeout(() => {
                     if(this.validateDate(date)) return
                     if(date.previousMonth){
@@ -219,6 +190,65 @@
                         this.panelState = false
                     }
                 }, 0)
+                this.showModal = false;
+            },
+            togglePanel () {
+                this.panelState = !this.panelState
+                this.rangeStart = false
+            },
+            isSelected (type, item) {
+                switch (type){
+                    case 'year':
+                        if(!this.range) return item === this.tmpYear
+                        return (new Date(item, 0).getTime() >= new Date(this.tmpStartYear, 0).getTime() 
+                            && new Date(item, 0).getTime() <= new Date(this.tmpEndYear, 0).getTime())
+                    case 'month':
+                        if(!this.range) return item === this.tmpMonth && this.year === this.tmpYear
+                        return (new Date(this.tmpYear, item).getTime() >= new Date(this.tmpStartYear, this.tmpStartMonth).getTime() 
+                            && new Date(this.tmpYear, item).getTime() <= new Date(this.tmpEndYear, this.tmpEndMonth).getTime())
+                    case 'date':
+                        if(!this.range) return this.date === item.value && this.month === this.tmpMonth && item.currentMonth
+                        let month = this.tmpMonth
+                        item.previousMonth && month--
+                        item.nextMonth && month++
+                        return (new Date(this.tmpYear, month, item.value).getTime() >= new Date(this.tmpStartYear, this.tmpStartMonth, this.tmpStartDate).getTime() 
+                            && new Date(this.tmpYear, month, item.value).getTime() <= new Date(this.tmpEndYear, this.tmpEndMonth, this.tmpEndDate).getTime())
+                }
+            },
+            chType (type) {
+                this.panelType = type
+            },
+            chYearRange (next) {
+                if(next){
+                    this.yearList = this.yearList.map((i) => i + 12)
+                }else{
+                    this.yearList = this.yearList.map((i) => i - 12)
+                }
+            },
+            prevMonthPreview () {
+                this.tmpMonth = this.tmpMonth === 0 ? 0 : this.tmpMonth - 1
+            },
+            nextMonthPreview () {
+                this.tmpMonth = this.tmpMonth === 11 ? 11 : this.tmpMonth + 1
+            },
+            selectYear (year) {
+                if(this.validateYear(year)) return
+                this.tmpYear = year
+                this.panelType = 'month'
+            },
+            selectMonth (month) {
+                if(this.validateMonth(month)) return
+                this.tmpMonth = month
+                this.panelType = 'date'
+            },
+            selectDate (date) {
+                this.selectedDate = date;
+                if(this.isShowModal){
+                    this.panelState = false
+                    this.showModal = true;
+                } else {
+                    this.okModal()
+                }
             },
             validateYear (year) {
                 return (year > this.maxYear || year < this.minYear) ? true : false

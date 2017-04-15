@@ -8,7 +8,7 @@
             <div class="countDown-box color_fff text-center">
                 <div class="table w100">
                     <div class="table-cell f12">
-                        <datepicker v-model="act.act_start_time"></datepicker>
+                        <datepicker v-model="act.act_start_time" :isShowModal="true"></datepicker>
                     </div>
                     <div class="table-cell table-cell-2">
                         至
@@ -153,7 +153,7 @@
                 act: {
                     act_prize_cnt: 1,
                     images: []
-                },
+                }
             }
         },
         components: { Fixed, Datepicker },

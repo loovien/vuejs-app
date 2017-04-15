@@ -126,6 +126,7 @@ export default {
 }
 .modal-body{
 	background: #fff;
+	color: #333;
 }
 .modal-footer{
 	text-align: right;
