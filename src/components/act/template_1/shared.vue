@@ -241,6 +241,7 @@
             this.userInfo.mobile = authUtil.getMobile();
 
             actSrv.getActInfo(query).then((resp) => {
+                // console.log(resp.data.data)
                 const act = this.act = resp.data.data;
                 const starttime = (new Date(act.act_start_time)).getTime();
                 const endtime = (new Date(act.act_end_time)).getTime();
@@ -264,6 +265,8 @@
                         this.completedCnt = resp.data.data.completed_cnt;
                     }
                 });
+                //微信分享
+                this.share()
             });
 
             actSrv.getUserInfo(query).then((resp) => {
@@ -282,6 +285,29 @@
             });
         },
         methods: {
+            //微信分享
+            share(){
+                var act = this.act;
+
+                window.share_config = {
+                    title   : act.title,
+                    desc    : act.description, 
+                    link    : act.link_url,
+                    imgUrl  : act.banner_img,
+                    shareTrigger: function (res) {
+
+                    },
+                    shareSuccess: function (res, channel) {
+
+                    },
+                    shareCancel: function (res) {
+
+                    },
+                    shareFail: function (res) {
+
+                    }
+                };
+            },
             //切换音乐开关
             togglePause: function(){
                 if(this.isPaused){
