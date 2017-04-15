@@ -128,6 +128,42 @@
                 </table>
             </div>
         </div>
+        <!-- 活动规则弹窗 -->
+        <modal v-if="showRuleModal" :modalOptions="ruleModalOptions" @close="showRuleModal = false">
+            <div slot="header">
+                <p class="modal-title">活动规则</p>
+                <span class="close" @click="showRuleModal = false"></span>
+            </div>
+            <div slot="body">
+                rule
+            </div>
+            <div slot="button">
+                <a href="javascript:void(0)" class="btn ok-btn btn-small fr btn-blue" @click="okRuleModal">我知道了</a>
+            </div>
+        </modal>
+        <!-- 报名弹窗 -->
+        <modal v-if="showSignupModal" :modalOptions="signupModalOptions" @close="showSignupModal = false">
+            <div slot="header">
+                <p class="modal-title">我要报名</p>
+                <span class="close" @click="showSignupModal = false"></span>
+            </div>
+            <div slot="body">
+                <input type="text" placeholder="请输入您的真实姓名" class="ui-input" v-model="signup.name">
+                <input type="text" placeholder="请输入您的手机号码" class="ui-input mt10" v-model="signup.phone">
+            </div>
+            <div slot="button">
+                <a href="javascript:void(0)" class="btn ok-btn btn-small fr btn-blue" @click="okSignupeModal">提交</a>
+            </div>
+        </modal>
+        <!-- 报名成功 -->
+        <modal v-if="showSuccessModal" :modalOptions="successModalOptions">
+            <div slot="header"><p class="modal-title">恭喜你</p></div>
+            <div slot="body" class="text-center successModal">
+                <p class="iconfont icon-success"></p>
+                报名成功 <span class="orange">{{successCountDown}}</span><span class="orange">S</span> 后将跳转
+            </div>
+            <div slot="button"></div>
+        </modal>
     </div>
 </template>
 
@@ -135,6 +171,7 @@
     import ActSrv from "../../../service/actSrv";
     import AuthUtil from "../../../utils/authUtil";
     import countDown from "../../shared/countDown.vue";
+    import Modal from '../../shared/modal.vue'
 
     export default {
         data() {
@@ -162,9 +199,31 @@
                 countDownTime: null,
                 isStart: true,//活动是否开始
                 isEnded: false,//活动是否结束
+                showRuleModal: false,
+                ruleModalOptions: {
+                    size: 'mini',
+                    showCancelButton: false
+                },
+                showSignupModal: false,
+                signupModalOptions: {
+                    size: 'mini',
+                    showCancelButton: false
+                },
+                signup: {
+                    name: '',
+                    phone: ''
+                },
+                showSuccessModal: false,
+                successModalOptions: {
+                    size: 'mini',
+                    title: '恭喜你',
+                    showConfirmButton: false,
+                    showCancelButton: false
+                },
+                successCountDown: 3
             }
         },
-        components: { countDown },
+        components: { countDown, Modal },
         created() {
             const query = this.$route.params;
             const actSrv = new ActSrv(this);
@@ -211,13 +270,32 @@
             });
             // 用户一进来的时候, 表示已将帮忙了
             actSrv.helpIt(query).then((resp) => {
-                alert(resp.data.msg);
+                // alert(resp.data.msg);
                 if(resp.data.code == 0) {
                     this.userInfo.join_cnt += 1;
                 }
             });
         },
         methods: {
+            //提交报名弹窗
+            okSignupeModal: function(){
+                if(this.signup.name == ''){
+                    alert('请填写姓名');
+                    return
+                } else if(this.signup.phone == ''){
+                    alert('请填写手机号码');
+                    return
+                } else if(!(/^1[3|4|5|8][0-9]\d{4,8}$/.test(this.signup.phone))){
+                    alert('请填写正确的手机号码');
+                    return
+                }
+                this.fillInfo(this.signup.name, this.signup.phone);
+            },
+            //关闭规则弹窗
+            okRuleModal() {
+                this.showRuleModal = false;
+                this.showSignupModal = true;
+            },
             //倒计时结束
             timeDown() {
                 this.isEnded = true;
@@ -236,7 +314,7 @@
                 /* 用户如果参与了, 直接显示用户的昵称, 和电话 */
                 this.actSrv.letsPlay({actId, openid}).then((resp) => {
                     if(resp.data.code === 0) {
-                        alert("弹框填写姓名名称");
+                        this.showRuleModal = true
                     } else {
                         let confirm = window.confirm("您已经参与过此活动, 直接跳转到你的活动页?");
                         if(confirm) {
@@ -252,15 +330,23 @@
                 });
             },
             /* 弹框填入姓名,电话 */
-            fillInfo() {
+            fillInfo(name, phone) {
                 const actId = this.query.actId;
                 const openid = this.openid;
                 const actOpenId = this.query.openid;
-                const name = "用户输入姓名";
-                const phone = "用户输入电话";
                 /* 成功条到输入电话弹框 */
                 this.actSrv.fillInfo({actId, openid, name, phone, actOpenId}).then((resp) => {
-                    this.$router.push({name: 'template1Shared', params: {actId, openid}});
+                    this.showSignupModal = false;
+                    this.showSuccessModal = true;
+                    var that = this;
+                    var timer = setInterval(function(){
+                        if(that.successCountDown <= 0){
+                            clearInterval(timer)
+                            this.$router.push({name: 'template1Shared', params: {actId, openid}});
+                        } else {
+                            that.successCountDown -= 1
+                        }
+                    }, 1000)
                 });
             },
         }
@@ -268,6 +354,36 @@
 </script>
 
 <style scoped>
+    .successModal{
+        padding: 20px 0;
+    }
+    .icon-success{
+        color: #ff4c12;
+        font-size: 40px;
+        line-height: 40px;
+        margin-bottom: 10px;
+    }
+    .orange{
+        color: #ff4c12;
+    }
+    .ok-btn{
+        background: url('/static/images/template_1/modal-btn-bg.jpg');
+        background-size: 100% 100%;
+        border: 2px solid #7b4506;
+        border-radius: 6px;
+        color: #5e1c08;
+        height: 46px;
+        line-height: 42px;
+    }
+    .ui-input{
+        border: 1px solid #ddd;
+        border-radius: 5px;
+        width: 100%; height: 50px;
+        line-height: 50px;
+        display: block;
+        font-size: 16px;
+        padding-left: 10px;
+    }
     .tips-notstart{
         line-height: 50px;
         font-size: 20px;

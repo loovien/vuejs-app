@@ -7,8 +7,8 @@
 	            <div class="modal-header">
 	                <slot name="header">
 	                    <p class="title">{{modal.title}}</p>
+	                    <span class="close" @click="close"></span>
 	                </slot>
-	                <span class="iconfont icon-cuowu close" @click="close"></span>
 	            </div>
 	            <!--内容区域-->
 	            <div class="modal-body">
@@ -17,7 +17,7 @@
 	            <!--尾部,操作按钮-->
 	            <div class="modal-footer clearfix" v-if="modal.showCancelButton || modal.showConfirmButton">
 	                <slot name="button">
-	                	<a v-if="modal.showConfirmButton" href="javascript:void(0)" class="btn btn-small fr btn-blue" :class="modal.confirmButtonClass" @click="ok">{{modal.confirmButtonText}}</a>
+	                	<a v-if="modal.showConfirmButton" href="javascript:void(0)" class="btn ok-btn btn-small fr btn-blue" :class="modal.confirmButtonClass" @click="ok">{{modal.confirmButtonText}}</a>
 	                	<a v-if="modal.showCancelButton" href="javascript:void(0)" class="btn cancel-btn btn-small fl btn-default btn-cancel" :class="modal.cancelButtonClass" @click="close()">{{modal.cancelButtonText}}</a>
 	                </slot>
 	            </div>
@@ -38,6 +38,7 @@ export default {
 	        	width: typeof opts.width === 'undefined' ? '' : opts.width,
 	        	size: opts.size || 'middle',
 	        	title: opts.title || '提示',
+	        	showClose: typeof opts.showClose === 'undefined' ? true : opts.showClose,
 	        	content: opts.content || '',
 		        showCancelButton: typeof opts.showCancelButton === 'undefined' ? true : opts.showCancelButton,
 		        cancelButtonClass: opts.cancelButtonClass ? opts.cancelButtonClass : '',
@@ -67,10 +68,15 @@ export default {
 }
 </script>
 
-<style scoped>
-.btn{
-	display: inline-block;
-	width: 40%;
+<style>
+.ok-btn{
+	background: url('/static/images/template_1/modal-btn-bg.jpg');
+	background-size: 100% 100%;
+	border: 2px solid #7b4506;
+	border-radius: 6px;
+	color: #5e1c08;
+	height: 46px;
+	line-height: 42px;
 }
 .cancel-btn{
 	background: #ccc;
@@ -92,7 +98,7 @@ export default {
 }
 .modal-container {
 	margin: 0px auto;
-	border-radius: 3px;
+	border-radius: 8px;
 	overflow: hidden;
 	box-shadow: 0 2px 8px rgba(0, 0, 0, .33);
 	transition: all .3s ease;
@@ -111,18 +117,19 @@ export default {
   transform: scale(1.1);
 }
 .modal-header{
-	background: #fff;
+	background: url('/static/images/template_1/modal-title-bg.png');
+	background-size: 100% auto;
 	position: relative;
 }
 .close{
 	position: absolute;
 	right: 10px;
-	top: 50%;
-	margin-top: -10px;
-	width: 20px; height: 20px;
-	line-height: 20px;
+	top: 0;
+	width: 40px; height: 40px;
 	text-align: center;
 	cursor: pointer;
+	background: url('/static/images/template_1/modal-close.png');
+	background-size: 100% 100%;
 }
 .modal-body{
 	background: #fff;
@@ -136,24 +143,24 @@ export default {
 	margin-right: 10px;
 }
 
-.title{
-	font-size: 16px;
-	color: #333;
+.modal-title{
+	font-size: 18px;
+	font-weight: bold;
+	color: #5e1c08;
+	text-align: center;
 }
 .modal-container.middle{
 	width: 800px;
 }
 .middle .modal-header{
 	padding: 15px;
-	border-bottom: 1px solid #ddd;
 }
 .middle .modal-body{
 	height: 500px;
 	overflow-y: auto;
 }
 .middle .modal-footer{
-	padding: 10px 15px;
-	border-top: 1px solid #ddd;
+	padding: 15px;
 	background: #f5f5f5;
 }
 .modal-container.mini{
@@ -166,7 +173,7 @@ export default {
 	padding: 15px;
 }
 .mini .modal-footer{
-	padding: 10px 15px;
+	padding: 15px;
 }
 
 .qrcodeModal .close{
