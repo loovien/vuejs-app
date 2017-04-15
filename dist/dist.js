@@ -15035,9 +15035,6 @@ exports.default = {
 //
 //
 //
-//
-//
-//
 
 /***/ }),
 /* 76 */
@@ -15546,6 +15543,7 @@ exports.default = {
             var _this = this;
 
             var mineSrv = this._getMineSrv();
+            var id = this.delId;
             mineSrv.deleteActById(id).then(function (resp) {
                 for (var i in _this.acts) {
                     if (_this.acts[i].id == _this.delId) {
@@ -15580,6 +15578,11 @@ exports.default = {
             if (!this.isLoadAll) {
                 this.loadMore();
             }
+        },
+        editAct: function editAct(id) {
+            this.$router.push({
+                name: "actEdit", params: { id: id }
+            }); // 保存后到分享也, 游湖有需要就分享
         },
         deleteAct: function deleteAct(id) {
             this.delId = id;
@@ -23722,7 +23725,18 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
       staticClass: "desc f12 color_999"
     }, [_vm._v(_vm._s(act.description))]), _vm._v(" "), _c('div', {
       staticClass: "operate text-right"
-    }, [_vm._m(0, true), _vm._v(" "), _c('div', {
+    }, [_c('div', {
+      staticClass: "inline-block"
+    }, [_c('span', {
+      staticClass: "iconfont icon-edit color_gray"
+    }), _vm._v(" "), _c('span', {
+      staticClass: "color_666 f12",
+      on: {
+        "click": function($event) {
+          _vm.editAct(act.id)
+        }
+      }
+    }, [_vm._v("编辑")])]), _vm._v(" "), _c('div', {
       staticClass: "inline-block delete"
     }, [_c('span', {
       staticClass: "iconfont icon-delete color_gray"
@@ -23771,15 +23785,7 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
       "ok": _vm.okModal
     }
   }) : _vm._e()], 1)
-},staticRenderFns: [function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
-  return _c('div', {
-    staticClass: "inline-block"
-  }, [_c('span', {
-    staticClass: "iconfont icon-edit color_gray"
-  }), _vm._v(" "), _c('span', {
-    staticClass: "color_666 f12"
-  }, [_vm._v("编辑")])])
-}]}
+},staticRenderFns: []}
 module.exports.render._withStripped = true
 if (false) {
   module.hot.accept()
@@ -24142,7 +24148,18 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
         _vm.act.act_rule_cnt = $event.target.value
       }
     }
-  }), _vm._v(_vm._s(_vm.act.act_rule_keywords) + "\n        ")])]), _vm._v(" "), _vm._m(4), _vm._v(" "), _c('div', {
+  }), _vm._v(_vm._s(_vm.act.act_rule_keywords) + "\n        ")])]), _vm._v(" "), _c('div', {
+    staticClass: "box"
+  }, [_vm._m(4), _vm._v(" "), _c('div', {
+    staticClass: "inner"
+  }, [_c('textarea', {
+    staticClass: "ui-textarea introduce-textarea",
+    attrs: {
+      "cols": "30",
+      "rows": "20",
+      "placeholder": "请输入参与规则"
+    }
+  }, [_vm._v("\n                " + _vm._s(_vm.act.act_rule_desc) + "\n            ")])])]), _vm._v(" "), _c('div', {
     staticClass: "box"
   }, [_vm._m(5), _vm._v(" "), _c('div', {
     staticClass: "inner"
@@ -24414,9 +24431,7 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
     staticClass: "word w3"
   }, [_vm._v("则")])])
 },function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
-  return _c('div', {
-    staticClass: "box"
-  }, [_c('h2', {
+  return _c('h2', {
     staticClass: "box-title"
   }, [_c('span', {
     staticClass: "word w0"
@@ -24426,16 +24441,7 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
     staticClass: "word w2"
   }, [_vm._v("详")]), _vm._v(" "), _c('span', {
     staticClass: "word w3"
-  }, [_vm._v("请")])]), _vm._v(" "), _c('div', {
-    staticClass: "inner"
-  }, [_c('textarea', {
-    staticClass: "ui-textarea introduce-textarea",
-    attrs: {
-      "cols": "30",
-      "rows": "20",
-      "placeholder": "请输入参与规则"
-    }
-  }, [_vm._v("\n                格式为: (筹集, 转发: act_rule_decorate) : (数量: act_rule_cnt) :(商品词: act_rule_keywords) (换取什么奖品: act_prize_name)\n            ")])])])
+  }, [_vm._v("请")])])
 },function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
   return _c('h2', {
     staticClass: "box-title"
@@ -25424,7 +25430,11 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
     staticClass: "box"
   }, [_vm._m(1), _vm._v(" "), _c('div', {
     staticClass: "inner"
-  }, [_c('p', [_vm._v(_vm._s(_vm.act.description))])])]), _vm._v(" "), _vm._m(2), _vm._v(" "), _c('div', {
+  }, [_c('p', [_vm._v(_vm._s(_vm.act.description))])])]), _vm._v(" "), _c('div', {
+    staticClass: "box"
+  }, [_vm._m(2), _vm._v(" "), _c('div', {
+    staticClass: "inner"
+  }, [_vm._v("\n            " + _vm._s(_vm.act.act_rule_desc) + "\n        ")])]), _vm._v(" "), _c('div', {
     staticClass: "box"
   }, [_vm._m(3), _vm._v(" "), _c('div', {
     staticClass: "inner"
@@ -25642,9 +25652,7 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
     staticClass: "word w3"
   }, [_vm._v("绍")])])
 },function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
-  return _c('div', {
-    staticClass: "box"
-  }, [_c('h2', {
+  return _c('h2', {
     staticClass: "box-title"
   }, [_c('span', {
     staticClass: "word w0"
@@ -25654,17 +25662,7 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
     staticClass: "word w2"
   }, [_vm._v("规")]), _vm._v(" "), _c('span', {
     staticClass: "word w3"
-  }, [_vm._v("则")])]), _vm._v(" "), _c('div', {
-    staticClass: "inner"
-  }, [_c('p', [_c('span', {
-    staticClass: "num"
-  }, [_vm._v("1")]), _vm._v("参与活动前，请详细阅读活动规则及相关条款。凡参与本次活动，则视为同意活动内容及免责声明条款。")]), _vm._v(" "), _c('p', [_c('span', {
-    staticClass: "num"
-  }, [_vm._v("2")]), _vm._v("如遇不可抗力因素，本次活动因故无法进行时，活动主办方在法律允许的范围内有权决定取消、终止、修改或暂停本活动。")]), _vm._v(" "), _c('p', [_c('span', {
-    staticClass: "num"
-  }, [_vm._v("3")]), _vm._v("请中奖用户按照活动提示提供正确的联系方式，若不正确导致无法收到奖品，活动主办方不予负责。")]), _vm._v(" "), _c('p', [_c('span', {
-    staticClass: "num"
-  }, [_vm._v("4")]), _vm._v("除质量问题外，本活动产品概不退货。")])])])
+  }, [_vm._v("则")])])
 },function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
   return _c('h2', {
     staticClass: "box-title"
