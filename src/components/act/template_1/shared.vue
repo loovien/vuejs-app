@@ -244,7 +244,16 @@
 
             actSrv.getActInfo(query).then((resp) => {
                 // console.log(resp.data.data)
-                const act = this.act = resp.data.data;
+                let act = this.act = resp.data.data;
+                if(!!act.act_images) {
+                    try {
+                        act.act_images = JSON.parse(act.act_images);
+                    } catch (e) {
+                        console.error(e);
+                    } finally {
+                        act.act_images = '';
+                    }
+                }
                 const starttime = (new Date(act.act_start_time)).getTime();
                 const endtime = (new Date(act.act_end_time)).getTime();
                 const today = new Date().getTime();

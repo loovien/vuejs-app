@@ -14716,6 +14716,15 @@ exports.default = {
         actSrv.getActInfo(query).then(function (resp) {
             // console.log(resp.data.data)
             var act = _this.act = resp.data.data;
+            if (!!act.act_images) {
+                try {
+                    act.act_images = JSON.parse(act.act_images);
+                } catch (e) {
+                    console.error(e);
+                } finally {
+                    act.act_images = '';
+                }
+            }
             var starttime = new Date(act.act_start_time).getTime();
             var endtime = new Date(act.act_end_time).getTime();
             var today = new Date().getTime();
