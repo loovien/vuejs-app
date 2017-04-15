@@ -164,6 +164,9 @@
             </div>
             <div slot="button"></div>
         </modal>
+        <fixed :options="{save: false, back: false, account: false}"></fixed>
+        <span v-if="!!act.background_music" class="music-icon iconfont icon-music" :class="{'isPaused': isPaused}" @click="togglePause"></span>
+        <audio v-if="!!act.background_music" loop="" :src="act.background_music" autoplay="" id="music"></audio>
     </div>
 </template>
 
@@ -172,6 +175,7 @@
     import AuthUtil from "../../../utils/authUtil";
     import countDown from "../../shared/countDown.vue";
     import Modal from '../../shared/modal.vue'
+    import Fixed from '../../shared/fixed.vue'
 
     export default {
         data() {
@@ -220,10 +224,11 @@
                     showConfirmButton: false,
                     showCancelButton: false
                 },
-                successCountDown: 3
+                successCountDown: 3,
+                isPaused: false//是否关闭音乐
             }
         },
-        components: { countDown, Modal },
+        components: { countDown, Modal, Fixed },
         created() {
             const query = this.$route.params;
             const actSrv = new ActSrv(this);
@@ -277,6 +282,16 @@
             });
         },
         methods: {
+            //切换音乐开关
+            togglePause: function(){
+                if(this.isPaused){
+                    document.getElementById('music').play()
+                    this.isPaused = false
+                } else {
+                    document.getElementById('music').pause()
+                    this.isPaused = true
+                }
+            },
             //提交报名弹窗
             okSignupeModal: function(){
                 if(this.signup.name == ''){
@@ -354,6 +369,27 @@
 </script>
 
 <style scoped>
+    .music-icon.isPaused:after{
+        content: '';
+        width: 100%; height: 1px;
+        background: #fff;
+        position: absolute;
+        top: 50%; left: 0;
+        -webkit-transform:rotate(135deg); 
+                transform:rotate(135deg);
+    }
+    .music-icon{
+        display: block;
+        width: 45px; height: 45px;
+        border-radius: 50%;
+        text-align: center;
+        line-height: 45px;
+        background: rgba(0,0,0,.7);
+        color: #fff;
+        position: fixed;
+        top: 30px; right: 10px;
+        font-size: 20px;
+    }
     .successModal{
         padding: 20px 0;
     }

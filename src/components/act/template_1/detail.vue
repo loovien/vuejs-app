@@ -116,6 +116,8 @@
             </div>
         </div>
         <router-link :to="{name: 'actNew', params:{id: id}}" class="madeBtn">我要制作</router-link>
+        <span v-if="!!act.background_music" class="music-icon iconfont icon-music" :class="{'isPaused': isPaused}" @click="togglePause"></span>
+        <audio v-if="!!act.background_music" loop="" :src="act.background_music" autoplay="" id="music"></audio>
         <!-- {{act.description}} -->
     </div>
 </template>
@@ -145,6 +147,18 @@
             actSrv.getDefaultRank().then((resp) => {
                     this.rank = resp.data.data;
             });
+        },
+        methods: {
+            //切换音乐开关
+            togglePause: function(){
+                if(this.isPaused){
+                    document.getElementById('music').play()
+                    this.isPaused = false
+                } else {
+                    document.getElementById('music').pause()
+                    this.isPaused = true
+                }
+            },
         }
     }
 </script>
