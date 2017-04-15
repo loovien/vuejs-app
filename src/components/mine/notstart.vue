@@ -17,7 +17,7 @@
                         <div class="operate text-right">
                             <div class="inline-block">
                                 <span class="iconfont icon-edit color_gray"></span>
-                                <span class="color_666 f12">编辑</span>
+                                <span class="color_666 f12" @click="editAct(act.id)">编辑</span>
                             </div>
                             <div class="inline-block delete">
                                 <span class="iconfont icon-delete color_gray"></span>
@@ -114,10 +114,16 @@
                     this.loadMore()
                 }
             },
+
+            editAct(id) {
+
+            },
+
             deleteAct(id){
                 this.delId = id;
                 this.showModal = true;
             },
+
             _getMineSrv() {
                 return new MineSrv(this);
             }
