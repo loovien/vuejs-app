@@ -73,7 +73,7 @@
                 <span class="word w3">请</span>
             </h2>
             <div class="inner">
-                <textarea class="ui-textarea introduce-textarea" cols="30" rows="20" placeholder="请输入参与规则">
+                <textarea class="ui-textarea introduce-textarea" cols="30" v-model="act.act_rule_desc" rows="20" placeholder="请输入参与规则">
                     {{act.act_rule_desc}}
                 </textarea>
             </div>

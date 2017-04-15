@@ -1,6 +1,6 @@
 <template>
     <div class="layout">
-        <div class="topBar color_fff f16"><span class="color_yellow">78</span>人查看<span class="color_yellow pl10">394</span>人分享<span class="color_yellow pl10">16</span>人报名</div>
+        <div class="topBar color_fff f16"><span class="color_yellow">7800</span>人查看<span class="color_yellow pl10">39499</span>人分享<span class="color_yellow pl10">16333</span>人报名</div>
         <div class="relative">
             <img src="/static/images/template_1/banner-bg.jpg" alt="" class="banner-bg">
             <div class="banner">
@@ -8,7 +8,7 @@
             </div>
             <div class="countDown-box color_fff text-center">
                 <countDown :date="countDownTime"></countDown>
-                <p class="mt5"><span class="color_yellow">张馨予</span><span class="color_fff key">2016-11-01 12:15</span><span class="color_yellow">抽中奖品</span></p>
+                <p class="mt5"><span class="color_yellow">您</span><span class="color_fff key">{{act.act_start_time}}</span><span class="color_yellow">抽中奖品</span></p>
             </div>
         </div>
         <div class="text-center playBtn-box">
@@ -23,8 +23,7 @@
                 <span class="word w3">励</span>
             </h2>
             <div class="inner text-center">
-                <p>总共<span class="red key">200</span>份 最后<span class="red key">99</span>份</p>
-                <p>海澜之家<span class="red key">1000元</span>代金券</p>
+                <p>总共<span class="red key">{{act.act_prize_cnt}}</span>{{act.act_prize_unit}} 最后<span class="red key">{{act.act_prize_cnt - completedCnt}}</span>{{act.act_prize_unit}}</p>
             </div>
         </div>
 
@@ -36,8 +35,7 @@
                 <span class="word w3">绍</span>
             </h2>
             <div class="inner">
-                <p>四海八荒的设计师盆友们：还记得去年的【Wacom疯狂艺术馆】么？三位站酷脑洞画手致敬艺术、“调戏”大师，创造设计新主义……艺术向左，极客向右，设计没有界限！</p>
-                <p>今天，两位作为实验者来到【Wacom实验室】，手把手评测两款颠覆设计生产力的手绘神器，以技术宅的视角分享2017年“搞机”新体验。如何选择最适合自己的数位板？谁才是内外兼备的性价比之王？带上好奇心，跟随小Z和实验者们开启设计颠覆之旅吧！</p>
+                <p>{{act.description}}</p>
             </div>
         </div>
         
@@ -49,10 +47,7 @@
                 <span class="word w3">则</span>
             </h2>
             <div class="inner">
-                <p><span class="num">1</span>参与活动前，请详细阅读活动规则及相关条款。凡参与本次活动，则视为同意活动内容及免责声明条款。</p>
-                <p><span class="num">2</span>如遇不可抗力因素，本次活动因故无法进行时，活动主办方在法律允许的范围内有权决定取消、终止、修改或暂停本活动。</p>
-                <p><span class="num">3</span>请中奖用户按照活动提示提供正确的联系方式，若不正确导致无法收到奖品，活动主办方不予负责。</p>
-                <p><span class="num">4</span>除质量问题外，本活动产品概不退货。</p>
+                {{act.act_rule_desc}}
             </div>
         </div>
 
@@ -63,7 +58,9 @@
                 <span class="word w2">描</span>
                 <span class="word w3">述</span>
             </h2>
-            <div class="inner">奖品描述</div>
+            <div class="inner">
+                {{act.act_prize_desc}}
+            </div>
         </div>
 
         <div class="box">
@@ -73,7 +70,9 @@
                 <span class="word w2">信</span>
                 <span class="word w3">息</span>
             </h2>
-            <div class="inner">领奖信息</div>
+            <p>主办方: {{act.organizer_name}}</p>
+            <p>主办地址: {{act.organizer_address}}</p>
+            <p>主办电话: {{act.organizer_phone}} </p>
         </div>
 
         <div class="box">
@@ -83,7 +82,7 @@
                 <span class="word w2">我</span>
                 <span class="word w3">们</span>
             </h2>
-            <div class="inner">关于我们</div>
+            <div class="inner">{{act.about_us}}</div>
         </div>
 
         <div class="box">

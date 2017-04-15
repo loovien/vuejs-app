@@ -66,6 +66,11 @@
             </h2>
             <div class="inner">
                 {{act.act_prize_desc}}
+                <div class="mt15 upload-box text-center">
+                    <template v-for="item in act.act_images">
+                        <img :src="item" alt="" class="img-w100">
+                    </template>
+                </div>
             </div>
         </div>
 

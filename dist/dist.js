@@ -14089,7 +14089,6 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { de
 //
 //
 //
-//
 
 exports.default = {
     data: function data() {
@@ -14867,6 +14866,11 @@ exports.default = {
         }
     }
 }; //
+//
+//
+//
+//
+//
 //
 //
 //
@@ -24153,11 +24157,26 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
   }, [_vm._m(4), _vm._v(" "), _c('div', {
     staticClass: "inner"
   }, [_c('textarea', {
+    directives: [{
+      name: "model",
+      rawName: "v-model",
+      value: (_vm.act.act_rule_desc),
+      expression: "act.act_rule_desc"
+    }],
     staticClass: "ui-textarea introduce-textarea",
     attrs: {
       "cols": "30",
       "rows": "20",
       "placeholder": "请输入参与规则"
+    },
+    domProps: {
+      "value": (_vm.act.act_rule_desc)
+    },
+    on: {
+      "input": function($event) {
+        if ($event.target.composing) { return; }
+        _vm.act.act_rule_desc = $event.target.value
+      }
     }
   }, [_vm._v("\n                " + _vm._s(_vm.act.act_rule_desc) + "\n            ")])])]), _vm._v(" "), _c('div', {
     staticClass: "box"
@@ -24769,9 +24788,43 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
     attrs: {
       "date": _vm.countDownTime
     }
-  }), _vm._v(" "), _vm._m(1)], 1)]), _vm._v(" "), _vm._m(2), _vm._v(" "), _vm._m(3), _vm._v(" "), _vm._m(4), _vm._v(" "), _vm._m(5), _vm._v(" "), _vm._m(6), _vm._v(" "), _vm._m(7), _vm._v(" "), _vm._m(8), _vm._v(" "), _c('div', {
+  }), _vm._v(" "), _c('p', {
+    staticClass: "mt5"
+  }, [_c('span', {
+    staticClass: "color_yellow"
+  }, [_vm._v("您")]), _c('span', {
+    staticClass: "color_fff key"
+  }, [_vm._v(_vm._s(_vm.act.act_start_time))]), _c('span', {
+    staticClass: "color_yellow"
+  }, [_vm._v("抽中奖品")])])], 1)]), _vm._v(" "), _vm._m(1), _vm._v(" "), _c('div', {
     staticClass: "box"
-  }, [_vm._m(9), _vm._v(" "), _c('div', {
+  }, [_vm._m(2), _vm._v(" "), _c('div', {
+    staticClass: "inner text-center"
+  }, [_c('p', [_vm._v("总共"), _c('span', {
+    staticClass: "red key"
+  }, [_vm._v(_vm._s(_vm.act.act_prize_cnt))]), _vm._v(_vm._s(_vm.act.act_prize_unit) + " 最后"), _c('span', {
+    staticClass: "red key"
+  }, [_vm._v(_vm._s(_vm.act.act_prize_cnt - _vm.completedCnt))]), _vm._v(_vm._s(_vm.act.act_prize_unit))])])]), _vm._v(" "), _c('div', {
+    staticClass: "box"
+  }, [_vm._m(3), _vm._v(" "), _c('div', {
+    staticClass: "inner"
+  }, [_c('p', [_vm._v(_vm._s(_vm.act.description))])])]), _vm._v(" "), _c('div', {
+    staticClass: "box"
+  }, [_vm._m(4), _vm._v(" "), _c('div', {
+    staticClass: "inner"
+  }, [_vm._v("\n            " + _vm._s(_vm.act.act_rule_desc) + "\n        ")])]), _vm._v(" "), _c('div', {
+    staticClass: "box"
+  }, [_vm._m(5), _vm._v(" "), _c('div', {
+    staticClass: "inner"
+  }, [_vm._v("\n            " + _vm._s(_vm.act.act_prize_desc) + "\n        ")])]), _vm._v(" "), _c('div', {
+    staticClass: "box"
+  }, [_vm._m(6), _vm._v(" "), _c('p', [_vm._v("主办方: " + _vm._s(_vm.act.organizer_name))]), _vm._v(" "), _c('p', [_vm._v("主办地址: " + _vm._s(_vm.act.organizer_address))]), _vm._v(" "), _c('p', [_vm._v("主办电话: " + _vm._s(_vm.act.organizer_phone) + " ")])]), _vm._v(" "), _c('div', {
+    staticClass: "box"
+  }, [_vm._m(7), _vm._v(" "), _c('div', {
+    staticClass: "inner"
+  }, [_vm._v(_vm._s(_vm.act.about_us))])]), _vm._v(" "), _c('div', {
+    staticClass: "box"
+  }, [_vm._m(8), _vm._v(" "), _c('div', {
     staticClass: "inner"
   }, [_c('p', {
     staticClass: "text-center"
@@ -24785,7 +24838,7 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
       "cellpadding": "0",
       "cellspacing": "1"
     }
-  }, [_vm._m(10), _vm._v(" "), _c('tbody', _vm._l((_vm.rank.data), function(item, index) {
+  }, [_vm._m(9), _vm._v(" "), _c('tbody', _vm._l((_vm.rank.data), function(item, index) {
     return _c('tr', [_c('td', [_vm._v(_vm._s(index + 1))]), _vm._v(" "), _c('td', [_vm._v(_vm._s(item.name))]), _vm._v(" "), _c('td', [_vm._v(_vm._s(item.spend_time + '小时'))]), _vm._v(" "), _c('td', [_vm._v(_vm._s(item.is_completed ? '已完成' : ''))])])
   }))])])]), _vm._v(" "), _c('router-link', {
     staticClass: "madeBtn",
@@ -24818,21 +24871,11 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
     staticClass: "topBar color_fff f16"
   }, [_c('span', {
     staticClass: "color_yellow"
-  }, [_vm._v("78")]), _vm._v("人查看"), _c('span', {
+  }, [_vm._v("7800")]), _vm._v("人查看"), _c('span', {
     staticClass: "color_yellow pl10"
-  }, [_vm._v("394")]), _vm._v("人分享"), _c('span', {
+  }, [_vm._v("39499")]), _vm._v("人分享"), _c('span', {
     staticClass: "color_yellow pl10"
-  }, [_vm._v("16")]), _vm._v("人报名")])
-},function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
-  return _c('p', {
-    staticClass: "mt5"
-  }, [_c('span', {
-    staticClass: "color_yellow"
-  }, [_vm._v("张馨予")]), _c('span', {
-    staticClass: "color_fff key"
-  }, [_vm._v("2016-11-01 12:15")]), _c('span', {
-    staticClass: "color_yellow"
-  }, [_vm._v("抽中奖品")])])
+  }, [_vm._v("16333")]), _vm._v("人报名")])
 },function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
   return _c('div', {
     staticClass: "text-center playBtn-box"
@@ -24844,9 +24887,7 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
     }
   })])
 },function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
-  return _c('div', {
-    staticClass: "box"
-  }, [_c('h2', {
+  return _c('h2', {
     staticClass: "box-title"
   }, [_c('span', {
     staticClass: "word w0"
@@ -24856,19 +24897,9 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
     staticClass: "word w2"
   }, [_vm._v("奖")]), _vm._v(" "), _c('span', {
     staticClass: "word w3"
-  }, [_vm._v("励")])]), _vm._v(" "), _c('div', {
-    staticClass: "inner text-center"
-  }, [_c('p', [_vm._v("总共"), _c('span', {
-    staticClass: "red key"
-  }, [_vm._v("200")]), _vm._v("份 最后"), _c('span', {
-    staticClass: "red key"
-  }, [_vm._v("99")]), _vm._v("份")]), _vm._v(" "), _c('p', [_vm._v("海澜之家"), _c('span', {
-    staticClass: "red key"
-  }, [_vm._v("1000元")]), _vm._v("代金券")])])])
+  }, [_vm._v("励")])])
 },function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
-  return _c('div', {
-    staticClass: "box"
-  }, [_c('h2', {
+  return _c('h2', {
     staticClass: "box-title"
   }, [_c('span', {
     staticClass: "word w0"
@@ -24878,13 +24909,9 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
     staticClass: "word w2"
   }, [_vm._v("介")]), _vm._v(" "), _c('span', {
     staticClass: "word w3"
-  }, [_vm._v("绍")])]), _vm._v(" "), _c('div', {
-    staticClass: "inner"
-  }, [_c('p', [_vm._v("四海八荒的设计师盆友们：还记得去年的【Wacom疯狂艺术馆】么？三位站酷脑洞画手致敬艺术、“调戏”大师，创造设计新主义……艺术向左，极客向右，设计没有界限！")]), _vm._v(" "), _c('p', [_vm._v("今天，两位作为实验者来到【Wacom实验室】，手把手评测两款颠覆设计生产力的手绘神器，以技术宅的视角分享2017年“搞机”新体验。如何选择最适合自己的数位板？谁才是内外兼备的性价比之王？带上好奇心，跟随小Z和实验者们开启设计颠覆之旅吧！")])])])
+  }, [_vm._v("绍")])])
 },function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
-  return _c('div', {
-    staticClass: "box"
-  }, [_c('h2', {
+  return _c('h2', {
     staticClass: "box-title"
   }, [_c('span', {
     staticClass: "word w0"
@@ -24894,21 +24921,9 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
     staticClass: "word w2"
   }, [_vm._v("规")]), _vm._v(" "), _c('span', {
     staticClass: "word w3"
-  }, [_vm._v("则")])]), _vm._v(" "), _c('div', {
-    staticClass: "inner"
-  }, [_c('p', [_c('span', {
-    staticClass: "num"
-  }, [_vm._v("1")]), _vm._v("参与活动前，请详细阅读活动规则及相关条款。凡参与本次活动，则视为同意活动内容及免责声明条款。")]), _vm._v(" "), _c('p', [_c('span', {
-    staticClass: "num"
-  }, [_vm._v("2")]), _vm._v("如遇不可抗力因素，本次活动因故无法进行时，活动主办方在法律允许的范围内有权决定取消、终止、修改或暂停本活动。")]), _vm._v(" "), _c('p', [_c('span', {
-    staticClass: "num"
-  }, [_vm._v("3")]), _vm._v("请中奖用户按照活动提示提供正确的联系方式，若不正确导致无法收到奖品，活动主办方不予负责。")]), _vm._v(" "), _c('p', [_c('span', {
-    staticClass: "num"
-  }, [_vm._v("4")]), _vm._v("除质量问题外，本活动产品概不退货。")])])])
+  }, [_vm._v("则")])])
 },function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
-  return _c('div', {
-    staticClass: "box"
-  }, [_c('h2', {
+  return _c('h2', {
     staticClass: "box-title"
   }, [_c('span', {
     staticClass: "word w0"
@@ -24918,13 +24933,9 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
     staticClass: "word w2"
   }, [_vm._v("描")]), _vm._v(" "), _c('span', {
     staticClass: "word w3"
-  }, [_vm._v("述")])]), _vm._v(" "), _c('div', {
-    staticClass: "inner"
-  }, [_vm._v("奖品描述")])])
+  }, [_vm._v("述")])])
 },function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
-  return _c('div', {
-    staticClass: "box"
-  }, [_c('h2', {
+  return _c('h2', {
     staticClass: "box-title"
   }, [_c('span', {
     staticClass: "word w0"
@@ -24934,13 +24945,9 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
     staticClass: "word w2"
   }, [_vm._v("信")]), _vm._v(" "), _c('span', {
     staticClass: "word w3"
-  }, [_vm._v("息")])]), _vm._v(" "), _c('div', {
-    staticClass: "inner"
-  }, [_vm._v("领奖信息")])])
+  }, [_vm._v("息")])])
 },function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
-  return _c('div', {
-    staticClass: "box"
-  }, [_c('h2', {
+  return _c('h2', {
     staticClass: "box-title"
   }, [_c('span', {
     staticClass: "word w0"
@@ -24950,9 +24957,7 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
     staticClass: "word w2"
   }, [_vm._v("我")]), _vm._v(" "), _c('span', {
     staticClass: "word w3"
-  }, [_vm._v("们")])]), _vm._v(" "), _c('div', {
-    staticClass: "inner"
-  }, [_vm._v("关于我们")])])
+  }, [_vm._v("们")])])
 },function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
   return _c('h2', {
     staticClass: "box-title"
@@ -25438,7 +25443,17 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
     staticClass: "box"
   }, [_vm._m(3), _vm._v(" "), _c('div', {
     staticClass: "inner"
-  }, [_vm._v("\n            " + _vm._s(_vm.act.act_prize_desc) + "\n        ")])]), _vm._v(" "), _c('div', {
+  }, [_vm._v("\n            " + _vm._s(_vm.act.act_prize_desc) + "\n            "), _c('div', {
+    staticClass: "mt15 upload-box text-center"
+  }, [_vm._l((_vm.act.act_images), function(item) {
+    return [_c('img', {
+      staticClass: "img-w100",
+      attrs: {
+        "src": item,
+        "alt": ""
+      }
+    })]
+  })], 2)])]), _vm._v(" "), _c('div', {
     staticClass: "box"
   }, [_vm._m(4), _vm._v(" "), _c('div', {
     staticClass: "inner"
