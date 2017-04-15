@@ -42,6 +42,10 @@ export default class ActSrv extends BaseSrv {
         return this.http.post("act/u", postData);
     }
 
+    editAct(postData) {
+        return this.http.post("act/u/" + postData.id, postData);
+    }
+
     /**
      * 获取默认排行榜
      */
