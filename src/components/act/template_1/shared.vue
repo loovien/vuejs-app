@@ -321,10 +321,12 @@
             share(){
                 var act = this.act;
 
+                var url = window.location.origin + window.location.pathname;
+
                 window.share_config = {
                     title   : act.title,
                     desc    : act.description, 
-                    link    : act.link_url,
+                    link    : url,
                     imgUrl  : act.banner_img,
                     shareTrigger: function (res) {
 
@@ -393,8 +395,9 @@
                     } else {
                         let confirm = window.confirm("您已经参与过此活动, 直接跳转到你的活动页?");
                         if(confirm) {
-                            that.$router.push({name: 'template1Shared', params: {actId, openid}});
-                            window.location.reload(true);
+//                            that.$router.push({name: 'template1Shared', params: {actId, openid}});
+                            window.location.href = `/act/shared/${actId}/${openid}`;
+                            return;
                         }
                     }
                 });
