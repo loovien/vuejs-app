@@ -202,9 +202,10 @@
     export default {
         data() {
             return {
+                authUtil: null,
                 actSrv: {},
                 query: {}, // address params
-                openid: '', // current user openid
+                openid: null, // current user openid
                 act: { // activity information
 
                 },
@@ -258,7 +259,8 @@
             this.actSrv = actSrv;
 
             const authUtil = new AuthUtil(this.$http);
-            const visitOpenId = this.openid = authUtil.getOpenId();
+            this.authUtil = authUtil;
+            const visitOpenId = authUtil.getOpenId();
             this.userInfo.name = authUtil.getName();
             this.userInfo.mobile = authUtil.getMobile();
 
@@ -391,7 +393,7 @@
                     } else {
                         let confirm = window.confirm("您已经参与过此活动, 直接跳转到你的活动页?");
                         if(confirm) {
-                            that.$router.push({name: "template1Shared", params: {actId, openid}}); // 保存后到分享也, 游湖有需要就分享
+                            that.$router.push({name: 'template1Shared', params: {actId, openid}});
                             window.location.reload(true);
                         }
                     }
