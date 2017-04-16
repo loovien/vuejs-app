@@ -8,7 +8,7 @@
         <div class="list">
             <div class="item mt10 clearfix table w100" v-for="act in acts" :key="act.id">
                 <div class="table w100">
-                    <router-link :to="{name: 'actDetail', params: {id: act.id}}" class="thumbnail-box table-cell">
+                    <router-link :to="{name: 'template1Shared', params: {id: act.id, openid}}" class="thumbnail-box table-cell">
                         <img :src="act.banner_img" alt="" class="thumbnail fl">
                     </router-link>
                     <div class="relative item-info table-cell">
@@ -54,15 +54,18 @@
 <script>
     import Modal from '../shared/modal.vue'
     import MineSrv from "../../service/mineSrv";
-    import MugenScroll from 'vue-mugen-scroll'
+    import MugenScroll from 'vue-mugen-scroll';
+    import AuthUtil from "../../utils/authUtil";
 
     export default {
         data(){
             return {
+                authUtil: null,
                 loading: false,
                 isLoadAll: false, //是否加载完毕
                 acts: [],
                 page: 1,
+                openid: '',
                 showModal: false,
                 delId: null,//删除id
                 modalOptions: {
@@ -72,6 +75,8 @@
             }
         },
         created: function () {
+            this.authUtil = new AuthUtil(this.$http);
+            this.openid = this.authUtil.getOpenId();
             this.loadMore()
         },
         components: { MugenScroll, Modal },

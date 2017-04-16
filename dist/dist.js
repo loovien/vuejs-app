@@ -437,7 +437,7 @@ if(typeof __e == 'number')__e = core; // eslint-disable-line no-undef
 
 var store      = __webpack_require__(42)('wks')
   , uid        = __webpack_require__(30)
-  , Symbol     = __webpack_require__(5).Symbol
+  , Symbol     = __webpack_require__(6).Symbol
   , USE_SYMBOL = typeof Symbol == 'function';
 
 var $exports = module.exports = function(name){
@@ -449,6 +449,183 @@ $exports.store = store;
 
 /***/ }),
 /* 5 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+    value: true
+});
+
+var _classCallCheck2 = __webpack_require__(9);
+
+var _classCallCheck3 = _interopRequireDefault(_classCallCheck2);
+
+var _createClass2 = __webpack_require__(14);
+
+var _createClass3 = _interopRequireDefault(_createClass2);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+/**
+ * Created by luowen on 2017/3/20.
+ */
+
+var jAuthUtil = function () {
+    function jAuthUtil(http) {
+        var isAuthenticated = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : false;
+        (0, _classCallCheck3.default)(this, jAuthUtil);
+
+        this.http = http;
+        this.authenticated = isAuthenticated;
+    }
+
+    (0, _createClass3.default)(jAuthUtil, [{
+        key: 'login',
+        value: function login(context, credentials) {
+            var _this = this;
+
+            var redirectUrl = arguments.length > 2 && arguments[2] !== undefined ? arguments[2] : '/';
+
+            return this.$http.post("/login", credentials, function (data) {
+                localStorage.setItem('_token', data.token);
+                return _this.authenticated = true;
+            }).error(function (error) {
+                context.error = error;
+                return false;
+            });
+        }
+    }, {
+        key: 'logout',
+        value: function logout() {
+            this.removeName();
+            this.removeMobile();
+            this.removeExpiredDays();
+        }
+    }, {
+        key: 'getWxAuthUrl',
+        value: function getWxAuthUrl() {
+            return this.http.get("wechat/authorization");
+        }
+    }, {
+        key: 'isExpired',
+        value: function isExpired() {
+            return sessionStorage.getItem("_expired_days") <= 0;
+        }
+    }, {
+        key: 'isLogin',
+        value: function isLogin() {
+            return !!sessionStorage.getItem('_mobile');
+        }
+    }, {
+        key: 'hasWxOpenId',
+        value: function hasWxOpenId() {
+            return !!sessionStorage.getItem("_openid");
+        }
+    }, {
+        key: 'setUserInfo',
+        value: function setUserInfo(code, callback) {
+            var _this2 = this;
+
+            return this.http.get("wechat/userinfo?code=" + code).then(function (resp) {
+                if (resp.data.code === 0) {
+                    var data = resp.data.data;
+                    _this2.setOpenId(data.openid);
+                    if (!!data.isAvailable) _this2.setIsAvailable(data.isAvailable);
+                    if (!!data.name) _this2.setName(data.name);
+                    if (!!data.mobile) _this2.setMobile(data.mobile);
+                    if (!!data.expireDays) _this2.setExpiredDays(data.expireDays);
+                    callback(true);
+                } else {
+                    callback(false);
+                }
+            });
+        }
+    }, {
+        key: 'getName',
+        value: function getName() {
+            return sessionStorage.getItem("_name");
+        }
+    }, {
+        key: 'setName',
+        value: function setName(name) {
+            sessionStorage.setItem("_name", name);
+        }
+    }, {
+        key: 'removeName',
+        value: function removeName() {
+            return sessionStorage.removeItem("_name");
+        }
+    }, {
+        key: 'getMobile',
+        value: function getMobile() {
+            return sessionStorage.getItem("_mobile");
+        }
+    }, {
+        key: 'setMobile',
+        value: function setMobile(mobile) {
+            sessionStorage.setItem("_mobile", mobile);
+        }
+    }, {
+        key: 'removeMobile',
+        value: function removeMobile() {
+            return sessionStorage.removeItem("_mobile");
+        }
+    }, {
+        key: 'getExpiredDays',
+        value: function getExpiredDays() {
+            return sessionStorage.getItem("_expired_days");
+        }
+    }, {
+        key: 'setExpiredDays',
+        value: function setExpiredDays(expiredDays) {
+            sessionStorage.setItem("_expired_days", expiredDays);
+        }
+    }, {
+        key: 'removeExpiredDays',
+        value: function removeExpiredDays() {
+            return sessionStorage.removeItem("_expired_days");
+        }
+    }, {
+        key: 'getOpenId',
+        value: function getOpenId() {
+            return sessionStorage.getItem("_openid");
+        }
+    }, {
+        key: 'setOpenId',
+        value: function setOpenId(openid) {
+            return sessionStorage.setItem("_openid", openid);
+        }
+    }, {
+        key: 'removeOpenId',
+        value: function removeOpenId() {
+            return sessionStorage.removeItem("_openid");
+        }
+    }, {
+        key: 'getIsAvailable',
+        value: function getIsAvailable() {
+            return sessionStorage.getItem("_is_available");
+        }
+    }, {
+        key: 'setIsAvailable',
+        value: function setIsAvailable(available) {
+
+            return sessionStorage.setItem("_is_available", available);
+        }
+    }, {
+        key: 'removeAvailable',
+        value: function removeAvailable() {
+            return sessionStorage.removeItem("_is_available");
+        }
+    }]);
+    return jAuthUtil;
+}();
+
+exports.default = jAuthUtil;
+
+/***/ }),
+/* 6 */
 /***/ (function(module, exports) {
 
 // https://github.com/zloirock/core-js/issues/86#issuecomment-115759028
@@ -457,7 +634,7 @@ var global = module.exports = typeof window != 'undefined' && window.Math == Mat
 if(typeof __g == 'number')__g = global; // eslint-disable-line no-undef
 
 /***/ }),
-/* 6 */
+/* 7 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var anObject       = __webpack_require__(15)
@@ -478,7 +655,7 @@ exports.f = __webpack_require__(10) ? Object.defineProperty : function definePro
 };
 
 /***/ }),
-/* 7 */
+/* 8 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var isDate = __webpack_require__(65)
@@ -804,183 +981,6 @@ module.exports = parse
 
 
 /***/ }),
-/* 8 */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-
-Object.defineProperty(exports, "__esModule", {
-    value: true
-});
-
-var _classCallCheck2 = __webpack_require__(9);
-
-var _classCallCheck3 = _interopRequireDefault(_classCallCheck2);
-
-var _createClass2 = __webpack_require__(14);
-
-var _createClass3 = _interopRequireDefault(_createClass2);
-
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-
-/**
- * Created by luowen on 2017/3/20.
- */
-
-var jAuthUtil = function () {
-    function jAuthUtil(http) {
-        var isAuthenticated = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : false;
-        (0, _classCallCheck3.default)(this, jAuthUtil);
-
-        this.http = http;
-        this.authenticated = isAuthenticated;
-    }
-
-    (0, _createClass3.default)(jAuthUtil, [{
-        key: 'login',
-        value: function login(context, credentials) {
-            var _this = this;
-
-            var redirectUrl = arguments.length > 2 && arguments[2] !== undefined ? arguments[2] : '/';
-
-            return this.$http.post("/login", credentials, function (data) {
-                localStorage.setItem('_token', data.token);
-                return _this.authenticated = true;
-            }).error(function (error) {
-                context.error = error;
-                return false;
-            });
-        }
-    }, {
-        key: 'logout',
-        value: function logout() {
-            this.removeName();
-            this.removeMobile();
-            this.removeExpiredDays();
-        }
-    }, {
-        key: 'getWxAuthUrl',
-        value: function getWxAuthUrl() {
-            return this.http.get("wechat/authorization");
-        }
-    }, {
-        key: 'isExpired',
-        value: function isExpired() {
-            return sessionStorage.getItem("_expired_days") <= 0;
-        }
-    }, {
-        key: 'isLogin',
-        value: function isLogin() {
-            return !!sessionStorage.getItem('_mobile');
-        }
-    }, {
-        key: 'hasWxOpenId',
-        value: function hasWxOpenId() {
-            return !!sessionStorage.getItem("_openid");
-        }
-    }, {
-        key: 'setUserInfo',
-        value: function setUserInfo(code, callback) {
-            var _this2 = this;
-
-            return this.http.get("wechat/userinfo?code=" + code).then(function (resp) {
-                if (resp.data.code === 0) {
-                    var data = resp.data.data;
-                    _this2.setOpenId(data.openid);
-                    if (!!data.isAvailable) _this2.setIsAvailable(data.isAvailable);
-                    if (!!data.name) _this2.setName(data.name);
-                    if (!!data.mobile) _this2.setMobile(data.mobile);
-                    if (!!data.expireDays) _this2.setExpiredDays(data.expireDays);
-                    callback(true);
-                } else {
-                    callback(false);
-                }
-            });
-        }
-    }, {
-        key: 'getName',
-        value: function getName() {
-            return sessionStorage.getItem("_name");
-        }
-    }, {
-        key: 'setName',
-        value: function setName(name) {
-            sessionStorage.setItem("_name", name);
-        }
-    }, {
-        key: 'removeName',
-        value: function removeName() {
-            return sessionStorage.removeItem("_name");
-        }
-    }, {
-        key: 'getMobile',
-        value: function getMobile() {
-            return sessionStorage.getItem("_mobile");
-        }
-    }, {
-        key: 'setMobile',
-        value: function setMobile(mobile) {
-            sessionStorage.setItem("_mobile", mobile);
-        }
-    }, {
-        key: 'removeMobile',
-        value: function removeMobile() {
-            return sessionStorage.removeItem("_mobile");
-        }
-    }, {
-        key: 'getExpiredDays',
-        value: function getExpiredDays() {
-            return sessionStorage.getItem("_expired_days");
-        }
-    }, {
-        key: 'setExpiredDays',
-        value: function setExpiredDays(expiredDays) {
-            sessionStorage.setItem("_expired_days", expiredDays);
-        }
-    }, {
-        key: 'removeExpiredDays',
-        value: function removeExpiredDays() {
-            return sessionStorage.removeItem("_expired_days");
-        }
-    }, {
-        key: 'getOpenId',
-        value: function getOpenId() {
-            return sessionStorage.getItem("_openid");
-        }
-    }, {
-        key: 'setOpenId',
-        value: function setOpenId(openid) {
-            return sessionStorage.setItem("_openid", openid);
-        }
-    }, {
-        key: 'removeOpenId',
-        value: function removeOpenId() {
-            return sessionStorage.removeItem("_openid");
-        }
-    }, {
-        key: 'getIsAvailable',
-        value: function getIsAvailable() {
-            return sessionStorage.getItem("_is_available");
-        }
-    }, {
-        key: 'setIsAvailable',
-        value: function setIsAvailable(available) {
-
-            return sessionStorage.setItem("_is_available", available);
-        }
-    }, {
-        key: 'removeAvailable',
-        value: function removeAvailable() {
-            return sessionStorage.removeItem("_is_available");
-        }
-    }]);
-    return jAuthUtil;
-}();
-
-exports.default = jAuthUtil;
-
-/***/ }),
 /* 9 */
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -1008,7 +1008,7 @@ module.exports = !__webpack_require__(20)(function(){
 /* 11 */
 /***/ (function(module, exports, __webpack_require__) {
 
-var global    = __webpack_require__(5)
+var global    = __webpack_require__(6)
   , core      = __webpack_require__(3)
   , ctx       = __webpack_require__(34)
   , hide      = __webpack_require__(16)
@@ -1137,7 +1137,7 @@ module.exports = function(it){
 /* 16 */
 /***/ (function(module, exports, __webpack_require__) {
 
-var dP         = __webpack_require__(6)
+var dP         = __webpack_require__(7)
   , createDesc = __webpack_require__(23);
 module.exports = __webpack_require__(10) ? function(object, key, value){
   return dP.f(object, key, createDesc(1, value));
@@ -1973,7 +1973,7 @@ exports.f = {}.propertyIsEnumerable;
 /* 40 */
 /***/ (function(module, exports, __webpack_require__) {
 
-var def = __webpack_require__(6).f
+var def = __webpack_require__(7).f
   , has = __webpack_require__(12)
   , TAG = __webpack_require__(4)('toStringTag');
 
@@ -1995,7 +1995,7 @@ module.exports = function(key){
 /* 42 */
 /***/ (function(module, exports, __webpack_require__) {
 
-var global = __webpack_require__(5)
+var global = __webpack_require__(6)
   , SHARED = '__core-js_shared__'
   , store  = global[SHARED] || (global[SHARED] = {});
 module.exports = function(key){
@@ -2044,11 +2044,11 @@ module.exports = function(it, S){
 /* 46 */
 /***/ (function(module, exports, __webpack_require__) {
 
-var global         = __webpack_require__(5)
+var global         = __webpack_require__(6)
   , core           = __webpack_require__(3)
   , LIBRARY        = __webpack_require__(37)
   , wksExt         = __webpack_require__(47)
-  , defineProperty = __webpack_require__(6).f;
+  , defineProperty = __webpack_require__(7).f;
 module.exports = function(name){
   var $Symbol = core.Symbol || (core.Symbol = LIBRARY ? {} : global.Symbol || {});
   if(name.charAt(0) != '_' && !(name in $Symbol))defineProperty($Symbol, name, {value: wksExt.f(name)});
@@ -2963,7 +2963,7 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { de
 /***/ (function(module, exports, __webpack_require__) {
 
 var isObject = __webpack_require__(21)
-  , document = __webpack_require__(5).document
+  , document = __webpack_require__(6).document
   // in old IE typeof document.createElement is 'object'
   , is = isObject(document) && isObject(document.createElement);
 module.exports = function(it){
@@ -3177,7 +3177,7 @@ __webpack_require__(55)(String, 'String', function(iterated){
 /* 64 */
 /***/ (function(module, exports, __webpack_require__) {
 
-var parse = __webpack_require__(7)
+var parse = __webpack_require__(8)
 var startOfISOWeek = __webpack_require__(48)
 
 /**
@@ -14638,7 +14638,7 @@ var _actSrv = __webpack_require__(18);
 
 var _actSrv2 = _interopRequireDefault(_actSrv);
 
-var _authUtil = __webpack_require__(8);
+var _authUtil = __webpack_require__(5);
 
 var _authUtil2 = _interopRequireDefault(_authUtil);
 
@@ -15196,7 +15196,7 @@ var _vueMugenScroll = __webpack_require__(31);
 
 var _vueMugenScroll2 = _interopRequireDefault(_vueMugenScroll);
 
-var _authUtil = __webpack_require__(8);
+var _authUtil = __webpack_require__(5);
 
 var _authUtil2 = _interopRequireDefault(_authUtil);
 
@@ -15370,7 +15370,7 @@ var _indexSrv = __webpack_require__(51);
 
 var _indexSrv2 = _interopRequireDefault(_indexSrv);
 
-var _authUtil = __webpack_require__(8);
+var _authUtil = __webpack_require__(5);
 
 var _authUtil2 = _interopRequireDefault(_authUtil);
 
@@ -15560,15 +15560,75 @@ var _vueMugenScroll = __webpack_require__(31);
 
 var _vueMugenScroll2 = _interopRequireDefault(_vueMugenScroll);
 
+var _authUtil = __webpack_require__(5);
+
+var _authUtil2 = _interopRequireDefault(_authUtil);
+
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 exports.default = {
     data: function data() {
         return {
+            authUtil: null,
             loading: false,
             isLoadAll: false, //是否加载完毕
             acts: [],
             page: 1,
+            openid: '',
             showModal: false,
             delId: null, //删除id
             modalOptions: {
@@ -15579,6 +15639,8 @@ exports.default = {
     },
 
     created: function created() {
+        this.authUtil = new _authUtil2.default(this.$http);
+        this.openid = this.authUtil.getOpenId();
         this.loadMore();
     },
     components: { MugenScroll: _vueMugenScroll2.default, Modal: _modal2.default },
@@ -15639,59 +15701,7 @@ exports.default = {
             return new _mineSrv2.default(this);
         }
     }
-}; //
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
+};
 
 /***/ }),
 /* 81 */
@@ -15712,7 +15722,7 @@ var _vueMugenScroll = __webpack_require__(31);
 
 var _vueMugenScroll2 = _interopRequireDefault(_vueMugenScroll);
 
-var _authUtil = __webpack_require__(8);
+var _authUtil = __webpack_require__(5);
 
 var _authUtil2 = _interopRequireDefault(_authUtil);
 
@@ -16480,7 +16490,7 @@ var _userSrv = __webpack_require__(19);
 
 var _userSrv2 = _interopRequireDefault(_userSrv);
 
-var _authUtil = __webpack_require__(8);
+var _authUtil = __webpack_require__(5);
 
 var _authUtil2 = _interopRequireDefault(_authUtil);
 
@@ -16657,7 +16667,7 @@ var _userSrv = __webpack_require__(19);
 
 var _userSrv2 = _interopRequireDefault(_userSrv);
 
-var _authUtil = __webpack_require__(8);
+var _authUtil = __webpack_require__(5);
 
 var _authUtil2 = _interopRequireDefault(_authUtil);
 
@@ -17251,7 +17261,7 @@ var _createClass2 = __webpack_require__(14);
 
 var _createClass3 = _interopRequireDefault(_createClass2);
 
-var _authUtil = __webpack_require__(8);
+var _authUtil = __webpack_require__(5);
 
 var _authUtil2 = _interopRequireDefault(_authUtil);
 
@@ -19437,7 +19447,7 @@ module.exports = function(it){
 
 "use strict";
 
-var $defineProperty = __webpack_require__(6)
+var $defineProperty = __webpack_require__(7)
   , createDesc      = __webpack_require__(23);
 
 module.exports = function(object, index, value){
@@ -19469,7 +19479,7 @@ module.exports = function(it){
 /* 123 */
 /***/ (function(module, exports, __webpack_require__) {
 
-module.exports = __webpack_require__(5).document && document.documentElement;
+module.exports = __webpack_require__(6).document && document.documentElement;
 
 /***/ }),
 /* 124 */
@@ -19596,7 +19606,7 @@ module.exports = function(object, el){
 var META     = __webpack_require__(30)('meta')
   , isObject = __webpack_require__(21)
   , has      = __webpack_require__(12)
-  , setDesc  = __webpack_require__(6).f
+  , setDesc  = __webpack_require__(7).f
   , id       = 0;
 var isExtensible = Object.isExtensible || function(){
   return true;
@@ -19651,7 +19661,7 @@ var meta = module.exports = {
 /* 133 */
 /***/ (function(module, exports, __webpack_require__) {
 
-var dP       = __webpack_require__(6)
+var dP       = __webpack_require__(7)
   , anObject = __webpack_require__(15)
   , getKeys  = __webpack_require__(29);
 
@@ -19880,7 +19890,7 @@ $export($export.S, 'Object', {create: __webpack_require__(38)});
 
 var $export = __webpack_require__(11);
 // 19.1.2.4 / 15.2.3.6 Object.defineProperty(O, P, Attributes)
-$export($export.S + $export.F * !__webpack_require__(10), 'Object', {defineProperty: __webpack_require__(6).f});
+$export($export.S + $export.F * !__webpack_require__(10), 'Object', {defineProperty: __webpack_require__(7).f});
 
 /***/ }),
 /* 144 */
@@ -19917,7 +19927,7 @@ $export($export.S, 'Object', {setPrototypeOf: __webpack_require__(136).set});
 "use strict";
 
 // ECMAScript 6 symbols shim
-var global         = __webpack_require__(5)
+var global         = __webpack_require__(6)
   , has            = __webpack_require__(12)
   , DESCRIPTORS    = __webpack_require__(10)
   , $export        = __webpack_require__(11)
@@ -19940,7 +19950,7 @@ var global         = __webpack_require__(5)
   , _create        = __webpack_require__(38)
   , gOPNExt        = __webpack_require__(134)
   , $GOPD          = __webpack_require__(56)
-  , $DP            = __webpack_require__(6)
+  , $DP            = __webpack_require__(7)
   , $keys          = __webpack_require__(29)
   , gOPD           = $GOPD.f
   , dP             = $DP.f
@@ -20168,7 +20178,7 @@ __webpack_require__(46)('observable');
 /***/ (function(module, exports, __webpack_require__) {
 
 __webpack_require__(141);
-var global        = __webpack_require__(5)
+var global        = __webpack_require__(6)
   , hide          = __webpack_require__(16)
   , Iterators     = __webpack_require__(22)
   , TO_STRING_TAG = __webpack_require__(4)('toStringTag');
@@ -20602,7 +20612,7 @@ Object.defineProperty(exports, 'mapFileCommentRegex', {
 /* 171 */
 /***/ (function(module, exports, __webpack_require__) {
 
-var parse = __webpack_require__(7)
+var parse = __webpack_require__(8)
 
 /**
  * @category Day Helpers
@@ -20684,7 +20694,7 @@ module.exports = differenceInCalendarDays
 var getDayOfYear = __webpack_require__(174)
 var getISOWeek = __webpack_require__(175)
 var getISOYear = __webpack_require__(64)
-var parse = __webpack_require__(7)
+var parse = __webpack_require__(8)
 var isValid = __webpack_require__(176)
 var enLocale = __webpack_require__(180)
 
@@ -21015,7 +21025,7 @@ module.exports = format
 /* 174 */
 /***/ (function(module, exports, __webpack_require__) {
 
-var parse = __webpack_require__(7)
+var parse = __webpack_require__(8)
 var startOfYear = __webpack_require__(184)
 var differenceInCalendarDays = __webpack_require__(172)
 
@@ -21048,7 +21058,7 @@ module.exports = getDayOfYear
 /* 175 */
 /***/ (function(module, exports, __webpack_require__) {
 
-var parse = __webpack_require__(7)
+var parse = __webpack_require__(8)
 var startOfISOWeek = __webpack_require__(48)
 var startOfISOYear = __webpack_require__(182)
 
@@ -21379,7 +21389,7 @@ module.exports = {
 /* 181 */
 /***/ (function(module, exports, __webpack_require__) {
 
-var parse = __webpack_require__(7)
+var parse = __webpack_require__(8)
 
 /**
  * @category Day Helpers
@@ -21448,7 +21458,7 @@ module.exports = startOfISOYear
 /* 183 */
 /***/ (function(module, exports, __webpack_require__) {
 
-var parse = __webpack_require__(7)
+var parse = __webpack_require__(8)
 
 /**
  * @category Week Helpers
@@ -21492,7 +21502,7 @@ module.exports = startOfWeek
 /* 184 */
 /***/ (function(module, exports, __webpack_require__) {
 
-var parse = __webpack_require__(7)
+var parse = __webpack_require__(8)
 
 /**
  * @category Year Helpers
@@ -23743,9 +23753,10 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
       staticClass: "thumbnail-box table-cell",
       attrs: {
         "to": {
-          name: 'actDetail',
+          name: 'template1Shared',
           params: {
-            id: act.id
+            id: act.id,
+            openid: _vm.openid
           }
         }
       }
