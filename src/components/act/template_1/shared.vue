@@ -10,7 +10,7 @@
                 <template v-if="isStart && !isEnded">
                     <countDown :date="countDownTime" @timeDown="timeDown" v-if="countDownTime"></countDown>
                     <!--<p class="mt5"><span class="color_yellow">{{userInfo.name}}</span><span class="color_fff key">2016-11-01 12:15</span><span class="color_yellow">抽中奖品</span></p>-->
-                    <p class="mt5"><span class="color_yellow">{{userInfo.username}} 您有</span><span class="color_fff key">{{userInfo.join_cnt}}</span><span class="color_yellow">个朋友参与活动。</span></p>
+                    <p class="mt5"><span class="color_yellow">{{userInfo.username ? userInfo.username : userInfo.name}} 您有</span><span class="color_fff key">{{userInfo.join_cnt}}</span><span class="color_yellow">个朋友参与活动。</span></p>
                 </template>
                 <div class="tips-notstart" v-if="!isStart">活动未开始</div>
                 <div class="tips-notstart" v-if="isEnded">活动已结束</div>

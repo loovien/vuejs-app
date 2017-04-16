@@ -145,7 +145,7 @@
             let id = this.$route.params.id;
             this.id = id;
             const actSrv = new ActSrv(this);
-            actSrv.getActDetail(id).then((resp) => {
+            actSrv.getActTemplateDetail(id).then((resp) => {
                 this.act = resp.data.data;
                 try {
                     this.act.act_images = JSON.parse(this.act.act_images);

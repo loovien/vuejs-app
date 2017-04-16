@@ -1230,14 +1230,19 @@ var ActSrv = function (_BaseSrv) {
     }
 
     (0, _createClass3.default)(ActSrv, [{
-        key: "getActDetail",
-
+        key: "getActTemplateDetail",
+        value: function getActTemplateDetail(id) {
+            return this.http.get("act/" + id);
+        }
 
         /**
          * 根据id获取活动信息
          *
          * @param id
          */
+
+    }, {
+        key: "getActDetail",
         value: function getActDetail(id) {
             return this.http.get("act/shared/" + id);
         }
@@ -14112,7 +14117,7 @@ exports.default = {
         var id = this.$route.params.id;
         this.id = id;
         var actSrv = new _actSrv2.default(this);
-        actSrv.getActDetail(id).then(function (resp) {
+        actSrv.getActTemplateDetail(id).then(function (resp) {
             _this.act = resp.data.data;
             try {
                 _this.act.act_images = JSON.parse(_this.act.act_images);
@@ -14173,6 +14178,7 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { de
 exports.default = {
     data: function data() {
         return {
+            actSrv: null,
             act: {
                 act_prize_cnt: 1
             },
@@ -14185,20 +14191,19 @@ exports.default = {
 
         var id = this.$route.params.id;
         this.id = id;
-        var actSrv = new _actSrv2.default(this);
-        actSrv.getActDetail(id).then(function (resp) {
+        this.actSrv = new _actSrv2.default(this);
+        this.actSrv.getActDetail(id).then(function (resp) {
             // 获取默认活动数据
             _this.act = resp.data.data;
         });
     },
     methods: {
-        newAct: function newAct() {
+        editAct: function editAct() {
             var _this2 = this;
 
-            var actSrv = new _actSrv2.default(this);
             var postData = this.act;
             postData.images = this.images;
-            actSrv.editAct(postData).then(function (resp) {
+            this.actSrv.editAct(postData).then(function (resp) {
                 var respData = resp.data;
                 if (respData.code === 0) {
                     _this2.$router.push({
@@ -25457,7 +25462,7 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
     staticClass: "mt5"
   }, [_c('span', {
     staticClass: "color_yellow"
-  }, [_vm._v(_vm._s(_vm.userInfo.username) + " 您有")]), _c('span', {
+  }, [_vm._v(_vm._s(_vm.userInfo.username ? _vm.userInfo.username : _vm.userInfo.name) + " 您有")]), _c('span', {
     staticClass: "color_fff key"
   }, [_vm._v(_vm._s(_vm.userInfo.join_cnt))]), _c('span', {
     staticClass: "color_yellow"
@@ -26363,7 +26368,7 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
       }
     },
     on: {
-      "saveEvent": _vm.newAct
+      "saveEvent": _vm.editAct
     }
   })], 1)
 },staticRenderFns: [function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;

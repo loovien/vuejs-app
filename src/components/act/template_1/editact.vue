@@ -133,7 +133,7 @@
             </div>
         </div>
 
-        <fixed :options="{save: true, back: true, account: false}" @saveEvent="newAct"></fixed>
+        <fixed :options="{save: true, back: true, account: false}" @saveEvent="editAct"></fixed>
         <!-- {{act.description}} -->
     </div>
 </template>
@@ -148,6 +148,7 @@
     export default {
         data: () => {
             return {
+                actSrv: null,
                 act: {
                     act_prize_cnt: 1
                 },
@@ -158,17 +159,16 @@
         created: function () {
             let id = this.$route.params.id;
             this.id = id;
-            const actSrv = new ActSrv(this);
-            actSrv.getActDetail(id).then((resp) => { // 获取默认活动数据
+            this.actSrv = new ActSrv(this);
+            this.actSrv.getActDetail(id).then((resp) => { // 获取默认活动数据
                 this.act = resp.data.data;
             })
         },
         methods: {
-            newAct: function () {
-                const actSrv = new ActSrv(this);
+            editAct: function () {
                 let postData = this.act;
                 postData.images = this.images;
-                actSrv.editAct(postData).then((resp) => {
+                this.actSrv.editAct(postData).then((resp) => {
                     const respData = resp.data;
                     if(respData.code === 0) {
                         this.$router.push({

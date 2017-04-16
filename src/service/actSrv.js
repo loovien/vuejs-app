@@ -6,6 +6,10 @@ import BaseSrv from "./baseSrv";
 
 export default class ActSrv extends BaseSrv {
 
+    getActTemplateDetail(id) {
+        return this.http.get("act/" + id);
+    }
+
     /**
      * 根据id获取活动信息
      *
