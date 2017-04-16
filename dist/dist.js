@@ -14101,7 +14101,8 @@ exports.default = {
             id: 0,
             act: "",
             rank: {}, // 遍历排行榜
-            countDownTime: new Date('2017-03-20 0:0:0').getTime()
+            countDownTime: new Date('2017-03-20 0:0:0').getTime(),
+            isPaused: false
         };
     },
     components: { countDown: _countDown2.default },
@@ -14726,12 +14727,14 @@ exports.default = {
         actSrv.getActInfo(query).then(function (resp) {
             // console.log(resp.data.data)
             var act = _this.act = resp.data.data;
+            /*
             try {
-                _this.act.act_images = JSON.parse(_this.act.act_images);
+                //this.act.act_images = JSON.parse(this.act.act_images);
             } catch (e) {
-                console.error(e);
-                _this.act.act_images = [];
+                console.error(e)
+                this.act.act_images = [];
             }
+            */
             var starttime = new Date(act.act_start_time).getTime();
             var endtime = new Date(act.act_end_time).getTime();
             var today = new Date().getTime();

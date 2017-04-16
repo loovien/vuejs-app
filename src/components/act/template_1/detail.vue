@@ -136,7 +136,8 @@
                 id: 0,
                 act: "",
                 rank: {}, // 遍历排行榜
-                countDownTime: new Date('2017-03-20 0:0:0').getTime()
+                countDownTime: new Date('2017-03-20 0:0:0').getTime(),
+                isPaused: false
             }
         },
         components: { countDown },
