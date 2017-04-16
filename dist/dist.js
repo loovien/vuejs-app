@@ -14868,9 +14868,9 @@ exports.default = {
             var actOpenId = this.query.openid;
             /* 成功条到输入电话弹框 */
             this.actSrv.fillInfo({ actId: actId, openid: openid, name: name, phone: phone, actOpenId: actOpenId }).then(function (resp) {
+                var that = _this3;
                 _this3.showSignupModal = false;
                 _this3.showSuccessModal = true;
-                var that = _this3;
                 var timer = setInterval(function () {
                     if (that.successCountDown <= 0) {
                         clearInterval(timer);

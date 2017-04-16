@@ -407,9 +407,9 @@
                 const actOpenId = this.query.openid;
                 /* 成功条到输入电话弹框 */
                 this.actSrv.fillInfo({actId, openid, name, phone, actOpenId}).then((resp) => {
+                    var that = this;
                     this.showSignupModal = false;
                     this.showSuccessModal = true;
-                    var that = this;
                     var timer = setInterval(function(){
                         if(that.successCountDown <= 0){
                             clearInterval(timer)
