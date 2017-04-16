@@ -14834,9 +14834,8 @@ exports.default = {
 
         /* 我也要玩 */
         letsPlay: function letsPlay() {
-            var _this2 = this;
-
             // 检测是否已经参与, 参与直接跳转, 没有参与需要填写名字手机等信息
+            var that = this;
             var actId = this.query.actId;
             var actOwnerOpenId = this.query.openid;
             var openid = this.openid;
@@ -14846,18 +14845,13 @@ exports.default = {
                 return;
             }
             /* 用户如果参与了, 直接显示用户的昵称, 和电话 */
-            this.actSrv.letsPlay({ actId: actId, openid: openid }).then(function (resp) {
+            that.actSrv.letsPlay({ actId: actId, openid: openid }).then(function (resp) {
                 if (resp.data.code === 0) {
-                    _this2.showRuleModal = true;
+                    that.showRuleModal = true;
                 } else {
                     var confirm = window.confirm("您已经参与过此活动, 直接跳转到你的活动页?");
                     if (confirm) {
-                        _this2.$router.push({
-                            name: "template1Shared", params: {
-                                actId: actId,
-                                openid: openid
-                            }
-                        }); // 保存后到分享也, 游湖有需要就分享
+                        that.$router.push({ name: "template1Shared", params: { actId: actId, openid: openid } }); // 保存后到分享也, 游湖有需要就分享
                         window.location.reload(true);
                     }
                 }
@@ -14866,16 +14860,16 @@ exports.default = {
 
         /* 弹框填入姓名,电话 */
         fillInfo: function fillInfo(name, phone) {
-            var _this3 = this;
+            var _this2 = this;
 
             var actId = this.query.actId;
             var openid = this.openid;
             var actOpenId = this.query.openid;
             /* 成功条到输入电话弹框 */
             this.actSrv.fillInfo({ actId: actId, openid: openid, name: name, phone: phone, actOpenId: actOpenId }).then(function (resp) {
-                var that = _this3;
-                _this3.showSignupModal = false;
-                _this3.showSuccessModal = true;
+                var that = _this2;
+                _this2.showSignupModal = false;
+                _this2.showSuccessModal = true;
                 var timer = setInterval(function () {
                     if (that.successCountDown <= 0) {
                         clearInterval(timer);
