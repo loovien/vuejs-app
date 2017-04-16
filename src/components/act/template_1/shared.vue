@@ -107,7 +107,17 @@
             </h2>
             <video :src="act.video_url" controls></video>
         </div>
-        <button v-show="!!act.link_url" @click="gobuy(act.link_url)">{{act.link_name}}</button>
+
+        <div class="box" v-show="!!act.link_url" >
+            <h2 class="box-title">
+                <span class="word w0">推</span>
+                <span class="word w1">荐</span>
+                <span class="word w2">链</span>
+                <span class="word w3">接</span>
+                <button @click="gobuy(act.link_url)">{{act.link_name}}</button>
+            </h2>
+        </div>
+
         <div class="box">
             <h2 class="box-title">
                 <span class="word w0">活</span>

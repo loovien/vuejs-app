@@ -15071,6 +15071,16 @@ exports.default = {
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 /***/ }),
 /* 76 */
@@ -25514,19 +25524,31 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
       "src": _vm.act.video_url,
       "controls": ""
     }
-  })]), _vm._v(" "), _c('button', {
+  })]), _vm._v(" "), _c('div', {
     directives: [{
       name: "show",
       rawName: "v-show",
       value: (!!_vm.act.link_url),
       expression: "!!act.link_url"
     }],
+    staticClass: "box"
+  }, [_c('h2', {
+    staticClass: "box-title"
+  }, [_c('span', {
+    staticClass: "word w0"
+  }, [_vm._v("推")]), _vm._v(" "), _c('span', {
+    staticClass: "word w1"
+  }, [_vm._v("荐")]), _vm._v(" "), _c('span', {
+    staticClass: "word w2"
+  }, [_vm._v("链")]), _vm._v(" "), _c('span', {
+    staticClass: "word w3"
+  }, [_vm._v("接")]), _vm._v(" "), _c('button', {
     on: {
       "click": function($event) {
         _vm.gobuy(_vm.act.link_url)
       }
     }
-  }, [_vm._v(_vm._s(_vm.act.link_name))]), _vm._v(" "), _c('div', {
+  }, [_vm._v(_vm._s(_vm.act.link_name))])])]), _vm._v(" "), _c('div', {
     staticClass: "box"
   }, [_vm._m(7), _vm._v(" "), _c('div', {
     directives: [{
