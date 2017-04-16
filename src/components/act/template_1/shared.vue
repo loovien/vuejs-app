@@ -379,10 +379,9 @@
             letsPlay() {
                 // 检测是否已经参与, 参与直接跳转, 没有参与需要填写名字手机等信息
                 let that = this;
+                const openid = this.authUtil.getOpenId();
                 const actId = this.query.actId;
                 const actOwnerOpenId = this.query.openid;
-                const openid = this.openid;
-
 
                 if(actOwnerOpenId == openid) {
                     alert("这就是您本人的活动也, 自己就不要在玩了!");
@@ -395,9 +394,10 @@
                     } else {
                         let confirm = window.confirm("您已经参与过此活动, 直接跳转到你的活动页?");
                         if(confirm) {
-//                            that.$router.push({name: 'template1Shared', params: {actId, openid}});
-                            window.location.href = `/act/shared/${actId}/${openid}`;
+                            that.$router.push({name: 'template1Shared', params: {actId, openid}});
+                            window.location.reload(true);
                             return;
+//                            window.location.href = `/act/shared/${actId}/${openid}`;
                         }
                     }
                 });
