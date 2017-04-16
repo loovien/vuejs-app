@@ -14880,6 +14880,7 @@ exports.default = {
                     if (that.successCountDown <= 0) {
                         clearInterval(timer);
                         that.$router.push({ name: 'template1Shared', params: { actId: actId, openid: openid } });
+                        window.location.reload(true);
                     } else {
                         that.successCountDown -= 1;
                     }

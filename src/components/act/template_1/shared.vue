@@ -414,6 +414,7 @@
                         if(that.successCountDown <= 0){
                             clearInterval(timer)
                             that.$router.push({name: 'template1Shared', params: {actId, openid}});
+                            window.location.reload(true);
                         } else {
                             that.successCountDown -= 1
                         }
