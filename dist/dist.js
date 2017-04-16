@@ -25533,7 +25533,7 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
     }],
     staticClass: "box"
   }, [_vm._m(7), _vm._v(" "), _c('button', {
-    staticClass: "ok-btn",
+    staticClass: "btn",
     on: {
       "click": function($event) {
         _vm.gobuy(_vm.act.link_url)
