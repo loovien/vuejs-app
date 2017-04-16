@@ -15699,7 +15699,18 @@ exports.default = {
         },
         _getMineSrv: function _getMineSrv() {
             return new _mineSrv2.default(this);
+        },
+        preview: function preview(id) {
+            this.$router.push({
+                name: "template1Shared",
+                params: {
+                    actId: id,
+                    openid: this.authUtil.getOpenId()
+                }
+            });
         }
+        // methods end
+
     }
 };
 
@@ -23748,18 +23759,14 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
       key: act.id,
       staticClass: "item mt10 clearfix table w100"
     }, [_c('div', {
-      staticClass: "table w100"
-    }, [_c('router-link', {
-      staticClass: "thumbnail-box table-cell",
-      attrs: {
-        "to": {
-          name: 'template1Shared',
-          params: {
-            id: act.id,
-            openid: _vm.openid
-          }
+      staticClass: "table w100",
+      on: {
+        "click": function($event) {
+          _vm.preview(act.id)
         }
       }
+    }, [_c('div', {
+      staticClass: "thumbnail-box table-cell"
     }, [_c('img', {
       staticClass: "thumbnail fl",
       attrs: {
@@ -23768,17 +23775,8 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
       }
     })]), _vm._v(" "), _c('div', {
       staticClass: "relative item-info table-cell"
-    }, [_c('router-link', {
-      staticClass: "title color_333 f16",
-      attrs: {
-        "to": {
-          name: 'template1Shared',
-          params: {
-            id: act.id,
-            openid: _vm.openid
-          }
-        }
-      }
+    }, [_c('h3', {
+      staticClass: "title color_333 f16"
     }, [_vm._v(_vm._s(act.title))]), _vm._v(" "), _c('p', {
       staticClass: "desc f12 color_999"
     }, [_vm._v(_vm._s(act.description))]), _vm._v(" "), _c('div', {
@@ -23805,7 +23803,7 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
           _vm.deleteAct(act.id)
         }
       }
-    }, [_vm._v("删除")])])])], 1)], 1)])
+    }, [_vm._v("删除")])])])])])])
   })), _vm._v(" "), _c('mugen-scroll', {
     attrs: {
       "scroll-container": "wrap",

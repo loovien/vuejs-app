@@ -7,12 +7,12 @@
         
         <div class="list">
             <div class="item mt10 clearfix table w100" v-for="act in acts" :key="act.id">
-                <div class="table w100">
-                    <router-link :to="{name: 'template1Shared', params: {id: act.id, openid: openid}}" class="thumbnail-box table-cell">
+                <div class="table w100" @click="preview(act.id)">
+                    <div class="thumbnail-box table-cell">
                         <img :src="act.banner_img" alt="" class="thumbnail fl">
-                    </router-link>
+                    </div>
                     <div class="relative item-info table-cell">
-                        <router-link :to="{name: 'template1Shared', params: {id: act.id, openid: openid}}" class="title color_333 f16">{{act.title}}</router-link>
+                        <h3 class="title color_333 f16">{{act.title}}</h3>
                         <p class="desc f12 color_999">{{act.description}}</p>
                         <div class="operate text-right">
                             <div class="inline-block">
@@ -134,7 +134,17 @@
 
             _getMineSrv() {
                 return new MineSrv(this);
+            },
+            preview(id) {
+                this.$router.push({
+                    name: "template1Shared",
+                    params: {
+                        actId: id,
+                        openid: this.authUtil.getOpenId()
+                    }
+                });
             }
+            // methods end
         }
     }
 </script>
