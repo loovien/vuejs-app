@@ -25532,25 +25532,16 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
       expression: "!!act.link_url"
     }],
     staticClass: "box"
-  }, [_c('h2', {
-    staticClass: "box-title"
-  }, [_c('span', {
-    staticClass: "word w0"
-  }, [_vm._v("推")]), _vm._v(" "), _c('span', {
-    staticClass: "word w1"
-  }, [_vm._v("荐")]), _vm._v(" "), _c('span', {
-    staticClass: "word w2"
-  }, [_vm._v("链")]), _vm._v(" "), _c('span', {
-    staticClass: "word w3"
-  }, [_vm._v("接")]), _vm._v(" "), _c('button', {
+  }, [_vm._m(7), _vm._v(" "), _c('button', {
+    staticClass: "ok-btn",
     on: {
       "click": function($event) {
         _vm.gobuy(_vm.act.link_url)
       }
     }
-  }, [_vm._v(_vm._s(_vm.act.link_name))])])]), _vm._v(" "), _c('div', {
+  }, [_vm._v(_vm._s(_vm.act.link_name))])]), _vm._v(" "), _c('div', {
     staticClass: "box"
-  }, [_vm._m(7), _vm._v(" "), _c('div', {
+  }, [_vm._m(8), _vm._v(" "), _c('div', {
     directives: [{
       name: "show",
       rawName: "v-show",
@@ -25558,7 +25549,7 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
       expression: "rank.data.length ==0"
     }],
     staticClass: "inner"
-  }, [_vm._m(8)]), _vm._v(" "), _c('div', {
+  }, [_vm._m(9)]), _vm._v(" "), _c('div', {
     directives: [{
       name: "show",
       rawName: "v-show",
@@ -25578,7 +25569,7 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
       "cellpadding": "0",
       "cellspacing": "1"
     }
-  }, [_vm._m(9), _vm._v(" "), _c('tbody', _vm._l((_vm.rank.data), function(item, index) {
+  }, [_vm._m(10), _vm._v(" "), _c('tbody', _vm._l((_vm.rank.data), function(item, index) {
     return _c('tr', [_c('td', [_vm._v(_vm._s(index + 1))]), _vm._v(" "), _c('td', [_vm._v(_vm._s(item.name))]), _vm._v(" "), _c('td', [_vm._v(_vm._s(item.spend_time + '小时'))]), _vm._v(" "), _c('td', [_vm._v(_vm._s(item.is_completed ? '已完成' : '未完成'))])])
   }))])])]), _vm._v(" "), (_vm.showRuleModal) ? _c('modal', {
     attrs: {
@@ -25813,6 +25804,18 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
   }, [_vm._v("介")]), _vm._v(" "), _c('span', {
     staticClass: "word w3"
   }, [_vm._v("绍")])])
+},function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
+  return _c('h2', {
+    staticClass: "box-title"
+  }, [_c('span', {
+    staticClass: "word w0"
+  }, [_vm._v("推")]), _vm._v(" "), _c('span', {
+    staticClass: "word w1"
+  }, [_vm._v("荐")]), _vm._v(" "), _c('span', {
+    staticClass: "word w2"
+  }, [_vm._v("链")]), _vm._v(" "), _c('span', {
+    staticClass: "word w3"
+  }, [_vm._v("接")])])
 },function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
   return _c('h2', {
     staticClass: "box-title"

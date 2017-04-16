@@ -114,8 +114,8 @@
                 <span class="word w1">荐</span>
                 <span class="word w2">链</span>
                 <span class="word w3">接</span>
-                <button @click="gobuy(act.link_url)">{{act.link_name}}</button>
             </h2>
+            <button class="ok-btn" @click="gobuy(act.link_url)">{{act.link_name}}</button>
         </div>
 
         <div class="box">
