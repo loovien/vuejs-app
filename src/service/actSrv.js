@@ -43,7 +43,7 @@ export default class ActSrv extends BaseSrv {
     }
 
     editAct(postData) {
-        return this.http.post("act/u/" + postData.id, postData);
+        return this.http.put("act/u/" + postData.id, postData);
     }
 
     /**

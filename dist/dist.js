@@ -1279,7 +1279,7 @@ var ActSrv = function (_BaseSrv) {
     }, {
         key: "editAct",
         value: function editAct(postData) {
-            return this.http.post("act/u/" + postData.id, postData);
+            return this.http.put("act/u/" + postData.id, postData);
         }
 
         /**
