@@ -157,7 +157,7 @@
                 <span class="close" @click="showRuleModal = false"></span>
             </div>
             <div slot="body">
-                rule
+                {{act.act_rule_desc}}
             </div>
             <div slot="button">
                 <a href="javascript:void(0)" class="btn ok-btn btn-small fr btn-blue" @click="okRuleModal">我知道了</a>
@@ -413,7 +413,7 @@
                     var timer = setInterval(function(){
                         if(that.successCountDown <= 0){
                             clearInterval(timer)
-                            this.$router.push({name: 'template1Shared', params: {actId, openid}});
+                            that.$router.push({name: 'template1Shared', params: {actId, openid}});
                         } else {
                             that.successCountDown -= 1
                         }

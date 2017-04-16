@@ -14874,7 +14874,7 @@ exports.default = {
                 var timer = setInterval(function () {
                     if (that.successCountDown <= 0) {
                         clearInterval(timer);
-                        this.$router.push({ name: 'template1Shared', params: { actId: actId, openid: openid } });
+                        that.$router.push({ name: 'template1Shared', params: { actId: actId, openid: openid } });
                     } else {
                         that.successCountDown -= 1;
                     }
@@ -25604,7 +25604,7 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
     }
   })]), _vm._v(" "), _c('div', {
     slot: "body"
-  }, [_vm._v("\n            rule\n        ")]), _vm._v(" "), _c('div', {
+  }, [_vm._v("\n            " + _vm._s(_vm.act.act_rule_desc) + "\n        ")]), _vm._v(" "), _c('div', {
     slot: "button"
   }, [_c('a', {
     staticClass: "btn ok-btn btn-small fr btn-blue",
