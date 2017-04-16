@@ -1239,7 +1239,7 @@ var ActSrv = function (_BaseSrv) {
          * @param id
          */
         value: function getActDetail(id) {
-            return this.http.get("act/" + id);
+            return this.http.get("act/shared/" + id);
         }
 
         /**
@@ -14379,8 +14379,6 @@ exports.default = {
 //
 //
 //
-//
-//
 
 /***/ }),
 /* 74 */
@@ -26129,7 +26127,11 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
         _vm.act.act_rule_cnt = $event.target.value
       }
     }
-  }), _vm._v(_vm._s(_vm.act.act_rule_keywords) + "\n        ")])]), _vm._v(" "), _vm._m(4), _vm._v(" "), _c('div', {
+  }), _vm._v(_vm._s(_vm.act.act_rule_keywords) + "\n        ")])]), _vm._v(" "), _c('div', {
+    staticClass: "box"
+  }, [_vm._m(4), _vm._v(" "), _c('div', {
+    staticClass: "inner"
+  }, [_vm._v("\n            " + _vm._s(_vm.act.act_rule_desc) + "\n        ")])]), _vm._v(" "), _c('div', {
     staticClass: "box"
   }, [_vm._m(5), _vm._v(" "), _c('div', {
     staticClass: "inner"
@@ -26401,28 +26403,17 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
     staticClass: "word w3"
   }, [_vm._v("则")])])
 },function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
-  return _c('div', {
-    staticClass: "box"
-  }, [_c('h2', {
+  return _c('h2', {
     staticClass: "box-title"
   }, [_c('span', {
     staticClass: "word w0"
-  }, [_vm._v("规")]), _vm._v(" "), _c('span', {
+  }, [_vm._v("参")]), _vm._v(" "), _c('span', {
     staticClass: "word w1"
-  }, [_vm._v("则")]), _vm._v(" "), _c('span', {
+  }, [_vm._v("与")]), _vm._v(" "), _c('span', {
     staticClass: "word w2"
-  }, [_vm._v("详")]), _vm._v(" "), _c('span', {
+  }, [_vm._v("规")]), _vm._v(" "), _c('span', {
     staticClass: "word w3"
-  }, [_vm._v("请")])]), _vm._v(" "), _c('div', {
-    staticClass: "inner"
-  }, [_c('textarea', {
-    staticClass: "ui-textarea introduce-textarea",
-    attrs: {
-      "cols": "30",
-      "rows": "20",
-      "placeholder": "请输入参与规则"
-    }
-  }, [_vm._v("\n                格式为: (筹集, 转发: act_rule_decorate) : (数量: act_rule_cnt) :(商品词: act_rule_keywords) (换取什么奖品: act_prize_name)\n            ")])])])
+  }, [_vm._v("则")])])
 },function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
   return _c('h2', {
     staticClass: "box-title"

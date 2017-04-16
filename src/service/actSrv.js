@@ -12,7 +12,7 @@ export default class ActSrv extends BaseSrv {
      * @param id
      */
     getActDetail(id) {
-        return this.http.get("act/"+id);
+        return this.http.get("act/shared/"+id);
     }
 
     /**

@@ -67,15 +67,13 @@
 
         <div class="box">
             <h2 class="box-title">
-                <span class="word w0">规</span>
-                <span class="word w1">则</span>
-                <span class="word w2">详</span>
-                <span class="word w3">请</span>
+                <span class="word w0">参</span>
+                <span class="word w1">与</span>
+                <span class="word w2">规</span>
+                <span class="word w3">则</span>
             </h2>
             <div class="inner">
-                <textarea class="ui-textarea introduce-textarea" cols="30" rows="20" placeholder="请输入参与规则">
-                    格式为: (筹集, 转发: act_rule_decorate) : (数量: act_rule_cnt) :(商品词: act_rule_keywords) (换取什么奖品: act_prize_name)
-                </textarea>
+                {{act.act_rule_desc}}
             </div>
         </div>
 
