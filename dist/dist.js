@@ -14432,7 +14432,7 @@ exports.default = {
         var id = this.$route.params.id;
         this.id = id;
         var actSrv = new _actSrv2.default(this);
-        actSrv.getActDetail(id).then(function (resp) {
+        actSrv.getActTemplateDetail(id).then(function (resp) {
             // 获取默认活动数据
             _this.act = resp.data.data;
         });

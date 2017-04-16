@@ -161,7 +161,7 @@
             let id = this.$route.params.id;
             this.id = id;
             const actSrv = new ActSrv(this);
-            actSrv.getActDetail(id).then((resp) => { // 获取默认活动数据
+            actSrv.getActTemplateDetail(id).then((resp) => { // 获取默认活动数据
                 this.act = resp.data.data;
             })
         },
