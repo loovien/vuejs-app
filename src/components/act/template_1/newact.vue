@@ -169,7 +169,7 @@
             newAct: function () {
                 const actSrv = new ActSrv(this);
                 let postData = this.act;
-                postData.images = this.images;
+                postData.act_images = this.images;
                 actSrv.newAct(postData).then((resp) => {
                     const respData = resp.data;
                     if(respData.code === 0) {

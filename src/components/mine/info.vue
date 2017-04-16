@@ -67,12 +67,12 @@
         
         <div class="recommend-box bg_fff mt10">
             <h2 class="title clearfix">
-                <router-link :to="{name: 'act'}" class="fr f12 color_gray">全部<span class="iconfont icon-arrow-r f12"></span></router-link>
+                <!--<router-link :to="{name: 'act'}" class="fr f12 color_gray">全部<span class="iconfont icon-arrow-r f12"></span></router-link>-->
                 <span class="iconfont icon-recommend"></span>最新推荐
             </h2>
             <div class="clearfix recommend-list">
                 <router-link :to="{name: 'actDetail', params: {id: act.id}}"  v-for="act in acts" :key="act.id" class="fl recommend text-center">
-                    <img src="http://s.51lianying.com/images/www/index_v2/thum-1.jpg" class="recommend-thumbnail" />
+                    <img :src="act.cover_img" class="recommend-thumbnail" />
                     <h5 class="act-title">{{act.title}}</h5>
                 </router-link>
             </div>

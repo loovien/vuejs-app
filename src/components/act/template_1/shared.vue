@@ -98,6 +98,16 @@
             <div class="inner">{{act.about_us}}</div>
         </div>
 
+        <div class="box" v-show="!!act.video_url">
+            <h2 class="box-title">
+                <span class="word w0">视</span>
+                <span class="word w1">频</span>
+                <span class="word w2">介</span>
+                <span class="word w3">绍</span>
+            </h2>
+            <video :src="act.video_url" controls></video>
+        </div>
+        <button v-show="!!act.link_url" @click="gobuy(act.link_url)">{{act.link_name}}</button>
         <div class="box">
             <h2 class="box-title">
                 <span class="word w0">活</span>
@@ -398,6 +408,12 @@
                     }, 1000)
                 });
             },
+
+            gobuy(url) {
+                window.location.href = url;
+            }
+
+            // methods end
         }
     }
 </script>

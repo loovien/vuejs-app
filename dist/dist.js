@@ -14439,7 +14439,7 @@ exports.default = {
 
             var actSrv = new _actSrv2.default(this);
             var postData = this.act;
-            postData.images = this.images;
+            postData.act_images = this.images;
             actSrv.newAct(postData).then(function (resp) {
                 var respData = resp.data;
                 if (respData.code === 0) {
@@ -14879,9 +14879,25 @@ exports.default = {
                     }
                 }, 1000);
             });
+        },
+        gobuy: function gobuy(url) {
+            window.location.href = url;
         }
+
+        // methods end
+
     }
 }; //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 //
 //
 //
@@ -24659,20 +24675,7 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
     }
   }, [_c('tr', [_c('td', [_vm._v("报名率：" + _vm._s(_vm.top1.join_proportion) + "%")]), _vm._v(" "), _c('td', [_vm._v("转化率：" + _vm._s(_vm.top1.completed_proportion) + "%")]), _vm._v(" "), _c('td', [_vm._v("传播速度：" + _vm._s(_vm.top1.join_proportion < 30 ? '慢' : '快'))])])])])])])])]), _vm._v(" "), _c('div', {
     staticClass: "recommend-box bg_fff mt10"
-  }, [_c('h2', {
-    staticClass: "title clearfix"
-  }, [_c('router-link', {
-    staticClass: "fr f12 color_gray",
-    attrs: {
-      "to": {
-        name: 'act'
-      }
-    }
-  }, [_vm._v("全部"), _c('span', {
-    staticClass: "iconfont icon-arrow-r f12"
-  })]), _vm._v(" "), _c('span', {
-    staticClass: "iconfont icon-recommend"
-  }), _vm._v("最新推荐\n        ")], 1), _vm._v(" "), _c('div', {
+  }, [_vm._m(2), _vm._v(" "), _c('div', {
     staticClass: "clearfix recommend-list"
   }, _vm._l((_vm.acts), function(act) {
     return _c('router-link', {
@@ -24689,7 +24692,7 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
     }, [_c('img', {
       staticClass: "recommend-thumbnail",
       attrs: {
-        "src": "http://s.51lianying.com/images/www/index_v2/thum-1.jpg"
+        "src": act.cover_img
       }
     }), _vm._v(" "), _c('h5', {
       staticClass: "act-title"
@@ -24707,6 +24710,12 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
   }, [_c('span', {
     staticClass: "iconfont icon-chart"
   }), _vm._v("最新活动数据\n        ")])
+},function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
+  return _c('h2', {
+    staticClass: "title clearfix"
+  }, [_c('span', {
+    staticClass: "iconfont icon-recommend"
+  }), _vm._v("最新推荐\n        ")])
 }]}
 module.exports.render._withStripped = true
 if (false) {
@@ -25493,8 +25502,33 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
   }, [_vm._m(5), _vm._v(" "), _c('div', {
     staticClass: "inner"
   }, [_vm._v(_vm._s(_vm.act.about_us))])]), _vm._v(" "), _c('div', {
+    directives: [{
+      name: "show",
+      rawName: "v-show",
+      value: (!!_vm.act.video_url),
+      expression: "!!act.video_url"
+    }],
     staticClass: "box"
-  }, [_vm._m(6), _vm._v(" "), _c('div', {
+  }, [_vm._m(6), _vm._v(" "), _c('video', {
+    attrs: {
+      "src": _vm.act.video_url,
+      "controls": ""
+    }
+  })]), _vm._v(" "), _c('button', {
+    directives: [{
+      name: "show",
+      rawName: "v-show",
+      value: (!!_vm.act.link_url),
+      expression: "!!act.link_url"
+    }],
+    on: {
+      "click": function($event) {
+        _vm.gobuy(_vm.act.link_url)
+      }
+    }
+  }, [_vm._v(_vm._s(_vm.act.link_name))]), _vm._v(" "), _c('div', {
+    staticClass: "box"
+  }, [_vm._m(7), _vm._v(" "), _c('div', {
     directives: [{
       name: "show",
       rawName: "v-show",
@@ -25502,7 +25536,7 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
       expression: "rank.data.length ==0"
     }],
     staticClass: "inner"
-  }, [_vm._m(7)]), _vm._v(" "), _c('div', {
+  }, [_vm._m(8)]), _vm._v(" "), _c('div', {
     directives: [{
       name: "show",
       rawName: "v-show",
@@ -25522,7 +25556,7 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
       "cellpadding": "0",
       "cellspacing": "1"
     }
-  }, [_vm._m(8), _vm._v(" "), _c('tbody', _vm._l((_vm.rank.data), function(item, index) {
+  }, [_vm._m(9), _vm._v(" "), _c('tbody', _vm._l((_vm.rank.data), function(item, index) {
     return _c('tr', [_c('td', [_vm._v(_vm._s(index + 1))]), _vm._v(" "), _c('td', [_vm._v(_vm._s(item.name))]), _vm._v(" "), _c('td', [_vm._v(_vm._s(item.spend_time + '小时'))]), _vm._v(" "), _c('td', [_vm._v(_vm._s(item.is_completed ? '已完成' : '未完成'))])])
   }))])])]), _vm._v(" "), (_vm.showRuleModal) ? _c('modal', {
     attrs: {
@@ -25745,6 +25779,18 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
   }, [_vm._v("我")]), _vm._v(" "), _c('span', {
     staticClass: "word w3"
   }, [_vm._v("们")])])
+},function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
+  return _c('h2', {
+    staticClass: "box-title"
+  }, [_c('span', {
+    staticClass: "word w0"
+  }, [_vm._v("视")]), _vm._v(" "), _c('span', {
+    staticClass: "word w1"
+  }, [_vm._v("频")]), _vm._v(" "), _c('span', {
+    staticClass: "word w2"
+  }, [_vm._v("介")]), _vm._v(" "), _c('span', {
+    staticClass: "word w3"
+  }, [_vm._v("绍")])])
 },function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
   return _c('h2', {
     staticClass: "box-title"
