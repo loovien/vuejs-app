@@ -23772,9 +23772,10 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
       staticClass: "title color_333 f16",
       attrs: {
         "to": {
-          name: 'actDetail',
+          name: 'template1Shared',
           params: {
-            id: act.id
+            id: act.id,
+            openid: _vm.openid
           }
         }
       }

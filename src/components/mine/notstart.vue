@@ -8,11 +8,11 @@
         <div class="list">
             <div class="item mt10 clearfix table w100" v-for="act in acts" :key="act.id">
                 <div class="table w100">
-                    <router-link :to="{name: 'template1Shared', params: {id: act.id, openid}}" class="thumbnail-box table-cell">
+                    <router-link :to="{name: 'template1Shared', params: {id: act.id, openid: openid}}" class="thumbnail-box table-cell">
                         <img :src="act.banner_img" alt="" class="thumbnail fl">
                     </router-link>
                     <div class="relative item-info table-cell">
-                        <router-link :to="{name: 'actDetail', params: {id: act.id}}" class="title color_333 f16">{{act.title}}</router-link>
+                        <router-link :to="{name: 'template1Shared', params: {id: act.id, openid: openid}}" class="title color_333 f16">{{act.title}}</router-link>
                         <p class="desc f12 color_999">{{act.description}}</p>
                         <div class="operate text-right">
                             <div class="inline-block">
