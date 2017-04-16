@@ -555,6 +555,12 @@
         font-size: 16px;
         text-align: center;
     }
+    .box img {
+        margin-bottom: 10px;
+        width: 100%;
+        background: #fdf8da;
+        border-radius: 5px;
+    }
     .word{
         position: absolute;
         left: 50%;
