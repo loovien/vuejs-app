@@ -319,7 +319,11 @@ h2.title{
     width: 100%; height: auto;
 }
 .act-title{
+    text-align: left;
     padding: 5px 0;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
 }
 /* activityList */
 .activityList-wrap{
