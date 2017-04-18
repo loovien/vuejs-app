@@ -16384,6 +16384,10 @@ Object.defineProperty(exports, "__esModule", {
 //
 //
 //
+//
+//
+//
+//
 
 exports.default = {
     props: ['options'],
@@ -16394,7 +16398,8 @@ exports.default = {
             back: typeof opt.back === 'undefined' ? false : opt.back,
             save: typeof opt.save === 'undefined' ? false : opt.save,
             gotop: typeof opt.gotop === 'undefined' ? true : opt.gotop,
-            account: typeof opt.account === 'undefined' ? true : opt.account
+            account: typeof opt.account === 'undefined' ? true : opt.account,
+            home: typeof opt.home === 'undefined' ? false : opt.home
         };
     },
     mounted: function mounted() {},
@@ -23728,7 +23733,8 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
   }, [_c('router-view'), _vm._v(" "), _c('fixed', {
     attrs: {
       "options": {
-        account: false
+        account: false,
+        home: true
       }
     }
   })], 1)
@@ -24005,6 +24011,23 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
       "click": _vm.topEvent
     }
   }), _vm._v(" "), _c('router-link', {
+    directives: [{
+      name: "show",
+      rawName: "v-show",
+      value: (_vm.home),
+      expression: "home"
+    }],
+    staticClass: "account mt10",
+    attrs: {
+      "to": {
+        name: 'home'
+      }
+    }
+  }, [_c('span', {
+    staticClass: "iconfont icon-account"
+  }), _vm._v(" "), _c('span', {
+    staticClass: "block f12"
+  }, [_vm._v("首页")])]), _vm._v(" "), _c('router-link', {
     directives: [{
       name: "show",
       rawName: "v-show",

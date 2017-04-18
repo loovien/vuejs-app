@@ -1,7 +1,7 @@
 <template>
     <div class="wrap">
         <router-view></router-view>
-        <fixed :options="{account: false}"></fixed>
+        <fixed :options="{account: false, home: true}"></fixed>
     </div>
 </template>
 <script>

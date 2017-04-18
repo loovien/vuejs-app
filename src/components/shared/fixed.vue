@@ -3,6 +3,10 @@
         <span class="save" v-show="save" @click="saveEvent">保存</span>
         <span class="back mt10" v-show="back" @click="backEvent">返回</span>
         <span class="iconfont icon-gotop gotop mt10" @click="topEvent" v-show="gotop"></span>
+        <router-link :to="{name: 'home'}" class="account mt10" v-show="home">
+            <span class="iconfont icon-account"></span>
+            <span class="block f12">首页</span>
+        </router-link>
         <router-link :to="{name: 'mineIndex'}" class="account mt10" v-show="account">
             <span class="iconfont icon-account"></span>
             <span class="block f12">我的</span>
@@ -20,7 +24,8 @@ export default {
             back: typeof opt.back === 'undefined' ? false : opt.back,
             save: typeof opt.save === 'undefined' ? false : opt.save,
             gotop: typeof opt.gotop === 'undefined' ? true : opt.gotop,
-            account: typeof opt.account === 'undefined' ? true : opt.account
+            account: typeof opt.account === 'undefined' ? true : opt.account,
+            home: typeof opt.home === 'undefined' ? false : opt.home
         }
     },
     mounted() {
