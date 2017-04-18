@@ -302,6 +302,11 @@ h2.title{
 .recommend-list{
     padding: 0 15px;
 }
+.recommend-list img {
+    width: 110px;
+    height: 110px;
+    vertical-align: middle;
+}
 .recommend{
     width: 32%;
     margin-right: 2%;
