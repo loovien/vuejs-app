@@ -23789,14 +23789,14 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
       key: act.id,
       staticClass: "item mt10 clearfix table w100"
     }, [_c('div', {
-      staticClass: "table w100",
+      staticClass: "table w100"
+    }, [_c('div', {
+      staticClass: "thumbnail-box table-cell",
       on: {
         "click": function($event) {
           _vm.preview(act.id)
         }
       }
-    }, [_c('div', {
-      staticClass: "thumbnail-box table-cell"
     }, [_c('img', {
       staticClass: "thumbnail fl",
       attrs: {
@@ -23806,9 +23806,19 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
     })]), _vm._v(" "), _c('div', {
       staticClass: "relative item-info table-cell"
     }, [_c('h3', {
-      staticClass: "title color_333 f16"
+      staticClass: "title color_333 f16",
+      on: {
+        "click": function($event) {
+          _vm.preview(act.id)
+        }
+      }
     }, [_vm._v(_vm._s(act.title))]), _vm._v(" "), _c('p', {
-      staticClass: "desc f12 color_999"
+      staticClass: "desc f12 color_999",
+      on: {
+        "click": function($event) {
+          _vm.preview(act.id)
+        }
+      }
     }, [_vm._v(_vm._s(act.description))]), _vm._v(" "), _c('div', {
       staticClass: "operate text-right"
     }, [_c('div', {

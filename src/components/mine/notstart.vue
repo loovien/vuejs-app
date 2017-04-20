@@ -7,13 +7,13 @@
         
         <div class="list">
             <div class="item mt10 clearfix table w100" v-for="act in acts" :key="act.id">
-                <div class="table w100" @click="preview(act.id)">
-                    <div class="thumbnail-box table-cell">
+                <div class="table w100">
+                    <div class="thumbnail-box table-cell"  @click="preview(act.id)">
                         <img :src="act.banner_img" alt="" class="thumbnail fl">
                     </div>
                     <div class="relative item-info table-cell">
-                        <h3 class="title color_333 f16">{{act.title}}</h3>
-                        <p class="desc f12 color_999">{{act.description}}</p>
+                        <h3 class="title color_333 f16"  @click="preview(act.id)">{{act.title}}</h3>
+                        <p class="desc f12 color_999"  @click="preview(act.id)">{{act.description}}</p>
                         <div class="operate text-right">
                             <div class="inline-block">
                                 <span class="iconfont icon-edit color_gray"></span>
