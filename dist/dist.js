@@ -14958,12 +14958,22 @@ exports.default = {
                     console.error("微信分享失败");
                     return;
                 }
-                var wxShareConfig = {
+                /*
+                const wxShareConfig = {
                     title: act.description || act.title,
                     link: currentUrl,
                     imageUrl: act.cover_img,
-                    success: function success() {
+                    success: function () {
                         alert("分享成功");
+                    }
+                };
+                */
+                var wxShareConfig = {
+                    title: '参与活动, 可免费或的一对一辅导2222222',
+                    link: 'http://sjl.51lianying.com/act/shared/9/o0sUawQY0A2u1ntP9RaALiazR8Hw',
+                    imageUrl: 'http://cdn.qimg.51lianying.com/form/biz/magazine/2017/04/16/16/86b24d65f5de6ebaf0c32fcfa2b3ea87.jpeg?imageView2/2/w/640/format/jpg/interlace/0/q/80',
+                    success: function success() {
+                        alert("ok");
                     }
                 };
                 alert((0, _stringify2.default)(wxShareConfig));
@@ -17483,7 +17493,7 @@ var WxSrv = function (_BaseSrv) {
         value: function initWxJsConfig(url, callback) {
             this.http.get("wechat/jstoken?url=" + url).then(function (wxResp) {
                 if (wxResp.data.code === 0) {
-                    console.log(wxResp);
+                    console.log(wxResp.data.data);
                     _wx2.default.config(wxResp.data.data);
                     callback(true);
                 } else {

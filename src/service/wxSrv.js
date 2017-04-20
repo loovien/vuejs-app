@@ -8,7 +8,7 @@ export default class  WxSrv extends BaseSrv  {
     initWxJsConfig(url, callback) {
         this.http.get("wechat/jstoken?url="+url).then((wxResp) => {
             if(wxResp.data.code === 0) {
-                console.log(wxResp);
+                console.log(wxResp.data.data);
                 wx.config(wxResp.data.data);
                 callback(true);
             } else {
