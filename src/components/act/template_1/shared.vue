@@ -280,7 +280,7 @@
                         return
                     }
                     const wxShareConfig = {
-                        title:  act.title,
+                        title: act.description || act.title,
                         link: currentUrl,
                         imageUrl: act.cover_img,
                         success: function () {
