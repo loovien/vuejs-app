@@ -43,6 +43,7 @@
 <script>
     import IndexSrv from "../../service/indexSrv";
     import Fixed from '../shared/fixed.vue'
+    import WxSrv from '../../service/wxSrv';
 
     export default {
         data() {
@@ -57,14 +58,27 @@
             const indexSrv = new IndexSrv(this);
             indexSrv.getBannerImg().then((response) => {
                 const data = response.data.data;
-                this.bannerImgs = data.banner_url;
+                const bannerUrl = this.bannerImgs = data.banner_url;
+
+                const wxSrv = new WxSrv(this);
+                const currentUrl = window.location.origin + window.location.pathname;
+                wxSrv.initWxJsConfig(currentUrl, function () {
+                    const wxShareJsConfig = {
+                        title: '我要联赢-商家恋首页',
+                        imageUrl: bannerUrl,
+                        link: currentUrl,
+                    };
+                    wxSrv.onSuccess();
+                    wxSrv.onError();
+                    wxSrv.onMenuShareAppMessage(wxShareJsConfig);
+                    wxSrv.onMenuShareTimeline(wxShareJsConfig);
+                });
             });
             indexSrv.getIndustryList().then((response) => {
                this.industries = response.data.data;
             });
 
             indexSrv.getRecommendList().then((response) => {
-                
                 this.acts = response.data.data;
             })
         },
