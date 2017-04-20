@@ -18,13 +18,10 @@ export default class AuthMiddleware {
                 let code = to.query.code;
                 if(code) { /* if code exists then get user information */
                     authUtil.setUserInfo(code, (ok) => {
-                        alert(ok);
-                        let currentUrlWithOutCode = window.location.origin + window.location.pathname;
-                        alert(code)
-                        alert(currentUrlWithOutCode);
                         if(!ok) {
                           this.goWxAuthenticateUrl();
                         } else {
+                            let currentUrlWithOutCode = window.location.origin + window.location.pathname;
                             window.location.href = currentUrlWithOutCode;
                             return;
                         }
