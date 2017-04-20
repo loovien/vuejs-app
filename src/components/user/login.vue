@@ -43,7 +43,8 @@
             return {
                 credentials: {
                     mobile: "",
-                    password: ""
+                    password: "",
+                    openid: ""
                 },
                 error: {
                     msg: ""
@@ -57,9 +58,10 @@
             submit: function () {
                 let redirectUrl = this.$route.query.redirect;
                 const userSrv = new UserSrv(this);
+                const authUtil = new AuthUtil(this);
+                this.credentials.openid = authUtil.getOpenId();
                 userSrv.login(this.credentials).then((resp) => {
                     if(resp.data.code == 0) {
-                        const authUtil = new AuthUtil(this);
                         const mobile = resp.data.data.mobile;
                         const name = resp.data.data.name;
                         const expiredDays = resp.data.data.expiredDays;

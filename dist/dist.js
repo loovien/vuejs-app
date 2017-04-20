@@ -16750,7 +16750,8 @@ exports.default = {
         return {
             credentials: {
                 mobile: "",
-                password: ""
+                password: "",
+                openid: ""
             },
             error: {
                 msg: ""
@@ -16766,9 +16767,10 @@ exports.default = {
 
             var redirectUrl = this.$route.query.redirect;
             var userSrv = new _userSrv2.default(this);
+            var authUtil = new _authUtil2.default(this);
+            this.credentials.openid = authUtil.getOpenId();
             userSrv.login(this.credentials).then(function (resp) {
                 if (resp.data.code == 0) {
-                    var authUtil = new _authUtil2.default(_this);
                     var mobile = resp.data.data.mobile;
                     var name = resp.data.data.name;
                     var expiredDays = resp.data.data.expiredDays;
