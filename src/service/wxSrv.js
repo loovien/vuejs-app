@@ -25,16 +25,14 @@ export default class  WxSrv extends BaseSrv  {
     onMenuShareAppMessage(shareConfig) {
         wx.onMenuShareAppMessage(shareConfig);
     }
-
     onError() {
         wx.error(function(res){
-            console.log(res, '----------------------------------');
+            console.log(res, 'register share erro')
         });
     }
-
     onSuccess() {
         wx.ready(function(){
-            console.log('--success--------------------------------');
+            console.log('succes')
         });
     }
 }

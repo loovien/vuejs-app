@@ -281,7 +281,6 @@
                     }
                     wxSrv.onError();
                     wxSrv.onSuccess();
-                    /*
                     const wxShareConfig = {
                         title: act.description || act.title,
                         link: currentUrl,
@@ -290,7 +289,7 @@
                             alert("分享成功");
                         }
                     };
-                    */
+                    /*
                     const wxShareConfig = {
                         title: '参与活动, 可免费或的一对一辅导2222222',
                         link: 'http://sjl.51lianying.com/act/shared/9/o0sUawQY0A2u1ntP9RaALiazR8Hw',
@@ -299,8 +298,7 @@
                             alert("ok");
                         }
                     }
-                    alert(JSON.stringify(wxShareConfig))
-                    console.log(wxShareConfig);
+                     */
                     wxSrv.onMenuShareAppMessage(wxShareConfig);
                     wxSrv.onMenuShareTimeline(wxShareConfig);
                 });
