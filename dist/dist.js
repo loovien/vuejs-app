@@ -14958,6 +14958,7 @@ exports.default = {
                     console.error("微信分享失败");
                     return;
                 }
+                wxSrv.onError();
                 /*
                 const wxShareConfig = {
                     title: act.description || act.title,
@@ -17513,6 +17514,13 @@ var WxSrv = function (_BaseSrv) {
         value: function onMenuShareAppMessage(shareConfig) {
             console.log(shareConfig, 'meneu');
             _wx2.default.onMenuShareAppMessage(shareConfig);
+        }
+    }, {
+        key: "onError",
+        value: function onError() {
+            _wx2.default.error(function (res) {
+                console.log(res);
+            });
         }
     }]);
     return WxSrv;

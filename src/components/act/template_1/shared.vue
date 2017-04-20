@@ -279,6 +279,7 @@
                         console.error("微信分享失败");
                         return
                     }
+                    wxSrv.onError();
                     /*
                     const wxShareConfig = {
                         title: act.description || act.title,
