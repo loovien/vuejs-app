@@ -15054,7 +15054,8 @@ exports.default = {
                 wxSrv.onError();
                 wxSrv.onSuccess();
                 var wxShareConfig = {
-                    title: act.description || act.title,
+                    title: act.title || '我要联赢-商家恋',
+                    desc: act.description,
                     link: currentUrl,
                     imageUrl: act.cover_img,
                     success: function success() {
@@ -15071,6 +15072,7 @@ exports.default = {
                     }
                 }
                  */
+                console.log(wxShareConfig);
                 wxSrv.onMenuShareAppMessage(wxShareConfig);
                 wxSrv.onMenuShareTimeline(wxShareConfig);
             });
