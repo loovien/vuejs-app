@@ -17469,7 +17469,12 @@ var AuthMiddleware = function () {
                     if (code) {
                         /* if code exists then get user information */
                         authUtil.setUserInfo(code, function (ok) {
-                            if (!ok) _this.goWxAuthenticateUrl();
+                            if (!ok) {
+                                _this.goWxAuthenticateUrl();
+                            } else {
+                                window.location.href = window.location.origin + window.location.pathname;
+                                return;
+                            }
                         });
                     } else {
                         /* redirect to wechat server run OAuth2 flow */
