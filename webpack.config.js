@@ -31,6 +31,9 @@ module.exports = {
     node: {
       fs: "empty"
     },
+    externals: {
+      wx: 'jWeixin',
+    },
     resolve: {
         alias: {
             vue: 'vue/dist/vue.js'

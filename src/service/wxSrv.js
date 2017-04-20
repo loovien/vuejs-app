@@ -3,6 +3,7 @@
  */
 
 import BaseSrv from "./baseSrv";
+import wx from 'wx';
 export default class  WxSrv extends BaseSrv  {
     initWxJsConfig(url, callback) {
         this.http.get("wechat/jstoken?url="+url).then((wxResp) => {
@@ -10,7 +11,7 @@ export default class  WxSrv extends BaseSrv  {
                 alert(window.wx)
                 console.log(window.wx)
                 console.log(wxResp);
-                window.wx.config(wxResp.data.data);
+                wx.config(wxResp.data.data);
 
                 callback(true);
             } else {
@@ -21,10 +22,10 @@ export default class  WxSrv extends BaseSrv  {
     }
 
     onMenuShareTimeline(shareConfig) {
-        window.wx.onMenuShareTimeline(shareConfig);
+        wx.onMenuShareTimeline(shareConfig);
     }
 
     onMenuShareAppMessage(shareConfig) {
-        window.wx.onMenuShareAppMessage(shareConfig);
+        wx.onMenuShareAppMessage(shareConfig);
     }
 }

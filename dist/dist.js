@@ -63,7 +63,7 @@
 /******/ 	__webpack_require__.p = "dist/";
 /******/
 /******/ 	// Load entry module and return exports
-/******/ 	return __webpack_require__(__webpack_require__.s = 259);
+/******/ 	return __webpack_require__(__webpack_require__.s = 260);
 /******/ })
 /************************************************************************/
 /******/ ([
@@ -17454,7 +17454,15 @@ var _baseSrv = __webpack_require__(19);
 
 var _baseSrv2 = _interopRequireDefault(_baseSrv);
 
+var _wx = __webpack_require__(258);
+
+var _wx2 = _interopRequireDefault(_wx);
+
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+/**
+ * Created by luowen on 2017/4/19.
+ */
 
 var WxSrv = function (_BaseSrv) {
     (0, _inherits3.default)(WxSrv, _BaseSrv);
@@ -17472,7 +17480,7 @@ var WxSrv = function (_BaseSrv) {
                     alert(window.wx);
                     console.log(window.wx);
                     console.log(wxResp);
-                    window.wx.config(wxResp.data.data);
+                    _wx2.default.config(wxResp.data.data);
 
                     callback(true);
                 } else {
@@ -17484,18 +17492,16 @@ var WxSrv = function (_BaseSrv) {
     }, {
         key: "onMenuShareTimeline",
         value: function onMenuShareTimeline(shareConfig) {
-            window.wx.onMenuShareTimeline(shareConfig);
+            _wx2.default.onMenuShareTimeline(shareConfig);
         }
     }, {
         key: "onMenuShareAppMessage",
         value: function onMenuShareAppMessage(shareConfig) {
-            window.wx.onMenuShareAppMessage(shareConfig);
+            _wx2.default.onMenuShareAppMessage(shareConfig);
         }
     }]);
     return WxSrv;
-}(_baseSrv2.default); /**
-                       * Created by luowen on 2017/4/19.
-                       */
+}(_baseSrv2.default);
 
 exports.default = WxSrv;
 
@@ -27737,7 +27743,7 @@ var xhrClient = function (request) {
 
 var nodeClient = function (request) {
 
-    var client = __webpack_require__(258);
+    var client = __webpack_require__(259);
 
     return new PromiseObj(function (resolve) {
 
@@ -40233,10 +40239,16 @@ module.exports = function(module) {
 /* 258 */
 /***/ (function(module, exports) {
 
-/* (ignored) */
+module.exports = jWeixin;
 
 /***/ }),
 /* 259 */
+/***/ (function(module, exports) {
+
+/* (ignored) */
+
+/***/ }),
+/* 260 */
 /***/ (function(module, exports, __webpack_require__) {
 
 module.exports = __webpack_require__(70);
