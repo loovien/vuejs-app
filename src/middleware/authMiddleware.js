@@ -18,11 +18,13 @@ export default class AuthMiddleware {
                 let code = to.query.code;
                 if(code) { /* if code exists then get user information */
                     authUtil.setUserInfo(code, (ok) => {
+                        let currentUrlWithOutCode = window.location.origin + window.location.pathname;
+                        alert(code)
+                        alert(currentUrlWithOutCode);
                         if(!ok) {
                           this.goWxAuthenticateUrl();
                         } else {
-                            window.location.href = window.location.origin + window.location.pathname;
-                            return;
+                            window.location.href = currentUrlWithOutCode;
                         }
                     });
                 } else { /* redirect to wechat server run OAuth2 flow */
