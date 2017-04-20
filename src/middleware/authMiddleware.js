@@ -28,20 +28,24 @@ export default class AuthMiddleware {
             if (to.matched.some(record => record.meta.auth)) {
                 // this route requires auth, check if logged in
                 // if not, redirect to login page.
-                if (!authUtil.isLogin()) {
-                    next({
-                        name: "userLogin",
-                        query: { redirect: to.fullPath }
-                    });
+                authUtil.isLogin(function (isLogin) {
+                    if(isLogin) {
+                        if(authUtil.isExpired() && to.matched.some(record => record.meta.rich)) {
+                            next({
+                                name: "userHelp" ,
+                                query: {redirect: to.fullPath}
+                            });
+                        } else {
+                            next();
+                        }
+                    } else {
+                        next({
+                            name: "userLogin",
+                            query: { redirect: to.fullPath }
+                        });
+                    }
+                });
                 /* user has not expired can visit routes */
-                } else if(authUtil.isExpired() && to.matched.some(record => record.meta.rich)) {
-                    next({
-                        name: "userHelp" ,
-                        query: {redirect: to.fullPath}
-                    });
-                } else {
-                    next();
-                }
             } else {
                 next();
             }

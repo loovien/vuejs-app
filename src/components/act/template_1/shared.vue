@@ -323,24 +323,17 @@
 
                 var url = window.location.origin + window.location.pathname;
 
-                window.share_config = {
-                    title   : act.title,
-                    desc    : act.description, 
-                    link    : url,
-                    imgUrl  : act.banner_img,
-                    shareTrigger: function (res) {
+                /*
+                wx.config({
+                    debug: true, // 开启调试模式,调用的所有api的返回值会在客户端alert出来，若要查看传入的参数，可以在pc端打开，参数信息会通过log打出，仅在pc端时才会打印。
+                    appId: '', // 必填，公众号的唯一标识
+                    timestamp: , // 必填，生成签名的时间戳
+                    nonceStr: '', // 必填，生成签名的随机串
+                    signature: '',// 必填，签名，见附录1
+                    jsApiList: [] // 必填，需要使用的JS接口列表，所有JS接口列表见附录2
+                });
+                */
 
-                    },
-                    shareSuccess: function (res, channel) {
-
-                    },
-                    shareCancel: function (res) {
-
-                    },
-                    shareFail: function (res) {
-
-                    }
-                };
             },
             //切换音乐开关
             togglePause: function(){

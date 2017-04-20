@@ -32,8 +32,18 @@ export default class jAuthUtil {
         return sessionStorage.getItem("_expired_days") <= 0;
     }
 
-    isLogin () {
-        return !!sessionStorage.getItem('_mobile');
+    isLogin (callback) {
+        this.http.get("user/logininfo").then((resp) => {
+            const respData = resp.data;
+            if(respData.code === 0) {
+                this.setName(respData.data.name);
+                this.setMobile(respData.data.mobile);
+                this.setExpiredDays(respData.data.expiredDays)
+                callback(true);
+            } else {
+                callback(false);
+            }
+        })
     }
 
     hasWxOpenId() {
