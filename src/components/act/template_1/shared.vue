@@ -198,12 +198,14 @@
     import countDown from "../../shared/countDown.vue";
     import Modal from '../../shared/modal.vue'
     import Fixed from '../../shared/fixed.vue'
+    import WxSrv from '../../../service/wxSrv';
 
     export default {
         data() {
             return {
                 authUtil: null,
                 actSrv: {},
+                wxSrv: {},
                 query: {}, // address params
                 openid: null, // current user openid
                 act: { // activity information
@@ -267,6 +269,27 @@
             actSrv.getActInfo(query).then((resp) => {
                 // console.log(resp.data.data)
                 let act = this.act = resp.data.data;
+
+                // 微信分享
+                //http://203.195.235.76/jssdk/#menu-share
+                let currentUrl = window.location.origin + window.location.pathname;
+                const wxSrv = new WxSrv(this);
+                wxSrv.initWxJsConfig(currentUrl, (resp) => {
+                    if(!resp) {
+                        console.error("微信分享失败");
+                        return
+                    }
+                    const wxShareConfig = {
+                        title:  act.title,
+                        link: currentUrl,
+                        imageUrl: act.cover_img,
+                        success: function () {
+                            alert("分享成功");
+                        }
+                    };
+                    wxSrv.onMenuShareAppMessage(wxShareConfig);
+                    wxSrv.onMenuShareTimeline(wxShareConfig);
+                });
                 /*
                 try {
                     //this.act.act_images = JSON.parse(this.act.act_images);
@@ -297,8 +320,6 @@
                         this.completedCnt = resp.data.data.completed_cnt;
                     }
                 });
-                //微信分享
-                this.share()
             });
 
             actSrv.getUserInfo(query).then((resp) => {
@@ -319,21 +340,15 @@
         methods: {
             //微信分享
             share(){
-                var act = this.act;
-
-                var url = window.location.origin + window.location.pathname;
-
-                /*
-                wx.config({
-                    debug: true, // 开启调试模式,调用的所有api的返回值会在客户端alert出来，若要查看传入的参数，可以在pc端打开，参数信息会通过log打出，仅在pc端时才会打印。
-                    appId: '', // 必填，公众号的唯一标识
-                    timestamp: , // 必填，生成签名的时间戳
-                    nonceStr: '', // 必填，生成签名的随机串
-                    signature: '',// 必填，签名，见附录1
-                    jsApiList: [] // 必填，需要使用的JS接口列表，所有JS接口列表见附录2
+                let act = this.act;
+                let url = window.location.origin + window.location.pathname;
+                this.wxSrv.checkWx(url).then((resp) => {
+                    if(resp.data.code === 0) {
+                        wx.config(resp.data.data);
+                    } else {
+                        console.log("分享出错", resp.data);
+                    }
                 });
-                */
-
             },
             //切换音乐开关
             togglePause: function(){
