@@ -20435,7 +20435,7 @@ exports = module.exports = __webpack_require__(1)();
 
 
 // module
-exports.push([module.i, "\n.login {\r\n    padding: 10px;\n}\n.bottom{\r\n    width: 100%;\r\n    position: fixed;\r\n    bottom: 0;\r\n    left: 0;\r\n    padding-bottom: 20px;\n}\n.icon-phone{\r\n    color: #12abcc;\n}\n.logo{\r\n    margin: 0 auto;\r\n    display: inline-block;\r\n    width: 98px; height: auto;\r\n    display: block;\n}\n.registerBtn{\r\n    color: #e8a70a;\r\n    border-right: 1px solid #c5c5c5;\r\n    padding-right: 15px;\n}\n.resetpwdBtn{\r\n    padding-left: 15px;\n}\n.btn-box{\r\n    padding: 20px 0;\n}\r\n\r\n", ""]);
+exports.push([module.i, "\n.login {\r\n    padding: 10px;\n}\n.bottom{\r\n    width: 100%;\r\n    position: absolute;\r\n    bottom: 0;\r\n    left: 0;\r\n    padding-bottom: 20px;\n}\n.icon-phone{\r\n    color: #12abcc;\n}\n.logo{\r\n    margin: 0 auto;\r\n    display: inline-block;\r\n    width: 98px; height: auto;\r\n    display: block;\n}\n.registerBtn{\r\n    color: #e8a70a;\r\n    border-right: 1px solid #c5c5c5;\r\n    padding-right: 15px;\n}\n.resetpwdBtn{\r\n    padding-left: 15px;\n}\n.btn-box{\r\n    padding: 20px 0;\n}\r\n\r\n", ""]);
 
 // exports
 
