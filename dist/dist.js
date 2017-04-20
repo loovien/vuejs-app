@@ -17469,6 +17469,7 @@ var AuthMiddleware = function () {
                     if (code) {
                         /* if code exists then get user information */
                         authUtil.setUserInfo(code, function (ok) {
+                            alert(ok);
                             var currentUrlWithOutCode = window.location.origin + window.location.pathname;
                             alert(code);
                             alert(currentUrlWithOutCode);
@@ -17476,6 +17477,7 @@ var AuthMiddleware = function () {
                                 _this.goWxAuthenticateUrl();
                             } else {
                                 window.location.href = currentUrlWithOutCode;
+                                return;
                             }
                         });
                     } else {
