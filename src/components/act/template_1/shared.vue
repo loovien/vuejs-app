@@ -186,7 +186,7 @@
             </div>
             <div slot="button"></div>
         </modal>
-        <fixed :options="{save: false, back: false, account: false}"></fixed>
+        <fixed :options="{save: false, back: false, account: false, home: true}"></fixed>
         <span v-if="!!act.background_music" class="music-icon iconfont icon-music" :class="{'isPaused': isPaused}" @click="togglePause"></span>
         <audio v-if="!!act.background_music" loop="" :src="act.background_music" autoplay="" id="music"></audio>
     </div>

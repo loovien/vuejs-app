@@ -25922,7 +25922,8 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
       "options": {
         save: false,
         back: false,
-        account: false
+        account: false,
+        home: true
       }
     }
   }), _vm._v(" "), (!!_vm.act.background_music) ? _c('span', {
