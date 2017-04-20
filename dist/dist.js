@@ -14962,6 +14962,7 @@ exports.default = {
                         alert("分享成功");
                     }
                 };
+                console.log(wxShareConfig);
                 wxSrv.onMenuShareAppMessage(wxShareConfig);
                 wxSrv.onMenuShareTimeline(wxShareConfig);
             });
@@ -17492,11 +17493,13 @@ var WxSrv = function (_BaseSrv) {
     }, {
         key: "onMenuShareTimeline",
         value: function onMenuShareTimeline(shareConfig) {
+            console.log(shareConfig, 'apptieline');
             _wx2.default.onMenuShareTimeline(shareConfig);
         }
     }, {
         key: "onMenuShareAppMessage",
         value: function onMenuShareAppMessage(shareConfig) {
+            console.log(shareConfig, 'meneu');
             _wx2.default.onMenuShareAppMessage(shareConfig);
         }
     }]);

@@ -287,6 +287,7 @@
                             alert("分享成功");
                         }
                     };
+                    console.log(wxShareConfig);
                     wxSrv.onMenuShareAppMessage(wxShareConfig);
                     wxSrv.onMenuShareTimeline(wxShareConfig);
                 });
