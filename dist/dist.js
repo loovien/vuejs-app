@@ -14959,6 +14959,7 @@ exports.default = {
                     return;
                 }
                 wxSrv.onError();
+                wxSrv.onSuccess();
                 /*
                 const wxShareConfig = {
                     title: act.description || act.title,
@@ -17506,20 +17507,25 @@ var WxSrv = function (_BaseSrv) {
     }, {
         key: "onMenuShareTimeline",
         value: function onMenuShareTimeline(shareConfig) {
-            console.log(shareConfig, 'apptieline');
             _wx2.default.onMenuShareTimeline(shareConfig);
         }
     }, {
         key: "onMenuShareAppMessage",
         value: function onMenuShareAppMessage(shareConfig) {
-            console.log(shareConfig, 'meneu');
             _wx2.default.onMenuShareAppMessage(shareConfig);
         }
     }, {
         key: "onError",
         value: function onError() {
             _wx2.default.error(function (res) {
-                console.log(res);
+                console.log(res, '----------------------------------');
+            });
+        }
+    }, {
+        key: "onSuccess",
+        value: function onSuccess() {
+            _wx2.default.ready(function () {
+                console.log('--success--------------------------------');
             });
         }
     }]);

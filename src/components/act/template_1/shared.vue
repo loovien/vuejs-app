@@ -280,6 +280,7 @@
                         return
                     }
                     wxSrv.onError();
+                    wxSrv.onSuccess();
                     /*
                     const wxShareConfig = {
                         title: act.description || act.title,

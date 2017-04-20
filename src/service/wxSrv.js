@@ -19,18 +19,22 @@ export default class  WxSrv extends BaseSrv  {
     }
 
     onMenuShareTimeline(shareConfig) {
-        console.log(shareConfig, 'apptieline');
         wx.onMenuShareTimeline(shareConfig);
     }
 
     onMenuShareAppMessage(shareConfig) {
-        console.log(shareConfig, 'meneu');
         wx.onMenuShareAppMessage(shareConfig);
     }
 
     onError() {
         wx.error(function(res){
-            console.log(res);
+            console.log(res, '----------------------------------');
+        });
+    }
+
+    onSuccess() {
+        wx.ready(function(){
+            console.log('--success--------------------------------');
         });
     }
 }
