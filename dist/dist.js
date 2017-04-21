@@ -23852,7 +23852,7 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
         _vm.showLogo('m')
       },
       "click": function($event) {
-        _vm.hideLog('m')
+        _vm.hideLogo('m')
       },
       "input": function($event) {
         if ($event.target.composing) { return; }
@@ -23883,7 +23883,7 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
         _vm.showLogo('p')
       },
       "click": function($event) {
-        _vm.hideLog('p')
+        _vm.hideLogo('p')
       },
       "input": function($event) {
         if ($event.target.composing) { return; }

@@ -11,11 +11,11 @@
                 <div class="form-inputBox">
                     <div class="input-box">
                         <span class="iconfont icon-iphone input-icon"></span>
-                        <input type="text" placeholder="手机号" v-model="credentials.mobile" class="ui-input" @blur="showLogo('m')" @click="hideLog('m')">
+                        <input type="text" placeholder="手机号" v-model="credentials.mobile" class="ui-input" @blur="showLogo('m')" @click="hideLogo('m')">
                     </div>
                     <div class="input-box">
                         <span class="iconfont icon-Password input-icon"></span>
-                        <input type="password" placeholder="密码" v-model="credentials.password" class="ui-input" @blur="showLogo('p')" @click="hideLog('p')">
+                        <input type="password" placeholder="密码" v-model="credentials.password" class="ui-input" @blur="showLogo('p')" @click="hideLogo('p')">
                     </div>
                 </div>
                 <div class="btn-box">
