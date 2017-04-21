@@ -665,7 +665,7 @@ if(typeof __g == 'number')__g = global; // eslint-disable-line no-undef
 /***/ (function(module, exports, __webpack_require__) {
 
 var anObject       = __webpack_require__(15)
-  , IE8_DOM_DEFINE = __webpack_require__(55)
+  , IE8_DOM_DEFINE = __webpack_require__(56)
   , toPrimitive    = __webpack_require__(45)
   , dP             = Object.defineProperty;
 
@@ -685,7 +685,7 @@ exports.f = __webpack_require__(11) ? Object.defineProperty : function definePro
 /* 9 */
 /***/ (function(module, exports, __webpack_require__) {
 
-var isDate = __webpack_require__(66)
+var isDate = __webpack_require__(67)
 
 var MILLISECONDS_IN_HOUR = 3600000
 var MILLISECONDS_IN_MINUTE = 60000
@@ -1713,7 +1713,7 @@ exports.default = MineSrv;
 /***/ (function(module, exports, __webpack_require__) {
 
 // 19.1.2.14 / 15.2.3.14 Object.keys(O)
-var $keys       = __webpack_require__(61)
+var $keys       = __webpack_require__(62)
   , enumBugKeys = __webpack_require__(36);
 
 module.exports = Object.keys || function keys(O){
@@ -1948,7 +1948,7 @@ var anObject    = __webpack_require__(15)
 // Create object with fake `null` prototype: use iframe Object with cleared prototype
 var createDict = function(){
   // Thrash, waste and sodomy: IE GC bug
-  var iframe = __webpack_require__(54)('iframe')
+  var iframe = __webpack_require__(55)('iframe')
     , i      = enumBugKeys.length
     , lt     = '<'
     , gt     = '>'
@@ -2110,1262 +2110,6 @@ module.exports = startOfISOWeek
 
 /***/ }),
 /* 49 */
-/***/ (function(module, exports, __webpack_require__) {
-
-
-/* styles */
-__webpack_require__(247)
-
-var Component = __webpack_require__(0)(
-  /* script */
-  __webpack_require__(86),
-  /* template */
-  __webpack_require__(224),
-  /* scopeId */
-  null,
-  /* cssModules */
-  null
-)
-Component.options.__file = "D:\\workspaces\\htmlproj\\vuejs-app\\src\\components\\shared\\modal.vue"
-if (Component.esModule && Object.keys(Component.esModule).some(function (key) {return key !== "default" && key !== "__esModule"})) {console.error("named exports are not supported in *.vue files.")}
-if (Component.options.functional) {console.error("[vue-loader] modal.vue: functional components are not supported with templates, they should use render functions.")}
-
-/* hot reload */
-if (false) {(function () {
-  var hotAPI = require("vue-hot-reload-api")
-  hotAPI.install(require("vue"), false)
-  if (!hotAPI.compatible) return
-  module.hot.accept()
-  if (!module.hot.data) {
-    hotAPI.createRecord("data-v-7abf8db2", Component.options)
-  } else {
-    hotAPI.reload("data-v-7abf8db2", Component.options)
-  }
-})()}
-
-module.exports = Component.exports
-
-
-/***/ }),
-/* 50 */
-/***/ (function(module, exports) {
-
-var g;
-
-// This works in non-strict mode
-g = (function() {
-	return this;
-})();
-
-try {
-	// This works if eval is allowed (see CSP)
-	g = g || Function("return this")() || (1,eval)("this");
-} catch(e) {
-	// This works if the window reference is available
-	if(typeof window === "object")
-		g = window;
-}
-
-// g can still be undefined, but nothing to do about it...
-// We return undefined, instead of nothing here, so it's
-// easier to handle this case. if(!global) { ...}
-
-module.exports = g;
-
-
-/***/ }),
-/* 51 */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-
-Object.defineProperty(exports, "__esModule", {
-    value: true
-});
-
-var _getPrototypeOf = __webpack_require__(21);
-
-var _getPrototypeOf2 = _interopRequireDefault(_getPrototypeOf);
-
-var _classCallCheck2 = __webpack_require__(6);
-
-var _classCallCheck3 = _interopRequireDefault(_classCallCheck2);
-
-var _createClass2 = __webpack_require__(10);
-
-var _createClass3 = _interopRequireDefault(_createClass2);
-
-var _possibleConstructorReturn2 = __webpack_require__(23);
-
-var _possibleConstructorReturn3 = _interopRequireDefault(_possibleConstructorReturn2);
-
-var _inherits2 = __webpack_require__(22);
-
-var _inherits3 = _interopRequireDefault(_inherits2);
-
-var _baseSrv = __webpack_require__(19);
-
-var _baseSrv2 = _interopRequireDefault(_baseSrv);
-
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-
-var IndexSrv = function (_BaseSrv) {
-    (0, _inherits3.default)(IndexSrv, _BaseSrv);
-
-    function IndexSrv() {
-        (0, _classCallCheck3.default)(this, IndexSrv);
-        return (0, _possibleConstructorReturn3.default)(this, (IndexSrv.__proto__ || (0, _getPrototypeOf2.default)(IndexSrv)).apply(this, arguments));
-    }
-
-    (0, _createClass3.default)(IndexSrv, [{
-        key: "getBannerImg",
-        value: function getBannerImg() {
-            return this.http.get("mobile/banner");
-        }
-    }, {
-        key: "getIndustryList",
-        value: function getIndustryList() {
-            return this.http.get("industry");
-        }
-    }, {
-        key: "getRecommendList",
-        value: function getRecommendList() {
-            return this.http.get("act/recommd");
-        }
-    }]);
-    return IndexSrv;
-}(_baseSrv2.default); /**
-                       * Created by luowen on 2017/3/12.
-                       */
-
-exports.default = IndexSrv;
-
-/***/ }),
-/* 52 */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-
-Object.defineProperty(exports, "__esModule", {
-    value: true
-});
-
-var _getPrototypeOf = __webpack_require__(21);
-
-var _getPrototypeOf2 = _interopRequireDefault(_getPrototypeOf);
-
-var _classCallCheck2 = __webpack_require__(6);
-
-var _classCallCheck3 = _interopRequireDefault(_classCallCheck2);
-
-var _createClass2 = __webpack_require__(10);
-
-var _createClass3 = _interopRequireDefault(_createClass2);
-
-var _possibleConstructorReturn2 = __webpack_require__(23);
-
-var _possibleConstructorReturn3 = _interopRequireDefault(_possibleConstructorReturn2);
-
-var _inherits2 = __webpack_require__(22);
-
-var _inherits3 = _interopRequireDefault(_inherits2);
-
-var _baseSrv = __webpack_require__(19);
-
-var _baseSrv2 = _interopRequireDefault(_baseSrv);
-
-var _wx = __webpack_require__(259);
-
-var _wx2 = _interopRequireDefault(_wx);
-
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-
-/**
- * Created by luowen on 2017/4/19.
- */
-
-var WxSrv = function (_BaseSrv) {
-    (0, _inherits3.default)(WxSrv, _BaseSrv);
-
-    function WxSrv() {
-        (0, _classCallCheck3.default)(this, WxSrv);
-        return (0, _possibleConstructorReturn3.default)(this, (WxSrv.__proto__ || (0, _getPrototypeOf2.default)(WxSrv)).apply(this, arguments));
-    }
-
-    (0, _createClass3.default)(WxSrv, [{
-        key: "initWxJsConfig",
-        value: function initWxJsConfig(url, callback) {
-            this.http.get("wechat/jstoken?url=" + url).then(function (wxResp) {
-                if (wxResp.data.code === 0) {
-                    console.log(wxResp.data.data);
-                    _wx2.default.config(wxResp.data.data);
-                    callback(true);
-                } else {
-                    console.log("微信分享搓搓", wxResp);
-                    callback(false);
-                }
-            });
-        }
-    }, {
-        key: "onMenuShareTimeline",
-        value: function onMenuShareTimeline(shareConfig) {
-            _wx2.default.onMenuShareTimeline(shareConfig);
-        }
-    }, {
-        key: "onMenuShareAppMessage",
-        value: function onMenuShareAppMessage(shareConfig) {
-            _wx2.default.onMenuShareAppMessage(shareConfig);
-        }
-    }, {
-        key: "onError",
-        value: function onError() {
-            _wx2.default.error(function (res) {
-                console.log(res, 'register share erro');
-            });
-        }
-    }, {
-        key: "onSuccess",
-        value: function onSuccess() {
-            _wx2.default.ready(function () {
-                console.log('succes');
-            });
-        }
-    }]);
-    return WxSrv;
-}(_baseSrv2.default);
-
-exports.default = WxSrv;
-
-/***/ }),
-/* 53 */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-/* WEBPACK VAR INJECTION */(function(module) {var __WEBPACK_AMD_DEFINE_FACTORY__, __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;
-
-var _typeof2 = __webpack_require__(32);
-
-var _typeof3 = _interopRequireDefault(_typeof2);
-
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-
-!function (e, t) {
-  if ("object" == ( false ? "undefined" : (0, _typeof3.default)(exports)) && "object" == ( false ? "undefined" : (0, _typeof3.default)(module))) module.exports = t();else if (true) !(__WEBPACK_AMD_DEFINE_ARRAY__ = [], __WEBPACK_AMD_DEFINE_FACTORY__ = (t),
-				__WEBPACK_AMD_DEFINE_RESULT__ = (typeof __WEBPACK_AMD_DEFINE_FACTORY__ === 'function' ?
-				(__WEBPACK_AMD_DEFINE_FACTORY__.apply(exports, __WEBPACK_AMD_DEFINE_ARRAY__)) : __WEBPACK_AMD_DEFINE_FACTORY__),
-				__WEBPACK_AMD_DEFINE_RESULT__ !== undefined && (module.exports = __WEBPACK_AMD_DEFINE_RESULT__));else {
-    var n = t();for (var r in n) {
-      ("object" == (typeof exports === "undefined" ? "undefined" : (0, _typeof3.default)(exports)) ? exports : e)[r] = n[r];
-    }
-  }
-}(undefined, function () {
-  return function (e) {
-    function t(r) {
-      if (n[r]) return n[r].exports;var i = n[r] = { exports: {}, id: r, loaded: !1 };return e[r].call(i.exports, i, i.exports, t), i.loaded = !0, i.exports;
-    }var n = {};return t.m = e, t.c = n, t.p = "", t(0);
-  }([function (e, t, n) {
-    n(6), n(7), e.exports = n(8);
-  }, function (e, t, n) {
-    (function (t) {
-      !function (n) {
-        function r(e, t) {
-          return function () {
-            e.apply(t, arguments);
-          };
-        }function i(e) {
-          if ("object" != (0, _typeof3.default)(this)) throw new TypeError("Promises must be constructed via new");if ("function" != typeof e) throw new TypeError("not a function");this._state = null, this._value = null, this._deferreds = [], l(e, r(a, this), r(s, this));
-        }function o(e) {
-          var t = this;return null === this._state ? void this._deferreds.push(e) : void f(function () {
-            var n = t._state ? e.onFulfilled : e.onRejected;if (null === n) return void (t._state ? e.resolve : e.reject)(t._value);var r;try {
-              r = n(t._value);
-            } catch (i) {
-              return void e.reject(i);
-            }e.resolve(r);
-          });
-        }function a(e) {
-          try {
-            if (e === this) throw new TypeError("A promise cannot be resolved with itself.");if (e && ("object" == (typeof e === "undefined" ? "undefined" : (0, _typeof3.default)(e)) || "function" == typeof e)) {
-              var t = e.then;if ("function" == typeof t) return void l(r(t, e), r(a, this), r(s, this));
-            }this._state = !0, this._value = e, c.call(this);
-          } catch (n) {
-            s.call(this, n);
-          }
-        }function s(e) {
-          this._state = !1, this._value = e, c.call(this);
-        }function c() {
-          for (var e = 0, t = this._deferreds.length; t > e; e++) {
-            o.call(this, this._deferreds[e]);
-          }this._deferreds = null;
-        }function u(e, t, n, r) {
-          this.onFulfilled = "function" == typeof e ? e : null, this.onRejected = "function" == typeof t ? t : null, this.resolve = n, this.reject = r;
-        }function l(e, t, n) {
-          var r = !1;try {
-            e(function (e) {
-              r || (r = !0, t(e));
-            }, function (e) {
-              r || (r = !0, n(e));
-            });
-          } catch (i) {
-            if (r) return;r = !0, n(i);
-          }
-        }var f = "function" == typeof t && t || function (e) {
-          setTimeout(e, 1);
-        },
-            d = Array.isArray || function (e) {
-          return "[object Array]" === Object.prototype.toString.call(e);
-        };i.prototype["catch"] = function (e) {
-          return this.then(null, e);
-        }, i.prototype.then = function (e, t) {
-          var n = this;return new i(function (r, i) {
-            o.call(n, new u(e, t, r, i));
-          });
-        }, i.all = function () {
-          var e = Array.prototype.slice.call(1 === arguments.length && d(arguments[0]) ? arguments[0] : arguments);return new i(function (t, n) {
-            function r(o, a) {
-              try {
-                if (a && ("object" == (typeof a === "undefined" ? "undefined" : (0, _typeof3.default)(a)) || "function" == typeof a)) {
-                  var s = a.then;if ("function" == typeof s) return void s.call(a, function (e) {
-                    r(o, e);
-                  }, n);
-                }e[o] = a, 0 === --i && t(e);
-              } catch (c) {
-                n(c);
-              }
-            }if (0 === e.length) return t([]);for (var i = e.length, o = 0; o < e.length; o++) {
-              r(o, e[o]);
-            }
-          });
-        }, i.resolve = function (e) {
-          return e && "object" == (typeof e === "undefined" ? "undefined" : (0, _typeof3.default)(e)) && e.constructor === i ? e : new i(function (t) {
-            t(e);
-          });
-        }, i.reject = function (e) {
-          return new i(function (t, n) {
-            n(e);
-          });
-        }, i.race = function (e) {
-          return new i(function (t, n) {
-            for (var r = 0, i = e.length; i > r; r++) {
-              e[r].then(t, n);
-            }
-          });
-        }, i._setImmediateFn = function (e) {
-          f = e;
-        }, i.prototype.always = function (e) {
-          var t = this.constructor;return this.then(function (n) {
-            return t.resolve(e()).then(function () {
-              return n;
-            });
-          }, function (n) {
-            return t.resolve(e()).then(function () {
-              throw n;
-            });
-          });
-        }, "undefined" != typeof e && e.exports ? e.exports = i : n.Promise || (n.Promise = i);
-      }(this);
-    }).call(t, n(2).setImmediate);
-  }, function (e, t, n) {
-    (function (e, r) {
-      function i(e, t) {
-        this._id = e, this._clearFn = t;
-      }var o = n(3).nextTick,
-          a = Function.prototype.apply,
-          s = Array.prototype.slice,
-          c = {},
-          u = 0;t.setTimeout = function () {
-        return new i(a.call(setTimeout, window, arguments), clearTimeout);
-      }, t.setInterval = function () {
-        return new i(a.call(setInterval, window, arguments), clearInterval);
-      }, t.clearTimeout = t.clearInterval = function (e) {
-        e.close();
-      }, i.prototype.unref = i.prototype.ref = function () {}, i.prototype.close = function () {
-        this._clearFn.call(window, this._id);
-      }, t.enroll = function (e, t) {
-        clearTimeout(e._idleTimeoutId), e._idleTimeout = t;
-      }, t.unenroll = function (e) {
-        clearTimeout(e._idleTimeoutId), e._idleTimeout = -1;
-      }, t._unrefActive = t.active = function (e) {
-        clearTimeout(e._idleTimeoutId);var t = e._idleTimeout;t >= 0 && (e._idleTimeoutId = setTimeout(function () {
-          e._onTimeout && e._onTimeout();
-        }, t));
-      }, t.setImmediate = "function" == typeof e ? e : function (e) {
-        var n = u++,
-            r = arguments.length < 2 ? !1 : s.call(arguments, 1);return c[n] = !0, o(function () {
-          c[n] && (r ? e.apply(null, r) : e.call(null), t.clearImmediate(n));
-        }), n;
-      }, t.clearImmediate = "function" == typeof r ? r : function (e) {
-        delete c[e];
-      };
-    }).call(t, n(2).setImmediate, n(2).clearImmediate);
-  }, function (e, t) {
-    function n() {
-      u = !1, a.length ? c = a.concat(c) : l = -1, c.length && r();
-    }function r() {
-      if (!u) {
-        var e = setTimeout(n);u = !0;for (var t = c.length; t;) {
-          for (a = c, c = []; ++l < t;) {
-            a && a[l].run();
-          }l = -1, t = c.length;
-        }a = null, u = !1, clearTimeout(e);
-      }
-    }function i(e, t) {
-      this.fun = e, this.array = t;
-    }function o() {}var a,
-        s = e.exports = {},
-        c = [],
-        u = !1,
-        l = -1;s.nextTick = function (e) {
-      var t = new Array(arguments.length - 1);if (arguments.length > 1) for (var n = 1; n < arguments.length; n++) {
-        t[n - 1] = arguments[n];
-      }c.push(new i(e, t)), 1 !== c.length || u || setTimeout(r, 0);
-    }, i.prototype.run = function () {
-      this.fun.apply(null, this.array);
-    }, s.title = "browser", s.browser = !0, s.env = {}, s.argv = [], s.version = "", s.versions = {}, s.on = o, s.addListener = o, s.once = o, s.off = o, s.removeListener = o, s.removeAllListeners = o, s.emit = o, s.binding = function (e) {
-      throw new Error("process.binding is not supported");
-    }, s.cwd = function () {
-      return "/";
-    }, s.chdir = function (e) {
-      throw new Error("process.chdir is not supported");
-    }, s.umask = function () {
-      return 0;
-    };
-  }, function (e, t) {
-    function n() {
-      var e = ~navigator.userAgent.indexOf("Android") && ~navigator.vendor.indexOf("Google") && !~navigator.userAgent.indexOf("Chrome");return e && navigator.userAgent.match(/AppleWebKit\/(\d+)/).pop() <= 534 || /MQQBrowser/g.test(navigator.userAgent);
-    }function r() {
-      var e = this,
-          t = [],
-          n = Array(21).join("-") + (+new Date() * (1e16 * Math.random())).toString(36),
-          r = XMLHttpRequest.prototype.send;this.getParts = function () {
-        return t.toString();
-      }, this.append = function (e, r, i) {
-        t.push("--" + n + '\r\nContent-Disposition: form-data; name="' + e + '"'), r instanceof Blob ? (t.push('; filename="' + (i || "blob") + '"\r\nContent-Type: ' + r.type + "\r\n\r\n"), t.push(r)) : t.push("\r\n\r\n" + r), t.push("\r\n");
-      }, XMLHttpRequest.prototype.send = function (o) {
-        var a,
-            s,
-            c = this;o === e ? (t.push("--" + n + "--\r\n"), s = new i(t), a = new FileReader(), a.onload = function () {
-          r.call(c, a.result);
-        }, a.onerror = function (e) {
-          throw e;
-        }, a.readAsArrayBuffer(s), this.setRequestHeader("Content-Type", "multipart/form-data; boundary=" + n), XMLHttpRequest.prototype.send = r) : r.call(this, o);
-      };
-    }var i = function () {
-      try {
-        return new Blob(), !0;
-      } catch (e) {
-        return !1;
-      }
-    }() ? window.Blob : function (e, t) {
-      var n = new (window.BlobBuilder || window.WebKitBlobBuilder || window.MSBlobBuilder || window.MozBlobBuilder)();return e.forEach(function (e) {
-        n.append(e);
-      }), n.getBlob(t ? t.type : void 0);
-    };e.exports = { Blob: i, FormData: n() ? r : FormData };
-  }, function (e, t, n) {
-    var r, i;(function () {
-      function n(e) {
-        return !!e.exifdata;
-      }function o(e, t) {
-        t = t || e.match(/^data\:([^\;]+)\;base64,/im)[1] || "", e = e.replace(/^data\:([^\;]+)\;base64,/gim, "");for (var n = atob(e), r = n.length, i = new ArrayBuffer(r), o = new Uint8Array(i), a = 0; r > a; a++) {
-          o[a] = n.charCodeAt(a);
-        }return i;
-      }function a(e, t) {
-        var n = new XMLHttpRequest();n.open("GET", e, !0), n.responseType = "blob", n.onload = function (e) {
-          200 != this.status && 0 !== this.status || t(this.response);
-        }, n.send();
-      }function s(e, t) {
-        function n(n) {
-          var r = c(n),
-              i = u(n);e.exifdata = r || {}, e.iptcdata = i || {}, t && t.call(e);
-        }if (e.src) {
-          if (/^data\:/i.test(e.src)) {
-            var r = o(e.src);n(r);
-          } else if (/^blob\:/i.test(e.src)) {
-            var i = new FileReader();i.onload = function (e) {
-              n(e.target.result);
-            }, a(e.src, function (e) {
-              i.readAsArrayBuffer(e);
-            });
-          } else {
-            var s = new XMLHttpRequest();s.onload = function () {
-              200 == this.status || 0 === this.status ? n(s.response) : t(new Error("Could not load image")), s = null;
-            }, s.open("GET", e.src, !0), s.responseType = "arraybuffer", s.send(null);
-          }
-        } else if (window.FileReader && (e instanceof window.Blob || e instanceof window.File)) {
-          var i = new FileReader();i.onload = function (e) {
-            p && console.log("Got file of length " + e.target.result.byteLength), n(e.target.result);
-          }, i.readAsArrayBuffer(e);
-        }
-      }function c(e) {
-        var t = new DataView(e);if (p && console.log("Got file of length " + e.byteLength), 255 != t.getUint8(0) || 216 != t.getUint8(1)) return p && console.log("Not a valid JPEG"), !1;for (var n, r = 2, i = e.byteLength; i > r;) {
-          if (255 != t.getUint8(r)) return p && console.log("Not a valid marker at offset " + r + ", found: " + t.getUint8(r)), !1;if (n = t.getUint8(r + 1), p && console.log(n), 225 == n) return p && console.log("Found 0xFFE1 marker"), g(t, r + 4, t.getUint16(r + 2) - 2);r += 2 + t.getUint16(r + 2);
-        }
-      }function u(e) {
-        var t = new DataView(e);if (p && console.log("Got file of length " + e.byteLength), 255 != t.getUint8(0) || 216 != t.getUint8(1)) return p && console.log("Not a valid JPEG"), !1;for (var n = 2, r = e.byteLength, i = function i(e, t) {
-          return 56 === e.getUint8(t) && 66 === e.getUint8(t + 1) && 73 === e.getUint8(t + 2) && 77 === e.getUint8(t + 3) && 4 === e.getUint8(t + 4) && 4 === e.getUint8(t + 5);
-        }; r > n;) {
-          if (i(t, n)) {
-            var o = t.getUint8(n + 7);o % 2 !== 0 && (o += 1), 0 === o && (o = 4);var a = n + 8 + o,
-                s = t.getUint16(n + 6 + o);return l(e, a, s);
-          }n++;
-        }
-      }function l(e, t, n) {
-        for (var r, i, o, a, s, c = new DataView(e), u = {}, l = t; t + n > l;) {
-          28 === c.getUint8(l) && 2 === c.getUint8(l + 1) && (a = c.getUint8(l + 2), a in S && (o = c.getInt16(l + 3), s = o + 5, i = S[a], r = h(c, l + 5, o), u.hasOwnProperty(i) ? u[i] instanceof Array ? u[i].push(r) : u[i] = [u[i], r] : u[i] = r)), l++;
-        }return u;
-      }function f(e, t, n, r, i) {
-        var o,
-            a,
-            s,
-            c = e.getUint16(n, !i),
-            u = {};for (s = 0; c > s; s++) {
-          o = n + 12 * s + 2, a = r[e.getUint16(o, !i)], !a && p && console.log("Unknown tag: " + e.getUint16(o, !i)), u[a] = d(e, o, t, n, i);
-        }return u;
-      }function d(e, t, n, r, i) {
-        var o,
-            a,
-            s,
-            c,
-            u,
-            l,
-            f = e.getUint16(t + 2, !i),
-            d = e.getUint32(t + 4, !i),
-            g = e.getUint32(t + 8, !i) + n;switch (f) {case 1:case 7:
-            if (1 == d) return e.getUint8(t + 8, !i);for (o = d > 4 ? g : t + 8, a = [], c = 0; d > c; c++) {
-              a[c] = e.getUint8(o + c);
-            }return a;case 2:
-            return o = d > 4 ? g : t + 8, h(e, o, d - 1);case 3:
-            if (1 == d) return e.getUint16(t + 8, !i);for (o = d > 2 ? g : t + 8, a = [], c = 0; d > c; c++) {
-              a[c] = e.getUint16(o + 2 * c, !i);
-            }return a;case 4:
-            if (1 == d) return e.getUint32(t + 8, !i);for (a = [], c = 0; d > c; c++) {
-              a[c] = e.getUint32(g + 4 * c, !i);
-            }return a;case 5:
-            if (1 == d) return u = e.getUint32(g, !i), l = e.getUint32(g + 4, !i), s = new Number(u / l), s.numerator = u, s.denominator = l, s;for (a = [], c = 0; d > c; c++) {
-              u = e.getUint32(g + 8 * c, !i), l = e.getUint32(g + 4 + 8 * c, !i), a[c] = new Number(u / l), a[c].numerator = u, a[c].denominator = l;
-            }return a;case 9:
-            if (1 == d) return e.getInt32(t + 8, !i);for (a = [], c = 0; d > c; c++) {
-              a[c] = e.getInt32(g + 4 * c, !i);
-            }return a;case 10:
-            if (1 == d) return e.getInt32(g, !i) / e.getInt32(g + 4, !i);for (a = [], c = 0; d > c; c++) {
-              a[c] = e.getInt32(g + 8 * c, !i) / e.getInt32(g + 4 + 8 * c, !i);
-            }return a;}
-      }function h(e, t, n) {
-        var r,
-            i = "";for (r = t; t + n > r; r++) {
-          i += String.fromCharCode(e.getUint8(r));
-        }return i;
-      }function g(e, t) {
-        if ("Exif" != h(e, t, 4)) return p && console.log("Not valid EXIF data! " + h(e, t, 4)), !1;var n,
-            r,
-            i,
-            o,
-            a,
-            s = t + 6;if (18761 == e.getUint16(s)) n = !1;else {
-          if (19789 != e.getUint16(s)) return p && console.log("Not valid TIFF data! (no 0x4949 or 0x4D4D)"), !1;n = !0;
-        }if (42 != e.getUint16(s + 2, !n)) return p && console.log("Not valid TIFF data! (no 0x002A)"), !1;var c = e.getUint32(s + 4, !n);if (8 > c) return p && console.log("Not valid TIFF data! (First offset less than 8)", e.getUint32(s + 4, !n)), !1;if (r = f(e, s, s + c, v, n), r.ExifIFDPointer) {
-          o = f(e, s, s + r.ExifIFDPointer, w, n);for (i in o) {
-            switch (i) {case "LightSource":case "Flash":case "MeteringMode":case "ExposureProgram":case "SensingMethod":case "SceneCaptureType":case "SceneType":case "CustomRendered":case "WhiteBalance":case "GainControl":case "Contrast":case "Saturation":case "Sharpness":case "SubjectDistanceRange":case "FileSource":
-                o[i] = b[i][o[i]];break;case "ExifVersion":case "FlashpixVersion":
-                o[i] = String.fromCharCode(o[i][0], o[i][1], o[i][2], o[i][3]);break;case "ComponentsConfiguration":
-                o[i] = b.Components[o[i][0]] + b.Components[o[i][1]] + b.Components[o[i][2]] + b.Components[o[i][3]];}r[i] = o[i];
-          }
-        }if (r.GPSInfoIFDPointer) {
-          a = f(e, s, s + r.GPSInfoIFDPointer, y, n);for (i in a) {
-            switch (i) {case "GPSVersionID":
-                a[i] = a[i][0] + "." + a[i][1] + "." + a[i][2] + "." + a[i][3];}r[i] = a[i];
-          }
-        }return r;
-      }var p = !1,
-          m = function m(e) {
-        return e instanceof m ? e : this instanceof m ? void (this.EXIFwrapped = e) : new m(e);
-      };"undefined" != typeof e && e.exports && (t = e.exports = m), t.EXIF = m;var w = m.Tags = { 36864: "ExifVersion", 40960: "FlashpixVersion", 40961: "ColorSpace", 40962: "PixelXDimension", 40963: "PixelYDimension", 37121: "ComponentsConfiguration", 37122: "CompressedBitsPerPixel", 37500: "MakerNote", 37510: "UserComment", 40964: "RelatedSoundFile", 36867: "DateTimeOriginal", 36868: "DateTimeDigitized", 37520: "SubsecTime", 37521: "SubsecTimeOriginal", 37522: "SubsecTimeDigitized", 33434: "ExposureTime", 33437: "FNumber", 34850: "ExposureProgram", 34852: "SpectralSensitivity", 34855: "ISOSpeedRatings", 34856: "OECF", 37377: "ShutterSpeedValue", 37378: "ApertureValue", 37379: "BrightnessValue", 37380: "ExposureBias", 37381: "MaxApertureValue", 37382: "SubjectDistance", 37383: "MeteringMode", 37384: "LightSource", 37385: "Flash", 37396: "SubjectArea", 37386: "FocalLength", 41483: "FlashEnergy", 41484: "SpatialFrequencyResponse", 41486: "FocalPlaneXResolution", 41487: "FocalPlaneYResolution", 41488: "FocalPlaneResolutionUnit", 41492: "SubjectLocation", 41493: "ExposureIndex", 41495: "SensingMethod", 41728: "FileSource", 41729: "SceneType", 41730: "CFAPattern", 41985: "CustomRendered", 41986: "ExposureMode", 41987: "WhiteBalance", 41988: "DigitalZoomRation", 41989: "FocalLengthIn35mmFilm", 41990: "SceneCaptureType", 41991: "GainControl", 41992: "Contrast", 41993: "Saturation", 41994: "Sharpness", 41995: "DeviceSettingDescription", 41996: "SubjectDistanceRange", 40965: "InteroperabilityIFDPointer", 42016: "ImageUniqueID" },
-          v = m.TiffTags = { 256: "ImageWidth", 257: "ImageHeight", 34665: "ExifIFDPointer", 34853: "GPSInfoIFDPointer", 40965: "InteroperabilityIFDPointer", 258: "BitsPerSample", 259: "Compression", 262: "PhotometricInterpretation", 274: "Orientation", 277: "SamplesPerPixel", 284: "PlanarConfiguration", 530: "YCbCrSubSampling", 531: "YCbCrPositioning", 282: "XResolution", 283: "YResolution", 296: "ResolutionUnit", 273: "StripOffsets", 278: "RowsPerStrip", 279: "StripByteCounts", 513: "JPEGInterchangeFormat", 514: "JPEGInterchangeFormatLength", 301: "TransferFunction", 318: "WhitePoint", 319: "PrimaryChromaticities", 529: "YCbCrCoefficients", 532: "ReferenceBlackWhite", 306: "DateTime", 270: "ImageDescription", 271: "Make", 272: "Model", 305: "Software", 315: "Artist", 33432: "Copyright" },
-          y = m.GPSTags = { 0: "GPSVersionID", 1: "GPSLatitudeRef", 2: "GPSLatitude", 3: "GPSLongitudeRef", 4: "GPSLongitude", 5: "GPSAltitudeRef", 6: "GPSAltitude", 7: "GPSTimeStamp", 8: "GPSSatellites", 9: "GPSStatus", 10: "GPSMeasureMode", 11: "GPSDOP", 12: "GPSSpeedRef", 13: "GPSSpeed", 14: "GPSTrackRef", 15: "GPSTrack", 16: "GPSImgDirectionRef", 17: "GPSImgDirection", 18: "GPSMapDatum", 19: "GPSDestLatitudeRef", 20: "GPSDestLatitude", 21: "GPSDestLongitudeRef", 22: "GPSDestLongitude", 23: "GPSDestBearingRef", 24: "GPSDestBearing", 25: "GPSDestDistanceRef", 26: "GPSDestDistance", 27: "GPSProcessingMethod", 28: "GPSAreaInformation", 29: "GPSDateStamp", 30: "GPSDifferential" },
-          b = m.StringValues = { ExposureProgram: { 0: "Not defined", 1: "Manual", 2: "Normal program", 3: "Aperture priority", 4: "Shutter priority", 5: "Creative program", 6: "Action program", 7: "Portrait mode", 8: "Landscape mode" }, MeteringMode: { 0: "Unknown", 1: "Average", 2: "CenterWeightedAverage", 3: "Spot", 4: "MultiSpot", 5: "Pattern", 6: "Partial", 255: "Other" }, LightSource: { 0: "Unknown", 1: "Daylight", 2: "Fluorescent", 3: "Tungsten (incandescent light)", 4: "Flash", 9: "Fine weather", 10: "Cloudy weather", 11: "Shade", 12: "Daylight fluorescent (D 5700 - 7100K)", 13: "Day white fluorescent (N 4600 - 5400K)", 14: "Cool white fluorescent (W 3900 - 4500K)", 15: "White fluorescent (WW 3200 - 3700K)", 17: "Standard light A", 18: "Standard light B", 19: "Standard light C", 20: "D55", 21: "D65", 22: "D75", 23: "D50", 24: "ISO studio tungsten", 255: "Other" }, Flash: { 0: "Flash did not fire", 1: "Flash fired", 5: "Strobe return light not detected", 7: "Strobe return light detected", 9: "Flash fired, compulsory flash mode", 13: "Flash fired, compulsory flash mode, return light not detected", 15: "Flash fired, compulsory flash mode, return light detected", 16: "Flash did not fire, compulsory flash mode", 24: "Flash did not fire, auto mode", 25: "Flash fired, auto mode", 29: "Flash fired, auto mode, return light not detected", 31: "Flash fired, auto mode, return light detected", 32: "No flash function", 65: "Flash fired, red-eye reduction mode", 69: "Flash fired, red-eye reduction mode, return light not detected", 71: "Flash fired, red-eye reduction mode, return light detected", 73: "Flash fired, compulsory flash mode, red-eye reduction mode", 77: "Flash fired, compulsory flash mode, red-eye reduction mode, return light not detected", 79: "Flash fired, compulsory flash mode, red-eye reduction mode, return light detected", 89: "Flash fired, auto mode, red-eye reduction mode", 93: "Flash fired, auto mode, return light not detected, red-eye reduction mode", 95: "Flash fired, auto mode, return light detected, red-eye reduction mode" }, SensingMethod: { 1: "Not defined", 2: "One-chip color area sensor", 3: "Two-chip color area sensor", 4: "Three-chip color area sensor", 5: "Color sequential area sensor", 7: "Trilinear sensor", 8: "Color sequential linear sensor" }, SceneCaptureType: { 0: "Standard", 1: "Landscape", 2: "Portrait", 3: "Night scene" }, SceneType: { 1: "Directly photographed" }, CustomRendered: { 0: "Normal process", 1: "Custom process" }, WhiteBalance: { 0: "Auto white balance", 1: "Manual white balance" }, GainControl: { 0: "None", 1: "Low gain up", 2: "High gain up", 3: "Low gain down", 4: "High gain down" }, Contrast: { 0: "Normal", 1: "Soft", 2: "Hard" }, Saturation: { 0: "Normal", 1: "Low saturation", 2: "High saturation" }, Sharpness: { 0: "Normal", 1: "Soft", 2: "Hard" }, SubjectDistanceRange: { 0: "Unknown", 1: "Macro", 2: "Close view", 3: "Distant view" }, FileSource: { 3: "DSC" }, Components: { 0: "", 1: "Y", 2: "Cb", 3: "Cr", 4: "R", 5: "G", 6: "B" } },
-          S = { 120: "caption", 110: "credit", 25: "keywords", 55: "dateCreated", 80: "byline", 85: "bylineTitle", 122: "captionWriter", 105: "headline", 116: "copyright", 15: "category" };m.getData = function (e, t) {
-        return (e instanceof Image || e instanceof HTMLImageElement) && !e.complete ? !1 : (n(e) ? t && t.call(e) : s(e, t), !0);
-      }, m.getTag = function (e, t) {
-        return n(e) ? e.exifdata[t] : void 0;
-      }, m.getAllTags = function (e) {
-        if (!n(e)) return {};var t,
-            r = e.exifdata,
-            i = {};for (t in r) {
-          r.hasOwnProperty(t) && (i[t] = r[t]);
-        }return i;
-      }, m.pretty = function (e) {
-        if (!n(e)) return "";var t,
-            r = e.exifdata,
-            i = "";for (t in r) {
-          r.hasOwnProperty(t) && (i += "object" == (0, _typeof3.default)(r[t]) ? r[t] instanceof Number ? t + " : " + r[t] + " [" + r[t].numerator + "/" + r[t].denominator + "]\r\n" : t + " : [" + r[t].length + " values]\r\n" : t + " : " + r[t] + "\r\n");
-        }return i;
-      }, m.readFromBinaryFile = function (e) {
-        return c(e);
-      }, r = [], i = function () {
-        return m;
-      }.apply(t, r), !(void 0 !== i && (e.exports = i));
-    }).call(this);
-  }, function (e, t, n) {
-    var r, i;!function () {
-      function n(e) {
-        var t = e.naturalWidth,
-            n = e.naturalHeight;if (t * n > 1048576) {
-          var r = document.createElement("canvas");r.width = r.height = 1;var i = r.getContext("2d");return i.drawImage(e, -t + 1, 0), 0 === i.getImageData(0, 0, 1, 1).data[3];
-        }return !1;
-      }function o(e, t, n) {
-        var r = document.createElement("canvas");r.width = 1, r.height = n;var i = r.getContext("2d");i.drawImage(e, 0, 0);for (var o = i.getImageData(0, 0, 1, n).data, a = 0, s = n, c = n; c > a;) {
-          var u = o[4 * (c - 1) + 3];0 === u ? s = c : a = c, c = s + a >> 1;
-        }var l = c / n;return 0 === l ? 1 : l;
-      }function a(e, t, n) {
-        var r = document.createElement("canvas");return s(e, r, t, n), r.toDataURL("image/jpeg", t.quality || .8);
-      }function s(e, t, r, i) {
-        var a = e.naturalWidth,
-            s = e.naturalHeight,
-            u = r.width,
-            l = r.height,
-            f = t.getContext("2d");f.save(), c(t, f, u, l, r.orientation);var d = n(e);d && (a /= 2, s /= 2);var h = 1024,
-            g = document.createElement("canvas");g.width = g.height = h;for (var p = g.getContext("2d"), m = i ? o(e, a, s) : 1, w = Math.ceil(h * u / a), v = Math.ceil(h * l / s / m), y = 0, b = 0; s > y;) {
-          for (var S = 0, I = 0; a > S;) {
-            p.clearRect(0, 0, h, h), p.drawImage(e, -S, -y), f.drawImage(g, 0, 0, h, h, I, b, w, v), S += h, I += w;
-          }y += h, b += v;
-        }f.restore(), g = p = null;
-      }function c(e, t, n, r, i) {
-        switch (i) {case 5:case 6:case 7:case 8:
-            e.width = r, e.height = n;break;default:
-            e.width = n, e.height = r;}switch (i) {case 2:
-            t.translate(n, 0), t.scale(-1, 1);break;case 3:
-            t.translate(n, r), t.rotate(Math.PI);break;case 4:
-            t.translate(0, r), t.scale(1, -1);break;case 5:
-            t.rotate(.5 * Math.PI), t.scale(1, -1);break;case 6:
-            t.rotate(.5 * Math.PI), t.translate(0, -r);break;case 7:
-            t.rotate(.5 * Math.PI), t.translate(n, -r), t.scale(-1, 1);break;case 8:
-            t.rotate(-.5 * Math.PI), t.translate(-n, 0);}
-      }function u(e) {
-        if (window.Blob && e instanceof Blob) {
-          var t = new Image(),
-              n = window.URL && window.URL.createObjectURL ? window.URL : window.webkitURL && window.webkitURL.createObjectURL ? window.webkitURL : null;if (!n) throw Error("No createObjectURL function found to create blob url");t.src = n.createObjectURL(e), this.blob = e, e = t;
-        }if (!e.naturalWidth && !e.naturalHeight) {
-          var r = this;e.onload = function () {
-            var e = r.imageLoadListeners;if (e) {
-              r.imageLoadListeners = null;for (var t = 0, n = e.length; n > t; t++) {
-                e[t]();
-              }
-            }
-          }, this.imageLoadListeners = [];
-        }this.srcImage = e;
-      }u.prototype.render = function (e, t, n) {
-        if (this.imageLoadListeners) {
-          var r = this;return void this.imageLoadListeners.push(function () {
-            r.render(e, t, n);
-          });
-        }t = t || {};var i = this.srcImage,
-            o = i.src,
-            c = o.length,
-            u = i.naturalWidth,
-            l = i.naturalHeight,
-            f = t.width,
-            d = t.height,
-            h = t.maxWidth,
-            g = t.maxHeight,
-            p = this.blob && "image/jpeg" === this.blob.type || 0 === o.indexOf("data:image/jpeg") || o.indexOf(".jpg") === c - 4 || o.indexOf(".jpeg") === c - 5;f && !d ? d = l * f / u << 0 : d && !f ? f = u * d / l << 0 : (f = u, d = l), h && f > h && (f = h, d = l * f / u << 0), g && d > g && (d = g, f = u * d / l << 0);var m = { width: f, height: d };for (var w in t) {
-          m[w] = t[w];
-        }var v = e.tagName.toLowerCase();"img" === v ? e.src = a(this.srcImage, m, p) : "canvas" === v && s(this.srcImage, e, m, p), "function" == typeof this.onrender && this.onrender(e), n && n();
-      }, r = [], i = function () {
-        return u;
-      }.apply(t, r), !(void 0 !== i && (e.exports = i));
-    }();
-  }, function (e, t) {
-    function n(e) {
-      function t(e) {
-        for (var t = [16, 11, 10, 16, 24, 40, 51, 61, 12, 12, 14, 19, 26, 58, 60, 55, 14, 13, 16, 24, 40, 57, 69, 56, 14, 17, 22, 29, 51, 87, 80, 62, 18, 22, 37, 56, 68, 109, 103, 77, 24, 35, 55, 64, 81, 104, 113, 92, 49, 64, 78, 87, 103, 121, 120, 101, 72, 92, 95, 98, 112, 100, 103, 99], n = 0; 64 > n; n++) {
-          var r = F((t[n] * e + 50) / 100);1 > r ? r = 1 : r > 255 && (r = 255), x[N[n]] = r;
-        }for (var i = [17, 18, 24, 47, 99, 99, 99, 99, 18, 21, 26, 66, 99, 99, 99, 99, 24, 26, 56, 99, 99, 99, 99, 99, 47, 66, 99, 99, 99, 99, 99, 99, 99, 99, 99, 99, 99, 99, 99, 99, 99, 99, 99, 99, 99, 99, 99, 99, 99, 99, 99, 99, 99, 99, 99, 99, 99, 99, 99, 99, 99, 99, 99, 99], o = 0; 64 > o; o++) {
-          var a = F((i[o] * e + 50) / 100);1 > a ? a = 1 : a > 255 && (a = 255), D[N[o]] = a;
-        }for (var s = [1, 1.387039845, 1.306562965, 1.175875602, 1, .785694958, .5411961, .275899379], c = 0, u = 0; 8 > u; u++) {
-          for (var l = 0; 8 > l; l++) {
-            U[c] = 1 / (x[N[c]] * s[u] * s[l] * 8), C[c] = 1 / (D[N[c]] * s[u] * s[l] * 8), c++;
-          }
-        }
-      }function n(e, t) {
-        for (var n = 0, r = 0, i = new Array(), o = 1; 16 >= o; o++) {
-          for (var a = 1; a <= e[o]; a++) {
-            i[t[r]] = [], i[t[r]][0] = n, i[t[r]][1] = o, r++, n++;
-          }n *= 2;
-        }return i;
-      }function r() {
-        y = n(W, H), b = n(V, X), S = n(z, q), I = n(Q, Y);
-      }function i() {
-        for (var e = 1, t = 2, n = 1; 15 >= n; n++) {
-          for (var r = e; t > r; r++) {
-            A[32767 + r] = n, T[32767 + r] = [], T[32767 + r][1] = n, T[32767 + r][0] = r;
-          }for (var i = -(t - 1); -e >= i; i++) {
-            A[32767 + i] = n, T[32767 + i] = [], T[32767 + i][1] = n, T[32767 + i][0] = t - 1 + i;
-          }e <<= 1, t <<= 1;
-        }
-      }function o() {
-        for (var e = 0; 256 > e; e++) {
-          k[e] = 19595 * e, k[e + 256 >> 0] = 38470 * e, k[e + 512 >> 0] = 7471 * e + 32768, k[e + 768 >> 0] = -11059 * e, k[e + 1024 >> 0] = -21709 * e, k[e + 1280 >> 0] = 32768 * e + 8421375, k[e + 1536 >> 0] = -27439 * e, k[e + 1792 >> 0] = -5329 * e;
-        }
-      }function a(e) {
-        for (var t = e[0], n = e[1] - 1; n >= 0;) {
-          t & 1 << n && (G |= 1 << O), n--, O--, 0 > O && (255 == G ? (s(255), s(0)) : s(G), O = 7, G = 0);
-        }
-      }function s(e) {
-        M.push(j[e]);
-      }function c(e) {
-        s(e >> 8 & 255), s(255 & e);
-      }function u(e, t) {
-        var n,
-            r,
-            i,
-            o,
-            a,
-            s,
-            c,
-            u,
-            l,
-            f = 0;var d = 8,
-            h = 64;for (l = 0; d > l; ++l) {
-          n = e[f], r = e[f + 1], i = e[f + 2], o = e[f + 3], a = e[f + 4], s = e[f + 5], c = e[f + 6], u = e[f + 7];var g = n + u,
-              p = n - u,
-              m = r + c,
-              w = r - c,
-              v = i + s,
-              y = i - s,
-              b = o + a,
-              S = o - a,
-              I = g + b,
-              P = g - b,
-              F = m + v,
-              x = m - v;e[f] = I + F, e[f + 4] = I - F;var D = .707106781 * (x + P);e[f + 2] = P + D, e[f + 6] = P - D, I = S + y, F = y + w, x = w + p;var U = .382683433 * (I - x),
-              C = .5411961 * I + U,
-              T = 1.306562965 * x + U,
-              A = .707106781 * F,
-              R = p + A,
-              M = p - A;e[f + 5] = M + C, e[f + 3] = M - C, e[f + 1] = R + T, e[f + 7] = R - T, f += 8;
-        }for (f = 0, l = 0; d > l; ++l) {
-          n = e[f], r = e[f + 8], i = e[f + 16], o = e[f + 24], a = e[f + 32], s = e[f + 40], c = e[f + 48], u = e[f + 56];var G = n + u,
-              O = n - u,
-              _ = r + c,
-              B = r - c,
-              E = i + s,
-              j = i - s,
-              k = o + a,
-              N = o - a,
-              W = G + k,
-              H = G - k,
-              z = _ + E,
-              q = _ - E;e[f] = W + z, e[f + 32] = W - z;var V = .707106781 * (q + H);e[f + 16] = H + V, e[f + 48] = H - V, W = N + j, z = j + B, q = B + O;var X = .382683433 * (W - q),
-              Q = .5411961 * W + X,
-              Y = 1.306562965 * q + X,
-              K = .707106781 * z,
-              J = O + K,
-              Z = O - K;e[f + 40] = Z + Q, e[f + 24] = Z - Q, e[f + 8] = J + Y, e[f + 56] = J - Y, f++;
-        }var $;for (l = 0; h > l; ++l) {
-          $ = e[l] * t[l], L[l] = $ > 0 ? $ + .5 | 0 : $ - .5 | 0;
-        }return L;
-      }function l() {
-        c(65504), c(16), s(74), s(70), s(73), s(70), s(0), s(1), s(1), s(0), c(1), c(1), s(0), s(0);
-      }function f(e, t) {
-        c(65472), c(17), s(8), c(t), c(e), s(3), s(1), s(17), s(0), s(2), s(17), s(1), s(3), s(17), s(1);
-      }function d() {
-        c(65499), c(132), s(0);for (var e = 0; 64 > e; e++) {
-          s(x[e]);
-        }s(1);for (var t = 0; 64 > t; t++) {
-          s(D[t]);
-        }
-      }function h() {
-        c(65476), c(418), s(0);for (var e = 0; 16 > e; e++) {
-          s(W[e + 1]);
-        }for (var t = 0; 11 >= t; t++) {
-          s(H[t]);
-        }s(16);for (var n = 0; 16 > n; n++) {
-          s(z[n + 1]);
-        }for (var r = 0; 161 >= r; r++) {
-          s(q[r]);
-        }s(1);for (var i = 0; 16 > i; i++) {
-          s(V[i + 1]);
-        }for (var o = 0; 11 >= o; o++) {
-          s(X[o]);
-        }s(17);for (var a = 0; 16 > a; a++) {
-          s(Q[a + 1]);
-        }for (var u = 0; 161 >= u; u++) {
-          s(Y[u]);
-        }
-      }function g() {
-        c(65498), c(12), s(3), s(1), s(0), s(2), s(17), s(3), s(17), s(0), s(63), s(0);
-      }function p(e, t, n, r, i) {
-        var o,
-            s = i[0],
-            c = i[240];var l = 16,
-            f = 63,
-            d = 64;for (var h = u(e, t), g = 0; d > g; ++g) {
-          R[N[g]] = h[g];
-        }var p = R[0] - n;n = R[0], 0 == p ? a(r[0]) : (o = 32767 + p, a(r[A[o]]), a(T[o]));for (var m = 63; m > 0 && 0 == R[m]; m--) {}if (0 == m) return a(s), n;for (var w, v = 1; m >= v;) {
-          for (var y = v; 0 == R[v] && m >= v; ++v) {}var b = v - y;if (b >= l) {
-            w = b >> 4;for (var S = 1; w >= S; ++S) {
-              a(c);
-            }b = 15 & b;
-          }o = 32767 + R[v], a(i[(b << 4) + A[o]]), a(T[o]), v++;
-        }return m != f && a(s), n;
-      }function m() {
-        for (var e = String.fromCharCode, t = 0; 256 > t; t++) {
-          j[t] = e(t);
-        }
-      }function w(e) {
-        if (0 >= e && (e = 1), e > 100 && (e = 100), P != e) {
-          var n = 0;n = 50 > e ? Math.floor(5e3 / e) : Math.floor(200 - 2 * e), t(n), P = e;
-        }
-      }function v() {
-        var t = new Date().getTime();e || (e = 50), m(), r(), i(), o(), w(e);new Date().getTime() - t;
-      }var y,
-          b,
-          S,
-          I,
-          P,
-          F = (Math.round, Math.floor),
-          x = new Array(64),
-          D = new Array(64),
-          U = new Array(64),
-          C = new Array(64),
-          T = new Array(65535),
-          A = new Array(65535),
-          L = new Array(64),
-          R = new Array(64),
-          M = [],
-          G = 0,
-          O = 7,
-          _ = new Array(64),
-          B = new Array(64),
-          E = new Array(64),
-          j = new Array(256),
-          k = new Array(2048),
-          N = [0, 1, 5, 6, 14, 15, 27, 28, 2, 4, 7, 13, 16, 26, 29, 42, 3, 8, 12, 17, 25, 30, 41, 43, 9, 11, 18, 24, 31, 40, 44, 53, 10, 19, 23, 32, 39, 45, 52, 54, 20, 22, 33, 38, 46, 51, 55, 60, 21, 34, 37, 47, 50, 56, 59, 61, 35, 36, 48, 49, 57, 58, 62, 63],
-          W = [0, 0, 1, 5, 1, 1, 1, 1, 1, 1, 0, 0, 0, 0, 0, 0, 0],
-          H = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11],
-          z = [0, 0, 2, 1, 3, 3, 2, 4, 3, 5, 5, 4, 4, 0, 0, 1, 125],
-          q = [1, 2, 3, 0, 4, 17, 5, 18, 33, 49, 65, 6, 19, 81, 97, 7, 34, 113, 20, 50, 129, 145, 161, 8, 35, 66, 177, 193, 21, 82, 209, 240, 36, 51, 98, 114, 130, 9, 10, 22, 23, 24, 25, 26, 37, 38, 39, 40, 41, 42, 52, 53, 54, 55, 56, 57, 58, 67, 68, 69, 70, 71, 72, 73, 74, 83, 84, 85, 86, 87, 88, 89, 90, 99, 100, 101, 102, 103, 104, 105, 106, 115, 116, 117, 118, 119, 120, 121, 122, 131, 132, 133, 134, 135, 136, 137, 138, 146, 147, 148, 149, 150, 151, 152, 153, 154, 162, 163, 164, 165, 166, 167, 168, 169, 170, 178, 179, 180, 181, 182, 183, 184, 185, 186, 194, 195, 196, 197, 198, 199, 200, 201, 202, 210, 211, 212, 213, 214, 215, 216, 217, 218, 225, 226, 227, 228, 229, 230, 231, 232, 233, 234, 241, 242, 243, 244, 245, 246, 247, 248, 249, 250],
-          V = [0, 0, 3, 1, 1, 1, 1, 1, 1, 1, 1, 1, 0, 0, 0, 0, 0],
-          X = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11],
-          Q = [0, 0, 2, 1, 2, 4, 4, 3, 4, 7, 5, 4, 4, 0, 1, 2, 119],
-          Y = [0, 1, 2, 3, 17, 4, 5, 33, 49, 6, 18, 65, 81, 7, 97, 113, 19, 34, 50, 129, 8, 20, 66, 145, 161, 177, 193, 9, 35, 51, 82, 240, 21, 98, 114, 209, 10, 22, 36, 52, 225, 37, 241, 23, 24, 25, 26, 38, 39, 40, 41, 42, 53, 54, 55, 56, 57, 58, 67, 68, 69, 70, 71, 72, 73, 74, 83, 84, 85, 86, 87, 88, 89, 90, 99, 100, 101, 102, 103, 104, 105, 106, 115, 116, 117, 118, 119, 120, 121, 122, 130, 131, 132, 133, 134, 135, 136, 137, 138, 146, 147, 148, 149, 150, 151, 152, 153, 154, 162, 163, 164, 165, 166, 167, 168, 169, 170, 178, 179, 180, 181, 182, 183, 184, 185, 186, 194, 195, 196, 197, 198, 199, 200, 201, 202, 210, 211, 212, 213, 214, 215, 216, 217, 218, 226, 227, 228, 229, 230, 231, 232, 233, 234, 242, 243, 244, 245, 246, 247, 248, 249, 250];this.encode = function (e, t, n) {
-        var r = new Date().getTime();t && w(t), M = new Array(), G = 0, O = 7, c(65496), l(), d(), f(e.width, e.height), h(), g();var i = 0,
-            o = 0,
-            s = 0;G = 0, O = 7, this.encode.displayName = "_encode_";for (var u, m, v, P, F, x, D, T, A, L = e.data, R = e.width, j = e.height, N = 4 * R, W = 0; j > W;) {
-          for (u = 0; N > u;) {
-            for (F = N * W + u, x = F, D = -1, T = 0, A = 0; 64 > A; A++) {
-              T = A >> 3, D = 4 * (7 & A), x = F + T * N + D, W + T >= j && (x -= N * (W + 1 + T - j)), u + D >= N && (x -= u + D - N + 4), m = L[x++], v = L[x++], P = L[x++], _[A] = (k[m] + k[v + 256 >> 0] + k[P + 512 >> 0] >> 16) - 128, B[A] = (k[m + 768 >> 0] + k[v + 1024 >> 0] + k[P + 1280 >> 0] >> 16) - 128, E[A] = (k[m + 1280 >> 0] + k[v + 1536 >> 0] + k[P + 1792 >> 0] >> 16) - 128;
-            }i = p(_, U, i, y, S), o = p(B, C, o, b, I), s = p(E, C, s, b, I), u += 32;
-          }W += 8;
-        }if (O >= 0) {
-          var H = [];H[1] = O + 1, H[0] = (1 << O + 1) - 1, a(H);
-        }if (c(65497), n) {
-          for (var z = M.length, q = new Uint8Array(z), V = 0; z > V; V++) {
-            q[V] = M[V].charCodeAt();
-          }M = [];new Date().getTime() - r;return q;
-        }var X = "data:image/jpeg;base64," + btoa(M.join(""));M = [];new Date().getTime() - r;return X;
-      }, v();
-    }e.exports = n;
-  }, function (e, t, n) {
-    function r(e, t) {
-      var n = this;if (!e) throw new Error("没有收到图片，可能的解决方案：https://github.com/think2011/localResizeIMG/issues/7");t = t || {}, n.defaults = { width: null, height: null, fieldName: "file", quality: .7 }, n.file = e;for (var r in t) {
-        t.hasOwnProperty(r) && (n.defaults[r] = t[r]);
-      }return this.init();
-    }function i(e) {
-      var t = null;return t = e ? [].filter.call(document.scripts, function (t) {
-        return -1 !== t.src.indexOf(e);
-      })[0] : document.scripts[document.scripts.length - 1], t ? t.src.substr(0, t.src.lastIndexOf("/")) : null;
-    }function o(e) {
-      var t;t = e.split(",")[0].indexOf("base64") >= 0 ? atob(e.split(",")[1]) : unescape(e.split(",")[1]);for (var n = e.split(",")[0].split(":")[1].split(";")[0], r = new Uint8Array(t.length), i = 0; i < t.length; i++) {
-        r[i] = t.charCodeAt(i);
-      }return new s.Blob([r.buffer], { type: n });
-    }n.p = i("lrz") + "/", window.URL = window.URL || window.webkitURL;var a = n(1),
-        s = n(4),
-        c = n(5),
-        u = function (e) {
-      var t = /OS (\d)_.* like Mac OS X/g.exec(e),
-          n = /Android (\d.*?);/g.exec(e) || /Android\/(\d.*?) /g.exec(e);return { oldIOS: t ? +t.pop() < 8 : !1, oldAndroid: n ? +n.pop().substr(0, 3) < 4.5 : !1, iOS: /\(i[^;]+;( U;)? CPU.+Mac OS X/.test(e), android: /Android/g.test(e), mQQBrowser: /MQQBrowser/g.test(e) };
-    }(navigator.userAgent);r.prototype.init = function () {
-      var e = this,
-          t = e.file,
-          n = "string" == typeof t,
-          r = /^data:/.test(t),
-          i = new Image(),
-          c = document.createElement("canvas"),
-          u = n ? t : URL.createObjectURL(t);if (e.img = i, e.blob = u, e.canvas = c, n ? e.fileName = r ? "base64.jpg" : t.split("/").pop() : e.fileName = t.name, !document.createElement("canvas").getContext) throw new Error("浏览器不支持canvas");return new a(function (n, a) {
-        i.onerror = function () {
-          throw new Error("加载图片文件失败");
-        }, i.onload = function () {
-          e._getBase64().then(function (e) {
-            return e.length < 10 && a("生成base64失败"), e;
-          }).then(function (r) {
-            var i = null;"object" == (0, _typeof3.default)(e.file) && r.length > e.file.size ? (i = new FormData(), t = e.file) : (i = new s.FormData(), t = o(r)), i.append(e.defaults.fieldName, t, e.fileName.replace(/\..+/g, ".jpg")), n({ formData: i, fileLen: +t.size, base64: r, base64Len: r.length, origin: e.file, file: t });for (var a in e) {
-              e.hasOwnProperty(a) && (e[a] = null);
-            }URL.revokeObjectURL(e.blob);
-          });
-        }, !r && (i.crossOrigin = "*"), i.src = u;
-      });
-    }, r.prototype._getBase64 = function () {
-      var e = this,
-          t = e.img,
-          n = e.file,
-          r = e.canvas;return new a(function (i) {
-        try {
-          c.getData("object" == (typeof n === "undefined" ? "undefined" : (0, _typeof3.default)(n)) ? n : t, function () {
-            e.orientation = c.getTag(this, "Orientation"), e.resize = e._getResize(), e.ctx = r.getContext("2d"), r.width = e.resize.width, r.height = e.resize.height, e.ctx.fillStyle = "#fff", e.ctx.fillRect(0, 0, r.width, r.height), u.oldIOS ? e._createBase64ForOldIOS().then(i) : e._createBase64().then(i);
-          });
-        } catch (o) {
-          throw new Error(o);
-        }
-      });
-    }, r.prototype._createBase64ForOldIOS = function () {
-      var e = this,
-          t = e.img,
-          r = e.canvas,
-          i = e.defaults,
-          o = e.orientation;return new a(function (e) {
-        !function () {
-          var a = [n(6)];(function (n) {
-            var a = new n(t);"5678".indexOf(o) > -1 ? a.render(r, { width: r.height, height: r.width, orientation: o }) : a.render(r, { width: r.width, height: r.height, orientation: o }), e(r.toDataURL("image/jpeg", i.quality));
-          }).apply(null, a);
-        }();
-      });
-    }, r.prototype._createBase64 = function () {
-      var e = this,
-          t = e.resize,
-          r = e.img,
-          i = e.canvas,
-          o = e.ctx,
-          s = e.defaults,
-          c = e.orientation;switch (c) {case 3:
-          o.rotate(180 * Math.PI / 180), o.drawImage(r, -t.width, -t.height, t.width, t.height);break;case 6:
-          o.rotate(90 * Math.PI / 180), o.drawImage(r, 0, -t.width, t.height, t.width);break;case 8:
-          o.rotate(270 * Math.PI / 180), o.drawImage(r, -t.height, 0, t.height, t.width);break;case 2:
-          o.translate(t.width, 0), o.scale(-1, 1), o.drawImage(r, 0, 0, t.width, t.height);break;case 4:
-          o.translate(t.width, 0), o.scale(-1, 1), o.rotate(180 * Math.PI / 180), o.drawImage(r, -t.width, -t.height, t.width, t.height);break;case 5:
-          o.translate(t.width, 0), o.scale(-1, 1), o.rotate(90 * Math.PI / 180), o.drawImage(r, 0, -t.width, t.height, t.width);break;case 7:
-          o.translate(t.width, 0), o.scale(-1, 1), o.rotate(270 * Math.PI / 180), o.drawImage(r, -t.height, 0, t.height, t.width);break;default:
-          o.drawImage(r, 0, 0, t.width, t.height);}return new a(function (e) {
-        u.oldAndroid || u.mQQBrowser || !navigator.userAgent ? !function () {
-          var t = [n(7)];(function (t) {
-            var n = new t(),
-                r = o.getImageData(0, 0, i.width, i.height);e(n.encode(r, 100 * s.quality));
-          }).apply(null, t);
-        }() : e(i.toDataURL("image/jpeg", s.quality));
-      });
-    }, r.prototype._getResize = function () {
-      var e = this,
-          t = e.img,
-          n = e.defaults,
-          r = n.width,
-          i = n.height,
-          o = e.orientation,
-          a = { width: t.width, height: t.height };if ("5678".indexOf(o) > -1 && (a.width = t.height, a.height = t.width), a.width < r || a.height < i) return a;var s = a.width / a.height;for (r && i ? s >= r / i ? a.width > r && (a.width = r, a.height = Math.ceil(r / s)) : a.height > i && (a.height = i, a.width = Math.ceil(i * s)) : r ? r < a.width && (a.width = r, a.height = Math.ceil(r / s)) : i && i < a.height && (a.width = Math.ceil(i * s), a.height = i); a.width >= 3264 || a.height >= 2448;) {
-        a.width *= .8, a.height *= .8;
-      }return a;
-    }, window.lrz = function (e, t) {
-      return new r(e, t);
-    }, window.lrz.version = "4.8.35", e.exports = window.lrz;
-  }]);
-});
-//# sourceMappingURL=lrz.all.bundle.js.map
-/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(258)(module)))
-
-/***/ }),
-/* 54 */
-/***/ (function(module, exports, __webpack_require__) {
-
-var isObject = __webpack_require__(25)
-  , document = __webpack_require__(7).document
-  // in old IE typeof document.createElement is 'object'
-  , is = isObject(document) && isObject(document.createElement);
-module.exports = function(it){
-  return is ? document.createElement(it) : {};
-};
-
-/***/ }),
-/* 55 */
-/***/ (function(module, exports, __webpack_require__) {
-
-module.exports = !__webpack_require__(11) && !__webpack_require__(24)(function(){
-  return Object.defineProperty(__webpack_require__(54)('div'), 'a', {get: function(){ return 7; }}).a != 7;
-});
-
-/***/ }),
-/* 56 */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-var LIBRARY        = __webpack_require__(37)
-  , $export        = __webpack_require__(12)
-  , redefine       = __webpack_require__(62)
-  , hide           = __webpack_require__(16)
-  , has            = __webpack_require__(13)
-  , Iterators      = __webpack_require__(26)
-  , $iterCreate    = __webpack_require__(130)
-  , setToStringTag = __webpack_require__(40)
-  , getPrototypeOf = __webpack_require__(60)
-  , ITERATOR       = __webpack_require__(4)('iterator')
-  , BUGGY          = !([].keys && 'next' in [].keys()) // Safari has buggy iterators w/o `next`
-  , FF_ITERATOR    = '@@iterator'
-  , KEYS           = 'keys'
-  , VALUES         = 'values';
-
-var returnThis = function(){ return this; };
-
-module.exports = function(Base, NAME, Constructor, next, DEFAULT, IS_SET, FORCED){
-  $iterCreate(Constructor, NAME, next);
-  var getMethod = function(kind){
-    if(!BUGGY && kind in proto)return proto[kind];
-    switch(kind){
-      case KEYS: return function keys(){ return new Constructor(this, kind); };
-      case VALUES: return function values(){ return new Constructor(this, kind); };
-    } return function entries(){ return new Constructor(this, kind); };
-  };
-  var TAG        = NAME + ' Iterator'
-    , DEF_VALUES = DEFAULT == VALUES
-    , VALUES_BUG = false
-    , proto      = Base.prototype
-    , $native    = proto[ITERATOR] || proto[FF_ITERATOR] || DEFAULT && proto[DEFAULT]
-    , $default   = $native || getMethod(DEFAULT)
-    , $entries   = DEFAULT ? !DEF_VALUES ? $default : getMethod('entries') : undefined
-    , $anyNative = NAME == 'Array' ? proto.entries || $native : $native
-    , methods, key, IteratorPrototype;
-  // Fix native
-  if($anyNative){
-    IteratorPrototype = getPrototypeOf($anyNative.call(new Base));
-    if(IteratorPrototype !== Object.prototype){
-      // Set @@toStringTag to native iterators
-      setToStringTag(IteratorPrototype, TAG, true);
-      // fix for some old engines
-      if(!LIBRARY && !has(IteratorPrototype, ITERATOR))hide(IteratorPrototype, ITERATOR, returnThis);
-    }
-  }
-  // fix Array#{values, @@iterator}.name in V8 / FF
-  if(DEF_VALUES && $native && $native.name !== VALUES){
-    VALUES_BUG = true;
-    $default = function values(){ return $native.call(this); };
-  }
-  // Define iterator
-  if((!LIBRARY || FORCED) && (BUGGY || VALUES_BUG || !proto[ITERATOR])){
-    hide(proto, ITERATOR, $default);
-  }
-  // Plug for library
-  Iterators[NAME] = $default;
-  Iterators[TAG]  = returnThis;
-  if(DEFAULT){
-    methods = {
-      values:  DEF_VALUES ? $default : getMethod(VALUES),
-      keys:    IS_SET     ? $default : getMethod(KEYS),
-      entries: $entries
-    };
-    if(FORCED)for(key in methods){
-      if(!(key in proto))redefine(proto, key, methods[key]);
-    } else $export($export.P + $export.F * (BUGGY || VALUES_BUG), NAME, methods);
-  }
-  return methods;
-};
-
-/***/ }),
-/* 57 */
-/***/ (function(module, exports, __webpack_require__) {
-
-var pIE            = __webpack_require__(39)
-  , createDesc     = __webpack_require__(27)
-  , toIObject      = __webpack_require__(14)
-  , toPrimitive    = __webpack_require__(45)
-  , has            = __webpack_require__(13)
-  , IE8_DOM_DEFINE = __webpack_require__(55)
-  , gOPD           = Object.getOwnPropertyDescriptor;
-
-exports.f = __webpack_require__(11) ? gOPD : function getOwnPropertyDescriptor(O, P){
-  O = toIObject(O);
-  P = toPrimitive(P, true);
-  if(IE8_DOM_DEFINE)try {
-    return gOPD(O, P);
-  } catch(e){ /* empty */ }
-  if(has(O, P))return createDesc(!pIE.f.call(O, P), O[P]);
-};
-
-/***/ }),
-/* 58 */
-/***/ (function(module, exports, __webpack_require__) {
-
-// 19.1.2.7 / 15.2.3.4 Object.getOwnPropertyNames(O)
-var $keys      = __webpack_require__(61)
-  , hiddenKeys = __webpack_require__(36).concat('length', 'prototype');
-
-exports.f = Object.getOwnPropertyNames || function getOwnPropertyNames(O){
-  return $keys(O, hiddenKeys);
-};
-
-/***/ }),
-/* 59 */
-/***/ (function(module, exports) {
-
-exports.f = Object.getOwnPropertySymbols;
-
-/***/ }),
-/* 60 */
-/***/ (function(module, exports, __webpack_require__) {
-
-// 19.1.2.9 / 15.2.3.2 Object.getPrototypeOf(O)
-var has         = __webpack_require__(13)
-  , toObject    = __webpack_require__(44)
-  , IE_PROTO    = __webpack_require__(41)('IE_PROTO')
-  , ObjectProto = Object.prototype;
-
-module.exports = Object.getPrototypeOf || function(O){
-  O = toObject(O);
-  if(has(O, IE_PROTO))return O[IE_PROTO];
-  if(typeof O.constructor == 'function' && O instanceof O.constructor){
-    return O.constructor.prototype;
-  } return O instanceof Object ? ObjectProto : null;
-};
-
-/***/ }),
-/* 61 */
-/***/ (function(module, exports, __webpack_require__) {
-
-var has          = __webpack_require__(13)
-  , toIObject    = __webpack_require__(14)
-  , arrayIndexOf = __webpack_require__(121)(false)
-  , IE_PROTO     = __webpack_require__(41)('IE_PROTO');
-
-module.exports = function(object, names){
-  var O      = toIObject(object)
-    , i      = 0
-    , result = []
-    , key;
-  for(key in O)if(key != IE_PROTO)has(O, key) && result.push(key);
-  // Don't enum bug & hidden keys
-  while(names.length > i)if(has(O, key = names[i++])){
-    ~arrayIndexOf(result, key) || result.push(key);
-  }
-  return result;
-};
-
-/***/ }),
-/* 62 */
-/***/ (function(module, exports, __webpack_require__) {
-
-module.exports = __webpack_require__(16);
-
-/***/ }),
-/* 63 */
-/***/ (function(module, exports, __webpack_require__) {
-
-// 7.1.15 ToLength
-var toInteger = __webpack_require__(43)
-  , min       = Math.min;
-module.exports = function(it){
-  return it > 0 ? min(toInteger(it), 0x1fffffffffffff) : 0; // pow(2, 53) - 1 == 9007199254740991
-};
-
-/***/ }),
-/* 64 */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-var $at  = __webpack_require__(139)(true);
-
-// 21.1.3.27 String.prototype[@@iterator]()
-__webpack_require__(56)(String, 'String', function(iterated){
-  this._t = String(iterated); // target
-  this._i = 0;                // next index
-// 21.1.5.2.1 %StringIteratorPrototype%.next()
-}, function(){
-  var O     = this._t
-    , index = this._i
-    , point;
-  if(index >= O.length)return {value: undefined, done: true};
-  point = $at(O, index);
-  this._i += point.length;
-  return {value: point, done: false};
-});
-
-/***/ }),
-/* 65 */
-/***/ (function(module, exports, __webpack_require__) {
-
-var parse = __webpack_require__(9)
-var startOfISOWeek = __webpack_require__(48)
-
-/**
- * @category ISO Week-Numbering Year Helpers
- * @summary Get the ISO week-numbering year of the given date.
- *
- * @description
- * Get the ISO week-numbering year of the given date,
- * which always starts 3 days before the year's first Thursday.
- *
- * ISO week-numbering year: http://en.wikipedia.org/wiki/ISO_week_date
- *
- * @param {Date|String|Number} date - the given date
- * @returns {Number} the ISO week-numbering year
- *
- * @example
- * // Which ISO-week numbering year is 2 January 2005?
- * var result = getISOYear(new Date(2005, 0, 2))
- * //=> 2004
- */
-function getISOYear (dirtyDate) {
-  var date = parse(dirtyDate)
-  var year = date.getFullYear()
-
-  var fourthOfJanuaryOfNextYear = new Date(0)
-  fourthOfJanuaryOfNextYear.setFullYear(year + 1, 0, 4)
-  fourthOfJanuaryOfNextYear.setHours(0, 0, 0, 0)
-  var startOfNextYear = startOfISOWeek(fourthOfJanuaryOfNextYear)
-
-  var fourthOfJanuaryOfThisYear = new Date(0)
-  fourthOfJanuaryOfThisYear.setFullYear(year, 0, 4)
-  fourthOfJanuaryOfThisYear.setHours(0, 0, 0, 0)
-  var startOfThisYear = startOfISOWeek(fourthOfJanuaryOfThisYear)
-
-  if (date.getTime() >= startOfNextYear.getTime()) {
-    return year + 1
-  } else if (date.getTime() >= startOfThisYear.getTime()) {
-    return year
-  } else {
-    return year - 1
-  }
-}
-
-module.exports = getISOYear
-
-
-/***/ }),
-/* 66 */
-/***/ (function(module, exports) {
-
-/**
- * @category Common Helpers
- * @summary Is the given argument an instance of Date?
- *
- * @description
- * Is the given argument an instance of Date?
- *
- * @param {*} argument - the argument to check
- * @returns {Boolean} the given argument is an instance of Date
- *
- * @example
- * // Is 'mayonnaise' a Date?
- * var result = isDate('mayonnaise')
- * //=> false
- */
-function isDate (argument) {
-  return argument instanceof Date
-}
-
-module.exports = isDate
-
-
-/***/ }),
-/* 67 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;/*!
@@ -13625,6 +12369,1262 @@ return jQuery;
 
 
 /***/ }),
+/* 50 */
+/***/ (function(module, exports, __webpack_require__) {
+
+
+/* styles */
+__webpack_require__(247)
+
+var Component = __webpack_require__(0)(
+  /* script */
+  __webpack_require__(86),
+  /* template */
+  __webpack_require__(224),
+  /* scopeId */
+  null,
+  /* cssModules */
+  null
+)
+Component.options.__file = "D:\\workspaces\\htmlproj\\vuejs-app\\src\\components\\shared\\modal.vue"
+if (Component.esModule && Object.keys(Component.esModule).some(function (key) {return key !== "default" && key !== "__esModule"})) {console.error("named exports are not supported in *.vue files.")}
+if (Component.options.functional) {console.error("[vue-loader] modal.vue: functional components are not supported with templates, they should use render functions.")}
+
+/* hot reload */
+if (false) {(function () {
+  var hotAPI = require("vue-hot-reload-api")
+  hotAPI.install(require("vue"), false)
+  if (!hotAPI.compatible) return
+  module.hot.accept()
+  if (!module.hot.data) {
+    hotAPI.createRecord("data-v-7abf8db2", Component.options)
+  } else {
+    hotAPI.reload("data-v-7abf8db2", Component.options)
+  }
+})()}
+
+module.exports = Component.exports
+
+
+/***/ }),
+/* 51 */
+/***/ (function(module, exports) {
+
+var g;
+
+// This works in non-strict mode
+g = (function() {
+	return this;
+})();
+
+try {
+	// This works if eval is allowed (see CSP)
+	g = g || Function("return this")() || (1,eval)("this");
+} catch(e) {
+	// This works if the window reference is available
+	if(typeof window === "object")
+		g = window;
+}
+
+// g can still be undefined, but nothing to do about it...
+// We return undefined, instead of nothing here, so it's
+// easier to handle this case. if(!global) { ...}
+
+module.exports = g;
+
+
+/***/ }),
+/* 52 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+    value: true
+});
+
+var _getPrototypeOf = __webpack_require__(21);
+
+var _getPrototypeOf2 = _interopRequireDefault(_getPrototypeOf);
+
+var _classCallCheck2 = __webpack_require__(6);
+
+var _classCallCheck3 = _interopRequireDefault(_classCallCheck2);
+
+var _createClass2 = __webpack_require__(10);
+
+var _createClass3 = _interopRequireDefault(_createClass2);
+
+var _possibleConstructorReturn2 = __webpack_require__(23);
+
+var _possibleConstructorReturn3 = _interopRequireDefault(_possibleConstructorReturn2);
+
+var _inherits2 = __webpack_require__(22);
+
+var _inherits3 = _interopRequireDefault(_inherits2);
+
+var _baseSrv = __webpack_require__(19);
+
+var _baseSrv2 = _interopRequireDefault(_baseSrv);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+var IndexSrv = function (_BaseSrv) {
+    (0, _inherits3.default)(IndexSrv, _BaseSrv);
+
+    function IndexSrv() {
+        (0, _classCallCheck3.default)(this, IndexSrv);
+        return (0, _possibleConstructorReturn3.default)(this, (IndexSrv.__proto__ || (0, _getPrototypeOf2.default)(IndexSrv)).apply(this, arguments));
+    }
+
+    (0, _createClass3.default)(IndexSrv, [{
+        key: "getBannerImg",
+        value: function getBannerImg() {
+            return this.http.get("mobile/banner");
+        }
+    }, {
+        key: "getIndustryList",
+        value: function getIndustryList() {
+            return this.http.get("industry");
+        }
+    }, {
+        key: "getRecommendList",
+        value: function getRecommendList() {
+            return this.http.get("act/recommd");
+        }
+    }]);
+    return IndexSrv;
+}(_baseSrv2.default); /**
+                       * Created by luowen on 2017/3/12.
+                       */
+
+exports.default = IndexSrv;
+
+/***/ }),
+/* 53 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+    value: true
+});
+
+var _getPrototypeOf = __webpack_require__(21);
+
+var _getPrototypeOf2 = _interopRequireDefault(_getPrototypeOf);
+
+var _classCallCheck2 = __webpack_require__(6);
+
+var _classCallCheck3 = _interopRequireDefault(_classCallCheck2);
+
+var _createClass2 = __webpack_require__(10);
+
+var _createClass3 = _interopRequireDefault(_createClass2);
+
+var _possibleConstructorReturn2 = __webpack_require__(23);
+
+var _possibleConstructorReturn3 = _interopRequireDefault(_possibleConstructorReturn2);
+
+var _inherits2 = __webpack_require__(22);
+
+var _inherits3 = _interopRequireDefault(_inherits2);
+
+var _baseSrv = __webpack_require__(19);
+
+var _baseSrv2 = _interopRequireDefault(_baseSrv);
+
+var _wx = __webpack_require__(259);
+
+var _wx2 = _interopRequireDefault(_wx);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+/**
+ * Created by luowen on 2017/4/19.
+ */
+
+var WxSrv = function (_BaseSrv) {
+    (0, _inherits3.default)(WxSrv, _BaseSrv);
+
+    function WxSrv() {
+        (0, _classCallCheck3.default)(this, WxSrv);
+        return (0, _possibleConstructorReturn3.default)(this, (WxSrv.__proto__ || (0, _getPrototypeOf2.default)(WxSrv)).apply(this, arguments));
+    }
+
+    (0, _createClass3.default)(WxSrv, [{
+        key: "initWxJsConfig",
+        value: function initWxJsConfig(url, callback) {
+            this.http.get("wechat/jstoken?url=" + url).then(function (wxResp) {
+                if (wxResp.data.code === 0) {
+                    console.log(wxResp.data.data);
+                    _wx2.default.config(wxResp.data.data);
+                    callback(true);
+                } else {
+                    console.log("微信分享搓搓", wxResp);
+                    callback(false);
+                }
+            });
+        }
+    }, {
+        key: "onMenuShareTimeline",
+        value: function onMenuShareTimeline(shareConfig) {
+            _wx2.default.onMenuShareTimeline(shareConfig);
+        }
+    }, {
+        key: "onMenuShareAppMessage",
+        value: function onMenuShareAppMessage(shareConfig) {
+            _wx2.default.onMenuShareAppMessage(shareConfig);
+        }
+    }, {
+        key: "onError",
+        value: function onError() {
+            _wx2.default.error(function (res) {
+                console.log(res, 'register share erro');
+            });
+        }
+    }, {
+        key: "onSuccess",
+        value: function onSuccess() {
+            _wx2.default.ready(function () {
+                console.log('succes');
+            });
+        }
+    }]);
+    return WxSrv;
+}(_baseSrv2.default);
+
+exports.default = WxSrv;
+
+/***/ }),
+/* 54 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+/* WEBPACK VAR INJECTION */(function(module) {var __WEBPACK_AMD_DEFINE_FACTORY__, __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;
+
+var _typeof2 = __webpack_require__(32);
+
+var _typeof3 = _interopRequireDefault(_typeof2);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+!function (e, t) {
+  if ("object" == ( false ? "undefined" : (0, _typeof3.default)(exports)) && "object" == ( false ? "undefined" : (0, _typeof3.default)(module))) module.exports = t();else if (true) !(__WEBPACK_AMD_DEFINE_ARRAY__ = [], __WEBPACK_AMD_DEFINE_FACTORY__ = (t),
+				__WEBPACK_AMD_DEFINE_RESULT__ = (typeof __WEBPACK_AMD_DEFINE_FACTORY__ === 'function' ?
+				(__WEBPACK_AMD_DEFINE_FACTORY__.apply(exports, __WEBPACK_AMD_DEFINE_ARRAY__)) : __WEBPACK_AMD_DEFINE_FACTORY__),
+				__WEBPACK_AMD_DEFINE_RESULT__ !== undefined && (module.exports = __WEBPACK_AMD_DEFINE_RESULT__));else {
+    var n = t();for (var r in n) {
+      ("object" == (typeof exports === "undefined" ? "undefined" : (0, _typeof3.default)(exports)) ? exports : e)[r] = n[r];
+    }
+  }
+}(undefined, function () {
+  return function (e) {
+    function t(r) {
+      if (n[r]) return n[r].exports;var i = n[r] = { exports: {}, id: r, loaded: !1 };return e[r].call(i.exports, i, i.exports, t), i.loaded = !0, i.exports;
+    }var n = {};return t.m = e, t.c = n, t.p = "", t(0);
+  }([function (e, t, n) {
+    n(6), n(7), e.exports = n(8);
+  }, function (e, t, n) {
+    (function (t) {
+      !function (n) {
+        function r(e, t) {
+          return function () {
+            e.apply(t, arguments);
+          };
+        }function i(e) {
+          if ("object" != (0, _typeof3.default)(this)) throw new TypeError("Promises must be constructed via new");if ("function" != typeof e) throw new TypeError("not a function");this._state = null, this._value = null, this._deferreds = [], l(e, r(a, this), r(s, this));
+        }function o(e) {
+          var t = this;return null === this._state ? void this._deferreds.push(e) : void f(function () {
+            var n = t._state ? e.onFulfilled : e.onRejected;if (null === n) return void (t._state ? e.resolve : e.reject)(t._value);var r;try {
+              r = n(t._value);
+            } catch (i) {
+              return void e.reject(i);
+            }e.resolve(r);
+          });
+        }function a(e) {
+          try {
+            if (e === this) throw new TypeError("A promise cannot be resolved with itself.");if (e && ("object" == (typeof e === "undefined" ? "undefined" : (0, _typeof3.default)(e)) || "function" == typeof e)) {
+              var t = e.then;if ("function" == typeof t) return void l(r(t, e), r(a, this), r(s, this));
+            }this._state = !0, this._value = e, c.call(this);
+          } catch (n) {
+            s.call(this, n);
+          }
+        }function s(e) {
+          this._state = !1, this._value = e, c.call(this);
+        }function c() {
+          for (var e = 0, t = this._deferreds.length; t > e; e++) {
+            o.call(this, this._deferreds[e]);
+          }this._deferreds = null;
+        }function u(e, t, n, r) {
+          this.onFulfilled = "function" == typeof e ? e : null, this.onRejected = "function" == typeof t ? t : null, this.resolve = n, this.reject = r;
+        }function l(e, t, n) {
+          var r = !1;try {
+            e(function (e) {
+              r || (r = !0, t(e));
+            }, function (e) {
+              r || (r = !0, n(e));
+            });
+          } catch (i) {
+            if (r) return;r = !0, n(i);
+          }
+        }var f = "function" == typeof t && t || function (e) {
+          setTimeout(e, 1);
+        },
+            d = Array.isArray || function (e) {
+          return "[object Array]" === Object.prototype.toString.call(e);
+        };i.prototype["catch"] = function (e) {
+          return this.then(null, e);
+        }, i.prototype.then = function (e, t) {
+          var n = this;return new i(function (r, i) {
+            o.call(n, new u(e, t, r, i));
+          });
+        }, i.all = function () {
+          var e = Array.prototype.slice.call(1 === arguments.length && d(arguments[0]) ? arguments[0] : arguments);return new i(function (t, n) {
+            function r(o, a) {
+              try {
+                if (a && ("object" == (typeof a === "undefined" ? "undefined" : (0, _typeof3.default)(a)) || "function" == typeof a)) {
+                  var s = a.then;if ("function" == typeof s) return void s.call(a, function (e) {
+                    r(o, e);
+                  }, n);
+                }e[o] = a, 0 === --i && t(e);
+              } catch (c) {
+                n(c);
+              }
+            }if (0 === e.length) return t([]);for (var i = e.length, o = 0; o < e.length; o++) {
+              r(o, e[o]);
+            }
+          });
+        }, i.resolve = function (e) {
+          return e && "object" == (typeof e === "undefined" ? "undefined" : (0, _typeof3.default)(e)) && e.constructor === i ? e : new i(function (t) {
+            t(e);
+          });
+        }, i.reject = function (e) {
+          return new i(function (t, n) {
+            n(e);
+          });
+        }, i.race = function (e) {
+          return new i(function (t, n) {
+            for (var r = 0, i = e.length; i > r; r++) {
+              e[r].then(t, n);
+            }
+          });
+        }, i._setImmediateFn = function (e) {
+          f = e;
+        }, i.prototype.always = function (e) {
+          var t = this.constructor;return this.then(function (n) {
+            return t.resolve(e()).then(function () {
+              return n;
+            });
+          }, function (n) {
+            return t.resolve(e()).then(function () {
+              throw n;
+            });
+          });
+        }, "undefined" != typeof e && e.exports ? e.exports = i : n.Promise || (n.Promise = i);
+      }(this);
+    }).call(t, n(2).setImmediate);
+  }, function (e, t, n) {
+    (function (e, r) {
+      function i(e, t) {
+        this._id = e, this._clearFn = t;
+      }var o = n(3).nextTick,
+          a = Function.prototype.apply,
+          s = Array.prototype.slice,
+          c = {},
+          u = 0;t.setTimeout = function () {
+        return new i(a.call(setTimeout, window, arguments), clearTimeout);
+      }, t.setInterval = function () {
+        return new i(a.call(setInterval, window, arguments), clearInterval);
+      }, t.clearTimeout = t.clearInterval = function (e) {
+        e.close();
+      }, i.prototype.unref = i.prototype.ref = function () {}, i.prototype.close = function () {
+        this._clearFn.call(window, this._id);
+      }, t.enroll = function (e, t) {
+        clearTimeout(e._idleTimeoutId), e._idleTimeout = t;
+      }, t.unenroll = function (e) {
+        clearTimeout(e._idleTimeoutId), e._idleTimeout = -1;
+      }, t._unrefActive = t.active = function (e) {
+        clearTimeout(e._idleTimeoutId);var t = e._idleTimeout;t >= 0 && (e._idleTimeoutId = setTimeout(function () {
+          e._onTimeout && e._onTimeout();
+        }, t));
+      }, t.setImmediate = "function" == typeof e ? e : function (e) {
+        var n = u++,
+            r = arguments.length < 2 ? !1 : s.call(arguments, 1);return c[n] = !0, o(function () {
+          c[n] && (r ? e.apply(null, r) : e.call(null), t.clearImmediate(n));
+        }), n;
+      }, t.clearImmediate = "function" == typeof r ? r : function (e) {
+        delete c[e];
+      };
+    }).call(t, n(2).setImmediate, n(2).clearImmediate);
+  }, function (e, t) {
+    function n() {
+      u = !1, a.length ? c = a.concat(c) : l = -1, c.length && r();
+    }function r() {
+      if (!u) {
+        var e = setTimeout(n);u = !0;for (var t = c.length; t;) {
+          for (a = c, c = []; ++l < t;) {
+            a && a[l].run();
+          }l = -1, t = c.length;
+        }a = null, u = !1, clearTimeout(e);
+      }
+    }function i(e, t) {
+      this.fun = e, this.array = t;
+    }function o() {}var a,
+        s = e.exports = {},
+        c = [],
+        u = !1,
+        l = -1;s.nextTick = function (e) {
+      var t = new Array(arguments.length - 1);if (arguments.length > 1) for (var n = 1; n < arguments.length; n++) {
+        t[n - 1] = arguments[n];
+      }c.push(new i(e, t)), 1 !== c.length || u || setTimeout(r, 0);
+    }, i.prototype.run = function () {
+      this.fun.apply(null, this.array);
+    }, s.title = "browser", s.browser = !0, s.env = {}, s.argv = [], s.version = "", s.versions = {}, s.on = o, s.addListener = o, s.once = o, s.off = o, s.removeListener = o, s.removeAllListeners = o, s.emit = o, s.binding = function (e) {
+      throw new Error("process.binding is not supported");
+    }, s.cwd = function () {
+      return "/";
+    }, s.chdir = function (e) {
+      throw new Error("process.chdir is not supported");
+    }, s.umask = function () {
+      return 0;
+    };
+  }, function (e, t) {
+    function n() {
+      var e = ~navigator.userAgent.indexOf("Android") && ~navigator.vendor.indexOf("Google") && !~navigator.userAgent.indexOf("Chrome");return e && navigator.userAgent.match(/AppleWebKit\/(\d+)/).pop() <= 534 || /MQQBrowser/g.test(navigator.userAgent);
+    }function r() {
+      var e = this,
+          t = [],
+          n = Array(21).join("-") + (+new Date() * (1e16 * Math.random())).toString(36),
+          r = XMLHttpRequest.prototype.send;this.getParts = function () {
+        return t.toString();
+      }, this.append = function (e, r, i) {
+        t.push("--" + n + '\r\nContent-Disposition: form-data; name="' + e + '"'), r instanceof Blob ? (t.push('; filename="' + (i || "blob") + '"\r\nContent-Type: ' + r.type + "\r\n\r\n"), t.push(r)) : t.push("\r\n\r\n" + r), t.push("\r\n");
+      }, XMLHttpRequest.prototype.send = function (o) {
+        var a,
+            s,
+            c = this;o === e ? (t.push("--" + n + "--\r\n"), s = new i(t), a = new FileReader(), a.onload = function () {
+          r.call(c, a.result);
+        }, a.onerror = function (e) {
+          throw e;
+        }, a.readAsArrayBuffer(s), this.setRequestHeader("Content-Type", "multipart/form-data; boundary=" + n), XMLHttpRequest.prototype.send = r) : r.call(this, o);
+      };
+    }var i = function () {
+      try {
+        return new Blob(), !0;
+      } catch (e) {
+        return !1;
+      }
+    }() ? window.Blob : function (e, t) {
+      var n = new (window.BlobBuilder || window.WebKitBlobBuilder || window.MSBlobBuilder || window.MozBlobBuilder)();return e.forEach(function (e) {
+        n.append(e);
+      }), n.getBlob(t ? t.type : void 0);
+    };e.exports = { Blob: i, FormData: n() ? r : FormData };
+  }, function (e, t, n) {
+    var r, i;(function () {
+      function n(e) {
+        return !!e.exifdata;
+      }function o(e, t) {
+        t = t || e.match(/^data\:([^\;]+)\;base64,/im)[1] || "", e = e.replace(/^data\:([^\;]+)\;base64,/gim, "");for (var n = atob(e), r = n.length, i = new ArrayBuffer(r), o = new Uint8Array(i), a = 0; r > a; a++) {
+          o[a] = n.charCodeAt(a);
+        }return i;
+      }function a(e, t) {
+        var n = new XMLHttpRequest();n.open("GET", e, !0), n.responseType = "blob", n.onload = function (e) {
+          200 != this.status && 0 !== this.status || t(this.response);
+        }, n.send();
+      }function s(e, t) {
+        function n(n) {
+          var r = c(n),
+              i = u(n);e.exifdata = r || {}, e.iptcdata = i || {}, t && t.call(e);
+        }if (e.src) {
+          if (/^data\:/i.test(e.src)) {
+            var r = o(e.src);n(r);
+          } else if (/^blob\:/i.test(e.src)) {
+            var i = new FileReader();i.onload = function (e) {
+              n(e.target.result);
+            }, a(e.src, function (e) {
+              i.readAsArrayBuffer(e);
+            });
+          } else {
+            var s = new XMLHttpRequest();s.onload = function () {
+              200 == this.status || 0 === this.status ? n(s.response) : t(new Error("Could not load image")), s = null;
+            }, s.open("GET", e.src, !0), s.responseType = "arraybuffer", s.send(null);
+          }
+        } else if (window.FileReader && (e instanceof window.Blob || e instanceof window.File)) {
+          var i = new FileReader();i.onload = function (e) {
+            p && console.log("Got file of length " + e.target.result.byteLength), n(e.target.result);
+          }, i.readAsArrayBuffer(e);
+        }
+      }function c(e) {
+        var t = new DataView(e);if (p && console.log("Got file of length " + e.byteLength), 255 != t.getUint8(0) || 216 != t.getUint8(1)) return p && console.log("Not a valid JPEG"), !1;for (var n, r = 2, i = e.byteLength; i > r;) {
+          if (255 != t.getUint8(r)) return p && console.log("Not a valid marker at offset " + r + ", found: " + t.getUint8(r)), !1;if (n = t.getUint8(r + 1), p && console.log(n), 225 == n) return p && console.log("Found 0xFFE1 marker"), g(t, r + 4, t.getUint16(r + 2) - 2);r += 2 + t.getUint16(r + 2);
+        }
+      }function u(e) {
+        var t = new DataView(e);if (p && console.log("Got file of length " + e.byteLength), 255 != t.getUint8(0) || 216 != t.getUint8(1)) return p && console.log("Not a valid JPEG"), !1;for (var n = 2, r = e.byteLength, i = function i(e, t) {
+          return 56 === e.getUint8(t) && 66 === e.getUint8(t + 1) && 73 === e.getUint8(t + 2) && 77 === e.getUint8(t + 3) && 4 === e.getUint8(t + 4) && 4 === e.getUint8(t + 5);
+        }; r > n;) {
+          if (i(t, n)) {
+            var o = t.getUint8(n + 7);o % 2 !== 0 && (o += 1), 0 === o && (o = 4);var a = n + 8 + o,
+                s = t.getUint16(n + 6 + o);return l(e, a, s);
+          }n++;
+        }
+      }function l(e, t, n) {
+        for (var r, i, o, a, s, c = new DataView(e), u = {}, l = t; t + n > l;) {
+          28 === c.getUint8(l) && 2 === c.getUint8(l + 1) && (a = c.getUint8(l + 2), a in S && (o = c.getInt16(l + 3), s = o + 5, i = S[a], r = h(c, l + 5, o), u.hasOwnProperty(i) ? u[i] instanceof Array ? u[i].push(r) : u[i] = [u[i], r] : u[i] = r)), l++;
+        }return u;
+      }function f(e, t, n, r, i) {
+        var o,
+            a,
+            s,
+            c = e.getUint16(n, !i),
+            u = {};for (s = 0; c > s; s++) {
+          o = n + 12 * s + 2, a = r[e.getUint16(o, !i)], !a && p && console.log("Unknown tag: " + e.getUint16(o, !i)), u[a] = d(e, o, t, n, i);
+        }return u;
+      }function d(e, t, n, r, i) {
+        var o,
+            a,
+            s,
+            c,
+            u,
+            l,
+            f = e.getUint16(t + 2, !i),
+            d = e.getUint32(t + 4, !i),
+            g = e.getUint32(t + 8, !i) + n;switch (f) {case 1:case 7:
+            if (1 == d) return e.getUint8(t + 8, !i);for (o = d > 4 ? g : t + 8, a = [], c = 0; d > c; c++) {
+              a[c] = e.getUint8(o + c);
+            }return a;case 2:
+            return o = d > 4 ? g : t + 8, h(e, o, d - 1);case 3:
+            if (1 == d) return e.getUint16(t + 8, !i);for (o = d > 2 ? g : t + 8, a = [], c = 0; d > c; c++) {
+              a[c] = e.getUint16(o + 2 * c, !i);
+            }return a;case 4:
+            if (1 == d) return e.getUint32(t + 8, !i);for (a = [], c = 0; d > c; c++) {
+              a[c] = e.getUint32(g + 4 * c, !i);
+            }return a;case 5:
+            if (1 == d) return u = e.getUint32(g, !i), l = e.getUint32(g + 4, !i), s = new Number(u / l), s.numerator = u, s.denominator = l, s;for (a = [], c = 0; d > c; c++) {
+              u = e.getUint32(g + 8 * c, !i), l = e.getUint32(g + 4 + 8 * c, !i), a[c] = new Number(u / l), a[c].numerator = u, a[c].denominator = l;
+            }return a;case 9:
+            if (1 == d) return e.getInt32(t + 8, !i);for (a = [], c = 0; d > c; c++) {
+              a[c] = e.getInt32(g + 4 * c, !i);
+            }return a;case 10:
+            if (1 == d) return e.getInt32(g, !i) / e.getInt32(g + 4, !i);for (a = [], c = 0; d > c; c++) {
+              a[c] = e.getInt32(g + 8 * c, !i) / e.getInt32(g + 4 + 8 * c, !i);
+            }return a;}
+      }function h(e, t, n) {
+        var r,
+            i = "";for (r = t; t + n > r; r++) {
+          i += String.fromCharCode(e.getUint8(r));
+        }return i;
+      }function g(e, t) {
+        if ("Exif" != h(e, t, 4)) return p && console.log("Not valid EXIF data! " + h(e, t, 4)), !1;var n,
+            r,
+            i,
+            o,
+            a,
+            s = t + 6;if (18761 == e.getUint16(s)) n = !1;else {
+          if (19789 != e.getUint16(s)) return p && console.log("Not valid TIFF data! (no 0x4949 or 0x4D4D)"), !1;n = !0;
+        }if (42 != e.getUint16(s + 2, !n)) return p && console.log("Not valid TIFF data! (no 0x002A)"), !1;var c = e.getUint32(s + 4, !n);if (8 > c) return p && console.log("Not valid TIFF data! (First offset less than 8)", e.getUint32(s + 4, !n)), !1;if (r = f(e, s, s + c, v, n), r.ExifIFDPointer) {
+          o = f(e, s, s + r.ExifIFDPointer, w, n);for (i in o) {
+            switch (i) {case "LightSource":case "Flash":case "MeteringMode":case "ExposureProgram":case "SensingMethod":case "SceneCaptureType":case "SceneType":case "CustomRendered":case "WhiteBalance":case "GainControl":case "Contrast":case "Saturation":case "Sharpness":case "SubjectDistanceRange":case "FileSource":
+                o[i] = b[i][o[i]];break;case "ExifVersion":case "FlashpixVersion":
+                o[i] = String.fromCharCode(o[i][0], o[i][1], o[i][2], o[i][3]);break;case "ComponentsConfiguration":
+                o[i] = b.Components[o[i][0]] + b.Components[o[i][1]] + b.Components[o[i][2]] + b.Components[o[i][3]];}r[i] = o[i];
+          }
+        }if (r.GPSInfoIFDPointer) {
+          a = f(e, s, s + r.GPSInfoIFDPointer, y, n);for (i in a) {
+            switch (i) {case "GPSVersionID":
+                a[i] = a[i][0] + "." + a[i][1] + "." + a[i][2] + "." + a[i][3];}r[i] = a[i];
+          }
+        }return r;
+      }var p = !1,
+          m = function m(e) {
+        return e instanceof m ? e : this instanceof m ? void (this.EXIFwrapped = e) : new m(e);
+      };"undefined" != typeof e && e.exports && (t = e.exports = m), t.EXIF = m;var w = m.Tags = { 36864: "ExifVersion", 40960: "FlashpixVersion", 40961: "ColorSpace", 40962: "PixelXDimension", 40963: "PixelYDimension", 37121: "ComponentsConfiguration", 37122: "CompressedBitsPerPixel", 37500: "MakerNote", 37510: "UserComment", 40964: "RelatedSoundFile", 36867: "DateTimeOriginal", 36868: "DateTimeDigitized", 37520: "SubsecTime", 37521: "SubsecTimeOriginal", 37522: "SubsecTimeDigitized", 33434: "ExposureTime", 33437: "FNumber", 34850: "ExposureProgram", 34852: "SpectralSensitivity", 34855: "ISOSpeedRatings", 34856: "OECF", 37377: "ShutterSpeedValue", 37378: "ApertureValue", 37379: "BrightnessValue", 37380: "ExposureBias", 37381: "MaxApertureValue", 37382: "SubjectDistance", 37383: "MeteringMode", 37384: "LightSource", 37385: "Flash", 37396: "SubjectArea", 37386: "FocalLength", 41483: "FlashEnergy", 41484: "SpatialFrequencyResponse", 41486: "FocalPlaneXResolution", 41487: "FocalPlaneYResolution", 41488: "FocalPlaneResolutionUnit", 41492: "SubjectLocation", 41493: "ExposureIndex", 41495: "SensingMethod", 41728: "FileSource", 41729: "SceneType", 41730: "CFAPattern", 41985: "CustomRendered", 41986: "ExposureMode", 41987: "WhiteBalance", 41988: "DigitalZoomRation", 41989: "FocalLengthIn35mmFilm", 41990: "SceneCaptureType", 41991: "GainControl", 41992: "Contrast", 41993: "Saturation", 41994: "Sharpness", 41995: "DeviceSettingDescription", 41996: "SubjectDistanceRange", 40965: "InteroperabilityIFDPointer", 42016: "ImageUniqueID" },
+          v = m.TiffTags = { 256: "ImageWidth", 257: "ImageHeight", 34665: "ExifIFDPointer", 34853: "GPSInfoIFDPointer", 40965: "InteroperabilityIFDPointer", 258: "BitsPerSample", 259: "Compression", 262: "PhotometricInterpretation", 274: "Orientation", 277: "SamplesPerPixel", 284: "PlanarConfiguration", 530: "YCbCrSubSampling", 531: "YCbCrPositioning", 282: "XResolution", 283: "YResolution", 296: "ResolutionUnit", 273: "StripOffsets", 278: "RowsPerStrip", 279: "StripByteCounts", 513: "JPEGInterchangeFormat", 514: "JPEGInterchangeFormatLength", 301: "TransferFunction", 318: "WhitePoint", 319: "PrimaryChromaticities", 529: "YCbCrCoefficients", 532: "ReferenceBlackWhite", 306: "DateTime", 270: "ImageDescription", 271: "Make", 272: "Model", 305: "Software", 315: "Artist", 33432: "Copyright" },
+          y = m.GPSTags = { 0: "GPSVersionID", 1: "GPSLatitudeRef", 2: "GPSLatitude", 3: "GPSLongitudeRef", 4: "GPSLongitude", 5: "GPSAltitudeRef", 6: "GPSAltitude", 7: "GPSTimeStamp", 8: "GPSSatellites", 9: "GPSStatus", 10: "GPSMeasureMode", 11: "GPSDOP", 12: "GPSSpeedRef", 13: "GPSSpeed", 14: "GPSTrackRef", 15: "GPSTrack", 16: "GPSImgDirectionRef", 17: "GPSImgDirection", 18: "GPSMapDatum", 19: "GPSDestLatitudeRef", 20: "GPSDestLatitude", 21: "GPSDestLongitudeRef", 22: "GPSDestLongitude", 23: "GPSDestBearingRef", 24: "GPSDestBearing", 25: "GPSDestDistanceRef", 26: "GPSDestDistance", 27: "GPSProcessingMethod", 28: "GPSAreaInformation", 29: "GPSDateStamp", 30: "GPSDifferential" },
+          b = m.StringValues = { ExposureProgram: { 0: "Not defined", 1: "Manual", 2: "Normal program", 3: "Aperture priority", 4: "Shutter priority", 5: "Creative program", 6: "Action program", 7: "Portrait mode", 8: "Landscape mode" }, MeteringMode: { 0: "Unknown", 1: "Average", 2: "CenterWeightedAverage", 3: "Spot", 4: "MultiSpot", 5: "Pattern", 6: "Partial", 255: "Other" }, LightSource: { 0: "Unknown", 1: "Daylight", 2: "Fluorescent", 3: "Tungsten (incandescent light)", 4: "Flash", 9: "Fine weather", 10: "Cloudy weather", 11: "Shade", 12: "Daylight fluorescent (D 5700 - 7100K)", 13: "Day white fluorescent (N 4600 - 5400K)", 14: "Cool white fluorescent (W 3900 - 4500K)", 15: "White fluorescent (WW 3200 - 3700K)", 17: "Standard light A", 18: "Standard light B", 19: "Standard light C", 20: "D55", 21: "D65", 22: "D75", 23: "D50", 24: "ISO studio tungsten", 255: "Other" }, Flash: { 0: "Flash did not fire", 1: "Flash fired", 5: "Strobe return light not detected", 7: "Strobe return light detected", 9: "Flash fired, compulsory flash mode", 13: "Flash fired, compulsory flash mode, return light not detected", 15: "Flash fired, compulsory flash mode, return light detected", 16: "Flash did not fire, compulsory flash mode", 24: "Flash did not fire, auto mode", 25: "Flash fired, auto mode", 29: "Flash fired, auto mode, return light not detected", 31: "Flash fired, auto mode, return light detected", 32: "No flash function", 65: "Flash fired, red-eye reduction mode", 69: "Flash fired, red-eye reduction mode, return light not detected", 71: "Flash fired, red-eye reduction mode, return light detected", 73: "Flash fired, compulsory flash mode, red-eye reduction mode", 77: "Flash fired, compulsory flash mode, red-eye reduction mode, return light not detected", 79: "Flash fired, compulsory flash mode, red-eye reduction mode, return light detected", 89: "Flash fired, auto mode, red-eye reduction mode", 93: "Flash fired, auto mode, return light not detected, red-eye reduction mode", 95: "Flash fired, auto mode, return light detected, red-eye reduction mode" }, SensingMethod: { 1: "Not defined", 2: "One-chip color area sensor", 3: "Two-chip color area sensor", 4: "Three-chip color area sensor", 5: "Color sequential area sensor", 7: "Trilinear sensor", 8: "Color sequential linear sensor" }, SceneCaptureType: { 0: "Standard", 1: "Landscape", 2: "Portrait", 3: "Night scene" }, SceneType: { 1: "Directly photographed" }, CustomRendered: { 0: "Normal process", 1: "Custom process" }, WhiteBalance: { 0: "Auto white balance", 1: "Manual white balance" }, GainControl: { 0: "None", 1: "Low gain up", 2: "High gain up", 3: "Low gain down", 4: "High gain down" }, Contrast: { 0: "Normal", 1: "Soft", 2: "Hard" }, Saturation: { 0: "Normal", 1: "Low saturation", 2: "High saturation" }, Sharpness: { 0: "Normal", 1: "Soft", 2: "Hard" }, SubjectDistanceRange: { 0: "Unknown", 1: "Macro", 2: "Close view", 3: "Distant view" }, FileSource: { 3: "DSC" }, Components: { 0: "", 1: "Y", 2: "Cb", 3: "Cr", 4: "R", 5: "G", 6: "B" } },
+          S = { 120: "caption", 110: "credit", 25: "keywords", 55: "dateCreated", 80: "byline", 85: "bylineTitle", 122: "captionWriter", 105: "headline", 116: "copyright", 15: "category" };m.getData = function (e, t) {
+        return (e instanceof Image || e instanceof HTMLImageElement) && !e.complete ? !1 : (n(e) ? t && t.call(e) : s(e, t), !0);
+      }, m.getTag = function (e, t) {
+        return n(e) ? e.exifdata[t] : void 0;
+      }, m.getAllTags = function (e) {
+        if (!n(e)) return {};var t,
+            r = e.exifdata,
+            i = {};for (t in r) {
+          r.hasOwnProperty(t) && (i[t] = r[t]);
+        }return i;
+      }, m.pretty = function (e) {
+        if (!n(e)) return "";var t,
+            r = e.exifdata,
+            i = "";for (t in r) {
+          r.hasOwnProperty(t) && (i += "object" == (0, _typeof3.default)(r[t]) ? r[t] instanceof Number ? t + " : " + r[t] + " [" + r[t].numerator + "/" + r[t].denominator + "]\r\n" : t + " : [" + r[t].length + " values]\r\n" : t + " : " + r[t] + "\r\n");
+        }return i;
+      }, m.readFromBinaryFile = function (e) {
+        return c(e);
+      }, r = [], i = function () {
+        return m;
+      }.apply(t, r), !(void 0 !== i && (e.exports = i));
+    }).call(this);
+  }, function (e, t, n) {
+    var r, i;!function () {
+      function n(e) {
+        var t = e.naturalWidth,
+            n = e.naturalHeight;if (t * n > 1048576) {
+          var r = document.createElement("canvas");r.width = r.height = 1;var i = r.getContext("2d");return i.drawImage(e, -t + 1, 0), 0 === i.getImageData(0, 0, 1, 1).data[3];
+        }return !1;
+      }function o(e, t, n) {
+        var r = document.createElement("canvas");r.width = 1, r.height = n;var i = r.getContext("2d");i.drawImage(e, 0, 0);for (var o = i.getImageData(0, 0, 1, n).data, a = 0, s = n, c = n; c > a;) {
+          var u = o[4 * (c - 1) + 3];0 === u ? s = c : a = c, c = s + a >> 1;
+        }var l = c / n;return 0 === l ? 1 : l;
+      }function a(e, t, n) {
+        var r = document.createElement("canvas");return s(e, r, t, n), r.toDataURL("image/jpeg", t.quality || .8);
+      }function s(e, t, r, i) {
+        var a = e.naturalWidth,
+            s = e.naturalHeight,
+            u = r.width,
+            l = r.height,
+            f = t.getContext("2d");f.save(), c(t, f, u, l, r.orientation);var d = n(e);d && (a /= 2, s /= 2);var h = 1024,
+            g = document.createElement("canvas");g.width = g.height = h;for (var p = g.getContext("2d"), m = i ? o(e, a, s) : 1, w = Math.ceil(h * u / a), v = Math.ceil(h * l / s / m), y = 0, b = 0; s > y;) {
+          for (var S = 0, I = 0; a > S;) {
+            p.clearRect(0, 0, h, h), p.drawImage(e, -S, -y), f.drawImage(g, 0, 0, h, h, I, b, w, v), S += h, I += w;
+          }y += h, b += v;
+        }f.restore(), g = p = null;
+      }function c(e, t, n, r, i) {
+        switch (i) {case 5:case 6:case 7:case 8:
+            e.width = r, e.height = n;break;default:
+            e.width = n, e.height = r;}switch (i) {case 2:
+            t.translate(n, 0), t.scale(-1, 1);break;case 3:
+            t.translate(n, r), t.rotate(Math.PI);break;case 4:
+            t.translate(0, r), t.scale(1, -1);break;case 5:
+            t.rotate(.5 * Math.PI), t.scale(1, -1);break;case 6:
+            t.rotate(.5 * Math.PI), t.translate(0, -r);break;case 7:
+            t.rotate(.5 * Math.PI), t.translate(n, -r), t.scale(-1, 1);break;case 8:
+            t.rotate(-.5 * Math.PI), t.translate(-n, 0);}
+      }function u(e) {
+        if (window.Blob && e instanceof Blob) {
+          var t = new Image(),
+              n = window.URL && window.URL.createObjectURL ? window.URL : window.webkitURL && window.webkitURL.createObjectURL ? window.webkitURL : null;if (!n) throw Error("No createObjectURL function found to create blob url");t.src = n.createObjectURL(e), this.blob = e, e = t;
+        }if (!e.naturalWidth && !e.naturalHeight) {
+          var r = this;e.onload = function () {
+            var e = r.imageLoadListeners;if (e) {
+              r.imageLoadListeners = null;for (var t = 0, n = e.length; n > t; t++) {
+                e[t]();
+              }
+            }
+          }, this.imageLoadListeners = [];
+        }this.srcImage = e;
+      }u.prototype.render = function (e, t, n) {
+        if (this.imageLoadListeners) {
+          var r = this;return void this.imageLoadListeners.push(function () {
+            r.render(e, t, n);
+          });
+        }t = t || {};var i = this.srcImage,
+            o = i.src,
+            c = o.length,
+            u = i.naturalWidth,
+            l = i.naturalHeight,
+            f = t.width,
+            d = t.height,
+            h = t.maxWidth,
+            g = t.maxHeight,
+            p = this.blob && "image/jpeg" === this.blob.type || 0 === o.indexOf("data:image/jpeg") || o.indexOf(".jpg") === c - 4 || o.indexOf(".jpeg") === c - 5;f && !d ? d = l * f / u << 0 : d && !f ? f = u * d / l << 0 : (f = u, d = l), h && f > h && (f = h, d = l * f / u << 0), g && d > g && (d = g, f = u * d / l << 0);var m = { width: f, height: d };for (var w in t) {
+          m[w] = t[w];
+        }var v = e.tagName.toLowerCase();"img" === v ? e.src = a(this.srcImage, m, p) : "canvas" === v && s(this.srcImage, e, m, p), "function" == typeof this.onrender && this.onrender(e), n && n();
+      }, r = [], i = function () {
+        return u;
+      }.apply(t, r), !(void 0 !== i && (e.exports = i));
+    }();
+  }, function (e, t) {
+    function n(e) {
+      function t(e) {
+        for (var t = [16, 11, 10, 16, 24, 40, 51, 61, 12, 12, 14, 19, 26, 58, 60, 55, 14, 13, 16, 24, 40, 57, 69, 56, 14, 17, 22, 29, 51, 87, 80, 62, 18, 22, 37, 56, 68, 109, 103, 77, 24, 35, 55, 64, 81, 104, 113, 92, 49, 64, 78, 87, 103, 121, 120, 101, 72, 92, 95, 98, 112, 100, 103, 99], n = 0; 64 > n; n++) {
+          var r = F((t[n] * e + 50) / 100);1 > r ? r = 1 : r > 255 && (r = 255), x[N[n]] = r;
+        }for (var i = [17, 18, 24, 47, 99, 99, 99, 99, 18, 21, 26, 66, 99, 99, 99, 99, 24, 26, 56, 99, 99, 99, 99, 99, 47, 66, 99, 99, 99, 99, 99, 99, 99, 99, 99, 99, 99, 99, 99, 99, 99, 99, 99, 99, 99, 99, 99, 99, 99, 99, 99, 99, 99, 99, 99, 99, 99, 99, 99, 99, 99, 99, 99, 99], o = 0; 64 > o; o++) {
+          var a = F((i[o] * e + 50) / 100);1 > a ? a = 1 : a > 255 && (a = 255), D[N[o]] = a;
+        }for (var s = [1, 1.387039845, 1.306562965, 1.175875602, 1, .785694958, .5411961, .275899379], c = 0, u = 0; 8 > u; u++) {
+          for (var l = 0; 8 > l; l++) {
+            U[c] = 1 / (x[N[c]] * s[u] * s[l] * 8), C[c] = 1 / (D[N[c]] * s[u] * s[l] * 8), c++;
+          }
+        }
+      }function n(e, t) {
+        for (var n = 0, r = 0, i = new Array(), o = 1; 16 >= o; o++) {
+          for (var a = 1; a <= e[o]; a++) {
+            i[t[r]] = [], i[t[r]][0] = n, i[t[r]][1] = o, r++, n++;
+          }n *= 2;
+        }return i;
+      }function r() {
+        y = n(W, H), b = n(V, X), S = n(z, q), I = n(Q, Y);
+      }function i() {
+        for (var e = 1, t = 2, n = 1; 15 >= n; n++) {
+          for (var r = e; t > r; r++) {
+            A[32767 + r] = n, T[32767 + r] = [], T[32767 + r][1] = n, T[32767 + r][0] = r;
+          }for (var i = -(t - 1); -e >= i; i++) {
+            A[32767 + i] = n, T[32767 + i] = [], T[32767 + i][1] = n, T[32767 + i][0] = t - 1 + i;
+          }e <<= 1, t <<= 1;
+        }
+      }function o() {
+        for (var e = 0; 256 > e; e++) {
+          k[e] = 19595 * e, k[e + 256 >> 0] = 38470 * e, k[e + 512 >> 0] = 7471 * e + 32768, k[e + 768 >> 0] = -11059 * e, k[e + 1024 >> 0] = -21709 * e, k[e + 1280 >> 0] = 32768 * e + 8421375, k[e + 1536 >> 0] = -27439 * e, k[e + 1792 >> 0] = -5329 * e;
+        }
+      }function a(e) {
+        for (var t = e[0], n = e[1] - 1; n >= 0;) {
+          t & 1 << n && (G |= 1 << O), n--, O--, 0 > O && (255 == G ? (s(255), s(0)) : s(G), O = 7, G = 0);
+        }
+      }function s(e) {
+        M.push(j[e]);
+      }function c(e) {
+        s(e >> 8 & 255), s(255 & e);
+      }function u(e, t) {
+        var n,
+            r,
+            i,
+            o,
+            a,
+            s,
+            c,
+            u,
+            l,
+            f = 0;var d = 8,
+            h = 64;for (l = 0; d > l; ++l) {
+          n = e[f], r = e[f + 1], i = e[f + 2], o = e[f + 3], a = e[f + 4], s = e[f + 5], c = e[f + 6], u = e[f + 7];var g = n + u,
+              p = n - u,
+              m = r + c,
+              w = r - c,
+              v = i + s,
+              y = i - s,
+              b = o + a,
+              S = o - a,
+              I = g + b,
+              P = g - b,
+              F = m + v,
+              x = m - v;e[f] = I + F, e[f + 4] = I - F;var D = .707106781 * (x + P);e[f + 2] = P + D, e[f + 6] = P - D, I = S + y, F = y + w, x = w + p;var U = .382683433 * (I - x),
+              C = .5411961 * I + U,
+              T = 1.306562965 * x + U,
+              A = .707106781 * F,
+              R = p + A,
+              M = p - A;e[f + 5] = M + C, e[f + 3] = M - C, e[f + 1] = R + T, e[f + 7] = R - T, f += 8;
+        }for (f = 0, l = 0; d > l; ++l) {
+          n = e[f], r = e[f + 8], i = e[f + 16], o = e[f + 24], a = e[f + 32], s = e[f + 40], c = e[f + 48], u = e[f + 56];var G = n + u,
+              O = n - u,
+              _ = r + c,
+              B = r - c,
+              E = i + s,
+              j = i - s,
+              k = o + a,
+              N = o - a,
+              W = G + k,
+              H = G - k,
+              z = _ + E,
+              q = _ - E;e[f] = W + z, e[f + 32] = W - z;var V = .707106781 * (q + H);e[f + 16] = H + V, e[f + 48] = H - V, W = N + j, z = j + B, q = B + O;var X = .382683433 * (W - q),
+              Q = .5411961 * W + X,
+              Y = 1.306562965 * q + X,
+              K = .707106781 * z,
+              J = O + K,
+              Z = O - K;e[f + 40] = Z + Q, e[f + 24] = Z - Q, e[f + 8] = J + Y, e[f + 56] = J - Y, f++;
+        }var $;for (l = 0; h > l; ++l) {
+          $ = e[l] * t[l], L[l] = $ > 0 ? $ + .5 | 0 : $ - .5 | 0;
+        }return L;
+      }function l() {
+        c(65504), c(16), s(74), s(70), s(73), s(70), s(0), s(1), s(1), s(0), c(1), c(1), s(0), s(0);
+      }function f(e, t) {
+        c(65472), c(17), s(8), c(t), c(e), s(3), s(1), s(17), s(0), s(2), s(17), s(1), s(3), s(17), s(1);
+      }function d() {
+        c(65499), c(132), s(0);for (var e = 0; 64 > e; e++) {
+          s(x[e]);
+        }s(1);for (var t = 0; 64 > t; t++) {
+          s(D[t]);
+        }
+      }function h() {
+        c(65476), c(418), s(0);for (var e = 0; 16 > e; e++) {
+          s(W[e + 1]);
+        }for (var t = 0; 11 >= t; t++) {
+          s(H[t]);
+        }s(16);for (var n = 0; 16 > n; n++) {
+          s(z[n + 1]);
+        }for (var r = 0; 161 >= r; r++) {
+          s(q[r]);
+        }s(1);for (var i = 0; 16 > i; i++) {
+          s(V[i + 1]);
+        }for (var o = 0; 11 >= o; o++) {
+          s(X[o]);
+        }s(17);for (var a = 0; 16 > a; a++) {
+          s(Q[a + 1]);
+        }for (var u = 0; 161 >= u; u++) {
+          s(Y[u]);
+        }
+      }function g() {
+        c(65498), c(12), s(3), s(1), s(0), s(2), s(17), s(3), s(17), s(0), s(63), s(0);
+      }function p(e, t, n, r, i) {
+        var o,
+            s = i[0],
+            c = i[240];var l = 16,
+            f = 63,
+            d = 64;for (var h = u(e, t), g = 0; d > g; ++g) {
+          R[N[g]] = h[g];
+        }var p = R[0] - n;n = R[0], 0 == p ? a(r[0]) : (o = 32767 + p, a(r[A[o]]), a(T[o]));for (var m = 63; m > 0 && 0 == R[m]; m--) {}if (0 == m) return a(s), n;for (var w, v = 1; m >= v;) {
+          for (var y = v; 0 == R[v] && m >= v; ++v) {}var b = v - y;if (b >= l) {
+            w = b >> 4;for (var S = 1; w >= S; ++S) {
+              a(c);
+            }b = 15 & b;
+          }o = 32767 + R[v], a(i[(b << 4) + A[o]]), a(T[o]), v++;
+        }return m != f && a(s), n;
+      }function m() {
+        for (var e = String.fromCharCode, t = 0; 256 > t; t++) {
+          j[t] = e(t);
+        }
+      }function w(e) {
+        if (0 >= e && (e = 1), e > 100 && (e = 100), P != e) {
+          var n = 0;n = 50 > e ? Math.floor(5e3 / e) : Math.floor(200 - 2 * e), t(n), P = e;
+        }
+      }function v() {
+        var t = new Date().getTime();e || (e = 50), m(), r(), i(), o(), w(e);new Date().getTime() - t;
+      }var y,
+          b,
+          S,
+          I,
+          P,
+          F = (Math.round, Math.floor),
+          x = new Array(64),
+          D = new Array(64),
+          U = new Array(64),
+          C = new Array(64),
+          T = new Array(65535),
+          A = new Array(65535),
+          L = new Array(64),
+          R = new Array(64),
+          M = [],
+          G = 0,
+          O = 7,
+          _ = new Array(64),
+          B = new Array(64),
+          E = new Array(64),
+          j = new Array(256),
+          k = new Array(2048),
+          N = [0, 1, 5, 6, 14, 15, 27, 28, 2, 4, 7, 13, 16, 26, 29, 42, 3, 8, 12, 17, 25, 30, 41, 43, 9, 11, 18, 24, 31, 40, 44, 53, 10, 19, 23, 32, 39, 45, 52, 54, 20, 22, 33, 38, 46, 51, 55, 60, 21, 34, 37, 47, 50, 56, 59, 61, 35, 36, 48, 49, 57, 58, 62, 63],
+          W = [0, 0, 1, 5, 1, 1, 1, 1, 1, 1, 0, 0, 0, 0, 0, 0, 0],
+          H = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11],
+          z = [0, 0, 2, 1, 3, 3, 2, 4, 3, 5, 5, 4, 4, 0, 0, 1, 125],
+          q = [1, 2, 3, 0, 4, 17, 5, 18, 33, 49, 65, 6, 19, 81, 97, 7, 34, 113, 20, 50, 129, 145, 161, 8, 35, 66, 177, 193, 21, 82, 209, 240, 36, 51, 98, 114, 130, 9, 10, 22, 23, 24, 25, 26, 37, 38, 39, 40, 41, 42, 52, 53, 54, 55, 56, 57, 58, 67, 68, 69, 70, 71, 72, 73, 74, 83, 84, 85, 86, 87, 88, 89, 90, 99, 100, 101, 102, 103, 104, 105, 106, 115, 116, 117, 118, 119, 120, 121, 122, 131, 132, 133, 134, 135, 136, 137, 138, 146, 147, 148, 149, 150, 151, 152, 153, 154, 162, 163, 164, 165, 166, 167, 168, 169, 170, 178, 179, 180, 181, 182, 183, 184, 185, 186, 194, 195, 196, 197, 198, 199, 200, 201, 202, 210, 211, 212, 213, 214, 215, 216, 217, 218, 225, 226, 227, 228, 229, 230, 231, 232, 233, 234, 241, 242, 243, 244, 245, 246, 247, 248, 249, 250],
+          V = [0, 0, 3, 1, 1, 1, 1, 1, 1, 1, 1, 1, 0, 0, 0, 0, 0],
+          X = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11],
+          Q = [0, 0, 2, 1, 2, 4, 4, 3, 4, 7, 5, 4, 4, 0, 1, 2, 119],
+          Y = [0, 1, 2, 3, 17, 4, 5, 33, 49, 6, 18, 65, 81, 7, 97, 113, 19, 34, 50, 129, 8, 20, 66, 145, 161, 177, 193, 9, 35, 51, 82, 240, 21, 98, 114, 209, 10, 22, 36, 52, 225, 37, 241, 23, 24, 25, 26, 38, 39, 40, 41, 42, 53, 54, 55, 56, 57, 58, 67, 68, 69, 70, 71, 72, 73, 74, 83, 84, 85, 86, 87, 88, 89, 90, 99, 100, 101, 102, 103, 104, 105, 106, 115, 116, 117, 118, 119, 120, 121, 122, 130, 131, 132, 133, 134, 135, 136, 137, 138, 146, 147, 148, 149, 150, 151, 152, 153, 154, 162, 163, 164, 165, 166, 167, 168, 169, 170, 178, 179, 180, 181, 182, 183, 184, 185, 186, 194, 195, 196, 197, 198, 199, 200, 201, 202, 210, 211, 212, 213, 214, 215, 216, 217, 218, 226, 227, 228, 229, 230, 231, 232, 233, 234, 242, 243, 244, 245, 246, 247, 248, 249, 250];this.encode = function (e, t, n) {
+        var r = new Date().getTime();t && w(t), M = new Array(), G = 0, O = 7, c(65496), l(), d(), f(e.width, e.height), h(), g();var i = 0,
+            o = 0,
+            s = 0;G = 0, O = 7, this.encode.displayName = "_encode_";for (var u, m, v, P, F, x, D, T, A, L = e.data, R = e.width, j = e.height, N = 4 * R, W = 0; j > W;) {
+          for (u = 0; N > u;) {
+            for (F = N * W + u, x = F, D = -1, T = 0, A = 0; 64 > A; A++) {
+              T = A >> 3, D = 4 * (7 & A), x = F + T * N + D, W + T >= j && (x -= N * (W + 1 + T - j)), u + D >= N && (x -= u + D - N + 4), m = L[x++], v = L[x++], P = L[x++], _[A] = (k[m] + k[v + 256 >> 0] + k[P + 512 >> 0] >> 16) - 128, B[A] = (k[m + 768 >> 0] + k[v + 1024 >> 0] + k[P + 1280 >> 0] >> 16) - 128, E[A] = (k[m + 1280 >> 0] + k[v + 1536 >> 0] + k[P + 1792 >> 0] >> 16) - 128;
+            }i = p(_, U, i, y, S), o = p(B, C, o, b, I), s = p(E, C, s, b, I), u += 32;
+          }W += 8;
+        }if (O >= 0) {
+          var H = [];H[1] = O + 1, H[0] = (1 << O + 1) - 1, a(H);
+        }if (c(65497), n) {
+          for (var z = M.length, q = new Uint8Array(z), V = 0; z > V; V++) {
+            q[V] = M[V].charCodeAt();
+          }M = [];new Date().getTime() - r;return q;
+        }var X = "data:image/jpeg;base64," + btoa(M.join(""));M = [];new Date().getTime() - r;return X;
+      }, v();
+    }e.exports = n;
+  }, function (e, t, n) {
+    function r(e, t) {
+      var n = this;if (!e) throw new Error("没有收到图片，可能的解决方案：https://github.com/think2011/localResizeIMG/issues/7");t = t || {}, n.defaults = { width: null, height: null, fieldName: "file", quality: .7 }, n.file = e;for (var r in t) {
+        t.hasOwnProperty(r) && (n.defaults[r] = t[r]);
+      }return this.init();
+    }function i(e) {
+      var t = null;return t = e ? [].filter.call(document.scripts, function (t) {
+        return -1 !== t.src.indexOf(e);
+      })[0] : document.scripts[document.scripts.length - 1], t ? t.src.substr(0, t.src.lastIndexOf("/")) : null;
+    }function o(e) {
+      var t;t = e.split(",")[0].indexOf("base64") >= 0 ? atob(e.split(",")[1]) : unescape(e.split(",")[1]);for (var n = e.split(",")[0].split(":")[1].split(";")[0], r = new Uint8Array(t.length), i = 0; i < t.length; i++) {
+        r[i] = t.charCodeAt(i);
+      }return new s.Blob([r.buffer], { type: n });
+    }n.p = i("lrz") + "/", window.URL = window.URL || window.webkitURL;var a = n(1),
+        s = n(4),
+        c = n(5),
+        u = function (e) {
+      var t = /OS (\d)_.* like Mac OS X/g.exec(e),
+          n = /Android (\d.*?);/g.exec(e) || /Android\/(\d.*?) /g.exec(e);return { oldIOS: t ? +t.pop() < 8 : !1, oldAndroid: n ? +n.pop().substr(0, 3) < 4.5 : !1, iOS: /\(i[^;]+;( U;)? CPU.+Mac OS X/.test(e), android: /Android/g.test(e), mQQBrowser: /MQQBrowser/g.test(e) };
+    }(navigator.userAgent);r.prototype.init = function () {
+      var e = this,
+          t = e.file,
+          n = "string" == typeof t,
+          r = /^data:/.test(t),
+          i = new Image(),
+          c = document.createElement("canvas"),
+          u = n ? t : URL.createObjectURL(t);if (e.img = i, e.blob = u, e.canvas = c, n ? e.fileName = r ? "base64.jpg" : t.split("/").pop() : e.fileName = t.name, !document.createElement("canvas").getContext) throw new Error("浏览器不支持canvas");return new a(function (n, a) {
+        i.onerror = function () {
+          throw new Error("加载图片文件失败");
+        }, i.onload = function () {
+          e._getBase64().then(function (e) {
+            return e.length < 10 && a("生成base64失败"), e;
+          }).then(function (r) {
+            var i = null;"object" == (0, _typeof3.default)(e.file) && r.length > e.file.size ? (i = new FormData(), t = e.file) : (i = new s.FormData(), t = o(r)), i.append(e.defaults.fieldName, t, e.fileName.replace(/\..+/g, ".jpg")), n({ formData: i, fileLen: +t.size, base64: r, base64Len: r.length, origin: e.file, file: t });for (var a in e) {
+              e.hasOwnProperty(a) && (e[a] = null);
+            }URL.revokeObjectURL(e.blob);
+          });
+        }, !r && (i.crossOrigin = "*"), i.src = u;
+      });
+    }, r.prototype._getBase64 = function () {
+      var e = this,
+          t = e.img,
+          n = e.file,
+          r = e.canvas;return new a(function (i) {
+        try {
+          c.getData("object" == (typeof n === "undefined" ? "undefined" : (0, _typeof3.default)(n)) ? n : t, function () {
+            e.orientation = c.getTag(this, "Orientation"), e.resize = e._getResize(), e.ctx = r.getContext("2d"), r.width = e.resize.width, r.height = e.resize.height, e.ctx.fillStyle = "#fff", e.ctx.fillRect(0, 0, r.width, r.height), u.oldIOS ? e._createBase64ForOldIOS().then(i) : e._createBase64().then(i);
+          });
+        } catch (o) {
+          throw new Error(o);
+        }
+      });
+    }, r.prototype._createBase64ForOldIOS = function () {
+      var e = this,
+          t = e.img,
+          r = e.canvas,
+          i = e.defaults,
+          o = e.orientation;return new a(function (e) {
+        !function () {
+          var a = [n(6)];(function (n) {
+            var a = new n(t);"5678".indexOf(o) > -1 ? a.render(r, { width: r.height, height: r.width, orientation: o }) : a.render(r, { width: r.width, height: r.height, orientation: o }), e(r.toDataURL("image/jpeg", i.quality));
+          }).apply(null, a);
+        }();
+      });
+    }, r.prototype._createBase64 = function () {
+      var e = this,
+          t = e.resize,
+          r = e.img,
+          i = e.canvas,
+          o = e.ctx,
+          s = e.defaults,
+          c = e.orientation;switch (c) {case 3:
+          o.rotate(180 * Math.PI / 180), o.drawImage(r, -t.width, -t.height, t.width, t.height);break;case 6:
+          o.rotate(90 * Math.PI / 180), o.drawImage(r, 0, -t.width, t.height, t.width);break;case 8:
+          o.rotate(270 * Math.PI / 180), o.drawImage(r, -t.height, 0, t.height, t.width);break;case 2:
+          o.translate(t.width, 0), o.scale(-1, 1), o.drawImage(r, 0, 0, t.width, t.height);break;case 4:
+          o.translate(t.width, 0), o.scale(-1, 1), o.rotate(180 * Math.PI / 180), o.drawImage(r, -t.width, -t.height, t.width, t.height);break;case 5:
+          o.translate(t.width, 0), o.scale(-1, 1), o.rotate(90 * Math.PI / 180), o.drawImage(r, 0, -t.width, t.height, t.width);break;case 7:
+          o.translate(t.width, 0), o.scale(-1, 1), o.rotate(270 * Math.PI / 180), o.drawImage(r, -t.height, 0, t.height, t.width);break;default:
+          o.drawImage(r, 0, 0, t.width, t.height);}return new a(function (e) {
+        u.oldAndroid || u.mQQBrowser || !navigator.userAgent ? !function () {
+          var t = [n(7)];(function (t) {
+            var n = new t(),
+                r = o.getImageData(0, 0, i.width, i.height);e(n.encode(r, 100 * s.quality));
+          }).apply(null, t);
+        }() : e(i.toDataURL("image/jpeg", s.quality));
+      });
+    }, r.prototype._getResize = function () {
+      var e = this,
+          t = e.img,
+          n = e.defaults,
+          r = n.width,
+          i = n.height,
+          o = e.orientation,
+          a = { width: t.width, height: t.height };if ("5678".indexOf(o) > -1 && (a.width = t.height, a.height = t.width), a.width < r || a.height < i) return a;var s = a.width / a.height;for (r && i ? s >= r / i ? a.width > r && (a.width = r, a.height = Math.ceil(r / s)) : a.height > i && (a.height = i, a.width = Math.ceil(i * s)) : r ? r < a.width && (a.width = r, a.height = Math.ceil(r / s)) : i && i < a.height && (a.width = Math.ceil(i * s), a.height = i); a.width >= 3264 || a.height >= 2448;) {
+        a.width *= .8, a.height *= .8;
+      }return a;
+    }, window.lrz = function (e, t) {
+      return new r(e, t);
+    }, window.lrz.version = "4.8.35", e.exports = window.lrz;
+  }]);
+});
+//# sourceMappingURL=lrz.all.bundle.js.map
+/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(258)(module)))
+
+/***/ }),
+/* 55 */
+/***/ (function(module, exports, __webpack_require__) {
+
+var isObject = __webpack_require__(25)
+  , document = __webpack_require__(7).document
+  // in old IE typeof document.createElement is 'object'
+  , is = isObject(document) && isObject(document.createElement);
+module.exports = function(it){
+  return is ? document.createElement(it) : {};
+};
+
+/***/ }),
+/* 56 */
+/***/ (function(module, exports, __webpack_require__) {
+
+module.exports = !__webpack_require__(11) && !__webpack_require__(24)(function(){
+  return Object.defineProperty(__webpack_require__(55)('div'), 'a', {get: function(){ return 7; }}).a != 7;
+});
+
+/***/ }),
+/* 57 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+var LIBRARY        = __webpack_require__(37)
+  , $export        = __webpack_require__(12)
+  , redefine       = __webpack_require__(63)
+  , hide           = __webpack_require__(16)
+  , has            = __webpack_require__(13)
+  , Iterators      = __webpack_require__(26)
+  , $iterCreate    = __webpack_require__(130)
+  , setToStringTag = __webpack_require__(40)
+  , getPrototypeOf = __webpack_require__(61)
+  , ITERATOR       = __webpack_require__(4)('iterator')
+  , BUGGY          = !([].keys && 'next' in [].keys()) // Safari has buggy iterators w/o `next`
+  , FF_ITERATOR    = '@@iterator'
+  , KEYS           = 'keys'
+  , VALUES         = 'values';
+
+var returnThis = function(){ return this; };
+
+module.exports = function(Base, NAME, Constructor, next, DEFAULT, IS_SET, FORCED){
+  $iterCreate(Constructor, NAME, next);
+  var getMethod = function(kind){
+    if(!BUGGY && kind in proto)return proto[kind];
+    switch(kind){
+      case KEYS: return function keys(){ return new Constructor(this, kind); };
+      case VALUES: return function values(){ return new Constructor(this, kind); };
+    } return function entries(){ return new Constructor(this, kind); };
+  };
+  var TAG        = NAME + ' Iterator'
+    , DEF_VALUES = DEFAULT == VALUES
+    , VALUES_BUG = false
+    , proto      = Base.prototype
+    , $native    = proto[ITERATOR] || proto[FF_ITERATOR] || DEFAULT && proto[DEFAULT]
+    , $default   = $native || getMethod(DEFAULT)
+    , $entries   = DEFAULT ? !DEF_VALUES ? $default : getMethod('entries') : undefined
+    , $anyNative = NAME == 'Array' ? proto.entries || $native : $native
+    , methods, key, IteratorPrototype;
+  // Fix native
+  if($anyNative){
+    IteratorPrototype = getPrototypeOf($anyNative.call(new Base));
+    if(IteratorPrototype !== Object.prototype){
+      // Set @@toStringTag to native iterators
+      setToStringTag(IteratorPrototype, TAG, true);
+      // fix for some old engines
+      if(!LIBRARY && !has(IteratorPrototype, ITERATOR))hide(IteratorPrototype, ITERATOR, returnThis);
+    }
+  }
+  // fix Array#{values, @@iterator}.name in V8 / FF
+  if(DEF_VALUES && $native && $native.name !== VALUES){
+    VALUES_BUG = true;
+    $default = function values(){ return $native.call(this); };
+  }
+  // Define iterator
+  if((!LIBRARY || FORCED) && (BUGGY || VALUES_BUG || !proto[ITERATOR])){
+    hide(proto, ITERATOR, $default);
+  }
+  // Plug for library
+  Iterators[NAME] = $default;
+  Iterators[TAG]  = returnThis;
+  if(DEFAULT){
+    methods = {
+      values:  DEF_VALUES ? $default : getMethod(VALUES),
+      keys:    IS_SET     ? $default : getMethod(KEYS),
+      entries: $entries
+    };
+    if(FORCED)for(key in methods){
+      if(!(key in proto))redefine(proto, key, methods[key]);
+    } else $export($export.P + $export.F * (BUGGY || VALUES_BUG), NAME, methods);
+  }
+  return methods;
+};
+
+/***/ }),
+/* 58 */
+/***/ (function(module, exports, __webpack_require__) {
+
+var pIE            = __webpack_require__(39)
+  , createDesc     = __webpack_require__(27)
+  , toIObject      = __webpack_require__(14)
+  , toPrimitive    = __webpack_require__(45)
+  , has            = __webpack_require__(13)
+  , IE8_DOM_DEFINE = __webpack_require__(56)
+  , gOPD           = Object.getOwnPropertyDescriptor;
+
+exports.f = __webpack_require__(11) ? gOPD : function getOwnPropertyDescriptor(O, P){
+  O = toIObject(O);
+  P = toPrimitive(P, true);
+  if(IE8_DOM_DEFINE)try {
+    return gOPD(O, P);
+  } catch(e){ /* empty */ }
+  if(has(O, P))return createDesc(!pIE.f.call(O, P), O[P]);
+};
+
+/***/ }),
+/* 59 */
+/***/ (function(module, exports, __webpack_require__) {
+
+// 19.1.2.7 / 15.2.3.4 Object.getOwnPropertyNames(O)
+var $keys      = __webpack_require__(62)
+  , hiddenKeys = __webpack_require__(36).concat('length', 'prototype');
+
+exports.f = Object.getOwnPropertyNames || function getOwnPropertyNames(O){
+  return $keys(O, hiddenKeys);
+};
+
+/***/ }),
+/* 60 */
+/***/ (function(module, exports) {
+
+exports.f = Object.getOwnPropertySymbols;
+
+/***/ }),
+/* 61 */
+/***/ (function(module, exports, __webpack_require__) {
+
+// 19.1.2.9 / 15.2.3.2 Object.getPrototypeOf(O)
+var has         = __webpack_require__(13)
+  , toObject    = __webpack_require__(44)
+  , IE_PROTO    = __webpack_require__(41)('IE_PROTO')
+  , ObjectProto = Object.prototype;
+
+module.exports = Object.getPrototypeOf || function(O){
+  O = toObject(O);
+  if(has(O, IE_PROTO))return O[IE_PROTO];
+  if(typeof O.constructor == 'function' && O instanceof O.constructor){
+    return O.constructor.prototype;
+  } return O instanceof Object ? ObjectProto : null;
+};
+
+/***/ }),
+/* 62 */
+/***/ (function(module, exports, __webpack_require__) {
+
+var has          = __webpack_require__(13)
+  , toIObject    = __webpack_require__(14)
+  , arrayIndexOf = __webpack_require__(121)(false)
+  , IE_PROTO     = __webpack_require__(41)('IE_PROTO');
+
+module.exports = function(object, names){
+  var O      = toIObject(object)
+    , i      = 0
+    , result = []
+    , key;
+  for(key in O)if(key != IE_PROTO)has(O, key) && result.push(key);
+  // Don't enum bug & hidden keys
+  while(names.length > i)if(has(O, key = names[i++])){
+    ~arrayIndexOf(result, key) || result.push(key);
+  }
+  return result;
+};
+
+/***/ }),
+/* 63 */
+/***/ (function(module, exports, __webpack_require__) {
+
+module.exports = __webpack_require__(16);
+
+/***/ }),
+/* 64 */
+/***/ (function(module, exports, __webpack_require__) {
+
+// 7.1.15 ToLength
+var toInteger = __webpack_require__(43)
+  , min       = Math.min;
+module.exports = function(it){
+  return it > 0 ? min(toInteger(it), 0x1fffffffffffff) : 0; // pow(2, 53) - 1 == 9007199254740991
+};
+
+/***/ }),
+/* 65 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+var $at  = __webpack_require__(139)(true);
+
+// 21.1.3.27 String.prototype[@@iterator]()
+__webpack_require__(57)(String, 'String', function(iterated){
+  this._t = String(iterated); // target
+  this._i = 0;                // next index
+// 21.1.5.2.1 %StringIteratorPrototype%.next()
+}, function(){
+  var O     = this._t
+    , index = this._i
+    , point;
+  if(index >= O.length)return {value: undefined, done: true};
+  point = $at(O, index);
+  this._i += point.length;
+  return {value: point, done: false};
+});
+
+/***/ }),
+/* 66 */
+/***/ (function(module, exports, __webpack_require__) {
+
+var parse = __webpack_require__(9)
+var startOfISOWeek = __webpack_require__(48)
+
+/**
+ * @category ISO Week-Numbering Year Helpers
+ * @summary Get the ISO week-numbering year of the given date.
+ *
+ * @description
+ * Get the ISO week-numbering year of the given date,
+ * which always starts 3 days before the year's first Thursday.
+ *
+ * ISO week-numbering year: http://en.wikipedia.org/wiki/ISO_week_date
+ *
+ * @param {Date|String|Number} date - the given date
+ * @returns {Number} the ISO week-numbering year
+ *
+ * @example
+ * // Which ISO-week numbering year is 2 January 2005?
+ * var result = getISOYear(new Date(2005, 0, 2))
+ * //=> 2004
+ */
+function getISOYear (dirtyDate) {
+  var date = parse(dirtyDate)
+  var year = date.getFullYear()
+
+  var fourthOfJanuaryOfNextYear = new Date(0)
+  fourthOfJanuaryOfNextYear.setFullYear(year + 1, 0, 4)
+  fourthOfJanuaryOfNextYear.setHours(0, 0, 0, 0)
+  var startOfNextYear = startOfISOWeek(fourthOfJanuaryOfNextYear)
+
+  var fourthOfJanuaryOfThisYear = new Date(0)
+  fourthOfJanuaryOfThisYear.setFullYear(year, 0, 4)
+  fourthOfJanuaryOfThisYear.setHours(0, 0, 0, 0)
+  var startOfThisYear = startOfISOWeek(fourthOfJanuaryOfThisYear)
+
+  if (date.getTime() >= startOfNextYear.getTime()) {
+    return year + 1
+  } else if (date.getTime() >= startOfThisYear.getTime()) {
+    return year
+  } else {
+    return year - 1
+  }
+}
+
+module.exports = getISOYear
+
+
+/***/ }),
+/* 67 */
+/***/ (function(module, exports) {
+
+/**
+ * @category Common Helpers
+ * @summary Is the given argument an instance of Date?
+ *
+ * @description
+ * Is the given argument an instance of Date?
+ *
+ * @param {*} argument - the argument to check
+ * @returns {Boolean} the given argument is an instance of Date
+ *
+ * @example
+ * // Is 'mayonnaise' a Date?
+ * var result = isDate('mayonnaise')
+ * //=> false
+ */
+function isDate (argument) {
+  return argument instanceof Date
+}
+
+module.exports = isDate
+
+
+/***/ }),
 /* 68 */
 /***/ (function(module, exports) {
 
@@ -14272,13 +14272,13 @@ var _fixed = __webpack_require__(17);
 
 var _fixed2 = _interopRequireDefault(_fixed);
 
-__webpack_require__(53);
+__webpack_require__(54);
 
 var _Datepicker = __webpack_require__(69);
 
 var _Datepicker2 = _interopRequireDefault(_Datepicker);
 
-var _jquery = __webpack_require__(67);
+var _jquery = __webpack_require__(49);
 
 var _jquery2 = _interopRequireDefault(_jquery);
 
@@ -14513,13 +14513,13 @@ var _fixed = __webpack_require__(17);
 
 var _fixed2 = _interopRequireDefault(_fixed);
 
-__webpack_require__(53);
+__webpack_require__(54);
 
 var _Datepicker = __webpack_require__(69);
 
 var _Datepicker2 = _interopRequireDefault(_Datepicker);
 
-var _jquery = __webpack_require__(67);
+var _jquery = __webpack_require__(49);
 
 var _jquery2 = _interopRequireDefault(_jquery);
 
@@ -14760,7 +14760,7 @@ var _countDown = __webpack_require__(70);
 
 var _countDown2 = _interopRequireDefault(_countDown);
 
-var _modal = __webpack_require__(49);
+var _modal = __webpack_require__(50);
 
 var _modal2 = _interopRequireDefault(_modal);
 
@@ -14768,7 +14768,7 @@ var _fixed = __webpack_require__(17);
 
 var _fixed2 = _interopRequireDefault(_fixed);
 
-var _wxSrv = __webpack_require__(52);
+var _wxSrv = __webpack_require__(53);
 
 var _wxSrv2 = _interopRequireDefault(_wxSrv);
 
@@ -15244,7 +15244,7 @@ Object.defineProperty(exports, "__esModule", {
     value: true
 });
 
-var _indexSrv = __webpack_require__(51);
+var _indexSrv = __webpack_require__(52);
 
 var _indexSrv2 = _interopRequireDefault(_indexSrv);
 
@@ -15252,7 +15252,7 @@ var _fixed = __webpack_require__(17);
 
 var _fixed2 = _interopRequireDefault(_fixed);
 
-var _wxSrv = __webpack_require__(52);
+var _wxSrv = __webpack_require__(53);
 
 var _wxSrv2 = _interopRequireDefault(_wxSrv);
 
@@ -15531,7 +15531,7 @@ Object.defineProperty(exports, "__esModule", {
     value: true
 });
 
-var _indexSrv = __webpack_require__(51);
+var _indexSrv = __webpack_require__(52);
 
 var _indexSrv2 = _interopRequireDefault(_indexSrv);
 
@@ -15713,7 +15713,7 @@ Object.defineProperty(exports, "__esModule", {
     value: true
 });
 
-var _modal = __webpack_require__(49);
+var _modal = __webpack_require__(50);
 
 var _modal2 = _interopRequireDefault(_modal);
 
@@ -16043,7 +16043,7 @@ var _from = __webpack_require__(103);
 
 var _from2 = _interopRequireDefault(_from);
 
-var _modal = __webpack_require__(49);
+var _modal = __webpack_require__(50);
 
 var _modal2 = _interopRequireDefault(_modal);
 
@@ -16852,45 +16852,11 @@ var _authUtil = __webpack_require__(5);
 
 var _authUtil2 = _interopRequireDefault(_authUtil);
 
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+var _jquery = __webpack_require__(49);
 
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
+var _jquery2 = _interopRequireDefault(_jquery);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 exports.default = {
     data: function data() {
@@ -16902,6 +16868,10 @@ exports.default = {
             },
             error: {
                 msg: ""
+            },
+            logo: {
+                mobile: true,
+                password: true
             }
         };
     },
@@ -16930,9 +16900,74 @@ exports.default = {
                     _this.error.msg = resp.data.msg;
                 }
             });
+        },
+        showLogo: function showLogo(type) {
+            var E_bottom = (0, _jquery2.default)(".js-bottom");
+            switch (type) {
+                case 'm':
+                    this.logo.mobile = true;
+                    break;
+                case 'p':
+                    this.logo.password = true;
+                    break;
+            }
+            if (this.logo.mobile && this.logo.password) {
+                E_bottom.show();
+            }
+        },
+        hideLogo: function hideLogo(type) {
+            var E_bottom = (0, _jquery2.default)(".js-bottom");
+            switch (type) {
+                case 'm':
+                    this.logo.mobile = false;
+                    break;
+                case 'p':
+                    this.logo.password = false;
+                    break;
+            }
+            E_bottom.hide();
         }
+
+        // end of methods
+
     }
-};
+}; //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 /***/ }),
 /* 91 */
@@ -19503,7 +19538,7 @@ function isnan (val) {
   return val !== val // eslint-disable-line no-self-compare
 }
 
-/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(50)))
+/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(51)))
 
 /***/ }),
 /* 111 */
@@ -19657,7 +19692,7 @@ Object.defineProperty(exports, 'mapFileCommentRegex', {
 /* 112 */
 /***/ (function(module, exports, __webpack_require__) {
 
-__webpack_require__(64);
+__webpack_require__(65);
 __webpack_require__(142);
 module.exports = __webpack_require__(3).Array.from;
 
@@ -19709,7 +19744,7 @@ module.exports = __webpack_require__(3).Symbol;
 /* 118 */
 /***/ (function(module, exports, __webpack_require__) {
 
-__webpack_require__(64);
+__webpack_require__(65);
 __webpack_require__(152);
 module.exports = __webpack_require__(47).f('iterator');
 
@@ -19735,7 +19770,7 @@ module.exports = function(){ /* empty */ };
 // false -> Array#indexOf
 // true  -> Array#includes
 var toIObject = __webpack_require__(14)
-  , toLength  = __webpack_require__(63)
+  , toLength  = __webpack_require__(64)
   , toIndex   = __webpack_require__(140);
 module.exports = function(IS_INCLUDES){
   return function($this, el, fromIndex){
@@ -19802,7 +19837,7 @@ module.exports = function(object, index, value){
 
 // all enumerable object keys, includes symbols
 var getKeys = __webpack_require__(29)
-  , gOPS    = __webpack_require__(59)
+  , gOPS    = __webpack_require__(60)
   , pIE     = __webpack_require__(39);
 module.exports = function(it){
   var result     = getKeys(it)
@@ -20022,7 +20057,7 @@ module.exports = __webpack_require__(11) ? Object.defineProperties : function de
 
 // fallback for IE11 buggy Object.getOwnPropertyNames with iframe and window
 var toIObject = __webpack_require__(14)
-  , gOPN      = __webpack_require__(58).f
+  , gOPN      = __webpack_require__(59).f
   , toString  = {}.toString;
 
 var windowNames = typeof window == 'object' && window && Object.getOwnPropertyNames
@@ -20072,7 +20107,7 @@ module.exports = {
   set: Object.setPrototypeOf || ('__proto__' in {} ? // eslint-disable-line
     function(test, buggy, set){
       try {
-        set = __webpack_require__(34)(Function.call, __webpack_require__(57).f(Object.prototype, '__proto__').set, 2);
+        set = __webpack_require__(34)(Function.call, __webpack_require__(58).f(Object.prototype, '__proto__').set, 2);
         set(test, []);
         buggy = !(test instanceof Array);
       } catch(e){ buggy = true; }
@@ -20144,7 +20179,7 @@ var ctx            = __webpack_require__(34)
   , toObject       = __webpack_require__(44)
   , call           = __webpack_require__(129)
   , isArrayIter    = __webpack_require__(127)
-  , toLength       = __webpack_require__(63)
+  , toLength       = __webpack_require__(64)
   , createProperty = __webpack_require__(123)
   , getIterFn      = __webpack_require__(141);
 
@@ -20192,7 +20227,7 @@ var addToUnscopables = __webpack_require__(120)
 // 22.1.3.13 Array.prototype.keys()
 // 22.1.3.29 Array.prototype.values()
 // 22.1.3.30 Array.prototype[@@iterator]()
-module.exports = __webpack_require__(56)(Array, 'Array', function(iterated, kind){
+module.exports = __webpack_require__(57)(Array, 'Array', function(iterated, kind){
   this._t = toIObject(iterated); // target
   this._i = 0;                   // next index
   this._k = kind;                // kind
@@ -20239,7 +20274,7 @@ $export($export.S + $export.F * !__webpack_require__(11), 'Object', {definePrope
 
 // 19.1.2.9 Object.getPrototypeOf(O)
 var toObject        = __webpack_require__(44)
-  , $getPrototypeOf = __webpack_require__(60);
+  , $getPrototypeOf = __webpack_require__(61);
 
 __webpack_require__(137)('getPrototypeOf', function(){
   return function getPrototypeOf(it){
@@ -20272,7 +20307,7 @@ var global         = __webpack_require__(7)
   , has            = __webpack_require__(13)
   , DESCRIPTORS    = __webpack_require__(11)
   , $export        = __webpack_require__(12)
-  , redefine       = __webpack_require__(62)
+  , redefine       = __webpack_require__(63)
   , META           = __webpack_require__(134).KEY
   , $fails         = __webpack_require__(24)
   , shared         = __webpack_require__(42)
@@ -20290,7 +20325,7 @@ var global         = __webpack_require__(7)
   , createDesc     = __webpack_require__(27)
   , _create        = __webpack_require__(38)
   , gOPNExt        = __webpack_require__(136)
-  , $GOPD          = __webpack_require__(57)
+  , $GOPD          = __webpack_require__(58)
   , $DP            = __webpack_require__(8)
   , $keys          = __webpack_require__(29)
   , gOPD           = $GOPD.f
@@ -20415,9 +20450,9 @@ if(!USE_NATIVE){
 
   $GOPD.f = $getOwnPropertyDescriptor;
   $DP.f   = $defineProperty;
-  __webpack_require__(58).f = gOPNExt.f = $getOwnPropertyNames;
+  __webpack_require__(59).f = gOPNExt.f = $getOwnPropertyNames;
   __webpack_require__(39).f  = $propertyIsEnumerable;
-  __webpack_require__(59).f = $getOwnPropertySymbols;
+  __webpack_require__(60).f = $getOwnPropertySymbols;
 
   if(DESCRIPTORS && !__webpack_require__(37)){
     redefine(ObjectProto, 'propertyIsEnumerable', $propertyIsEnumerable, true);
@@ -20883,7 +20918,7 @@ module.exports = differenceInCalendarDays
 
 var getDayOfYear = __webpack_require__(175)
 var getISOWeek = __webpack_require__(176)
-var getISOYear = __webpack_require__(65)
+var getISOYear = __webpack_require__(66)
 var parse = __webpack_require__(9)
 var isValid = __webpack_require__(177)
 var enLocale = __webpack_require__(181)
@@ -21288,7 +21323,7 @@ module.exports = getISOWeek
 /* 177 */
 /***/ (function(module, exports, __webpack_require__) {
 
-var isDate = __webpack_require__(66)
+var isDate = __webpack_require__(67)
 
 /**
  * @category Common Helpers
@@ -21610,7 +21645,7 @@ module.exports = startOfDay
 /* 183 */
 /***/ (function(module, exports, __webpack_require__) {
 
-var getISOYear = __webpack_require__(65)
+var getISOYear = __webpack_require__(66)
 var startOfISOWeek = __webpack_require__(48)
 
 /**
@@ -22266,7 +22301,7 @@ function toNumber(value) {
 
 module.exports = throttle;
 
-/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(50)))
+/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(51)))
 
 /***/ }),
 /* 189 */
@@ -23810,6 +23845,12 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
       "value": (_vm.credentials.mobile)
     },
     on: {
+      "blur": function($event) {
+        _vm.showLogo('m')
+      },
+      "click": function($event) {
+        _vm.hideLog('m')
+      },
       "input": function($event) {
         if ($event.target.composing) { return; }
         _vm.credentials.mobile = $event.target.value
@@ -23835,6 +23876,12 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
       "value": (_vm.credentials.password)
     },
     on: {
+      "blur": function($event) {
+        _vm.showLogo('p')
+      },
+      "click": function($event) {
+        _vm.hideLog('p')
+      },
       "input": function($event) {
         if ($event.target.composing) { return; }
         _vm.credentials.password = $event.target.value
@@ -23876,7 +23923,7 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
   }, [_vm._v("忘记密码")])], 1)]), _vm._v(" "), _vm._m(0)])
 },staticRenderFns: [function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
   return _c('div', {
-    staticClass: "bottom"
+    staticClass: "bottom js-bottom"
   }, [_c('img', {
     staticClass: "logo",
     attrs: {
@@ -40255,7 +40302,7 @@ return Vue$3;
 
 })));
 
-/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(50)))
+/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(51)))
 
 /***/ }),
 /* 258 */

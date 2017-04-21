@@ -11,11 +11,11 @@
                 <div class="form-inputBox">
                     <div class="input-box">
                         <span class="iconfont icon-iphone input-icon"></span>
-                        <input type="text" placeholder="手机号" v-model="credentials.mobile" class="ui-input">
+                        <input type="text" placeholder="手机号" v-model="credentials.mobile" class="ui-input" @blur="showLogo('m')" @click="hideLog('m')">
                     </div>
                     <div class="input-box">
                         <span class="iconfont icon-Password input-icon"></span>
-                        <input type="password" placeholder="密码" v-model="credentials.password" class="ui-input">
+                        <input type="password" placeholder="密码" v-model="credentials.password" class="ui-input" @blur="showLogo('p')" @click="hideLog('p')">
                     </div>
                 </div>
                 <div class="btn-box">
@@ -28,7 +28,7 @@
                 <router-link :to="{name: 'userResetpwd'}" class="color_gray resetpwdBtn f12">忘记密码</router-link>
             </p>
         </div>
-        <div class="bottom">
+        <div class="bottom js-bottom">
             <img src="/static/images/logo.jpg" alt="我要联赢" class="logo">
             <p class="text-center color_666 f12"><span class="iconfont icon-phone"></span>400-6728-266</p>
         </div>
@@ -38,6 +38,7 @@
 <script>
     import UserSrv from "../../service/userSrv";
     import AuthUtil from "../../utils/authUtil";
+    import jQuery from 'jquery';
     export default {
         data: () => {
             return {
@@ -48,6 +49,10 @@
                 },
                 error: {
                     msg: ""
+                },
+                logo: {
+                    mobile: true,
+                    password: true
                 }
             }
         },
@@ -76,7 +81,35 @@
                     }
 
                 });
+            },
+            showLogo(type) {
+                let E_bottom = jQuery(".js-bottom");
+                switch (type) {
+                    case 'm':
+                        this.logo.mobile =true
+                        break;
+                    case 'p':
+                        this.logo.password = true;
+                        break;
+                }
+                if(this.logo.mobile && this.logo.password) {
+                    E_bottom.show();
+                }
+            },
+            hideLogo(type) {
+                let E_bottom = jQuery(".js-bottom");
+                switch (type) {
+                    case 'm':
+                        this.logo.mobile = false
+                        break;
+                    case 'p':
+                        this.logo.password = false;
+                        break;
+                }
+                E_bottom.hide();
             }
+
+            // end of methods
         }
     }
 </script>
