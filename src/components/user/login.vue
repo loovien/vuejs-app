@@ -92,11 +92,14 @@
                         this.logo.password = true;
                         break;
                 }
+                alert(this.logo.mobile)
+                alert(this.logo.password)
                 if(this.logo.mobile && this.logo.password) {
                     E_bottom.show();
                 }
             },
             hideLogo(type) {
+                alert(type)
                 let E_bottom = jQuery(".js-bottom");
                 switch (type) {
                     case 'm':

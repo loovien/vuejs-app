@@ -16911,11 +16911,14 @@ exports.default = {
                     this.logo.password = true;
                     break;
             }
+            alert(this.logo.mobile);
+            alert(this.logo.password);
             if (this.logo.mobile && this.logo.password) {
                 E_bottom.show();
             }
         },
         hideLogo: function hideLogo(type) {
+            alert(type);
             var E_bottom = (0, _jquery2.default)(".js-bottom");
             switch (type) {
                 case 'm':
