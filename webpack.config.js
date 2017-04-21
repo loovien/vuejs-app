@@ -8,6 +8,8 @@
  * @History:
  */
 
+const JsUglifyWebpack = require('uglifyjs-webpack-plugin');
+
 module.exports = {
     // the main entry of our app
     entry: ['./src/boot.js'], // './src/service/authSrv.js'],
@@ -28,6 +30,9 @@ module.exports = {
             { test: /\.js$/, loader: 'babel-loader', exclude: /node_modules/ }
         ]
     },
+    plugins: [
+      new JsUglifyWebpack()
+    ],
     node: {
       fs: "empty"
     },
@@ -38,5 +43,5 @@ module.exports = {
         alias: {
             vue: 'vue/dist/vue.js'
         }
-    }
+    },
 }

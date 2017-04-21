@@ -93,7 +93,7 @@
                         break;
                 }
                 if(this.logo.mobile && this.logo.password) {
-                    E_bottom.show();
+                    E_bottom.fadeIn();
                 }
             },
             hideLogo(type) {
