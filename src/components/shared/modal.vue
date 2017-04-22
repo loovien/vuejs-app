@@ -6,7 +6,7 @@
 	            <!--头部-->
 	            <div class="modal-header">
 	                <slot name="header">
-	                    <p class="title">{{modal.title}}</p>
+	                    <p class="modal-title">{{modal.title}}</p>
 	                    <span class="close" @click="close"></span>
 	                </slot>
 	            </div>

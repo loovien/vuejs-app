@@ -100,7 +100,8 @@
                 modalOptions: {
                     size: 'mini',
                     title: '请确定活动开始时间',
-                    content: '活动开始后不能修改、删除'
+                    content: '活动开始后不能修改、删除',
+                    showCancelButton: false
                 },
                 selectedDate: null
             }
