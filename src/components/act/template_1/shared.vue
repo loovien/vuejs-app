@@ -274,7 +274,7 @@
                 //过滤视频地址
                 if (_url.indexOf("<iframe") == 0 && _url.indexOf('src') >= 0) {
                     //通用格式
-                    _act.video_url = _url.match(/.*src=\'([^\']+?)\'.*/);
+                    _act.video_url = _url.match(/.*src=\'([^\']+?)\'.*/)[1];
                 }
                 alert(_act.video_url)
                 let act = this.act = _act;
