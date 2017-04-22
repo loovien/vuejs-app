@@ -105,7 +105,8 @@
                 <span class="word w2">介</span>
                 <span class="word w3">绍</span>
             </h2>
-            <video :src="act.video_url" controls></video>
+            <!-- <video :src="act.video_url" controls></video> -->
+            <iframe :src="act.video_url" frameborder="0" scrolling="no"></iframe>
         </div>
 
         <div class="box" v-show="!!act.link_url" >
