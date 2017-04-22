@@ -270,13 +270,6 @@
             actSrv.getActInfo(query).then((resp) => {
                 // console.log(resp.data.data)
                 let act = this.act = resp.data.data;
-
-                setTimeout(function(){
-                    //音乐自动播放
-                    var music = document.getElementById('music');
-
-                    music && music.play();
-                }, 500)
                 // 微信分享
                 //http://203.195.235.76/jssdk/#menu-share
                 let currentUrl = window.location.origin + window.location.pathname;
@@ -332,6 +325,14 @@
                     this.isEnded = true
                 }
                 this.countDownTime = endtime;
+
+                setTimeout(function(){
+                    //音乐自动播放
+                    var music = document.getElementById('music');
+
+                    music && music.play();
+                }, 500)
+                
                 const visitData = {actId: act.id, openid: visitOpenId, merchantId: act.merchant_id};
                 /* 记录来访记录 */
                 actSrv.visitLog(visitData).then((resp) => {});
