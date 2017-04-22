@@ -354,7 +354,7 @@
 
             //音乐自动播放
             var music = document.getElementById('music');
-
+alert(music)
             music && music.play();
         },
         methods: {
