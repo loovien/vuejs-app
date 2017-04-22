@@ -189,7 +189,7 @@
         </modal>
         <fixed :options="{save: false, back: false, account: false, home: true}"></fixed>
         <span v-if="!!act.background_music" class="music-icon iconfont icon-music" :class="{'isPaused': isPaused}" @click="togglePause"></span>
-        <audio v-if="!!act.background_music" loop="" :src="act.background_music" autoplay="" id="music"></audio>
+        <audio v-if="!!act.background_music" loop :src="act.background_music" autoplay id="music"></audio>
     </div>
 </template>
 
@@ -271,6 +271,12 @@
                 // console.log(resp.data.data)
                 let act = this.act = resp.data.data;
 
+                setTimeout(function(){
+                    //音乐自动播放
+                    var music = document.getElementById('music');
+
+                    music && music.play();
+                }, 500)
                 // 微信分享
                 //http://203.195.235.76/jssdk/#menu-share
                 let currentUrl = window.location.origin + window.location.pathname;
@@ -351,11 +357,6 @@
                     this.userInfo.join_cnt += 1;
                 }
             });
-
-            //音乐自动播放
-            var music = document.getElementById('music');
-
-            music && music.play();
         },
         methods: {
             //微信分享
