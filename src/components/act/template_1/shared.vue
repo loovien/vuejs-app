@@ -351,6 +351,11 @@
                     this.userInfo.join_cnt += 1;
                 }
             });
+
+            //音乐自动播放
+            var music = document.getElementById('music');
+
+            music && music.play();
         },
         methods: {
             //微信分享
