@@ -105,9 +105,8 @@
                 <span class="word w2">介</span>
                 <span class="word w3">绍</span>
             </h2>
-            <div>{{act.video_url}}</div>
             <!-- <video :src="act.video_url" controls></video> -->
-            <!-- <iframe :src="act.video_url" frameborder="0" scrolling="no"></iframe> -->
+            <iframe :src="act.video_url" frameborder="0" scrolling="no"></iframe>
         </div>
 
         <div class="box" v-show="!!act.link_url" >
@@ -270,7 +269,15 @@
 
             actSrv.getActInfo(query).then((resp) => {
                 // console.log(resp.data.data)
-                let act = this.act = resp.data.data;
+                let _act = resp.data.data;
+                let _url = _act.video_url;
+                //过滤视频地址
+                if (_url.indexOf("<iframe") == 0 && _url.indexOf('src') >= 0) {
+                    //通用格式
+                    _act.video_url = _url.match(/.*src=\'([^\']+?)\'.*/);
+                }
+                alert(_act.video_url)
+                let act = this.act = _act;
 
                 // 微信分享
                 //http://203.195.235.76/jssdk/#menu-share
