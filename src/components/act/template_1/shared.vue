@@ -276,7 +276,6 @@
                     //通用格式
                     _act.video_url = _url.match(/.*src=\'([^\']+?)\'.*/)[1];
                 }
-                alert(_act.video_url)
                 let act = this.act = _act;
 
                 // 微信分享
