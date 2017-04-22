@@ -189,7 +189,7 @@
         </modal>
         <fixed :options="{save: false, back: false, account: false, home: true}"></fixed>
         <span v-if="!!act.background_music" class="music-icon iconfont icon-music" :class="{'isPaused': isPaused}" @click="togglePause"></span>
-        <audio v-if="!!act.background_music" loop :src="act.background_music" autoplay id="music"></audio>
+        <audio v-if="!!act.background_music" loop="" :src="act.background_music" autoplay="" id="music"></audio>
     </div>
 </template>
 
@@ -251,7 +251,7 @@
                     showCancelButton: false
                 },
                 successCountDown: 3,
-                isPaused: false//是否关闭音乐
+                isPaused: true//是否关闭音乐
             }
         },
         components: { countDown, Modal, Fixed },
@@ -270,6 +270,7 @@
             actSrv.getActInfo(query).then((resp) => {
                 // console.log(resp.data.data)
                 let act = this.act = resp.data.data;
+
                 // 微信分享
                 //http://203.195.235.76/jssdk/#menu-share
                 let currentUrl = window.location.origin + window.location.pathname;
@@ -325,14 +326,6 @@
                     this.isEnded = true
                 }
                 this.countDownTime = endtime;
-
-                setTimeout(function(){
-                    //音乐自动播放
-                    var music = document.getElementById('music');
-
-                    music && music.play();
-                }, 500)
-                
                 const visitData = {actId: act.id, openid: visitOpenId, merchantId: act.merchant_id};
                 /* 记录来访记录 */
                 actSrv.visitLog(visitData).then((resp) => {});
@@ -358,6 +351,11 @@
                     this.userInfo.join_cnt += 1;
                 }
             });
+
+            //音乐自动播放
+            var music = document.getElementById('music');
+
+            music && music.play();
         },
         methods: {
             //微信分享
