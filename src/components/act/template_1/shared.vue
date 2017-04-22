@@ -282,44 +282,16 @@
                 //http://203.195.235.76/jssdk/#menu-share
                 let currentUrl = window.location.origin + window.location.pathname;
                 const wxSrv = new WxSrv(this);
-                wxSrv.initWxJsConfig(currentUrl, (resp) => {
-                    if(!resp) {
-                        console.error("微信分享失败");
-                        return
+                const wxShareConfig = {
+                    title: act.title || '我要联赢-商家恋',
+                    desc: act.description,
+                    link: currentUrl,
+                    imageUrl: act.cover_img,
+                    success: function () {
+                        alert("分享成功");
                     }
-                    wxSrv.onError();
-                    wxSrv.onSuccess();
-                    const wxShareConfig = {
-                        title: act.title || '我要联赢-商家恋',
-                        desc: act.description,
-                        link: currentUrl,
-                        imageUrl: act.cover_img,
-                        success: function () {
-                            alert("分享成功");
-                        }
-                    };
-                    /*
-                    const wxShareConfig = {
-                        title: '参与活动, 可免费或的一对一辅导2222222',
-                        link: 'http://sjl.51lianying.com/act/shared/9/o0sUawQY0A2u1ntP9RaALiazR8Hw',
-                        imageUrl: 'http://cdn.qimg.51lianying.com/form/biz/magazine/2017/04/16/16/86b24d65f5de6ebaf0c32fcfa2b3ea87.jpeg?imageView2/2/w/640/format/jpg/interlace/0/q/80',
-                        success: function () {
-                            alert("ok");
-                        }
-                    }
-                     */
-                    console.log(wxShareConfig);
-                    wxSrv.onMenuShareAppMessage(wxShareConfig);
-                    wxSrv.onMenuShareTimeline(wxShareConfig);
-                });
-                /*
-                try {
-                    //this.act.act_images = JSON.parse(this.act.act_images);
-                } catch (e) {
-                    console.error(e)
-                    this.act.act_images = [];
-                }
-                */
+                };
+                wxSrv.initWxJsConfig(currentUrl, wxShareConfig);
                 const starttime = (new Date(act.act_start_time)).getTime();
                 const endtime = (new Date(act.act_end_time)).getTime();
                 const today = new Date().getTime();
@@ -360,18 +332,6 @@
             });
         },
         methods: {
-            //微信分享
-            share(){
-                let act = this.act;
-                let url = window.location.origin + window.location.pathname;
-                this.wxSrv.checkWx(url).then((resp) => {
-                    if(resp.data.code === 0) {
-                        wx.config(resp.data.data);
-                    } else {
-                        console.log("分享出错", resp.data);
-                    }
-                });
-            },
             //切换音乐开关
             togglePause: function(){
                 if(this.isPaused){
@@ -455,19 +415,7 @@
             },
 
             gobuy(url) {
-
-                const wxShareConfig = {
-                        title: '参与活动, 可免费或的一对一辅导2222222',
-                        link: 'http://sjl.51lianying.com/act/shared/9/o0sUawQY0A2u1ntP9RaALiazR8Hw',
-                        imageUrl: 'http://cdn.qimg.51lianying.com/form/biz/magazine/2017/04/16/16/86b24d65f5de6ebaf0c32fcfa2b3ea87.jpeg?imageView2/2/w/640/format/jpg/interlace/0/q/80',
-                        success: function () {
-                            alert("ok");
-                        }
-                    }
-                    console.log(wxShareConfig);
-                wxSrv.onMenuShareAppMessage(wxShareConfig);
-                wxSrv.onMenuShareTimeline(wxShareConfig);
-                //window.location.href = url;
+                window.location.href = url;
             }
 
             // methods end
