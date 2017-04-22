@@ -6,11 +6,11 @@
         </header>
         <img src="/static/images/logo.jpg" alt="我要联赢" class="logo">
         <div class="code-box bg_fff">
-            <p class="text-center color_000">客服微信：wyly188888</p>
+            <p class="text-center color_000">客服微信：商家恋客服</p>
             <img src="/static/images/qrcode.jpg" alt="长按识别二维码" class="qrcode">
             <p class="text-center color_000">长按识别二维码</p>
         </div>
-        <p class="text-center color_666 mt10"><span class="iconfont icon-phone"></span>400-6728-266</p>
+        <p class="text-center color_666 mt10"><span class="iconfont icon-phone"></span>18668181158</p>
     </div>
 </template>
 

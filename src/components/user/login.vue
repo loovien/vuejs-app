@@ -30,7 +30,7 @@
         </div>
         <div class="bottom js-bottom">
             <img src="/static/images/logo.jpg" alt="我要联赢" class="logo">
-            <p class="text-center color_666 f12"><span class="iconfont icon-phone"></span>400-6728-266</p>
+            <p class="text-center color_666 f12"><span class="iconfont icon-phone"></span>18668181158</p>
         </div>
     </div>
 </template>
