@@ -137,7 +137,7 @@
                 act: "",
                 rank: {}, // 遍历排行榜
                 countDownTime: new Date().getTime(),
-                isPaused: false
+                isPaused: true
             }
         },
         components: { countDown },
@@ -174,6 +174,27 @@
 </script>
 
 <style scoped>
+.music-icon.isPaused:after{
+    content: '';
+    width: 100%; height: 1px;
+    background: #fff;
+    position: absolute;
+    top: 50%; left: 0;
+    -webkit-transform:rotate(135deg); 
+            transform:rotate(135deg);
+}
+.music-icon{
+    display: block;
+    width: 45px; height: 45px;
+    border-radius: 50%;
+    text-align: center;
+    line-height: 45px;
+    background: rgba(0,0,0,.7);
+    color: #fff;
+    position: fixed;
+    top: 30px; right: 10px;
+    font-size: 20px;
+}
 .layout{
     background: #fedc40;
     padding-bottom: 80px;
