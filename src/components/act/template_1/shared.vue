@@ -283,7 +283,7 @@
                 let currentUrl = window.location.origin + window.location.pathname;
                 const wxSrv = new WxSrv(this);
 
-                let shareUrl = act.cover_img;
+                let shareUrl = act.cover_img || '';
                 let indexOfQ = shareUrl.indexOf('?');
                 if( indexOfQ !== -1)  {
                     shareUrl = shareUrl.substr(0, indexOfQ);
@@ -298,16 +298,17 @@
                     }
                 };
                 wxSrv.initWxJsConfig(currentUrl, wxShareConfig);
+
                 const starttime = (new Date(act.act_start_time)).getTime();
                 const endtime = (new Date(act.act_end_time)).getTime();
                 const today = new Date().getTime();
-
                 //活动未开始
                 if(starttime - today > 0){
                     this.isStart = false
                 }
                 //活动已结束
                 if(endtime - today < 0){
+                    this.isStart = false
                     this.isEnded = true
                 }
                 this.countDownTime = endtime;
@@ -401,7 +402,7 @@
             /* 弹框填入姓名,电话 */
             fillInfo(name, phone) {
                 const actId = this.query.actId;
-                const openid = this.openid;
+                const openid = this.authUtil.getOpenId();
                 const actOpenId = this.query.openid;
                 /* 成功条到输入电话弹框 */
                 this.actSrv.fillInfo({actId, openid, name, phone, actOpenId}).then((resp) => {
