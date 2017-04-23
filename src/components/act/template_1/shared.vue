@@ -270,7 +270,7 @@
             actSrv.getActInfo(query).then((resp) => {
                 // console.log(resp.data.data)
                 let _act = resp.data.data;
-                let _url = _act.video_url;
+                let _url = _act.video_url || '';
                 //过滤视频地址
                 if (_url.indexOf("<iframe") == 0 && _url.indexOf('src') >= 0) {
                     //通用格式
@@ -282,11 +282,17 @@
                 //http://203.195.235.76/jssdk/#menu-share
                 let currentUrl = window.location.origin + window.location.pathname;
                 const wxSrv = new WxSrv(this);
+
+                let shareUrl = act.cover_img || '';
+                let indexOfQ = shareUrl.indexOf('?');
+                if( indexOfQ !== -1)  {
+                    shareUrl = shareUrl.substr(0, indexOfQ);
+                }
                 const wxShareConfig = {
                     title: act.title,
                     desc: act.description,
                     link: currentUrl,
-                    imgUrl: act.cover_img,
+                    imgUrl: shareUrl,
                     success: function () {
                         alert("分享成功");
                     }
