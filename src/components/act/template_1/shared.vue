@@ -282,6 +282,7 @@
                 //http://203.195.235.76/jssdk/#menu-share
                 let currentUrl = window.location.origin + window.location.pathname;
                 const wxSrv = new WxSrv(this);
+                /*
                 const wxShareConfig = {
                     title: act.title || '我要联赢-商家恋',
                     desc: act.description,
@@ -291,6 +292,19 @@
                         alert("分享成功");
                     }
                 };
+                */
+
+
+                const wxShareConfig = {
+                    title: "这是一个测试分享标题",
+                    desc: "这是一个分想描述",
+                    link: currentUrl,
+                    imageUrl: 'http://bpic.588ku.com/back_pic/04/11/76/05581ad01da2a8d.jpg',
+                    success: function () {
+                        alert("分享成功");
+                    }
+                };
+
                 wxSrv.initWxJsConfig(currentUrl, wxShareConfig);
                 const starttime = (new Date(act.act_start_time)).getTime();
                 const endtime = (new Date(act.act_end_time)).getTime();
