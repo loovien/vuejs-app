@@ -200,7 +200,6 @@
     import Modal from '../../shared/modal.vue'
     import Fixed from '../../shared/fixed.vue'
     import WxSrv from '../../../service/wxSrv';
-    import wx from 'wx';
 
     export default {
         data() {
@@ -283,31 +282,22 @@
                 //http://203.195.235.76/jssdk/#menu-share
                 let currentUrl = window.location.origin + window.location.pathname;
                 const wxSrv = new WxSrv(this);
+
+                let shareUrl = act.cover_img;
+                let indexOfQ = shareUrl.indexOf('?');
+                if( indexOfQ !== -1)  {
+                    shareUrl = shareUrl.substr(0, indexOfQ);
+                }
                 const wxShareConfig = {
-                    title: act.title || '我要联赢-商家恋',
+                    title: act.title,
                     desc: act.description,
                     link: currentUrl,
-                    imageUrl: act.cover_img,
+                    imageUrl: shareUrl,
                     success: function () {
                         alert("分享成功");
                     }
                 };
                 wxSrv.initWxJsConfig(currentUrl, wxShareConfig);
-
-
-
-                /*
-                const wxShareConfig = {
-                    title: "这是一个测试分享标题",
-                    desc: "这是一个分想描述",
-                    link: currentUrl,
-                    imageUrl: 'http://bpic.588ku.com/back_pic/04/11/76/05581ad01da2a8d.jpg',
-                    success: function () {
-                        alert("分享成功");
-                    }
-                };
-                */
-
                 const starttime = (new Date(act.act_start_time)).getTime();
                 const endtime = (new Date(act.act_end_time)).getTime();
                 const today = new Date().getTime();
