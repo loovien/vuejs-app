@@ -283,7 +283,6 @@
                 //http://203.195.235.76/jssdk/#menu-share
                 let currentUrl = window.location.origin + window.location.pathname;
                 const wxSrv = new WxSrv(this);
-                /*
                 const wxShareConfig = {
                     title: act.title || '我要联赢-商家恋',
                     desc: act.description,
@@ -293,9 +292,6 @@
                         alert("分享成功");
                     }
                 };
-
-                */
-
                 wxSrv.initWxJsConfig(currentUrl, wxShareConfig);
 
 
