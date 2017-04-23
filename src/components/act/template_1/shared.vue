@@ -282,17 +282,11 @@
                 //http://203.195.235.76/jssdk/#menu-share
                 let currentUrl = window.location.origin + window.location.pathname;
                 const wxSrv = new WxSrv(this);
-
-                let shareUrl = act.cover_img || '';
-                let indexOfQ = shareUrl.indexOf('?');
-                if( indexOfQ !== -1)  {
-                    shareUrl = shareUrl.substr(0, indexOfQ);
-                }
                 const wxShareConfig = {
                     title: act.title,
                     desc: act.description,
                     link: currentUrl,
-                    imgUrl: shareUrl,
+                    imgUrl: act.cover_img,
                     success: function () {
                         alert("分享成功");
                     }
