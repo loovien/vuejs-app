@@ -297,7 +297,6 @@
                         alert("分享成功");
                     }
                 };
-                console.log(wxShareConfig, '------------->')
                 wxSrv.initWxJsConfig(currentUrl, wxShareConfig);
                 const starttime = (new Date(act.act_start_time)).getTime();
                 const endtime = (new Date(act.act_end_time)).getTime();
