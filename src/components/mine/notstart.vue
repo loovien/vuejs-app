@@ -110,7 +110,7 @@
 
                     that.page += 1;
                     
-                    if(that.page > resp.data.data.total){
+                    if(that.page >= resp.data.data.last_page){
                         that.isLoadAll = true//加载完毕
                     }
                 });

@@ -53,6 +53,18 @@
                 <span class="word w3">则</span>
             </h2>
             <div class="inner">
+                {{act.act_rule_decorate}}<span class="color_fff key">{{act.act_rule_cnt}}</span>{{act.act_rule_keywords}}
+            </div>
+        </div>
+
+        <div class="box">
+            <h2 class="box-title">
+                <span class="word w0">规</span>
+                <span class="word w1">则</span>
+                <span class="word w2">说</span>
+                <span class="word w3">明</span>
+            </h2>
+            <div class="inner">
                 {{act.act_rule_desc}}
             </div>
         </div>

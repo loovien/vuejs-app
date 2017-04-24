@@ -105,7 +105,7 @@
 
                     this.page += 1;
                     
-                    if(this.page > resp.data.data.total){
+                    if(this.page >= resp.data.data.last_page){
                         this.isLoadAll = true//加载完毕
                     }
                 })

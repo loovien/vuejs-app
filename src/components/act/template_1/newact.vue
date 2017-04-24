@@ -69,8 +69,8 @@
             <h2 class="box-title">
                 <span class="word w0">规</span>
                 <span class="word w1">则</span>
-                <span class="word w2">详</span>
-                <span class="word w3">请</span>
+                <span class="word w2">说</span>
+                <span class="word w3">明</span>
             </h2>
             <div class="inner">
                 <textarea class="ui-textarea introduce-textarea" cols="30" v-model="act.act_rule_desc" rows="20" placeholder="请输入参与规则">
@@ -135,6 +135,9 @@
             </div>
         </div>
 
+        <!-- 报名成功 -->
+        <modal v-if="goPreviewOrMine" :modalOptions="previewOrMineOpts" @ok="goPreview()" @close="goMine()"></modal>
+
         <fixed :options="{save: true, back: true, account: false}" @saveEvent="newAct"></fixed>
         <!-- {{act.description}} -->
     </div>
@@ -145,6 +148,7 @@
     import Fixed from '../../shared/fixed.vue'
     import '../../../../static/js/lrz.all.bundle'
     import Datepicker from '../../shared/Datepicker.vue'
+    import Modal from '../../shared/modal.vue';
     import $ from 'jquery'
 
     export default {
@@ -153,10 +157,21 @@
                 act: {
                     act_prize_cnt: 1
                 },
-                images: []
+                images: [],
+                goPreviewOrMine: false,
+                modalOptions: {
+                    size: "mini",
+                    title: "预览或个人中心",
+                    content: "",
+                    showCancelButton: true,
+                    cancelButtonText: "个人中心",
+                    showConfirmButton: true,
+                    confirmButtonText: "预览",
+                },
+                respData: {}
             }
         },
-        components: { Fixed, Datepicker },
+        components: { Fixed, Datepicker, Modal},
         created: function () {
             let id = this.$route.params.id;
             this.id = id;
@@ -173,14 +188,23 @@
                 actSrv.newAct(postData).then((resp) => {
                     const respData = resp.data;
                     if(respData.code === 0) {
-                        this.$router.push({
-                            name: "template1Shared", params: {
-                                actId: respData.data.id,
-                                openid: respData.data.openid
-                            }
-                        }); // 保存后到分享也, 游湖有需要就分享
+                        this.respData = respData;
+                        this.goPreviewOrMine = true;
                     }
                 });
+            },
+            goMine: function () {
+                const actId = this.respData.data.id;
+                const openid = this.respData.data.openid;
+                // 保存后到分享也, 游湖有需要就分享
+                this.$router.push({ name: "mineIndex"});
+            },
+            goPreview: function () {
+                const actId = this.respData.data.id;
+                const openid = this.respData.data.openid;
+                this.$router.push({
+                    name: "template1Shared", params: { actId, openid}
+                }); // 保存后到分享也, 游湖有需要就分享
             },
             onFileChange: function(e) {
                 var files = e.target.files || e.dataTransfer.files;

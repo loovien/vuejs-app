@@ -108,7 +108,7 @@
         },
         components: { Modal },
         props: {
-            language: {default: 'en'},
+            language: {default: 'ch'},
             min: {default: '1970-01-01'},
             max: {default: '3016-01-01'},
             value: {
