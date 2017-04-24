@@ -136,7 +136,7 @@
         </div>
 
         <!-- 报名成功 -->
-        <modal v-if="goPreviewOrMine" :modalOptions="previewOrMineOpts" @ok="goPreview()" @close="goMine()"></modal>
+        <modal v-if="goPreviewOrMine" :modalOptions="modalOptions" @ok="goPreview()" @close="goMine()"></modal>
 
         <fixed :options="{save: true, back: true, account: false}" @saveEvent="newAct"></fixed>
         <!-- {{act.description}} -->
