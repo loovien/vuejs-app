@@ -4,7 +4,7 @@
             <span class="iconfont icon-back header-goback" @click="goback"></span>
             <h1 class="header-title">联系客服</h1>
         </header>
-        <img src="/static/images/logo.jpg" alt="我要联赢" class="logo">
+        <img src="/static/images/logo.png" alt="我要联赢" class="logo">
         <div class="code-box bg_fff">
             <p class="text-center color_000">客服微信：商家恋客服</p>
             <img src="/static/images/qrcode.jpg" alt="长按识别二维码" class="qrcode">
