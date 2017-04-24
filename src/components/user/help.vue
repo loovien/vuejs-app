@@ -10,7 +10,7 @@
             <img src="/static/images/qrcode.jpg" alt="长按识别二维码" class="qrcode">
             <p class="text-center color_000">长按识别二维码</p>
         </div>
-        <p class="text-center color_666 mt10"><span class="iconfont icon-phone"></span>18668181158</p>
+        <p class="text-center color_666 mt10"><span class="iconfont icon-phone"></span><a href="tel:18668181158">18668181158</a></p>
     </div>
 </template>
 
