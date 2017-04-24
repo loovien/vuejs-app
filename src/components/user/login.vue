@@ -74,7 +74,11 @@
                         authUtil.setName(name);
                         authUtil.setMobile(mobile);
                         authUtil.setExpiredDays(expiredDays);
-                        this.$router.push({path: redirectUrl});
+                        if(redirectUrl) {
+                            this.$router.push({path: redirectUrl});
+                        } else {
+                            this.$router.push({name: 'mineIndex'});
+                        }
 
                     } else  {
                         this.error.msg = resp.data.msg;

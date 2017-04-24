@@ -12,7 +12,6 @@ export default class  WxSrv extends BaseSrv  {
                 wx.config(wxResp.data.data);
 
                 wx.ready(function(){
-                    console.log("share register success")
                     wx.onMenuShareTimeline(shareConfig);
                     wx.onMenuShareAppMessage(shareConfig);
                 });
