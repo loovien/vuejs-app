@@ -317,10 +317,8 @@
                 //活动未开始
                 if(starttime - today > 0){
                     this.isStart = false
-                }
-                //活动已结束
-                if(endtime - today < 0){
-                    this.isStart = false
+                } else {
+                    //活动已结束
                     this.isEnded = true
                 }
                 this.countDownTime = endtime;

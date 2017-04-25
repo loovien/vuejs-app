@@ -164,9 +164,9 @@
                     title: "预览或个人中心",
                     content: "",
                     showCancelButton: true,
-                    cancelButtonText: "个人中心",
+                    cancelButtonText: "去个人中心",
                     showConfirmButton: true,
-                    confirmButtonText: "预览",
+                    confirmButtonText: "去预览活动",
                 },
                 respData: {}
             }
@@ -185,6 +185,7 @@
                 const actSrv = new ActSrv(this);
                 let postData = this.act;
                 postData.act_images = this.images;
+                this.validate(postData);
                 actSrv.newAct(postData).then((resp) => {
                     const respData = resp.data;
                     if(respData.code === 0) {
@@ -193,11 +194,34 @@
                     }
                 });
             },
+            validate: function (data) {
+                if(data.act_start_time == '') {
+                    alert("请填写开始时间");
+                    return;
+                }
+                if(data.act_end_time) {
+                    alert("请填写结束时间");
+                    return;
+                }
+                if(data.act_prize_cnt == 0) {
+                    alert("请填写奖品数量");
+                    return;
+                }
+            },
             goMine: function () {
-                const actId = this.respData.data.id;
-                const openid = this.respData.data.openid;
-                // 保存后到分享也, 游湖有需要就分享
-                this.$router.push({ name: "mineIndex"});
+                const actStartTime = this.act.act_start_time;
+                const actEndTime = this.act.act_end_time;
+                const startTimestamp = (new Date(actStartTime)).getTime();
+                const endTimestamp = (new Date(actEndTime)).getTime();
+                const nowTimestamp = (new Date()).getTime();
+
+                if(startTimestamp > nowTimestamp) { // 未开始
+                    this.$router.push({ name: "mineNostart"});
+                } else if(startTimestamp < nowTimestamp && endTimestamp > nowTimestamp) { // 开始中
+                    this.$router.push({ name: "mineStart"});
+                } else { // 结束了
+                    this.$router.push({ name: "mineNostart"});
+                }
             },
             goPreview: function () {
                 const actId = this.respData.data.id;
