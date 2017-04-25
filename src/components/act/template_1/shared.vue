@@ -315,15 +315,17 @@
                 const endtime = (new Date(act.act_end_time)).getTime();
                 const today = new Date().getTime();
                 //活动未开始
-                if(starttime < today){
+                if(starttime > today) {
                     this.isEnded = false;
                     this.isStart = false
-                } else if(starttime > today && endtime < today){
+                }
+                if(starttime < today && today < endtime) {
                     //活动已结束
-                    this.isStart = false
-                    this.isEnded = true
-                } else {
-                    this.isStart = true
+                    this.isStart = true;
+                    this.isEnded = false;
+                }
+                if(today > endtime) {
+                    this.isStart = false;
                     this.isEnded = true
                 }
                 this.countDownTime = endtime;
