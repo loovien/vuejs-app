@@ -133,6 +133,7 @@
             </div>
         </div>
 
+        <modal v-if="goPreviewOrMine" :modalOptions="modalOptions" @ok="goPreview()" @close="goMine()"></modal>
         <fixed :options="{save: true, back: true, account: false}" @saveEvent="editAct"></fixed>
         <!-- {{act.description}} -->
     </div>
@@ -142,6 +143,7 @@
     import ActSrv from "../../../service/actSrv";
     import Fixed from '../../shared/fixed.vue'
     import '../../../../static/js/lrz.all.bundle'
+    import Modal from '../../shared/modal.vue';
     import Datepicker from '../../shared/Datepicker.vue'
     import $ from 'jquery'
 
@@ -152,10 +154,21 @@
                 act: {
                     act_prize_cnt: 1
                 },
-                images: []
+                images: [],
+                goPreviewOrMine: false,
+                modalOptions: {
+                    size: "mini",
+                    title: "预览或个人中心",
+                    content: "",
+                    showCancelButton: true,
+                    cancelButtonText: "去个人中心",
+                    showConfirmButton: true,
+                    confirmButtonText: "去预览活动",
+                },
+                respData: {}
             }
         },
-        components: { Fixed, Datepicker },
+        components: { Fixed, Datepicker, Modal },
         created: function () {
             let id = this.$route.params.id;
             this.id = id;
@@ -171,14 +184,46 @@
                 this.actSrv.editAct(postData).then((resp) => {
                     const respData = resp.data;
                     if(respData.code === 0) {
-                        this.$router.push({
-                            name: "template1Shared", params: {
-                                actId: respData.data.id,
-                                openid: respData.data.openid
-                            }
-                        }); // 保存后到分享也, 游湖有需要就分享
+                        this.respData = respData;
+                        this.goPreviewOrMine = true;
                     }
                 });
+            },
+            validate: function (data) {
+                if(data.act_start_time == '') {
+                    alert("请填写开始时间");
+                    return;
+                }
+                if(data.act_end_time == '') {
+                    alert("请填写结束时间");
+                    return;
+                }
+                if(data.act_prize_cnt == 0) {
+                    alert("请填写奖品数量");
+                    return;
+                }
+            },
+            goMine: function () {
+                const actStartTime = this.act.act_start_time;
+                const actEndTime = this.act.act_end_time;
+                const startTimestamp = (new Date(actStartTime)).getTime();
+                const endTimestamp = (new Date(actEndTime)).getTime();
+                const nowTimestamp = (new Date()).getTime();
+
+                if(startTimestamp > nowTimestamp) { // 未开始
+                    this.$router.push({ name: "mineNostart"});
+                } else if(startTimestamp < nowTimestamp && nowTimestamp < endTimestamp) { // 开始中
+                    this.$router.push({ name: "mineStart"});
+                } else if(nowTimestamp > endTimestamp) { // 结束了
+                    this.$router.push({ name: "mineEnd"});
+                }
+            },
+            goPreview: function () {
+                const actId = this.respData.data.id;
+                const openid = this.respData.data.openid;
+                this.$router.push({
+                    name: "template1Shared", params: { actId, openid}
+                }); // 保存后到分享也, 游湖有需要就分享
             },
             onFileChange: function(e) {
                 var files = e.target.files || e.dataTransfer.files;
