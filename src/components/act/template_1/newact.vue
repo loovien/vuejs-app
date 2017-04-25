@@ -199,7 +199,7 @@
                     alert("请填写开始时间");
                     return;
                 }
-                if(data.act_end_time) {
+                if(data.act_end_time == '') {
                     alert("请填写结束时间");
                     return;
                 }
