@@ -215,11 +215,13 @@
                 const endTimestamp = (new Date(actEndTime)).getTime();
                 const nowTimestamp = (new Date()).getTime();
 
-                if(startTimestamp < nowTimestamp) { // 未开始
+                if(startTimestamp > nowTimestamp) { // 未开始
                     this.$router.push({ name: "mineNostart"});
-                } else if(startTimestamp < nowTimestamp && endTimestamp > nowTimestamp) { // 开始中
+                }
+                if(startTimestamp < nowTimestamp && nowTimestamp > endTimestamp) { // 开始中
                     this.$router.push({ name: "mineStart"});
-                } else { // 结束了
+                }
+                if(nowTimestamp > endTimestamp) { // 结束了
                     this.$router.push({ name: "mineEnd"});
                 }
             },
