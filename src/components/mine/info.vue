@@ -22,6 +22,9 @@
             <div class="tab-item fl text-center">
                 <router-link :to="{name: 'mineEnd'}" class="tab-item-a inline-block">历史活动</router-link>
             </div>
+            <div class="tab-item fl text-center">
+                <router-link :to="{name: 'exchange'}" class="tab-item-a inline-block">兑换中心</router-link>
+            </div>
         </div>
 
         <div class="cart-box bg_fff mt10">
@@ -77,7 +80,7 @@
                 </router-link>
             </div>
         </div>
-
+        <fixed :options="{account: false, home: true}"></fixed>
         <!-- <p v-for="recommend in recommends">
             <router-link :to="{name: 'actDetail', params: {id: recommend.id}}">{{recommend.title}}</router-link>
         </p> -->
@@ -92,6 +95,7 @@
     import UserSrv from "../../service/userSrv";
     import addDays from "date-fns/add_days";
     import format from "date-fns/format";
+    import Fixed from '../shared/fixed.vue'
 
     export default {
         data: () => {
@@ -106,6 +110,7 @@
                 top1: false
             }
         },
+        components: { Fixed },
         created: function () {
             const indexSrv = new IndexSrv(this);
             const authUtil = new AuthUtil(this.$http);
@@ -167,7 +172,7 @@
     padding: 13px 0;
 }
 .tab-item{
-    width: 25%;
+    width: 20%;
     height: 24px;
     line-height: 24px;
     border-right: 1px solid #ddd;

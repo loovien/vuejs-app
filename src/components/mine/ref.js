@@ -7,6 +7,7 @@ import Started from "./started.vue";
 import End from "./end.vue";
 import Info from "./info.vue";
 import Nostart from "./notstart.vue";
+import Exchange from "./exchange.vue";
 
 export default {
     path: "/mine",
@@ -18,7 +19,8 @@ export default {
         {name: "mineIndex", path: "/", component: Info, meta: {auth: true}},
         {name: 'mineStart', path: "start", component: Started, meta: {auth: true}},
         {name: 'mineNostart', path: "nostart", component: Nostart, meta: {auth: true}},
-        {name: 'mineEnd', path: "end", component: End, meta: {auth: true}}
+        {name: 'mineEnd', path: "end", component: End, meta: {auth: true}},
+        {name: 'exchange', path: "exchange", component: Exchange, meta: {auth: true}}
     ],
 
 }

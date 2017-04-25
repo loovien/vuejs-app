@@ -51,6 +51,7 @@
 	            </div>
             </div>
         </div>
+		<fixed :options="{account: true, home: false}"></fixed>
         <!-- <p class="text-center color_gray data-none">暂无未开始活动</p> -->
         <mugen-scroll scroll-container="wrap" :handler="fetchData" :should-handle="!loading">
             <div class="text-center loading-bottom clearfix" v-show="!isLoadAll">
@@ -77,6 +78,7 @@
     import MineSrv from "../../service/mineSrv";
     import MugenScroll from 'vue-mugen-scroll'
 	import AuthUtils from "../../utils/authUtil";
+    import Fixed from '../shared/fixed.vue'
 
     export default {
         data(){
@@ -90,7 +92,7 @@
         created: function () {
             this.loadMore()
         },
-        components: { MugenScroll },
+        components: { MugenScroll, Fixed },
         methods: {
             goback: function(){
                 history.go(-1)

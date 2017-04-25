@@ -27,4 +27,13 @@ export default  class MineSrv extends BaseSrv {
     updateActById(act) {
         return this.http.put("act/u/"+id, act);
     }
+
+    getPrizeList(mobile) {
+        return this.http.get("mine/prize?mobile=" + mobile);
+    }
+
+    exchange(postData) {
+        return this.http.post("mine/prize/exchange", postData);
+    }
 }
+
