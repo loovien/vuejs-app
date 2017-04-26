@@ -9,7 +9,7 @@
         
         <div class="recommend-box bg_fff mt10">
             <h2 class="title clearfix">
-                <router-link :to="{name: 'act'}" class="fr f12 color_gray">全部<span class="iconfont icon-arrow-r f12"></span></router-link>
+                <!--<router-link :to="{name: 'act'}" class="fr f12 color_gray"><span class="iconfont icon-arrow-r f12"></span></router-link>-->
                 最新推荐
             </h2>
             <div class="clearfix recommend-list">
@@ -22,7 +22,7 @@
 
         <div class="industry-box bg_fff mt10">
             <h2 class="title clearfix">
-                <a class="fr f12 color_gray">全部<span class="iconfont icon-arrow-r f12"></span></a>
+                <!--<a class="fr f12 color_gray">全部<span class="iconfont icon-arrow-r f12"></span></a>-->
                 行业营销工具
             </h2>
             <div class="overflow-hidden w100">
@@ -62,17 +62,13 @@
 
                 const wxSrv = new WxSrv(this);
                 const currentUrl = window.location.origin + window.location.pathname;
-                wxSrv.initWxJsConfig(currentUrl, function () {
-                    const wxShareJsConfig = {
-                        title: '我要联赢-商家恋首页',
-                        imageUrl: bannerUrl,
-                        link: currentUrl,
-                    };
-                    wxSrv.onSuccess();
-                    wxSrv.onError();
-                    wxSrv.onMenuShareAppMessage(wxShareJsConfig);
-                    wxSrv.onMenuShareTimeline(wxShareJsConfig);
-                });
+                const wxShareJsConfig = {
+                    title: '我要联赢-商家恋',
+                    desc: '一个很好的营销工具',
+                    imgUrl: bannerUrl,
+                    link: currentUrl,
+                };
+                wxSrv.initWxJsConfig(currentUrl, wxShareJsConfig);
             });
             indexSrv.getIndustryList().then((response) => {
                this.industries = response.data.data;
