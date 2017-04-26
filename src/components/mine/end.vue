@@ -7,7 +7,7 @@
         
         <div class="list">
             <div class="item mt10 clearfix w100" v-for="act in acts" :key="act.id">
-            	<div class="table" @click="preview(act.id)">
+            	<div class="table" @click="prbannerUreeview(act.id)">
             		<div class="thumbnail-box table-cell">
 	                    <img :src="act.banner_img" alt="" class="thumbnail fl">
 	                </div>

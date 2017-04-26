@@ -325,7 +325,6 @@
                     this.isEnded = false;
                 }
                 if(today > endtime) {
-                    this.isStart = false;
                     this.isEnded = true
                 }
                 this.countDownTime = endtime;
@@ -397,6 +396,10 @@
                 const actId = this.query.actId;
                 const actOwnerOpenId = this.query.openid;
 
+                if(this.isEnded) {
+                    alert("抱歉, 活动已经结束了!");
+                    return;
+                }
                 if(actOwnerOpenId == openid) {
                     alert("这就是您本人的活动也, 自己就不要在玩了!");
                     return;
