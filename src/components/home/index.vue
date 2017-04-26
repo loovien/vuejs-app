@@ -57,15 +57,13 @@
         created: function () {
             const indexSrv = new IndexSrv(this);
             indexSrv.getBannerImg().then((response) => {
-                const data = response.data.data;
-                const bannerUrl = this.bannerImgs = data.banner_url;
-
                 const wxSrv = new WxSrv(this);
                 const currentUrl = window.location.origin + window.location.pathname;
+                const shareImgUrl = window.location.origin + '/static/images/logom.png';
                 const wxShareJsConfig = {
                     title: '我要联赢-商家恋',
                     desc: '一个很好的营销工具',
-                    imgUrl: bannerUrl,
+                    imgUrl: shareImgUrl,
                     link: currentUrl,
                 };
                 wxSrv.initWxJsConfig(currentUrl, wxShareJsConfig);
