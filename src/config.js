@@ -4,7 +4,7 @@
 
 export default {
     http: {
-        root: "http://api.shangjialian.com/api",
+        root: "http://admin.shangjialian.com/api",
         // root: "http://shangjialian.51lianying.com/api",
         headers: {
             "ContentType": "application/json",
