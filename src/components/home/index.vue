@@ -64,8 +64,8 @@
                 const currentUrl = window.location.origin + window.location.pathname;
                 const shareImgUrl = window.location.origin + "/static/images/logom.png";
                 const wxShareJsConfig = {
-                    title: '我要联赢-商家恋',
-                    desc: '一个很好的营销工具',
+                    title: '商家恋-让你更懂营销推广',
+                    desc: '使用商家恋 让你品牌传播速度飞起来，营销推广不再难。',
                     imgUrl: shareImgUrl,
                     link: currentUrl,
                 };
