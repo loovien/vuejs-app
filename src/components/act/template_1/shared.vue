@@ -350,7 +350,9 @@
             });
             // 用户一进来的时候, 表示已将帮忙了
             actSrv.helpIt(query).then((resp) => {
-                 alert("您已助力成功");
+                if(authUtil.getOpenId() !== query.openid) {
+                    alert("您已助力成功");
+                }
                 if(resp.data.code == 0) {
                     this.userInfo.join_cnt += 1;
                 }
