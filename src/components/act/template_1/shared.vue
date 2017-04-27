@@ -148,7 +148,7 @@
                         <tr>
                             <th>名次</th>
                             <th>姓名</th>
-                            <th>总用时</th>
+                            <th>成绩</th>
                             <th>状态</th>
                         </tr>
                     </thead>
@@ -156,7 +156,7 @@
                         <tr v-for="(item, index) in rank.data">
                             <td>{{index+1}}</td>
                             <td>{{item.name}}</td>
-                            <td>{{item.spend_time+'小时'}}</td>
+                            <td>{{item.join_cnt}}</td>
                             <td>{{item.is_completed ? '已完成' : '未完成'}}</td>
                         </tr>
                     </tbody>
@@ -348,7 +348,7 @@
             });
             // 用户一进来的时候, 表示已将帮忙了
             actSrv.helpIt(query).then((resp) => {
-                // alert(resp.data.msg);
+                 alert("您已助力成功");
                 if(resp.data.code == 0) {
                     this.userInfo.join_cnt += 1;
                 }
