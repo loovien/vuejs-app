@@ -155,7 +155,7 @@
                     <tbody>
                         <tr v-for="(item, index) in rank.data">
                             <td>{{index+1}}</td>
-                            <td>{{item.name}}</td>
+                            <td>{{(item.name.substr(0, item.name.length - 1) + "*")}}</td>
                             <td>{{item.join_cnt}}</td>
                             <td>{{item.is_completed ? '已完成' : '未完成'}}</td>
                         </tr>
@@ -170,7 +170,9 @@
                 <span class="close" @click="showRuleModal = false"></span>
             </div>
             <div slot="body">
-                {{act.act_rule_desc}}
+                <!--{{act.act_rule_desc}}-->
+                报名前可先联系商家，确认活动真实性以及记录联系方式。如发现虚假活动，请及时向商家
+                恋公众号反馈，谢谢!
             </div>
             <div slot="button">
                 <a href="javascript:void(0)" class="btn ok-btn btn-small fr btn-blue" @click="okRuleModal">我知道了</a>
