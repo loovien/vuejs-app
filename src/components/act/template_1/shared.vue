@@ -53,7 +53,7 @@
                 <span class="word w3">则</span>
             </h2>
             <div class="inner">
-                {{act.act_rule_decorate}}<span class="color_fff key">{{act.act_rule_cnt}}</span>{{act.act_rule_keywords}}
+                {{act.act_rule_decorate}}<span class="red key">{{act.act_rule_cnt}}</span>{{act.act_rule_keywords}}
             </div>
         </div>
 
