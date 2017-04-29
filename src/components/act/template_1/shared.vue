@@ -118,7 +118,7 @@
                 <span class="word w3">绍</span>
             </h2>
             <!-- <video :src="act.video_url" controls></video> -->
-            <iframe width="100%" style="width: 100%; height: auto;" :src="act.video_url" frameborder="0" scrolling="no"></iframe>
+            <!-- <iframe width="100%" style="width: 100%; height: auto;" :src="act.video_url" frameborder="0" scrolling="no"></iframe> -->
         </div>
 
         <div class="box" v-show="!!act.link_url" >
