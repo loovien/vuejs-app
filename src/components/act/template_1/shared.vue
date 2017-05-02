@@ -203,6 +203,7 @@
         <fixed :options="{save: false, back: false, account: false, home: true}"></fixed>
         <span v-if="!!act.background_music" class="music-icon iconfont icon-music" :class="{'isPaused': isPaused}" @click="togglePause"></span>
         <audio v-if="!!act.background_music" loop="" :src="act.background_music" autoplay="" id="music"></audio>
+        <router-link :to="{name: 'actNew', params:{id: this.act.tpl_id}}" class="madeBtn">我要制作</router-link>
     </div>
 </template>
 
