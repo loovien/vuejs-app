@@ -2,7 +2,8 @@
     <div class="layout">
         <div class="topBar color_fff f16"><span class="color_yellow">7800</span>人查看<span class="color_yellow pl10">39499</span>人分享<span class="color_yellow pl10">16333</span>人报名</div>
         <div class="relative">
-            <img src="/static/images/template_1/banner-bg.jpg" alt="" class="banner-bg">
+            <img :src="act.banner_img" alt="" class="banner-bg">
+            <!--<img src="/static/images/template_1/banner-bg.jpg" alt="" class="banner-bg">-->
             <div class="banner">
                 <h1 class="title">{{act.title}}</h1>
             </div>
@@ -129,6 +130,7 @@
 <script>
     import ActSrv from "../../../service/actSrv";
     import countDown from '../../shared/countDown.vue'
+    import $ from 'jquery';
 
     export default {
         data: () => {
@@ -157,6 +159,8 @@
             actSrv.getDefaultRank().then((resp) => {
                     this.rank = resp.data.data;
             });
+
+            $(".layout").css({background: act.color_plate})
         },
         methods: {
             //切换音乐开关
