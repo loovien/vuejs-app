@@ -147,8 +147,10 @@
             let id = this.$route.params.id;
             this.id = id;
             const actSrv = new ActSrv(this);
+            const E_layout = $(".layout");
             actSrv.getActTemplateDetail(id).then((resp) => {
                 this.act = resp.data.data;
+                E_layout.css({background: this.act.color_plate})
                 try {
                     this.act.act_images = JSON.parse(this.act.act_images);
                 } catch (e) {
@@ -160,7 +162,6 @@
                     this.rank = resp.data.data;
             });
 
-            $(".layout").css({background: act.color_plate})
         },
         methods: {
             //切换音乐开关
