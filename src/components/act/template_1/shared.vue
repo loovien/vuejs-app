@@ -1,8 +1,9 @@
 <template>
-    <div class="layout">
+    <div class="layout" v-bind:style="{backgroundColor: act.color_plat ? act.color_plat : '#fedc40'}">
         <!--<div class="topBar color_fff f16"><span class="color_yellow">78</span>人查看<span class="color_yellow pl10">394</span>人分享<span class="color_yellow pl10">16</span>人报名</div>-->
         <div class="relative">
-            <img src="/static/images/template_1/banner-bg.jpg" alt="" class="banner-bg">
+            <!--<img src="/static/images/template_1/banner-bg.jpg" alt="" class="banner-bg">-->
+            <img :src="act.banner_img" alt="" class="banner-bg">
             <div class="banner">
                 <h1 class="title">{{act.title}}</h1>
             </div>
@@ -297,7 +298,10 @@
                 let currentUrl = window.location.origin + window.location.pathname;
                 const wxSrv = new WxSrv(this);
 
-                let shareUrl = act.cover_img || '';
+                let shareUrl = act.cover_img;
+                if(typeof act.act_images[0] !== 'undefined') { // 去第一张商品图片
+                    shareUrl = act.act_images[0];
+                }
                 let indexOfQ = shareUrl.indexOf('?');
                 if( indexOfQ !== -1)  {
                     shareUrl = shareUrl.substr(0, indexOfQ);

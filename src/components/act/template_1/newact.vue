@@ -1,7 +1,8 @@
 <template>
-    <div class="layout">
+    <div class="layout" v-bind:style="{backgroundColor: act.color_plat ? act.color_plat : '#fedc40'}">
         <div class="relative">
-            <img src="/static/images/template_1/banner-bg.jpg" alt="" class="banner-bg">
+            <!--<img src="/static/images/template_1/banner-bg.jpg" alt="" class="banner-bg">-->
+            <img :src="act.banner_img" alt="" class="banner-bg">
             <div class="banner">
                 <textarea class="ui-textarea" v-model="act.title" id="" cols="30" rows="6" :placeholder="act.title"></textarea>
             </div>

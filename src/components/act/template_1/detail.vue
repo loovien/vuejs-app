@@ -1,5 +1,5 @@
 <template>
-    <div class="layout">
+    <div class="layout" v-bind:style="{backgroundColor: act.color_plat ? act.color_plat : '#fedc40'}">
         <div class="topBar color_fff f16"><span class="color_yellow">7800</span>人查看<span class="color_yellow pl10">39499</span>人分享<span class="color_yellow pl10">16333</span>人报名</div>
         <div class="relative">
             <img :src="act.banner_img" alt="" class="banner-bg">
@@ -130,7 +130,6 @@
 <script>
     import ActSrv from "../../../service/actSrv";
     import countDown from '../../shared/countDown.vue'
-    import $ from 'jquery';
 
     export default {
         data: () => {
@@ -147,10 +146,8 @@
             let id = this.$route.params.id;
             this.id = id;
             const actSrv = new ActSrv(this);
-            const E_layout = $(".layout");
             actSrv.getActTemplateDetail(id).then((resp) => {
                 this.act = resp.data.data;
-                E_layout.css({background: this.act.color_plate})
                 try {
                     this.act.act_images = JSON.parse(this.act.act_images);
                 } catch (e) {
