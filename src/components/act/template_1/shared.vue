@@ -204,7 +204,7 @@
         <fixed :options="{save: false, back: false, account: false, home: true}"></fixed>
         <span v-if="!!act.background_music" class="music-icon iconfont icon-music" :class="{'isPaused': isPaused}" @click="togglePause"></span>
         <audio v-if="!!act.background_music" loop="" :src="act.background_music" autoplay="" id="music"></audio>
-        <router-link :to="{name: 'actNew', params:{id: this.act.tpl_id}}" class="madeBtn">我要制作</router-link>
+        <router-link :to="{name: 'actNew', params:{id: this.act.tpl_id}}" class="madeBtn">我也要制作推广</router-link>
     </div>
 </template>
 
@@ -292,6 +292,7 @@
                     _act.video_url = _url.match(/.*src=\'([^\']+?)\'.*/)[1];
                 }
                 let act = this.act = _act;
+                document.title = this.act.title;
 
                 // 微信分享
                 //http://203.195.235.76/jssdk/#menu-share

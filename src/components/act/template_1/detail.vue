@@ -150,6 +150,7 @@
                 this.act = resp.data.data;
                 try {
                     this.act.act_images = JSON.parse(this.act.act_images);
+                    document.title = this.act.title;
                 } catch (e) {
                     console.error(e)
                     this.act.act_images = [];

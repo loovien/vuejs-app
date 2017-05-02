@@ -176,6 +176,7 @@
             this.actSrv = new ActSrv(this);
             this.actSrv.getActDetail(id).then((resp) => { // 获取默认活动数据
                 this.act = resp.data.data;
+                document.title = this.act.title;
             })
         },
         methods: {
