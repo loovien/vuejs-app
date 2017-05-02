@@ -1,5 +1,5 @@
 <template>
-    <div class="layout" v-bind:style="{backgroundColor: act.color_plat ? act.color_plat : '#fedc40'}">
+    <div class="layout" v-bind:style="{backgroundColor: act.color_plate}">
         <div class="relative">
             <!--<img src="/static/images/template_1/banner-bg.jpg" alt="" class="banner-bg">-->
             <img :src="act.banner_img" alt="" class="banner-bg">

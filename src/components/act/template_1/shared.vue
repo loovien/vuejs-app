@@ -1,5 +1,5 @@
 <template>
-    <div class="layout" v-bind:style="{backgroundColor: act.color_plat ? act.color_plat : '#fedc40'}">
+    <div class="layout" v-bind:style="{backgroundColor: act.color_plate}">
         <!--<div class="topBar color_fff f16"><span class="color_yellow">78</span>人查看<span class="color_yellow pl10">394</span>人分享<span class="color_yellow pl10">16</span>人报名</div>-->
         <div class="relative">
             <!--<img src="/static/images/template_1/banner-bg.jpg" alt="" class="banner-bg">-->
