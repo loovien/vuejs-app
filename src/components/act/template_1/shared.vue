@@ -18,7 +18,7 @@
             </div>
         </div>
         <div class="text-center playBtn-box" v-show="isStart">
-            <img src="/static/images/template_1/play-btn.jpg" @click="letsPlay()" alt="点我去玩" class="playBtn">
+            <img src="/static/images/template_1/play-btn.png" @click="letsPlay()" alt="点我去玩" class="playBtn">
         </div>
 
         <div class="box">

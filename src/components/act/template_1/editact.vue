@@ -21,7 +21,7 @@
             </div>
         </div>
         <div class="text-center playBtn-box">
-            <img src="/static/images/template_1/play-btn.jpg" alt="点我去玩" class="playBtn">
+            <img src="/static/images/template_1/play-btn.png" alt="点我去玩" class="playBtn">
         </div>
 
         <div class="box reward-box">
