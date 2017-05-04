@@ -92,7 +92,7 @@
                         <img :src="item" alt="" class="img-w100">
                     </template>
                     <template v-show="act.images.length < 6">
-                        <input type="file" accept="image/jpeg,image/jpg,image/png" capture="camera" @change="onFileChange" placeholder="请输入奖品描述" class="upload-file">
+                        <input type="file" accept="image/jpeg,image/jpg,image/png;capture=camera" style="width:100%" @change="onFileChange" placeholder="请输入奖品描述" class="upload-file">
                         <span class="icon-upload iconfont"></span>
                         <p class="text-center">最多只能上传6张图片</p>
                     </template>
