@@ -292,7 +292,7 @@
                     _act.video_url = _url.match(/.*src=\'([^\']+?)\'.*/)[1];
                 }
                 let act = this.act = _act;
-                document.title = this.act.title;
+                document.title = act.title;
 
                 // 微信分享
                 //http://203.195.235.76/jssdk/#menu-share
@@ -307,6 +307,7 @@
                 if( indexOfQ !== -1)  {
                     shareUrl = shareUrl.substr(0, indexOfQ);
                 }
+                shareUrl += '?imageView2/2/w/300/h/300/q/50';
                 const wxShareConfig = {
                     title: act.title,
                     desc: act.description,
