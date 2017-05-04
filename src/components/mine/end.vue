@@ -21,7 +21,10 @@
 	                <table cellpadding="0" cellspacing="1" class="chart-table w100">
 		                <thead>
 		                	<tr>
-		                        <th class="td-right" colspan="2">{{act.act_prize_name}}</th>
+		                        <th class="td-right" colspan="2">
+									{{act.act_prize_name}}
+									<a class="fr f12 color_gray join_userlist" @click="joinUsersList(act.id)">报名列表详情<span class="iconfont icon-arrow-r f12"></span></a>
+								</th>
 		                    </tr>
 		                </thead>
 	                    <tr>
@@ -126,7 +129,16 @@
                         openid: authUtils.getOpenId()
                     }
                 });
-			}
+			},
+
+            joinUsersList(id) {
+                this.$router.push({
+                    name: "rank",
+                    params: {actId: id}
+                })
+            }
+
+            // end of methods
         }
     }
 </script>
@@ -134,6 +146,9 @@
 <style scoped>
 .chart-table .td-left{
     padding: 8px 0;
+}
+.join_userlist {
+	cursor: pointer;
 }
 .chart-table .td-right{
     padding: 8px;

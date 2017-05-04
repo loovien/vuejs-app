@@ -12,7 +12,9 @@
 	                    <img :src="act.banner_img" alt="" class="thumbnail fl">
 	                </div>
 	                <div class="relative item-info table-cell">
-	                    <h3 class="title color_333 f16">{{act.title}}</h3>
+	                    <h3 class="title color_333 f16">
+							{{act.title}}
+						</h3>
 	                    <p class="desc f12 color_999">{{act.description}}</p>
 	                    <p class="color_yellow2 mt10 f12">结束时间：{{act.act_end_time}}</p>
 	                </div>
@@ -21,7 +23,10 @@
 	                <table cellpadding="0" cellspacing="1" class="chart-table w100">
 		                <thead>
 		                	<tr>
-		                        <th class="td-right" colspan="2">{{act.act_prize_name}}</th>
+		                        <th class="td-right" colspan="2">
+									{{act.act_prize_name}}
+									<a class="fr f12 color_gray join_userlist" @click="joinUsersList(act.id)">报名列表详情<span class="iconfont icon-arrow-r f12"></span></a>
+								</th>
 		                    </tr>
 		                </thead>
 	                    <tr>
@@ -123,6 +128,12 @@
                     name: "template1Shared",
 					params: {actId: id, openid: authUtils.getOpenId()}
 				});
+			},
+			joinUsersList(id) {
+                this.$router.push({
+                    name: "rank",
+					params: {actId: id}
+				});
 			}
         }
     }
@@ -131,6 +142,10 @@
 <style scoped>
 .chart-table .td-left{
     padding: 8px 0;
+}
+
+.join_userlist {
+	cursor: pointer;
 }
 .chart-table .td-right{
     padding: 8px;
