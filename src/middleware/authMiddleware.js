@@ -21,13 +21,13 @@ export default class AuthMiddleware {
                         if(!ok) {
                           this.goWxAuthenticateUrl();
                         } else {
+                            /*
                             let path = router.path;
                             next({ path: path });
-                            /*
+                            */
                             let currentUrlWithOutCode = window.location.origin + window.location.pathname;
                             window.location.href = currentUrlWithOutCode;
                             return;
-                            */
                         }
                     });
                 } else { /* redirect to wechat server run OAuth2 flow */
