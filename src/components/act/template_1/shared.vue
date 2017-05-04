@@ -296,7 +296,9 @@
 
                 // 微信分享
                 //http://203.195.235.76/jssdk/#menu-share
-                let currentUrl = window.location.origin + window.location.pathname;
+
+                const path = this.$router.path;
+                let currentUrl = window.location.origin + path;
                 const wxSrv = new WxSrv(this);
 
                 let shareUrl = act.cover_img;
