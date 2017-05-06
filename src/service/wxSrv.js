@@ -7,7 +7,7 @@ import wx from 'wx';
 export default class  WxSrv extends BaseSrv  {
     initWxJsConfig(url, shareConfig) {
         let timestamp = (new Date).getTime();
-        this.http.post("wechat/jstoken", {v: timestamp, url: url}).then((wxResp) => {
+        this.http.post("wechat/jstoken?v="+timestamp, {url: url}).then((wxResp) => {
             if(wxResp.data.code === 0) {
                 console.log(wxResp.data);
                 console.log(wxResp.data.data);
