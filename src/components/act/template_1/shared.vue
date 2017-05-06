@@ -304,10 +304,6 @@
                 // 微信分享
                 //http://203.195.235.76/jssdk/#menu-share
 //                let currentUrl = window.location.origin + window.location.pathname;
-                const path = this.$route.path;
-                let currentUrl = window.location.origin + path;
-                console.log("haha");
-                console.log(window.location.href);
                 const wxSrv = new WxSrv(this);
 
                 let shareUrl = act.cover_img;
@@ -318,6 +314,8 @@
                 if( indexOfQ !== -1)  {
                     shareUrl = shareUrl.substr(0, indexOfQ);
                 }
+
+                let currentUrl = window.location.href;
                 shareUrl += '?imageView2/2/w/300/h/300/q/50';
                 const wxShareConfig = {
                     title: act.title,
@@ -331,6 +329,7 @@
                         console.log('00>', resp)
                     }
                 };
+                console.log('hehe');
                 console.log(shareUrl);
                 console.log(wxShareConfig);
                 console.log(currentUrl);
