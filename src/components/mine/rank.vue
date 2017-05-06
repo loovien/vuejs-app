@@ -112,7 +112,7 @@
 
 <style scoped>
     .layout{
-        /*background: #fedc40;*/
+        background: #fedc40;
         padding-bottom: 80px;
     }
     .red{

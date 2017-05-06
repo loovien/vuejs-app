@@ -199,7 +199,7 @@
     font-size: 20px;
 }
 .layout{
-    /*background: #fedc40;*/
+    background: #fedc40;
     padding-bottom: 80px;
 }
 .color_yellow{

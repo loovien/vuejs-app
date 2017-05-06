@@ -27,7 +27,11 @@ export default class AuthMiddleware {
                             console.log('inject---e');
                             // next({ path: path });
                             let currentUrlWithOutCode = window.location.origin + window.location.pathname;
-                            window.location.href = currentUrlWithOutCode;
+                            let handle = setTimeout(function () {
+                                window.location.href = currentUrlWithOutCode;
+                                clearTimeout(handle);
+                                return;
+                            }, 250);
                             return;
                         }
                     });
@@ -68,7 +72,11 @@ export default class AuthMiddleware {
         authUtil.getWxAuthUrl().then((resp) => {
             let redirectUrl = resp.data.data.redirectUrl;
             redirectUrl += `&redirect_uri=${window.location.href}`;
-            window.location.href = redirectUrl;
+            let handle = setTimeout(function () {
+                window.location.href = redirectUrl;
+                return;
+                clearTimeout(handle)
+            });
             return;
         });
         return;

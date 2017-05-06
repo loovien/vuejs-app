@@ -29,7 +29,14 @@
                 <span class="word w3">励</span>
             </h2>
             <div class="inner text-center">
-                <p>总共<span class="red key">{{act.act_prize_cnt}}</span>{{act.act_prize_unit}} 最后<span class="red key">{{act.act_prize_cnt - completedCnt}}</span>{{act.act_prize_unit}}</p>
+                <p>总共
+                    <span class="red key">{{act.act_prize_cnt}}</span>
+                    {{act.act_prize_unit}} 最后
+                    <span class="red key">
+                        {{isNan(act.act_prize_cnt - completedCnt) ? 0 : (act.act_prize_cnt - completedCnt)}}
+                    </span>
+                        {{act.act_prize_unit}}
+                </p>
                 <!--<p>海澜之家<span class="red key">1000元</span>代金券</p>-->
             </div>
         </div>
