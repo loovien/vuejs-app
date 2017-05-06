@@ -330,7 +330,7 @@
 
 
 .layout{
-    background: #fedc40;
+    /*background: #fedc40;*/
     padding-bottom: 40px;
 }
 .color_yellow{

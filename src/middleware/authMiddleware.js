@@ -21,13 +21,20 @@ export default class AuthMiddleware {
                         if(!ok) {
                           this.goWxAuthenticateUrl();
                         } else {
-                            let path = window.location.pathname;
+                            let href = document.location.href;
                             console.log('inject---s');
-                            console.log(path);
+                            console.log(href);
                             console.log('inject---e');
                             // next({ path: path });
-                            let currentUrlWithOutCode = window.location.origin + window.location.pathname;
-                            document.location.href = currentUrlWithOutCode;
+                            let indexOfQues = href.indexOf('?');
+                            if(indexOfQues !== -1) {
+                                href = href.substr(0, indexOfQues);
+                            }
+                            let handle = setTimeout(function () {
+                                document.location.href = href;
+                                clearTimeout(handle);
+                                return;
+                            }, 100);
                             return;
                         }
                     });

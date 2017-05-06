@@ -537,7 +537,7 @@
         color: #ffea00;
     }
     .layout{
-        background: #fedc40;
+        /*background: #fedc40;*/
         padding-bottom: 80px;
     }
     .color_yellow{
