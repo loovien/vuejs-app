@@ -28,7 +28,7 @@ export default class AuthMiddleware {
                             // next({ path: path });
                             let currentUrlWithOutCode = window.location.origin + window.location.pathname;
                             let handle = setTimeout(function () {
-                                window.location.href = currentUrlWithOutCode;
+                                document.location.href = currentUrlWithOutCode;
                                 clearTimeout(handle);
                                 return;
                             }, 250);
@@ -73,9 +73,9 @@ export default class AuthMiddleware {
             let redirectUrl = resp.data.data.redirectUrl;
             redirectUrl += `&redirect_uri=${window.location.href}`;
             let handle = setTimeout(function () {
-                window.location.href = redirectUrl;
-                return;
+                document.location.href = redirectUrl;
                 clearTimeout(handle)
+                return;
             });
             return;
         });
