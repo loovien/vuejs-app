@@ -358,7 +358,8 @@
     position: absolute;
     bottom: 3px;
     left: 50%;
-    width: 256px; height: 85px;
+    width: 256px;
+    /*height: 85px;*/
     margin-left: -128px;
     padding-top: 15px;
 }
