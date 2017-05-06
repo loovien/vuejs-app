@@ -299,6 +299,8 @@
 //                let currentUrl = window.location.origin + window.location.pathname;
                 const path = this.$route.path;
                 let currentUrl = window.location.origin + path;
+                console.log("haha");
+                console.log(window.location);
                 const wxSrv = new WxSrv(this);
 
                 let shareUrl = act.cover_img;
