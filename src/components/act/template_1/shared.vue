@@ -300,7 +300,7 @@
                 const path = this.$route.path;
                 let currentUrl = window.location.origin + path;
                 console.log("haha");
-                console.log(window.location);
+                console.log(window.location.href);
                 const wxSrv = new WxSrv(this);
 
                 let shareUrl = act.cover_img;
