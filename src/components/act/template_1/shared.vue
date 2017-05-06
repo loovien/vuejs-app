@@ -225,7 +225,7 @@
                 query: {}, // address params
                 openid: null, // current user openid
                 act: { // activity information
-
+                    tpl_id: 0
                 },
                 userInfo: { // 用户相关数据, 完成多少了等等,
                     name: "",
@@ -322,6 +322,7 @@
                         alert("分享成功");
                     }
                 };
+                console.log(shareUrl);
                 console.log(wxShareConfig);
                 console.log(currentUrl);
                 wxSrv.initWxJsConfig(currentUrl, wxShareConfig);
