@@ -25,10 +25,10 @@ export default class AuthMiddleware {
                             console.log('inject---s');
                             console.log(path);
                             console.log('inject---e');
-                            next({ path: path });
-                            /* let currentUrlWithOutCode = window.location.origin + window.location.pathname;
+                            // next({ path: path });
+                            let currentUrlWithOutCode = window.location.origin + window.location.pathname;
                             window.location.href = currentUrlWithOutCode;
-                            return; */
+                            return;
                         }
                     });
                 } else { /* redirect to wechat server run OAuth2 flow */
