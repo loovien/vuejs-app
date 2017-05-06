@@ -19,7 +19,7 @@ Vue.http.interceptors.push(ConsoleHttpResponse);
 
 const router = new Router({
     mode: "history",
-    //mode: "hash",
+    // mode: "hash",
     routes: RouterMapping
 });
 

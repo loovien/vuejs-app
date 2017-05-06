@@ -13,6 +13,10 @@ export default class AuthMiddleware {
     handle () {
         const router = this.router;
         const authUtil = new AuthUtil(this.http);
+
+        console.log('lthisl', this)
+        console.log('ll', router)
+        alert(router.path)
         router.beforeEach((to, from, next) => {
             if(!authUtil.hasWxOpenId()) {
                 let code = to.query.code;
@@ -21,13 +25,11 @@ export default class AuthMiddleware {
                         if(!ok) {
                           this.goWxAuthenticateUrl();
                         } else {
-                            /*
-                            let path = router.path;
+                            let path = window.location.pathname;
                             next({ path: path });
-                            */
-                            let currentUrlWithOutCode = window.location.origin + window.location.pathname;
+                            /* let currentUrlWithOutCode = window.location.origin + window.location.pathname;
                             window.location.href = currentUrlWithOutCode;
-                            return;
+                            return; */
                         }
                     });
                 } else { /* redirect to wechat server run OAuth2 flow */
