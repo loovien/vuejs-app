@@ -15,11 +15,10 @@ export default class  WxSrv extends BaseSrv  {
                 //console.log(wxResp.data.data);
                 wx.config(wxResp.data.data);
 
+                console.log('after');
+                console.log(window.location.href);
+
                 wx.ready(function(res){
-
-                    console.log('after');
-                    console.log(window.location.href);
-
                     console.log("wx share ok");
                     console.log(res);
                     wx.onMenuShareTimeline(shareConfig);
