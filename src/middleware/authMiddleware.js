@@ -69,7 +69,8 @@ export default class AuthMiddleware {
             let redirectUrl = resp.data.data.redirectUrl;
             redirectUrl += `&redirect_uri=${window.location.href}`;
             window.location.href = redirectUrl;
+            return;
         });
-        return false;
+        return;
     }
 }
