@@ -6,7 +6,9 @@ import BaseSrv from "./baseSrv";
 import wx from 'wx';
 export default class  WxSrv extends BaseSrv  {
     initWxJsConfig(url, shareConfig) {
-        this.http.get("wechat/jstoken?url="+url).then((wxResp) => {
+        let timestamp = (new Date).getTime();
+        let jsTokenUrl = "wechat/jstoken?v=" + timestamp + "&url=" + url;
+        this.http.get().then((wxResp) => {
             if(wxResp.data.code === 0) {
                 //console.log(wxResp.data.data);
                 wx.config(wxResp.data.data);
