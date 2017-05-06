@@ -19,22 +19,19 @@ export default class AuthMiddleware {
                 if(code) { /* if code exists then get user information */
                     authUtil.setUserInfo(code, (ok) => {
                         if(!ok) {
-                          this.goWxAuthenticateUrl();
+                            this.goWxAuthenticateUrl();
                         } else {
                             let href = document.location.href;
-                            console.log('inject---s');
-                            console.log(href);
-                            console.log('inject---e');
+                            alert('inject---s');
+                            alert(href);
+                            alert('inject---e');
                             // next({ path: path });
                             let indexOfQues = href.indexOf('?');
                             if(indexOfQues !== -1) {
                                 href = href.substr(0, indexOfQues);
                             }
-                            let handle = setTimeout(function () {
-                                document.location.href = href;
-                                clearTimeout(handle);
-                                return;
-                            }, 100);
+                            alert(href)
+                            document.location.href = href;
                             return;
                         }
                     });
