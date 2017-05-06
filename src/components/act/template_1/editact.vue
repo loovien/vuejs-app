@@ -329,22 +329,6 @@
     /*background: #fedc40;*/
     padding-bottom: 40px;
 }
-.color_yellow{
-    color: #ffea00;
-}
-.red{
-    color: #ff4c12;
-}
-.key{
-    padding: 0 3px;
-}
-.topBar{
-    background: #161331;
-    padding: 0 10px;
-}
-.pl10{
-    padding-left: 10px;
-}
 .banner-bg{
     width: 100%; height: auto;
 }
@@ -352,11 +336,11 @@
     position: absolute;
     width: 100%;
     top: 0; left: 0;
-    padding: 75px 36px 0;
+    padding: 50px 36px 0;
 }
 .countDown-box{
     position: absolute;
-    bottom: 3px;
+    bottom: 0;
     left: 50%;
     width: 256px;
     /*height: 85px;*/

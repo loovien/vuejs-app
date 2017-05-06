@@ -70,7 +70,7 @@
                 });
             },
             exchange(actId) {
-                if(window.confirm("退换后不能撤销, 确认用户兑换吗?")) {
+                if(window.confirm("兑换后不能撤销, 确认用户兑换吗?")) {
                     const mobile = this.storageMobile;
                     this.mineSrv.exchange({mobile, actId}).then((resp) => {
                         alert(resp.data.msg);

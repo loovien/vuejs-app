@@ -356,11 +356,11 @@
     position: absolute;
     width: 100%;
     top: 0; left: 0;
-    padding: 75px 36px 0;
+    padding: 50px 36px 0;
 }
 .countDown-box{
     position: absolute;
-    bottom: 3px;
+    bottom: 0;
     left: 50%;
     width: 256px; height: 85px;
     margin-left: -128px;
@@ -448,21 +448,6 @@
     background: #ff4c12;
     margin-right: 5px;
 }
-.madeBtn{
-    display: block;
-    width: 100%; height: 48px;
-    line-height: 48px;
-    background: #ff4c12;
-    position: fixed;
-    bottom: 0; left: 0;
-    text-align: center;
-    color: #fff;
-    font-size: 18px;
-    font-weight: bold;
-}
-.ranking-table{
-    margin-top: 15px;
-}
 .ranking-table th,
 .ranking-table td{
     height: 40px;
@@ -477,10 +462,4 @@
 .ranking-table td{
     background: #f8eba9;
 }
-.icon-team{
-    color: #4d3a1b;
-    font-size: 20px;
-    margin-right: 5px;
-}
-
 </style>
