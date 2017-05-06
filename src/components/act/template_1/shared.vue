@@ -320,6 +320,9 @@
                     imgUrl: shareUrl,
                     success: function () {
                         alert("分享成功");
+                    },
+                    fail: function (resp) {
+                        console.log('00>', resp)
                     }
                 };
                 console.log(shareUrl);
