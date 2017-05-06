@@ -20,11 +20,12 @@ export default class  WxSrv extends BaseSrv  {
                     wx.onMenuShareTimeline(shareConfig);
                     wx.onMenuShareAppMessage(shareConfig);
                 });
-            } else {
-                console.log("微信分享搓搓", wxResp);
+
                 wx.error(function(res){
                     console.log(res, 'register share erro')
                 });
+            } else {
+                console.log("微信分享搓搓", wxResp);
             }
         });
     }
