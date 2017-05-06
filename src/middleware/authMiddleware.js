@@ -13,10 +13,6 @@ export default class AuthMiddleware {
     handle () {
         const router = this.router;
         const authUtil = new AuthUtil(this.http);
-
-        console.log('lthisl', this)
-        console.log('ll', router)
-        alert(router.path)
         router.beforeEach((to, from, next) => {
             if(!authUtil.hasWxOpenId()) {
                 let code = to.query.code;
