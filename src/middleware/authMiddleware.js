@@ -27,11 +27,7 @@ export default class AuthMiddleware {
                             console.log('inject---e');
                             // next({ path: path });
                             let currentUrlWithOutCode = window.location.origin + window.location.pathname;
-                            let handle = setTimeout(function () {
-                                document.location.href = currentUrlWithOutCode;
-                                clearTimeout(handle);
-                                return;
-                            }, 250);
+                            document.location.href = currentUrlWithOutCode;
                             return;
                         }
                     });
@@ -76,7 +72,7 @@ export default class AuthMiddleware {
                 document.location.href = redirectUrl;
                 clearTimeout(handle)
                 return;
-            });
+            }, 200);
             return;
         });
         return;

@@ -33,7 +33,7 @@
                     <span class="red key">{{act.act_prize_cnt}}</span>
                     {{act.act_prize_unit}} 最后
                     <span class="red key">
-                        {{isNan(act.act_prize_cnt - completedCnt) ? 0 : (act.act_prize_cnt - completedCnt)}}
+                        {{isNaN(act.act_prize_cnt - completedCnt) ? 0 : (act.act_prize_cnt - completedCnt)}}
                     </span>
                         {{act.act_prize_unit}}
                 </p>
