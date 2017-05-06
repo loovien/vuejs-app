@@ -11,7 +11,8 @@ export default class  WxSrv extends BaseSrv  {
         this.http.get(jsTokenUrl).then((wxResp) => {
             if(wxResp.data.code === 0) {
                 alert('jscheckok');
-                console.log(wxResp);
+                console.log(wxResp.data);
+                console.log(wxResp.data.data);
                 //console.log(wxResp.data.data);
                 wx.config(wxResp.data.data);
 
