@@ -94,7 +94,8 @@
                         <img :src="item" alt="" class="img-w100">
                     </template>
                     <template v-show="act.images.length < 6">
-                        <input type="file" accept="image/*" capture="camera" @change="onFileChange" placeholder="请输入奖品描述" class="upload-file">
+                        <input type="file" accept="image/*" capture="camera" @change="onFileChange" class="upload-file">
+                        <br/> <br/>
                         <span class="icon-upload iconfont"></span>
                         <p class="text-center">最多只能上传6张图片</p>
                     </template>
@@ -241,7 +242,7 @@
             createImage: function(file, e) {
                 alert('upload start');
                 var that = this;
-                lrz(file[0], { width: 640 }).then(function(rst) {
+                lrz(file[0], {width: 640}).then(function(rst) {
                     var clearBase64 = rst.base64.substr( rst.base64.indexOf(',') + 1 );
                     alert(clearBase64);
                     var V_uploadUrl = 'http://s.51lianying.com/upload/?c=image&m=process_for_form&type=biz&item=magazine&base64=1&field=base64&is_ajax=1';
