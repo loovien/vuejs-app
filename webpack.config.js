@@ -37,7 +37,8 @@ module.exports = {
       fs: "empty"
     },
     externals: {
-      wx: 'jWeixin',
+        lrz: 'lrz',
+        wx: 'jWeixin'
     },
     resolve: {
         alias: {

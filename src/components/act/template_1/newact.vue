@@ -147,7 +147,7 @@
 <script>
     import ActSrv from "../../../service/actSrv";
     import Fixed from '../../shared/fixed.vue'
-    import '../../../../static/js/lrz.all.bundle'
+    import lrz from 'lrz';
     import Datepicker from '../../shared/Datepicker.vue'
     import Modal from '../../shared/modal.vue';
     import $ from 'jquery'
