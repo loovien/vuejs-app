@@ -315,10 +315,10 @@
                 }
 
                 const agent = window.navigator.userAgent;
-                let currentUrl = window.location.origin + window.location.pathname;
+                let currentUrl = window.location.href;
                 if(agent.indexOf("Android") !== -1) {
                     alert("android dev");
-                    currentUrl = window.location.href;
+                    currentUrl = window.location.origin + window.location.pathname;
                 }
                 alert('first' + currentUrl);
                 shareUrl += '?imageView2/2/w/300/h/300/q/50';
