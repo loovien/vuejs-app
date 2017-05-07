@@ -314,9 +314,13 @@
                     shareUrl = shareUrl.substr(0, indexOfQ);
                 }
 
-                let currentUrl = window.location.href;
+                const agent = window.navigator.userAgent;
+                let currentUrl = window.location.origin + window.location.pathname;
+                if(agent.indexOf("Android") !== -1) {
+                    alert("android dev");
+                    currentUrl = window.location.href;
+                }
                 alert('first' + currentUrl);
-                alert('useragent' + window.navigator.userAgent);
                 shareUrl += '?imageView2/2/w/300/h/300/q/50';
                 const wxShareConfig = {
                     title: act.title,
