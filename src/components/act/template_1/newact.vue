@@ -234,14 +234,12 @@
             },
             onFileChange: function(e) {
                 alert('change evt')
-                console.log('--------------------->');
-                console.log(e.target.files);
-                console.log(e.dataTransfer.files);
                 var files = e.target.files || e.dataTransfer.files;
                 if(!files.length) return;
                 this.createImage(files, e);
             },
             createImage: function(file, e) {
+                alert('upload start');
                 var that = this;
                 lrz(file[0], { width: 640 }).then(function(rst) {
                     var clearBase64 = rst.base64.substr( rst.base64.indexOf(',') + 1 );
