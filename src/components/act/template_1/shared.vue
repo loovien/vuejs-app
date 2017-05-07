@@ -303,7 +303,6 @@
 
                 // 微信分享
                 //http://203.195.235.76/jssdk/#menu-share
-//                let currentUrl = window.location.origin + window.location.pathname;
                 const wxSrv = new WxSrv(this);
 
                 let shareUrl = act.cover_img;
@@ -316,6 +315,7 @@
                 }
 
                 let currentUrl = window.location.href;
+                alert(currentUrl);
                 shareUrl += '?imageView2/2/w/300/h/300/q/50';
                 const wxShareConfig = {
                     title: act.title,
