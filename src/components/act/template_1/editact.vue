@@ -143,7 +143,7 @@
 <script>
     import ActSrv from "../../../service/actSrv";
     import Fixed from '../../shared/fixed.vue'
-    import '../../../../static/js/lrz.all.bundle'
+    import lrz from 'lrz';
     import Modal from '../../shared/modal.vue';
     import Datepicker from '../../shared/Datepicker.vue'
     import $ from 'jquery'
@@ -236,16 +236,12 @@
             },
             createImage: function(file, e) {
                 var that = this;
-                const actSrv = new ActSrv(this);
                 lrz(file[0], { width: 640 }).then(function(rst) {
                     var clearBase64 = rst.base64.substr( rst.base64.indexOf(',') + 1 );
-
                     $.ajax({
                         url: 'http://s.51lianying.com/upload/?c=image&m=process_for_form&type=biz&item=magazine&base64=1&field=base64&is_ajax=1',
                         type: 'POST',
-                        data: {
-                            image_data: clearBase64
-                        },
+                        data: { image_data: clearBase64 },
                         success: function(resp){
                             var data = JSON.parse(resp).data;
                             that.images.push(data.url)

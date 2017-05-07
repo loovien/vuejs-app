@@ -234,17 +234,14 @@
                 }); // 保存后到分享也, 游湖有需要就分享
             },
             onFileChange: function(e) {
-                alert('change evt')
                 var files = e.target.files || e.dataTransfer.files;
                 if(!files.length) return;
                 this.createImage(files, e);
             },
             createImage: function(file, e) {
-                alert('upload start');
                 var that = this;
                 lrz(file[0], {width: 640}).then(function(rst) {
                     var clearBase64 = rst.base64.substr( rst.base64.indexOf(',') + 1 );
-                    alert(clearBase64);
                     var V_uploadUrl = 'http://s.51lianying.com/upload/?c=image&m=process_for_form&type=biz&item=magazine&base64=1&field=base64&is_ajax=1';
                     $.ajax({
                         url: V_uploadUrl,
@@ -252,8 +249,6 @@
                         data: { image_data: clearBase64 },
                         success: function(resp){
                             var data = JSON.parse(resp).data;
-                            alert('upload ok');
-                            alert(data.url);
                             that.images.push(data.url)
                         }
                     });
