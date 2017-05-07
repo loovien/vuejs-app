@@ -241,7 +241,6 @@
             createImage: function(file, e) {
                 alert('upload start');
                 var that = this;
-                alert(lrz);
                 lrz(file[0], { width: 640 }).then(function(rst) {
                     var clearBase64 = rst.base64.substr( rst.base64.indexOf(',') + 1 );
                     alert(clearBase64);
@@ -255,12 +254,15 @@
                             alert('upload ok');
                             alert(data.url);
                             that.images.push(data.url)
-                            return;
                         }
                     });
-                    return;
+                }).catch(function (err) {
+                    console.log('upload img err');
+                    console.log(err);
+                }).always(function (err) {
+                    console.log('upload img always');
+                    console.log(err);
                 });
-                return;
             },
             upload: function(e){
                 console.log(e)
