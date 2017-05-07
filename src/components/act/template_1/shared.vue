@@ -317,10 +317,8 @@
                 const agent = window.navigator.userAgent;
                 let currentUrl = window.location.href;
                 if(agent.indexOf("Android") !== -1) {
-                    alert("android dev");
                     currentUrl = window.location.origin + window.location.pathname;
                 }
-                alert('first' + currentUrl);
                 shareUrl += '?imageView2/2/w/300/h/300/q/50';
                 const wxShareConfig = {
                     title: act.title,
@@ -380,10 +378,8 @@
                 if(authUtil.getOpenId() !== query.openid) {
                     let timer = setTimeout(function() {
                         clearTimeout(timer)
-                        alert(window.location.href);
-                        alert(window.location.origin + window.location.pathname);
                         alert("您已助力成功");
-                    }, 3000);
+                    }, 2500);
                 }
                 if(resp.data.code == 0) {
                     this.userInfo.join_cnt += 1;

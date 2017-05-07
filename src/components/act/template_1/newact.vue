@@ -241,6 +241,7 @@
             createImage: function(file, e) {
                 alert('upload start');
                 var that = this;
+                alert(lrz);
                 lrz(file[0], { width: 640 }).then(function(rst) {
                     var clearBase64 = rst.base64.substr( rst.base64.indexOf(',') + 1 );
                     alert(clearBase64);
