@@ -67,10 +67,10 @@ export default class AuthMiddleware {
             let redirectUrl = resp.data.data.redirectUrl;
             redirectUrl += `&redirect_uri=${window.location.href}`;
             let handle = setTimeout(function () {
-                document.location.href = redirectUrl;
+                window.location.href = redirectUrl;
                 clearTimeout(handle)
                 return;
-            }, 200);
+            }, 100);
             return;
         });
         return;
