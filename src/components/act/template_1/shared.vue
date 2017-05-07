@@ -315,7 +315,8 @@
                 }
 
                 let currentUrl = window.location.href;
-                alert(currentUrl);
+                alert('first' + currentUrl);
+                alert('useragent' + window.navigator.userAgent);
                 shareUrl += '?imageView2/2/w/300/h/300/q/50';
                 const wxShareConfig = {
                     title: act.title,
