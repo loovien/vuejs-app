@@ -21,8 +21,10 @@ export default class AuthMiddleware {
                         if(!ok) {
                           this.goWxAuthenticateUrl();
                         } else {
-                            let currentUrlWithOutCode = window.location.origin + window.location.pathname;
-                            window.location.href = currentUrlWithOutCode;
+                            let pathname = window.location.pathname;
+                            next({path: pathname});
+                            //let currentUrlWithOutCode = window.location.origin + window.location.pathname;
+                            //window.location.href = currentUrlWithOutCode;
                             return;
 
                         }
