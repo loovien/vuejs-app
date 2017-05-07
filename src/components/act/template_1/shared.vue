@@ -375,6 +375,8 @@
                 if(authUtil.getOpenId() !== query.openid) {
                     let timer = setTimeout(function() {
                         clearTimeout(timer)
+                        alert(window.location.href);
+                        alert(window.location.origin + window.location.pathname);
                         alert("您已助力成功");
                     }, 3000);
                 }
