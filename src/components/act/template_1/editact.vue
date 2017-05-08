@@ -89,7 +89,10 @@
                 <input type="text" class="ui-input" placeholder="请输入奖品描述" v-model="act.act_prize_desc">
                 <div class="mt15 upload-box text-center">
                     <template v-for="item in images">
-                        <img :src="item" alt="" class="img-w100">
+                        <div class="image-container">
+                            <img :src="item" alt="" class="img-w100">
+                            <span class="image-delete-btn" @click="deleteImage(item)">x</span>
+                        </div>
                     </template>
                     <template v-show="act.images.length < 6">
                         <input type="file" accept="image/*"  @change="onFileChange" placeholder="请输入奖品描述" class="upload-file">
@@ -237,6 +240,16 @@
                     return;
                 }
                 this.createImage(files, e);
+            },
+            deleteImage: function (item) {
+                let that = this;
+                if(window.confirm("是否删除该图片")) {
+                    for(let index in that.images) {
+                        if(that.image[index] == item) {
+                            that.images.splice(index, 1);
+                        }
+                    }
+                }
             },
             createImage: function(file, e) {
                 var that = this;
@@ -462,6 +475,20 @@
     color: #4d3a1b;
     font-size: 20px;
     margin-right: 5px;
+}
+.image-container {
+    position: relative;
+}
+.image-delete-btn {
+    position: absolute;
+    right: 0;
+    font-size: 36px;
+    color: #61e1e1;
+    background: #abd;
+    display: block;
+    padding: 10px;
+    border-radius: 0 5px;
+    z-index: 2;
 }
 
 </style>

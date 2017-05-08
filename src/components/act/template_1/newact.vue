@@ -91,7 +91,10 @@
                 <input type="text" class="ui-input" placeholder="请输入奖品描述" v-model="act.act_prize_desc">
                 <div class="mt15 upload-box text-center">
                     <template v-for="item in images">
-                        <img :src="item" alt="" class="img-w100">
+                        <div class="image-container">
+                            <img :src="item" alt="" class="img-w100">
+                            <span class="image-delete-btn" @click="deleteImage(item)">x</span>
+                        </div>
                     </template>
                     <template v-show="act.images.length < 6">
                         <input type="file" @change="onFileChange" class="upload-file" accept="image/*" >
@@ -233,6 +236,7 @@
                     name: "template1Shared", params: { actId, openid}
                 }); // 保存后到分享也, 游湖有需要就分享
             },
+
             onFileChange: function(e) {
                 if(this.images.length >= 6) {
                     alert("抱歉, 图片最多不能超过6张");
@@ -241,6 +245,16 @@
                 var files = e.target.files || e.dataTransfer.files;
                 if(!files.length) return;
                 this.createImage(files, e);
+            },
+            deleteImage: function (item) {
+                let that = this;
+                if(window.confirm("是否删除该图片")) {
+                    for(let index in that.images) {
+                        if(that.image[index] == item) {
+                            that.images.splice(index, 1);
+                        }
+                    }
+                }
             },
             createImage: function(file, e) {
                 var that = this;
@@ -469,4 +483,19 @@
 .ranking-table td{
     background: #f8eba9;
 }
+.image-container {
+    position: relative;
+}
+.image-delete-btn {
+    position: absolute;
+    right: 0;
+    font-size: 36px;
+    color: #61e1e1;
+    background: #abd;
+    display: block;
+    padding: 10px;
+    border-radius: 0 5px;
+    z-index: 2;
+}
+
 </style>
