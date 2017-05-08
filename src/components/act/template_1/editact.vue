@@ -245,7 +245,7 @@
                 let that = this;
                 if(window.confirm("是否删除该图片")) {
                     for(let index in that.images) {
-                        if(that.image[index] == item) {
+                        if(that.images[index] == item) {
                             that.images.splice(index, 1);
                         }
                     }
@@ -481,11 +481,11 @@
 }
 .image-delete-btn {
     position: absolute;
-    right: 0;
+    right: 10px;
+    top: 10px;
     font-size: 36px;
-    color: #61e1e1;
-    background: #abd;
     display: block;
+    background: #e6c86b;
     padding: 10px;
     border-radius: 0 5px;
     z-index: 2;
