@@ -94,7 +94,7 @@
                         <img :src="item" alt="" class="img-w100">
                     </template>
                     <template v-show="act.images.length < 6">
-                        <input type="file" accept="image/*" capture="camera" @change="onFileChange" class="upload-file">
+                        <input type="file" capture="camera" @change="onFileChange" class="upload-file" accept="image/png, image/gif, image/jpeg" >
                         <br/> <br/>
                         <span class="icon-upload iconfont"></span>
                         <p class="text-center">最多只能上传6张图片</p>
