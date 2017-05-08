@@ -94,8 +94,9 @@
                             <span class="image-delete-btn" @click="deleteImage(item)">x</span>
                         </div>
                     </template>
-                    <template v-show="act.images.length < 6">
+                    <template v-show="act.images.length <= 6">
                         <input type="file" accept="image/*"  @change="onFileChange" placeholder="请输入奖品描述" class="upload-file">
+                        <br/> <br/>
                         <span class="icon-upload iconfont"></span>
                         <p class="text-center">最多只能上传6张图片</p>
                     </template>

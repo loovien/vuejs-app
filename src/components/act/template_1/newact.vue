@@ -96,7 +96,7 @@
                             <span class="image-delete-btn" @click="deleteImage(item)">x</span>
                         </div>
                     </template>
-                    <template v-show="act.images.length < 6">
+                    <template v-show="act.images.length <= 6">
                         <input type="file" @change="onFileChange" class="upload-file" accept="image/*" >
                         <br/> <br/>
                         <span class="icon-upload iconfont"></span>
