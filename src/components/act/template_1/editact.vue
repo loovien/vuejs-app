@@ -485,9 +485,9 @@
     top: 10px;
     font-size: 36px;
     display: block;
-    background: #e6c86b;
+    background: #FF4C12;
     padding: 10px;
-    border-radius: 0 5px;
+    border-radius: 5px;
     z-index: 2;
 }
 
