@@ -1,6 +1,6 @@
 <template>
     <div class="layout" v-bind:style="{backgroundColor: act.color_plate}">
-        <div class="topBar color_fff f16"><span class="color_yellow">7800</span>人查看<span class="color_yellow pl10">39499</span>人分享<span class="color_yellow pl10">16333</span>人报名</div>
+        <!--<div class="topBar color_fff f16"><span class="color_yellow">7800</span>人查看<span class="color_yellow pl10">39499</span>人分享<span class="color_yellow pl10">16333</span>人报名</div>-->
         <div class="relative">
             <img :src="act.banner_img" alt="" class="banner-bg">
             <!--<img src="/static/images/template_1/banner-bg.jpg" alt="" class="banner-bg">-->

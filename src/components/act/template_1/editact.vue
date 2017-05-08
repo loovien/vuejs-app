@@ -92,7 +92,7 @@
                         <img :src="item" alt="" class="img-w100">
                     </template>
                     <template v-show="act.images.length < 6">
-                        <input type="file" accept="image/*" capture="camera" @change="onFileChange" placeholder="请输入奖品描述" class="upload-file">
+                        <input type="file" accept="image/*"  @change="onFileChange" placeholder="请输入奖品描述" class="upload-file">
                         <span class="icon-upload iconfont"></span>
                         <p class="text-center">最多只能上传6张图片</p>
                     </template>
@@ -228,6 +228,10 @@
                 }); // 保存后到分享也, 游湖有需要就分享
             },
             onFileChange: function(e) {
+                if(this.images.length >= 6) {
+                    alert("抱歉, 图片最多不能超过6张");
+                    return ;
+                }
                 var files = e.target.files || e.dataTransfer.files;
                 if(!files.length) {
                     return;
