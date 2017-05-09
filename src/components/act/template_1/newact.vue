@@ -15,7 +15,7 @@
                         至
                     </div>
                     <div class="table-cell f12">
-                        <datepicker v-model="act.act_end_time"></datepicker>
+                        <datepicker v-model="act.act_end_time" :isShowModal="true"></datepicker>
                     </div>
                 </div>
             </div>
