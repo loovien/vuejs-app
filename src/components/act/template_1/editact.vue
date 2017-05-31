@@ -88,7 +88,7 @@
                 <span class="word w3">述</span>
             </h2>
             <div class="inner">
-                <input type="text" class="ui-input" placeholder="请输入奖品描述" v-model="act.act_prize_desc">
+                <textarea class="ui-textarea introduce-textarea mt5" v-model="act.act_prize_desc" cols="30" rows="3" placeholder="请输入奖品描述"></textarea>
                 <div class="mt15 upload-box text-center">
                     <template v-for="item in images">
                         <div class="image-container">
