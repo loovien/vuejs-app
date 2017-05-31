@@ -100,7 +100,7 @@
                         <input type="file" accept="image/*"  @change="onFileChange" placeholder="请输入奖品描述" class="upload-file">
                         <br/> <br/>
                         <span class="icon-upload iconfont"></span>
-                        <p class="text-center">最多只能上传6张图片</p>
+                        <p class="text-center">最多只能上传12张图片</p>
                     </template>
                 </div>
             </div>

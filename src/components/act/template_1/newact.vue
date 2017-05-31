@@ -100,7 +100,7 @@
                         <input type="file" @change="onFileChange" class="upload-file" accept="image/*" >
                         <br/> <br/>
                         <span class="icon-upload iconfont"></span>
-                        <p class="text-center">最多只能上传6张图片</p>
+                        <p class="text-center">最多只能上传12张图片</p>
                     </template>
                 </div>
             </div>
